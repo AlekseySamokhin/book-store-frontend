@@ -13,26 +13,48 @@ const Header = styled.header`
     align-items: center;
 
     span {
+      font-size: 16px;
       padding-left: 128px;
     }
   }
 
-  .header__search {
-    position: relative;
-    display: flex;
-    max-width: 630px;
+  @media (max-width: 1100px) {
+    .header__link {
+      span {
+        padding-left: 100px;
+      }
+    }
   }
 
-  .input__image {
-    position: absolute;
-    top: 22px;
-    left: 26px;
+  @media (max-width: 970px) {
+    .header__link {
+      span {
+        padding-left: 80px;
+      }
+    }
+  }
+
+  @media (max-width: 700px) {
+    flex-wrap: wrap;
+
+    .header__link {
+      order: -2;
+    }
+  }
+
+  @media (max-width: 833px) {
+    .header__link {
+      span {
+        padding-left: 18px;
+      }
+    }
   }
 
   @media (max-width: 320px) {
-    .input__image {
-      top: 14px;
-      left: 26px;
+    .header__link {
+      span {
+       font-size: 14px;
+      }
     }
   }
 `;

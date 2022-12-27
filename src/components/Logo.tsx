@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
 const Logo = styled.img`
-  width: 88px;
-  height: 46px;
   cursor: pointer;
 
-  @media (max-width: 833px) {
+  width: 88px;
+  height: 46px;
+
+  @media (max-width: 320px) {
     width: 46px;
     height: 31px;
   }

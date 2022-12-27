@@ -4,12 +4,12 @@ import React from 'react';
 
 import Logo from '../../Logo';
 
-import imageSearch from '../../../assets/search.svg';
 import imageLogo from '../../../assets/logo-header.svg';
 
 import HeaderStyled from './Header.styled';
-import InputStyled from '../../Input';
 import ButtonStyled from '../../Button';
+
+import InputStyled from '../../../components/Input/Input';
 
 const Header: React.FC = () => {
   return (
@@ -18,10 +18,7 @@ const Header: React.FC = () => {
         <Logo src={imageLogo} />
         <span>Catalog</span>
       </div>
-      <label className="header__search" htmlFor="search">
-        <img className="input__image" src={imageSearch} alt="Search icon" />
-        <InputStyled id="search" placeholder="Search" />
-      </label>
+      <InputStyled />
       <ButtonStyled>Log In/ Sign Up</ButtonStyled>
     </HeaderStyled>
   );
