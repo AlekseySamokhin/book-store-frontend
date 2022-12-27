@@ -7,8 +7,9 @@ const GlobalStyles = createGlobalStyle`
     padding: 0;
   }
 
-  body {
+  html {
     font-family: 'Poppins', sans-serif;
+    font-weight: 500;
   }
 
   ol, ul {
@@ -16,7 +17,10 @@ const GlobalStyles = createGlobalStyle`
   }
 
   input {
-  all: unset;
+    border: none;
+    outline: none;
+    resize: none;
+    font-family: inherit;
   }
 
   a {
