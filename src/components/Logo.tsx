@@ -6,7 +6,7 @@ const Logo = styled.img`
   width: 88px;
   height: 46px;
 
-  @media (max-width: 320px) {
+  @media (max-width: 400px) {
     width: 46px;
     height: 31px;
   }

@@ -7,6 +7,12 @@ const GlobalStyles = createGlobalStyle`
     padding: 0;
   }
 
+  body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
   html {
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
@@ -24,6 +30,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   a {
+    color: inherit;
     text-decoration: none;
   }
 `;

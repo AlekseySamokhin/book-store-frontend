@@ -10,13 +10,12 @@ const Input = styled.div`
 
   .search__input {
     background-color: #f0f4ef;
-    width: inherit;
     border: none;
     padding: 20px 0 20px 14px;
-    font-weight: 400;
     border-radius: 16px;
     font-size: 16px;
     line-height: 24px;
+    width: 100%;
     letter-spacing: 0.75px;
     outline: none;
   }
@@ -27,15 +26,11 @@ const Input = styled.div`
 
   @media (max-width: 1130px) {
     max-width: 450px;
-    width: 100%;
 
     .search__input {
       max-width: 290px;
       width: 100%;
       order: 1;
-    }
-    .search__icon {
-      padding: 14px 18px 15px 20px;
     }
   }
 
@@ -66,12 +61,12 @@ const Input = styled.div`
 
     .search__input {
       font-size: 12px;
-      padding: 12.5px 0 12.5px 15px;
+      padding: 11.5px 0 11.5px 15px;
       order: 1;
     }
 
     .search__icon {
-      padding: 14px 0 15px 20px;
+      padding: 11.5px 0px 11.5px 26px;
     }
   }
 `;

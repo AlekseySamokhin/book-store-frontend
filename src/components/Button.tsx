@@ -20,7 +20,7 @@ const Button = styled.button`
     order: -2;
   }
 
-  @media (max-width: 320px) {
+  @media (max-width: 400px) {
     font-size: 12px;
     padding: 11px 17px;
   }
