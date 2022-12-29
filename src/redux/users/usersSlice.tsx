@@ -1,0 +1,44 @@
+import { createSlice } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
+
+interface IUserType {
+  id: number;
+  fullName: string;
+  email: string;
+  password: string;
+  dob: string;
+}
+
+interface IUserState {
+  user: IUserType;
+}
+
+const initialUser = {
+  id: 0,
+  fullName: '',
+  email: '',
+  password: '',
+  dob: '',
+};
+
+const initialState: IUserState = {
+  user: initialUser,
+};
+
+const userSlice = createSlice({
+  name: 'userSlice',
+  initialState,
+  reducers: {
+    login: (state, action: PayloadAction<IUserType>): void => {
+      // eslint-disable-next-line no-param-reassign
+      state.user = action.payload;
+
+      // eslint-disable-next-line no-console
+      console.log(state.user);
+    },
+  },
+});
+
+export default userSlice.reducer;
+
+export const { login } = userSlice.actions;

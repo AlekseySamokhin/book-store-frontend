@@ -54,10 +54,7 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     'no-param-reassign': [
       'error',
-      {
-        props: true,
-        ignorePropertyModificationsFor: ['store', 'acc', 'req', 'res'],
-      },
+      { props: true, ignorePropertyModificationsFor: ['store', 'acc', 'req', 'res'] },
     ],
     semi: 'off',
     '@typescript-eslint/semi': ['error', 'always'],
