@@ -13,7 +13,7 @@ interface IUserState {
   user: IUserType;
 }
 
-const initialUser = {
+const initialUser: IUserType = {
   id: 0,
   fullName: '',
   email: '',
@@ -39,6 +39,7 @@ const userSlice = createSlice({
   },
 });
 
-export default userSlice.reducer;
-
 export const { login } = userSlice.actions;
+
+export const userReducer = userSlice.reducer;
+

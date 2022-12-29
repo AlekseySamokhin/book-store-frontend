@@ -10,6 +10,10 @@ import { useAppDispatch } from './redux/store';
 import Header from './components/Containers/Header';
 import Footer from './components/Containers/Footer';
 
+import getUser from './api/userApi';
+
+import { useLocalStorage } from './helpers/localStorage';
+
 import Home from './components/Pages/Home';
 import SignUp from './components/Pages/Auth/SignUp';
 import SignIn from './components/Pages/Auth/SignIn';
@@ -21,12 +25,19 @@ import ProtectedRoute from './components/hoc/ProtectedRoute';
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch();
+
+  const [token, setToken] = useLocalStorage('', 'token');
+
+  console.log(1, token);
+
   const [auth, setAuth] = useState(false);
 
-  console.log(auth);
+  useEffect(() => {
+    setToken('f1uck');
+  }, [token]);
 
   useEffect(() => {
-    const token = localStorage.getItem('book-store-token');
+    // const token = localStorage.getItem('token');
 
     if (token) {
       setAuth(true);
@@ -42,7 +53,7 @@ const App: React.FC = () => {
           email: 'asdhasdasdh',
           password: 'ashddsadsah',
           dob: 'sdashsadashd',
-        }),
+        })
       );
     }
   }, [dispatch]);
@@ -50,16 +61,16 @@ const App: React.FC = () => {
   return (
     <>
       <Header />
-
+      {token}
       <Routes>
         <Route index element={<Home />} />
-        <Route path="/" element={<Home />} />
-        <Route path="signup" element={<SignUp />} />
-        <Route path="signin" element={<SignIn />} />
-        <Route path="catalog" element={<Catalog />} />
+        <Route path='/' element={<Home />} />
+        <Route path='signup' element={<SignUp />} />
+        <Route path='signin' element={<SignIn />} />
+        <Route path='catalog' element={<Catalog />} />
 
         <Route
-          path="cart"
+          path='cart'
           element={
             <ProtectedRoute>
               <Cart />
@@ -67,7 +78,7 @@ const App: React.FC = () => {
           }
         />
         <Route
-          path="profile"
+          path='profile'
           element={
             <ProtectedRoute>
               <Profile />

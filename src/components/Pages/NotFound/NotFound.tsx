@@ -6,7 +6,7 @@ const NotFound = () => {
   return (
     <Container>
       <div>Not Found Page</div>
-      <Link to="/">Back to Home</Link>
+      <Link to='/'>Back to Home</Link>
     </Container>
   );
 };
