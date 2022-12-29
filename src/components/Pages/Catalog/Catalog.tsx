@@ -1,11 +1,11 @@
 import Container from '../../styles/Container';
 
-const Profile = () => {
+const Catalog = () => {
   return (
     <Container>
-      <div>Profile Page</div>
+      <div>Catalog page</div>
     </Container>
   );
 };
 
-export default Profile;
+export default Catalog;

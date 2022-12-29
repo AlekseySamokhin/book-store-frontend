@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
 import FooterStyled from './Footer.styled';
 
 import Container from '../../styles/Container';
@@ -25,10 +27,10 @@ const Footer: React.FC = () => {
             </div>
           </div>
           <ul className="footer__nav">
-            <li>Home Page</li>
-            <li>Catalog</li>
-            <li>My Account</li>
-            <li>Cart</li>
+            <li><Link to="/">Home Page</Link></li>
+            <li><Link to="catalog">Catalog</Link></li>
+            <li><Link to="profile">My Account</Link></li>
+            <li><Link to="cart">Cart</Link></li>
           </ul>
           <div className="footer__location">
             <span>6391 Elgin St. Celina, Delaware 10299</span>
