@@ -8,7 +8,7 @@ const Input = styled.div`
   max-width: 630px;
   width: 100%;
 
-  .search__input {
+  input {
     background-color: #f0f4ef;
     border: none;
     padding: 20px 0 20px 14px;
@@ -20,14 +20,14 @@ const Input = styled.div`
     outline: none;
   }
 
-  .search__icon {
+  img {
     padding: 20px 0px 20px 26px;
   }
 
   @media (max-width: 1130px) {
     max-width: 450px;
 
-    .search__input {
+    input {
       max-width: 290px;
       width: 100%;
       order: 1;
@@ -38,7 +38,7 @@ const Input = styled.div`
     max-width: 350px;
     width: 100%;
 
-    .search__input {
+    input {
       max-width: 290px;
       width: 100%;
       order: 1;
@@ -48,7 +48,7 @@ const Input = styled.div`
   @media (max-width: 833px) {
     width: 100%;
 
-    .search__input {
+    input {
       width: 100%;
       order: 1;
     }
@@ -59,13 +59,13 @@ const Input = styled.div`
 
     max-width: 100%;
 
-    .search__input {
+    input {
       font-size: 12px;
       padding: 11.5px 0 11.5px 15px;
       order: 1;
     }
 
-    .search__icon {
+    img {
       padding: 11.5px 0px 11.5px 26px;
     }
   }

@@ -1,7 +1,9 @@
 import instanse from './api';
 
-const getUser = () => {
-  return instanse.get('/auth/me');
-};
+import type { IUserType } from '../redux/users/usersSlice';
 
-export default getUser;
+export const getCurrentUser = async () => {
+  const response = await instanse.get<IUserType>('/auth/me');
+
+  return response.data;
+};

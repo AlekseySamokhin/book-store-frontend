@@ -1,14 +1,19 @@
 import React from 'react';
 
-import imageSearch from '../../assets/search.svg';
-
 import InputStyled from './Input.styled';
 
-const Input: React.FC = () => {
+interface IUnputProps {
+  type?: string;
+  placeholder?: string;
+  icon?: string;
+  alt?: string;
+}
+
+const Input: React.FC<IUnputProps> = (props: IUnputProps) => {
   return (
-    <InputStyled className="search">
-      <img className="search__icon" src={imageSearch} alt="Search icon" />
-      <input className="search__input" placeholder="Search" />
+    <InputStyled>
+      <img src={props.icon} alt={props.alt} />
+      <input type={props.type} placeholder={props.placeholder} />
     </InputStyled>
   );
 };

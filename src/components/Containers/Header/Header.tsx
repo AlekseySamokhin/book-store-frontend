@@ -2,16 +2,16 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-// import { Link } from 'react-router-dom';
-
 import Logo from '../../Logo';
 
 import imageLogo from '../../../assets/logo-header.svg';
 
-import HeaderStyled from './Header.styled';
-import ButtonStyled from '../../Button';
+import searchIcon from '../../../assets/search.svg';
 
-import InputStyled from '../../Input';
+import HeaderStyled from './Header.styled';
+
+import Button from '../../Button';
+import Input from '../../Input';
 
 import Container from '../../styles/Container';
 
@@ -25,8 +25,8 @@ const Header: React.FC = () => {
           </Link>
           <span>Catalog</span>
         </div>
-        <InputStyled />
-        <ButtonStyled>Log In/ Sign Up</ButtonStyled>
+        <Input icon={searchIcon} placeholder="Search" />
+        <Button>Log In/ Sign Up</Button>
       </HeaderStyled>
     </Container>
   );

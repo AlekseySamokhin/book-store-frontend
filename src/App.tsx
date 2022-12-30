@@ -1,18 +1,20 @@
 /* eslint-disable no-console */
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import { Routes, Route } from 'react-router-dom';
 
 import { login } from './redux/users/usersSlice';
+
+import type { IUserType } from './redux/users/usersSlice';
 
 import { useAppDispatch } from './redux/store';
 
 import Header from './components/Containers/Header';
 import Footer from './components/Containers/Footer';
 
-import getUser from './api/userApi';
+import { getCurrentUser } from './api/userApi';
 
-import { useLocalStorage } from './helpers/localStorage';
+// import { useLocalStorage } from './helpers/localStorage';
 
 import Home from './components/Pages/Home';
 import SignUp from './components/Pages/Auth/SignUp';
@@ -26,51 +28,47 @@ import ProtectedRoute from './components/hoc/ProtectedRoute';
 const App: React.FC = () => {
   const dispatch = useAppDispatch();
 
-  const [token, setToken] = useLocalStorage('', 'token');
-
-  console.log(1, token);
-
-  const [auth, setAuth] = useState(false);
+  // const [token, setToken] = useLocalStorage('', 'token');
 
   useEffect(() => {
-    setToken('f1uck');
-  }, [token]);
+    const token = localStorage.getItem('token');
 
-  useEffect(() => {
-    // const token = localStorage.getItem('token');
+    (async () => {
+      const dataUser: IUserType = await getCurrentUser();
+      dispatch(login(dataUser));
+    })();
 
     if (token) {
-      setAuth(true);
       // eslint-disable-next-line no-console
       console.log('token');
       // eslint-disable-next-line no-console
     } else {
-      console.log('not token');
-      dispatch(
-        login({
-          id: 1,
-          fullName: 'asdhdash',
-          email: 'asdhasdasdh',
-          password: 'ashddsadsah',
-          dob: 'sdashsadashd',
-        })
-      );
+      console.log('no token');
+      // dispatch(
+      //   login({
+      //     id: 1,
+      //     fullName: 'asdhdash',
+      //     email: 'asdhasdasdh',
+      //     password: 'ashddsadsah',
+      //     dob: 'sdashsadashd',
+      //   }),
+      // );
     }
   }, [dispatch]);
 
   return (
     <>
       <Header />
-      {token}
+
       <Routes>
         <Route index element={<Home />} />
-        <Route path='/' element={<Home />} />
-        <Route path='signup' element={<SignUp />} />
-        <Route path='signin' element={<SignIn />} />
-        <Route path='catalog' element={<Catalog />} />
+        <Route path="/" element={<Home />} />
+        <Route path="signup" element={<SignUp />} />
+        <Route path="signin" element={<SignIn />} />
+        <Route path="catalog" element={<Catalog />} />
 
         <Route
-          path='cart'
+          path="cart"
           element={
             <ProtectedRoute>
               <Cart />
@@ -78,7 +76,7 @@ const App: React.FC = () => {
           }
         />
         <Route
-          path='profile'
+          path="profile"
           element={
             <ProtectedRoute>
               <Profile />

@@ -31,6 +31,8 @@ const Footer: React.FC = () => {
             <li><Link to="catalog">Catalog</Link></li>
             <li><Link to="profile">My Account</Link></li>
             <li><Link to="cart">Cart</Link></li>
+            <li><Link to="signin">Sign In</Link></li>
+            <li><Link to="signup">Sign Up</Link></li>
           </ul>
           <div className="footer__location">
             <span>6391 Elgin St. Celina, Delaware 10299</span>

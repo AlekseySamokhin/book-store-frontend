@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-interface IUserType {
+export interface IUserType {
   id: number;
   fullName: string;
   email: string;
@@ -42,4 +42,3 @@ const userSlice = createSlice({
 export const { login } = userSlice.actions;
 
 export const userReducer = userSlice.reducer;
-
