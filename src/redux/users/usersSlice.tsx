@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
@@ -6,7 +7,7 @@ export interface IUserType {
   fullName: string;
   email: string;
   password: string;
-  dob: string;
+  //  dob: string;
 }
 
 interface IUserState {
@@ -18,7 +19,7 @@ const initialUser: IUserType = {
   fullName: '',
   email: '',
   password: '',
-  dob: '',
+  //  dob: '',
 };
 
 const initialState: IUserState = {
@@ -29,12 +30,9 @@ const userSlice = createSlice({
   name: 'userSlice',
   initialState,
   reducers: {
-    login: (state, action: PayloadAction<IUserType>): void => {
+    login: (state, action: PayloadAction<IUserType>) => {
       // eslint-disable-next-line no-param-reassign
       state.user = action.payload;
-
-      // eslint-disable-next-line no-console
-      console.log(state.user);
     },
   },
 });

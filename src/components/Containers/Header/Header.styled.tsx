@@ -13,8 +13,14 @@ const Header = styled.header`
     justify-content: space-between;
     align-items: center;
 
+    height: 100%;
+
     span {
       padding-left: 128px;
+    }
+
+    a {
+       display: inherit;
     }
   }
 

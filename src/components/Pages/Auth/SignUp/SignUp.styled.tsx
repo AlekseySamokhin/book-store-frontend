@@ -1,13 +1,15 @@
 import styled from 'styled-components';
 
-export const SignUpStyled = styled.div`
+const SignUpWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 50px 0;
   margin-bottom: 30px;
 
-  .block-form {
+  .form {
+    width: 100%;
+    max-width: 413px;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -28,9 +30,12 @@ export const SignUpStyled = styled.div`
       padding-top: 9px;
     }
 
-
     .form__button {
       margin-top: 60px;
+    }
+
+    .red {
+      color: red;
     }
   }
 
@@ -38,3 +43,5 @@ export const SignUpStyled = styled.div`
     padding-top: 60px;
   }
 `;
+
+export { SignUpWrapper };
