@@ -1,6 +1,9 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-console */
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
+
+import { getCurrentUserThunk, signUpUserThunk, signInUserThunk } from './usersThunks';
 
 export interface IUserType {
   id: number;
@@ -34,6 +37,32 @@ const userSlice = createSlice({
       // eslint-disable-next-line no-param-reassign
       state.user = action.payload;
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(getCurrentUserThunk.fulfilled, (state, action) => {
+      if (!action.payload) {
+        return;
+      }
+
+      state.user = action.payload;
+      console.log(state.user);
+    });
+
+    builder.addCase(signUpUserThunk.fulfilled, (state, action) => {
+      if (!action.payload) {
+        return;
+      }
+
+      state.user = action.payload;
+    });
+
+    builder.addCase(signInUserThunk.fulfilled, (state, action) => {
+      if (!action.payload) {
+        return;
+      }
+
+      state.user = action.payload;
+    });
   },
 });
 

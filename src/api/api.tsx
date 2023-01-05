@@ -4,18 +4,18 @@ const instanse = axios.create({
   baseURL: 'http://localhost:4000/api',
 });
 
-instanse.interceptors.request.use((response) => {
-  const token: string | null = localStorage.getItem('token');
+instanse.interceptors.request.use((config) => {
+  const token = localStorage.getItem('token');
 
   if (token) {
     // eslint-disable-next-line no-param-reassign
-    response.headers = {
-      ...response.headers,
+    config.headers = {
+      ...config.headers,
       authorization: `Bearer ${token}`,
     };
   }
 
-  return response;
+  return config;
 });
 
 export default instanse;

@@ -15,12 +15,14 @@ import Button from '../../../Button';
 import manImage from '../../../../assets/one-man.png';
 import emailIcon from '../../../../assets/mail.svg';
 import hideIcon from '../../../../assets/hide.svg';
-import { signUp } from '../../../../api/userApi';
+// import { signUp } from '../../../../api/services/userApi';
 import { useAppDispatch } from '../../../../redux/store';
 
-import { SignUpSchema } from '../../../../validation/schemas/singup';
+import { signUpSchema } from '../../../../validation/schemas/singup';
+import { signUpUserThunk } from '../../../../redux/users/usersThunks';
+// import { getCurrentUserThunk } from '../../../../redux/users/usersThunks';
 
-import { login } from '../../../../redux/users/usersSlice';
+// import { login } from '../../../../redux/users/usersSlice';
 
 const SignUp: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -29,12 +31,19 @@ const SignUp: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleSumbit = async (values: any) => {
     try {
-      const newUser = await signUp({
-        email: values.email,
-        password: values.password,
-      });
+      // const newUser = await signUp({
+      //  email: values.email,
+      //  password: values.password,
+      // });
 
-      dispatch(login(newUser));
+      // console.log(newUser);
+      // dispatch(getCurrentUserThunk(newUser));
+      dispatch(
+        signUpUserThunk({
+          email: values.email,
+          password: values.password,
+        }),
+      );
 
       navigate('/');
     } catch (err) {
@@ -53,7 +62,7 @@ const SignUp: React.FC = () => {
               password: '',
               confirmPassword: '',
             }}
-            validationSchema={SignUpSchema}
+            validationSchema={signUpSchema}
             onSubmit={handleSumbit}
           >
             {({ errors, touched, getFieldProps }) => (
@@ -98,7 +107,7 @@ const SignUp: React.FC = () => {
                   )}
                 </label>
                 <Button type="submit" className="form__button">
-                  Log In
+                  Sign Up
                 </Button>
               </Form>
             )}

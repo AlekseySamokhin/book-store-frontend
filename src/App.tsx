@@ -3,9 +3,9 @@ import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import { useAppDispatch } from './redux/store';
-import { login } from './redux/users/usersSlice';
-import type { IUserType } from './redux/users/usersSlice';
-import { getUser } from './api/userApi';
+// import { login } from './redux/users/usersSlice';
+// import type { IUserType } from './redux/users/usersSlice';
+// import { getUser } from './api/services/userApi';
 // import { useLocalStorage } from './hooks/localStorage';
 
 import ProtectedRoute from './components/hoc/ProtectedRoute';
@@ -17,6 +17,7 @@ import SignIn from './components/Pages/Auth/SignIn';
 import Profile from './components/Pages/Profile';
 import Catalog from './components/Pages/Catalog';
 import Cart from './components/Pages/Cart';
+import { getCurrentUserThunk } from './redux/users/usersThunks';
 
 const App: React.FC = (): JSX.Element => {
   //  const [auth, setAuth] = useState(false);
@@ -26,12 +27,12 @@ const App: React.FC = (): JSX.Element => {
   //  const [token] = useLocalStorage('token', '');
 
   useEffect(() => {
-    (async () => {
-      // const token = localStorage.getItem('token');
-
-      const dataUser: IUserType = await getUser();
-      dispatch(login(dataUser));
-    })();
+    // (async () => {
+    //   // const token = localStorage.getItem('token');
+    //   const dataUser: IUserType = await getUser();
+    //   dispatch(login(dataUser));
+    // })();
+    dispatch(getCurrentUserThunk());
   }, [dispatch]);
 
   return (
