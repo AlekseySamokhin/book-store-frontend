@@ -18,13 +18,13 @@ import hideIcon from '../../../../assets/hide.svg';
 // import { signUp } from '../../../../api/services/userApi';
 import { useAppDispatch } from '../../../../redux/store';
 
-import { signInSchema } from '../../../../validation/schemas/signin';
+import { signInSchema } from '../../../../validation/schemas/auth';
 import { signInUserThunk } from '../../../../redux/users/usersThunks';
 // import { getCurrentUserThunk } from '../../../../redux/users/usersThunks';
 
 // import { login } from '../../../../redux/users/usersSlice';
 
-const SignUp: React.FC = () => {
+const SignIn: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -105,4 +105,4 @@ const SignUp: React.FC = () => {
   );
 };
 
-export default SignUp;
+export default SignIn;

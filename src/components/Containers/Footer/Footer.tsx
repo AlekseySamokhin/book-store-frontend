@@ -10,8 +10,17 @@ import Logo from '../../Logo';
 
 import imageLogo from '../../../assets/logo-footer.svg';
 import imageMaps from '../../../assets/map.png';
+import { useAppDispatch } from '../../../redux/store';
+
+import { logout } from '../../../redux/users/usersSlice';
 
 const Footer: React.FC = () => {
+  const dispatch = useAppDispatch();
+
+  const logoutFunc = () => {
+    dispatch(logout());
+  };
+
   return (
     <FooterStyled>
       <Container>
@@ -27,12 +36,25 @@ const Footer: React.FC = () => {
             </div>
           </div>
           <ul className="footer__nav">
-            <li><Link to="/">Home Page</Link></li>
-            <li><Link to="catalog">Catalog</Link></li>
-            <li><Link to="profile">My Account</Link></li>
-            <li><Link to="cart">Cart</Link></li>
-            <li><Link to="signin">Sign In</Link></li>
-            <li><Link to="signup">Sign Up</Link></li>
+            <li>
+              <Link to="/">Home Page</Link>
+            </li>
+            <li>
+              <Link to="catalog">Catalog</Link>
+            </li>
+            <li>
+              <Link to="profile">My Account</Link>
+            </li>
+            <li>
+              <Link to="cart">Cart</Link>
+            </li>
+            <li>
+              <Link to="signin">Sign In</Link>
+            </li>
+            <li>
+              <Link to="signup">Sign Up</Link>
+            </li>
+            <li onClick={logoutFunc}>Logout</li>
           </ul>
           <div className="footer__location">
             <span>6391 Elgin St. Celina, Delaware 10299</span>

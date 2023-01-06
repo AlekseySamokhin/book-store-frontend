@@ -1,7 +1,5 @@
 /* eslint-disable no-console */
-import React from 'react';
 import { Formik, Form } from 'formik';
-
 import { useNavigate } from 'react-router-dom';
 
 import Container from '../../../styles/Container';
@@ -9,20 +7,16 @@ import Container from '../../../styles/Container';
 import { SignUpWrapper } from './SignUp.styled';
 
 import Input from '../../../Input';
-
 import Button from '../../../Button';
 
 import manImage from '../../../../assets/one-man.png';
 import emailIcon from '../../../../assets/mail.svg';
 import hideIcon from '../../../../assets/hide.svg';
-// import { signUp } from '../../../../api/services/userApi';
+
 import { useAppDispatch } from '../../../../redux/store';
 
-import { signUpSchema } from '../../../../validation/schemas/singup';
+import { signUpSchema } from '../../../../validation/schemas/auth';
 import { signUpUserThunk } from '../../../../redux/users/usersThunks';
-// import { getCurrentUserThunk } from '../../../../redux/users/usersThunks';
-
-// import { login } from '../../../../redux/users/usersSlice';
 
 const SignUp: React.FC = () => {
   const dispatch = useAppDispatch();

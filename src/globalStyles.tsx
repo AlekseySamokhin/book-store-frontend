@@ -1,8 +1,10 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
-  * {
-    box-sizing: border-box;
+  *, 
+  ::after,
+  ::before
+  {
     margin: 0;
     padding: 0;
   }
@@ -18,8 +20,12 @@ const GlobalStyles = createGlobalStyle`
     font-weight: 500;
   }
 
+  div {
+   box-sizing: border-box;
+  }
+
   ol, ul {
-    list-style: none;
+    list-style-type: none;
   }
 
   input {

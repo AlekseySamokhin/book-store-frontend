@@ -1,25 +1,22 @@
-import React from 'react';
-
+/* eslint-disable no-console */
 import { useLocation, Navigate } from 'react-router-dom';
 
 import { useAppSelector } from '../../redux/store';
 
-interface IChildrenType {
+interface IPropsType {
   children: JSX.Element;
 }
 
-const ProtectedRoute: React.FC<IChildrenType> = ({ children }) => {
-  const user = useAppSelector((state) => state.users.user);
-
-  // const user = undefined;
-
+const ProtectedRoute: React.FC<IPropsType> = (props) => {
   const location = useLocation();
+
+  const user = useAppSelector((state) => state.users.user);
 
   if (!user) {
     return <Navigate to="/signin" state={{ from: location }} />;
   }
 
-  return children;
+  return props.children;
 };
 
 export default ProtectedRoute;

@@ -1,30 +1,22 @@
 /* eslint-disable no-console */
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { getUser, signUp, signIn } from '../../api/services/authApi';
+import { authService } from '../../api/services/auth.service';
 
-import type { IAuthRequestType } from '../../interfaces/userInterfaces';
+import { storage } from '../../utils/storage';
 
-const getCurrentUserThunk = createAsyncThunk('user/token', async () => {
-  try {
-    const data = await getUser();
-
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
-});
+import type { IAuthRequestType } from '../../types/user';
 
 const signUpUserThunk = createAsyncThunk(
-  'user/signup',
+  'user/register',
   async (values: IAuthRequestType) => {
     try {
-      const data = await signUp(values);
+      const data = await authService.signUp(values);
 
-      const { newUser, accessToken } = data;
+      const { user, accessToken } = data;
 
-      localStorage.setItem('token', accessToken);
+      storage.set('token', accessToken);
 
-      return newUser;
+      return user;
     } catch (error) {
       console.log(error);
     }
@@ -32,20 +24,34 @@ const signUpUserThunk = createAsyncThunk(
 );
 
 const signInUserThunk = createAsyncThunk(
-  'user/signin',
+  'user/login',
   async (values: IAuthRequestType) => {
     try {
-      const data = await signIn(values);
+      const data = await authService.signIn(values);
       console.log(data);
-      const { existUser, accessToken } = data;
+      const { user, accessToken } = data;
 
-      localStorage.setItem('token', accessToken);
+      storage.set('token', accessToken);
 
-      return existUser;
+      return user;
     } catch (error) {
       console.log(error);
     }
   },
 );
 
-export { getCurrentUserThunk, signUpUserThunk, signInUserThunk };
+const getCurrentUserThunk = createAsyncThunk('user/token', async () => {
+  try {
+    const data = await authService.getCurrentUser();
+
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+export {
+  getCurrentUserThunk,
+  signUpUserThunk,
+  signInUserThunk,
+};

@@ -8,10 +8,7 @@ import {
   signInUserThunk,
 } from './usersThunks';
 
-import type {
-  IUserType,
-  IUserStateType,
-} from '../../interfaces/userInterfaces';
+import type { IUserType, IUserStateType } from '../../types/user';
 
 const initialUser: IUserType = {
   id: 0,
@@ -24,10 +21,15 @@ const initialState: IUserStateType = {
   user: initialUser,
 };
 
-const userSlice = createSlice({
+const usersSlice = createSlice({
   name: 'userSlice',
   initialState,
-  reducers: {},
+  reducers: {
+    logout: (state) => {
+      state.user = initialUser;
+      console.log(state.user);
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getCurrentUserThunk.fulfilled, (state, action) => {
       if (!action.payload) {
@@ -43,6 +45,7 @@ const userSlice = createSlice({
       }
 
       state.user = action.payload;
+      console.log(state.user);
     });
 
     builder.addCase(signInUserThunk.fulfilled, (state, action) => {
@@ -55,4 +58,6 @@ const userSlice = createSlice({
   },
 });
 
-export const userReducer = userSlice.reducer;
+export const { logout } = usersSlice.actions;
+
+export const usersReducer = usersSlice.reducer;

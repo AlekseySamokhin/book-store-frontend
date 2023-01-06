@@ -1,12 +1,14 @@
 /* eslint-disable no-param-reassign */
 import axios from 'axios';
 
-const instanse = axios.create({
+import { storage } from '../utils/storage';
+
+const instance = axios.create({
   baseURL: 'http://localhost:4000/api',
 });
 
-instanse.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token');
+instance.interceptors.request.use((config) => {
+  const token = storage.get('token');
 
   if (token) {
     config.headers = {
@@ -18,4 +20,4 @@ instanse.interceptors.request.use((config) => {
   return config;
 });
 
-export default instanse;
+export { instance };
