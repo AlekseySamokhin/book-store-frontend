@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import axios from 'axios';
 
 const instanse = axios.create({
@@ -8,7 +9,6 @@ instanse.interceptors.request.use((config) => {
   const token = localStorage.getItem('token');
 
   if (token) {
-    // eslint-disable-next-line no-param-reassign
     config.headers = {
       ...config.headers,
       authorization: `Bearer ${token}`,

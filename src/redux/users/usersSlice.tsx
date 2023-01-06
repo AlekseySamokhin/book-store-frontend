@@ -1,43 +1,33 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-console */
 import { createSlice } from '@reduxjs/toolkit';
-import type { PayloadAction } from '@reduxjs/toolkit';
 
-import { getCurrentUserThunk, signUpUserThunk, signInUserThunk } from './usersThunks';
+import {
+  getCurrentUserThunk,
+  signUpUserThunk,
+  signInUserThunk,
+} from './usersThunks';
 
-export interface IUserType {
-  id: number;
-  fullName: string;
-  email: string;
-  password: string;
-  //  dob: string;
-}
-
-interface IUserState {
-  user: IUserType;
-}
+import type {
+  IUserType,
+  IUserStateType,
+} from '../../interfaces/userInterfaces';
 
 const initialUser: IUserType = {
   id: 0,
   fullName: '',
   email: '',
   password: '',
-  //  dob: '',
 };
 
-const initialState: IUserState = {
+const initialState: IUserStateType = {
   user: initialUser,
 };
 
 const userSlice = createSlice({
   name: 'userSlice',
   initialState,
-  reducers: {
-    login: (state, action: PayloadAction<IUserType>) => {
-      // eslint-disable-next-line no-param-reassign
-      state.user = action.payload;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getCurrentUserThunk.fulfilled, (state, action) => {
       if (!action.payload) {
@@ -45,7 +35,6 @@ const userSlice = createSlice({
       }
 
       state.user = action.payload;
-      console.log(state.user);
     });
 
     builder.addCase(signUpUserThunk.fulfilled, (state, action) => {
@@ -65,7 +54,5 @@ const userSlice = createSlice({
     });
   },
 });
-
-export const { login } = userSlice.actions;
 
 export const userReducer = userSlice.reducer;

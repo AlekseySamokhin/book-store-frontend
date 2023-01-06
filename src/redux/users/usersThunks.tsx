@@ -1,11 +1,8 @@
 /* eslint-disable no-console */
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { getUser, signUp, signIn } from '../../api/services/userApi';
+import { getUser, signUp, signIn } from '../../api/services/authApi';
 
-interface ISignupRequest {
-  email: string;
-  password: string;
-}
+import type { IAuthRequestType } from '../../interfaces/userInterfaces';
 
 const getCurrentUserThunk = createAsyncThunk('user/token', async () => {
   try {
@@ -19,7 +16,7 @@ const getCurrentUserThunk = createAsyncThunk('user/token', async () => {
 
 const signUpUserThunk = createAsyncThunk(
   'user/signup',
-  async (values: ISignupRequest) => {
+  async (values: IAuthRequestType) => {
     try {
       const data = await signUp(values);
 
@@ -36,7 +33,7 @@ const signUpUserThunk = createAsyncThunk(
 
 const signInUserThunk = createAsyncThunk(
   'user/signin',
-  async (values: ISignupRequest) => {
+  async (values: IAuthRequestType) => {
     try {
       const data = await signIn(values);
       console.log(data);
