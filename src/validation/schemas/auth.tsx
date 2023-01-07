@@ -1,21 +1,26 @@
-import * as Yup from 'yup';
+import * as yup from 'yup';
 
-const signInSchema = Yup.object().shape({
-  email: Yup.string().email('Invalid email address').required('Required email'),
-  password: Yup.string()
-    .min(8, 'Password should be of minimum 8 characters length')
+const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
+// min 5 characters, 1 upper case letter, 1 lower case letter, 1 numeric digit
+
+const signUpSchema = yup.object().shape({
+  email: yup.string().email('Please enter a valid email').required('Email is required'),
+  password: yup.string()
+    .min(5, 'Password should be of minimum 5 characters length')
+    .matches(passwordRules, { message: 'Please create a stronger password' })
     .required('Password is required'),
+  confirmPassword: yup.string().oneOf(
+    [yup.ref('password'), null],
+    'Passwords must match',
+  ).required('Password is required'),
 });
 
-const signUpSchema = Yup.object().shape({
-  email: Yup.string().email('Invalid email address').required('Required email'),
-  password: Yup.string()
-    .min(8, 'Password should be of minimum 8 characters length')
+const signInSchema = yup.object().shape({
+  email: yup.string().email('Invalid email address').required('Required email'),
+  password: yup.string()
+    .min(5, 'Password should be of minimum 5 characters length')
+    .matches(passwordRules, { message: 'Please create a stronger password' })
     .required('Password is required'),
-  confirmPassword: Yup.string().oneOf(
-    [Yup.ref('password'), null],
-    'Passwords must match',
-  ),
 });
 
 export { signUpSchema, signInSchema };

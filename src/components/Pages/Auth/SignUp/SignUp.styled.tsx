@@ -27,6 +27,9 @@ const SignUpWrapper = styled.div`
     }
 
     label p {
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 24px;
       padding-top: 9px;
     }
 
@@ -35,7 +38,7 @@ const SignUpWrapper = styled.div`
     }
 
     .red {
-      color: red;
+      color: #c30052;
     }
   }
 

@@ -1,12 +1,15 @@
+/* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable no-console */
-import { Formik, Form } from 'formik';
+import { useState } from 'react';
+import { useFormik } from 'formik';
+import type { FormikHelpers } from 'formik';
 import { useNavigate } from 'react-router-dom';
 
 import Container from '../../../styles/Container';
 
 import { SignUpWrapper } from './SignUp.styled';
 
-import Input from '../../../Input';
+import CustomInput from '../../../CustomInput';
 import Button from '../../../Button';
 
 import manImage from '../../../../assets/one-man.png';
@@ -18,94 +21,115 @@ import { useAppDispatch } from '../../../../redux/store';
 import { signUpSchema } from '../../../../validation/schemas/auth';
 import { signUpUserThunk } from '../../../../redux/users/usersThunks';
 
+interface IFormValues {
+  email: string;
+  password: string;
+  confirmPassword?: string;
+}
+
 const SignUp: React.FC = () => {
+  const [isSubmiting, setSubmiting] = useState(false);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleSumbit = async (values: any) => {
+  const onSubmit = async (
+    values: IFormValues,
+    actions: FormikHelpers<IFormValues>,
+  ) => {
     try {
-      // const newUser = await signUp({
-      //  email: values.email,
-      //  password: values.password,
-      // });
+      setSubmiting(true);
 
-      // console.log(newUser);
-      // dispatch(getCurrentUserThunk(newUser));
-      dispatch(
-        signUpUserThunk({
-          email: values.email,
-          password: values.password,
-        }),
-      );
+      setTimeout(() => {
+        dispatch(
+          signUpUserThunk({
+            email: values.email,
+            password: values.password,
+          }),
+        );
 
-      navigate('/');
+        actions.resetForm();
+
+        setSubmiting(false);
+        navigate('/');
+      }, 800);
     } catch (err) {
       console.log(err);
     }
   };
+
+  const initialValues: IFormValues = {
+    email: '',
+    password: '',
+    confirmPassword: '',
+  };
+
+  const { errors, touched, getFieldProps, handleSubmit } =
+    useFormik({
+      initialValues,
+      validationSchema: signUpSchema,
+      onSubmit,
+    });
 
   return (
     <Container>
       <SignUpWrapper>
         <div className="form">
           <h2>Sing Up</h2>
-          <Formik
-            initialValues={{
-              email: '',
-              password: '',
-              confirmPassword: '',
-            }}
-            validationSchema={signUpSchema}
-            onSubmit={handleSumbit}
-          >
-            {({ errors, touched, getFieldProps }) => (
-              <Form noValidate>
-                <label>
-                  <Input
-                    type="email"
-                    icon={emailIcon}
-                    fieldInputProps={getFieldProps('email')}
-                    placeholder={'Email'}
-                  />
-                  {touched.email && errors.email ? (
-                    <p className="red">{errors.email}</p>
-                  ) : (
-                    <p>Enter you email</p>
-                  )}
-                </label>
-                <label>
-                  <Input
-                    type="password"
-                    icon={hideIcon}
-                    placeholder={'Password'}
-                    fieldInputProps={getFieldProps('password')}
-                  />
-                  {touched.password && errors.password ? (
-                    <p className="red">{errors.password}</p>
-                  ) : (
-                    <p>Enter your password</p>
-                  )}
-                </label>
-                <label>
-                  <Input
-                    type="password"
-                    icon={hideIcon}
-                    placeholder={'Password'}
-                    fieldInputProps={getFieldProps('confirmPassword')}
-                  />
-                  {touched.confirmPassword && errors.confirmPassword ? (
-                    <p className="red">{errors.confirmPassword}</p>
-                  ) : (
-                    <p>Repeat your password without errors</p>
-                  )}
-                </label>
-                <Button type="submit" className="form__button">
-                  Sign Up
-                </Button>
-              </Form>
-            )}
-          </Formik>
+
+          <form noValidate autoComplete="off" onSubmit={handleSubmit}>
+            <label>
+              <CustomInput
+                type="email"
+                icon={emailIcon}
+                error={errors.email || ''}
+                touched={touched.email}
+                placeholder={'Email'}
+                fieldInputProps={getFieldProps('email')}
+              />
+              {touched.email && errors.email ? (
+                <p className="red">{errors.email}</p>
+              ) : (
+                <p>Enter you email</p>
+              )}
+            </label>
+            <label>
+              <CustomInput
+                type="password"
+                icon={hideIcon}
+                placeholder={'Password'}
+                error={errors.password || ''}
+                touched={touched.password}
+                fieldInputProps={getFieldProps('password')}
+              />
+              {touched.password && errors.password ? (
+                <p className="red">{errors.password}</p>
+              ) : (
+                <p>Enter your password</p>
+              )}
+            </label>
+            <label>
+              <CustomInput
+                type="password"
+                icon={hideIcon}
+                placeholder={'Password'}
+                error={errors.confirmPassword || ''}
+                touched={touched.confirmPassword}
+                fieldInputProps={getFieldProps('confirmPassword')}
+              />
+              {touched.confirmPassword && errors.confirmPassword ? (
+                <p className="red">{errors.confirmPassword}</p>
+              ) : (
+                <p>Repeat your password without errors</p>
+              )}
+            </label>
+            <Button
+              disabled={isSubmiting}
+              type="submit"
+              className="form__button"
+            >
+              Sign Up
+            </Button>
+          </form>
         </div>
         <img src={manImage} alt="Image one man" />
       </SignUpWrapper>

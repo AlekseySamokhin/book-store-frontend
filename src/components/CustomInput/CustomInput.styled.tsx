@@ -1,18 +1,26 @@
 import styled from 'styled-components';
 
-const Input = styled.div`
+interface IInputStyledProps {
+  error?: string;
+  touched?: boolean;
+}
+
+const Input = styled.div<IInputStyledProps>`
   display: flex;
   align-items: center;
   width: 100%;
   max-width: 630px;
-  background-color: #f0f4ef;
+
   font-weight: 400;
   border-radius: 16px;
+
+  border: ${(props) => (props.error && props.touched ? '2px solid #ED2E7E' : '')};
+  background-color: ${(props) => (props.error && props.touched ? '#FFF2F7' : '#f0f4ef')};
 
   input {
     width: 100%;
     padding: 20px 14px 20px 14px;
-    background-color: #f0f4ef;
+    background-color: ${(props) => (props.error && props.touched ? '#FFF2F7' : '#f0f4ef')};
     font-size: 16px;
     letter-spacing: 1.5px;
     line-height: 24px;

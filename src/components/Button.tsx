@@ -1,15 +1,25 @@
 import styled from 'styled-components';
 
-const Button = styled.button`
+interface IButtonProps {
+  disabled?: boolean;
+}
+
+const Button = styled.button<IButtonProps>`
   padding: 10px 50px;
-  background: #344966;
   border: none;
   cursor: pointer;
   border-radius: 16px;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 16px;
   color: #f0f4ef;
   display: block;
+  transition: 0.3s;
+
+  background: ${(props) => (props.disabled ? '#B9BAC4' : '#344966')};
+
+  &:hover {
+    background: #0d1821;
+  }
 
   @media (max-width: 778px) {
     font-size: 14px;

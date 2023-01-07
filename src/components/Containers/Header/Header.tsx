@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import HeaderStyled from './Header.styled';
 
 import Button from '../../Button';
-import Input from '../../Input';
+import CustomInput from '../../CustomInput';
 
 import Container from '../../styles/Container';
 
@@ -23,7 +23,7 @@ const Header: React.FC = () => {
           </Link>
           <span>Catalog</span>
         </div>
-        <Input icon={searchIcon} placeholder={'Search'} />
+        <CustomInput error={''} icon={searchIcon} placeholder={'Search'} />
         <Button>Log In/ Sign Up</Button>
       </HeaderStyled>
     </Container>
