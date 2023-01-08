@@ -9,7 +9,6 @@ interface IPropsType {
 
 const ProtectedRoute: React.FC<IPropsType> = (props) => {
   const location = useLocation();
-
   const user = useAppSelector((state) => state.users.user);
 
   if (!user) {
