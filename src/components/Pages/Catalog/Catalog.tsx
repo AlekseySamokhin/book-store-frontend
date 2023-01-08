@@ -1,4 +1,4 @@
-import Container from '../../styles/Container';
+import Container from '../../../styles/Container';
 
 const Catalog = () => {
   return (

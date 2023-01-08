@@ -4,9 +4,9 @@ const Header = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 16px;
 
   padding: 24px 0 24px 0;
-  margin-bottom: 16px;
 
   .header__link {
     display: flex;
@@ -20,7 +20,7 @@ const Header = styled.header`
     }
 
     a {
-       display: inherit;
+      display: inherit;
     }
   }
 
@@ -62,7 +62,6 @@ const Header = styled.header`
   @media (max-width: 833px) {
     .header__link {
       span {
-        /* padding-left: 180px; */
         font-size: 14px;
       }
     }

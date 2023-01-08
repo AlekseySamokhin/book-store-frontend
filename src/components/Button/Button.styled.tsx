@@ -2,23 +2,27 @@ import styled from 'styled-components';
 
 interface IButtonProps {
   disabled?: boolean;
+  primary?: string;
+  secondary?: string;
 }
 
-const Button = styled.button<IButtonProps>`
-  padding: 10px 50px;
+const StyledButton = styled.button<IButtonProps>`
   border: none;
+  padding: 10px 50px;
   cursor: pointer;
   border-radius: 16px;
-  font-weight: 600;
   font-size: 16px;
+  font-weight: 600;
+
   color: #f0f4ef;
   display: block;
   transition: 0.3s;
 
-  background: ${(props) => (props.disabled ? '#B9BAC4' : '#344966')};
+  background-color: ${(props) => (props.disabled ? '#B9BAC4' : '#344966')};
+  transition: background-color 1000ms linear;
 
   &:hover {
-    background: #0d1821;
+    background-color: #0d1821;
   }
 
   @media (max-width: 778px) {
@@ -36,4 +40,4 @@ const Button = styled.button<IButtonProps>`
   }
 `;
 
-export default Button;
+export default StyledButton;

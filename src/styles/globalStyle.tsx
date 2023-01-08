@@ -1,12 +1,13 @@
 import { createGlobalStyle } from 'styled-components';
 
-const GlobalStyles = createGlobalStyle`
+const GlobalStyle = createGlobalStyle`
   *, 
   ::after,
   ::before
   {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
   }
 
   body {
@@ -20,10 +21,6 @@ const GlobalStyles = createGlobalStyle`
     font-weight: 500;
   }
 
-  div {
-   box-sizing: border-box;
-  }
-
   ol, ul {
     list-style-type: none;
   }
@@ -35,10 +32,15 @@ const GlobalStyles = createGlobalStyle`
     font-family: inherit;
   }
 
+  button:focus,
+  textarea:focus {
+   outline: none;
+  }
+
   a {
     color: inherit;
     text-decoration: none;
   }
 `;
 
-export default GlobalStyles;
+export { GlobalStyle };

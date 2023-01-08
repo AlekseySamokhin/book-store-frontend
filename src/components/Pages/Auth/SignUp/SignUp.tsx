@@ -5,12 +5,12 @@ import { useFormik } from 'formik';
 import type { FormikHelpers } from 'formik';
 import { useNavigate } from 'react-router-dom';
 
-import Container from '../../../styles/Container';
+import Container from '../../../../styles/Container';
 
 import { SignUpWrapper } from './SignUp.styled';
 
 import CustomInput from '../../../CustomInput';
-import Button from '../../../Button';
+import { Button } from '../../../Button';
 
 import manImage from '../../../../assets/one-man.png';
 import emailIcon from '../../../../assets/mail.svg';
@@ -18,7 +18,7 @@ import hideIcon from '../../../../assets/hide.svg';
 
 import { useAppDispatch } from '../../../../redux/store';
 
-import { signUpSchema } from '../../../../validation/schemas/auth';
+import { signUpSchema } from '../../../../schemas/auth';
 import { signUpUserThunk } from '../../../../redux/users/usersThunks';
 
 interface IFormValues {

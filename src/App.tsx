@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import { useAppDispatch } from './redux/store';
 import { getCurrentUserThunk } from './redux/users/usersThunks';
+import { storage } from './utils/storage';
 
 import ProtectedRoute from './components/hoc/ProtectedRoute';
 import Header from './components/Containers/Header';
@@ -15,19 +16,14 @@ import Catalog from './components/Pages/Catalog';
 import Cart from './components/Pages/Cart';
 
 const App: React.FC = (): JSX.Element => {
-  //  const [auth, setAuth] = useState(false);
-
   const dispatch = useAppDispatch();
 
-  //  const [token] = useLocalStorage('token', '');
-
   useEffect(() => {
-    // (async () => {
-    //   // const token = localStorage.getItem('token');
-    //   const dataUser: IUserType = await getUser();
-    //   dispatch(login(dataUser));
-    // })();
-    dispatch(getCurrentUserThunk());
+    const token = storage.get('token');
+
+    if (token) {
+      dispatch(getCurrentUserThunk());
+    }
   }, [dispatch]);
 
   return (

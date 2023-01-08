@@ -19,8 +19,9 @@ const Input = styled.div<IInputStyledProps>`
 
   input {
     width: 100%;
-    padding: 20px 14px 20px 14px;
-    background-color: ${(props) => (props.error && props.touched ? '#FFF2F7' : '#f0f4ef')};
+    /*padding: 20px 14px 20px 14px;*/
+    padding: ${(props) => (props.error && props.touched ? '18px 14px 18px 14px' : '20px 14px 20px 14px')};
+    background-color: ${(props) => (props.error && props.touched ? props.theme.colors.error : props.theme.colors.light)};
     font-size: 16px;
     letter-spacing: 1.5px;
     line-height: 24px;

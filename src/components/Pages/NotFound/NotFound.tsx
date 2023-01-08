@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import Container from '../../styles/Container';
+import Container from '../../../styles/Container';
 
 const NotFound = () => {
   return (

@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 const Footer = styled.footer`
-  background-color: #0d1821;
+  background-color: ${(props) => props.theme.colors.dark};
+  color: ${(props) => props.theme.colors.light};
   font-size: 20px;
-  color: #f0f4ef;
   padding: 73px 0;
 
   .footer {
@@ -50,8 +50,6 @@ const Footer = styled.footer`
     padding-bottom: 30px;
 
     .footer {
-      display: flex;
-      flex-direction: column;
       justify-content: left;
       align-items: baseline;
     }

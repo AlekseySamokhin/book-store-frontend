@@ -4,17 +4,19 @@ import { Link } from 'react-router-dom';
 
 import FooterStyled from './Footer.styled';
 
-import Container from '../../styles/Container';
+import Container from '../../../styles/Container';
 
-import Logo from '../../Logo';
+import { Logo } from '../../Logo';
 
 import imageLogo from '../../../assets/logo-footer.svg';
 import imageMaps from '../../../assets/map.png';
 import { useAppDispatch } from '../../../redux/store';
 
+import { Flex } from '../../../styles/Flex';
+
 import { logout } from '../../../redux/users/usersSlice';
 
-const Footer: React.FC = () => {
+const Footer: React.FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
 
   const logoutFunc = () => {
@@ -25,7 +27,7 @@ const Footer: React.FC = () => {
     <FooterStyled>
       <Container>
         <footer className="footer">
-          <div className="footer__block">
+          <Flex direction="column">
             <Logo src={imageLogo} />
 
             <div className="footer__contacts">
@@ -34,7 +36,7 @@ const Footer: React.FC = () => {
               </a>
               <a href="tel:+74805550103">+7 (480) 555-0103</a>
             </div>
-          </div>
+          </Flex>
           <ul className="footer__nav">
             <li>
               <Link to="/">Home Page</Link>
