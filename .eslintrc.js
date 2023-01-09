@@ -52,10 +52,14 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
     '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
-    'no-param-reassign': [
-      'error',
-      { props: true, ignorePropertyModificationsFor: ['store', 'acc', 'req', 'res'] },
-    ],
+    'no-param-reassign': [2, { props: false }],
+    // 'no-param-reassign': [
+    //   'error',
+    //   {
+    //     props: true,
+    //     ignorePropertyModificationsFor: ['store', 'acc', 'req', 'res'],
+    //   },
+    // ],
     semi: 'off',
     '@typescript-eslint/semi': ['error', 'always'],
     'comma-dangle': 'off',

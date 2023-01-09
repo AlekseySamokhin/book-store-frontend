@@ -19,7 +19,7 @@ const StyledButton = styled.button<IButtonProps>`
   transition: 0.3s;
 
   background-color: ${(props) => (props.disabled ? '#B9BAC4' : '#344966')};
-  transition: background-color 1000ms linear;
+  transition: background-color 250ms linear;
 
   &:hover {
     background-color: #0d1821;

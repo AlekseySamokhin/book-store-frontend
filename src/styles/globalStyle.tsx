@@ -10,10 +10,20 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
+  html {
+    height: 100vh;
+  }
+
+  #root {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+
   body {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: 100vh;
   }
 
   html {
@@ -38,6 +48,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   a {
+    display: inherit;
     color: inherit;
     text-decoration: none;
   }

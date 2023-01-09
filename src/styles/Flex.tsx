@@ -6,6 +6,7 @@ interface IFlexStyledProps {
   justify?: string;
   margin?: string;
   children?: JSX.Element | JSX.Element[];
+  className?: string;
 }
 
 const StyledFlex = styled.div<IFlexStyledProps>`

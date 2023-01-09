@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import StyledButton from './Button.styled';
 
 type IButtonPropsType = {
@@ -7,7 +8,7 @@ type IButtonPropsType = {
   primary?: string;
   secondary?: boolean;
   className?: string;
-  children?: string;
+  children?: ReactNode;
 };
 
 const Button: React.FC<IButtonPropsType> = (props) => {
@@ -16,7 +17,7 @@ const Button: React.FC<IButtonPropsType> = (props) => {
       onClick={props.onClick}
       type={props.type}
       disabled={props.disabled}
-      className={`${props.className}`}
+      className={props.className}
     >
       {props.children}
     </StyledButton>

@@ -44,6 +44,15 @@ const SignUpWrapper = styled.div`
 
   @media (max-width: 1100px) {
     padding-top: 60px;
+
+    .form__button {
+      
+    }
+
+    .main-image {
+      height: 392px;
+      width: 413px;
+    }
   }
 `;
 

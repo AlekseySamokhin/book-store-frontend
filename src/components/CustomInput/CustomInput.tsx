@@ -21,7 +21,7 @@ const CustomInput: React.FC<IInputPropsType> = (props): JSX.Element => {
   const [icon, setIcon] = useState<string>(props.icon);
 
   const handleTogglePassword = () => {
-    if (props.type !== 'password' && props.type !== 'text') return;
+    if (props.type !== 'password') return;
     if (type === 'password') {
       setType('text');
       setIcon(view);

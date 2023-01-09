@@ -1,12 +1,11 @@
 import Container from '../../../styles/Container';
-import { Banner } from '../../Banner/Banner';
 
-const Home = () => {
+const Favorites = () => {
   return (
     <Container>
-      <Banner />
+      <div>Favorites Page</div>
     </Container>
   );
 };
 
-export default Home;
+export { Favorites };

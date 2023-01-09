@@ -50,12 +50,6 @@ const Footer: React.FC = (): JSX.Element => {
             <li>
               <Link to="cart">Cart</Link>
             </li>
-            <li>
-              <Link to="signin">Sign In</Link>
-            </li>
-            <li>
-              <Link to="signup">Sign Up</Link>
-            </li>
             <li onClick={logoutFunc}>Logout</li>
           </ul>
           <div className="footer__location">

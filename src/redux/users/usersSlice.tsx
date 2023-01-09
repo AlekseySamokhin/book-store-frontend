@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable no-console */
 import { createSlice } from '@reduxjs/toolkit';
 
 import {
@@ -17,17 +15,16 @@ const initialUser: IUserType = {
   password: '',
 };
 
-const initialState: IUserStateType = {
+const getInitialState = (): IUserStateType => ({
   user: initialUser,
-};
+});
 
 const usersSlice = createSlice({
   name: 'userSlice',
-  initialState,
+  initialState: getInitialState(),
   reducers: {
-    logout: (state) => {
-      state.user = initialUser;
-      console.log(state.user);
+    logout: () => {
+      return getInitialState();
     },
   },
   extraReducers: (builder) => {
@@ -45,7 +42,6 @@ const usersSlice = createSlice({
       }
 
       state.user = action.payload;
-      console.log(state.user);
     });
 
     builder.addCase(signInUserThunk.fulfilled, (state, action) => {

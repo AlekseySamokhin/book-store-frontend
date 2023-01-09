@@ -5,6 +5,7 @@ const Footer = styled.footer`
   color: ${(props) => props.theme.colors.light};
   font-size: 20px;
   padding: 73px 0;
+  margin-top: auto;
 
   .footer {
     display: flex;

@@ -11,7 +11,7 @@ const ProtectedRoute: React.FC<IPropsType> = (props) => {
   const location = useLocation();
   const user = useAppSelector((state) => state.users.user);
 
-  if (!user) {
+  if (!user.email) {
     return <Navigate to="/signin" state={{ from: location }} />;
   }
 

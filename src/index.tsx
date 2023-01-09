@@ -4,8 +4,8 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import ReactDOM from 'react-dom/client';
 import { ThemeProvider } from 'styled-components';
 
-import App from './App';
-import store from './redux/store';
+import { App } from './App';
+import { store } from './redux/store';
 
 import { GlobalStyle } from './styles/globalStyle';
 import { theme } from './styles/theme';

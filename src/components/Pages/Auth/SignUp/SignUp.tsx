@@ -5,21 +5,18 @@ import { useFormik } from 'formik';
 import type { FormikHelpers } from 'formik';
 import { useNavigate } from 'react-router-dom';
 
+import { useAppDispatch } from '../../../../redux/store';
+import { signUpUserThunk } from '../../../../redux/users/usersThunks';
+import { signUpSchema } from '../../../../schemas/auth';
+
 import Container from '../../../../styles/Container';
-
-import { SignUpWrapper } from './SignUp.styled';
-
 import CustomInput from '../../../CustomInput';
 import { Button } from '../../../Button';
+import { SignUpWrapper } from './SignUp.styled';
 
 import manImage from '../../../../assets/one-man.png';
 import emailIcon from '../../../../assets/mail.svg';
 import hideIcon from '../../../../assets/hide.svg';
-
-import { useAppDispatch } from '../../../../redux/store';
-
-import { signUpSchema } from '../../../../schemas/auth';
-import { signUpUserThunk } from '../../../../redux/users/usersThunks';
 
 interface IFormValues {
   email: string;
@@ -63,12 +60,11 @@ const SignUp: React.FC = () => {
     confirmPassword: '',
   };
 
-  const { errors, touched, getFieldProps, handleSubmit } =
-    useFormik({
-      initialValues,
-      validationSchema: signUpSchema,
-      onSubmit,
-    });
+  const { errors, touched, getFieldProps, handleSubmit } = useFormik({
+    initialValues,
+    validationSchema: signUpSchema,
+    onSubmit,
+  });
 
   return (
     <Container>
@@ -131,7 +127,7 @@ const SignUp: React.FC = () => {
             </Button>
           </form>
         </div>
-        <img src={manImage} alt="Image one man" />
+        <img className="main-image" src={manImage} alt="Image one man" />
       </SignUpWrapper>
     </Container>
   );
