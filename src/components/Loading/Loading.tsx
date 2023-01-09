@@ -1,18 +1,26 @@
-import { ColorRing } from 'react-loader-spinner';
+import { Oval } from 'react-loader-spinner';
 
 import Container from '../../styles/Container';
 
 const Loading = () => {
   return (
     <Container>
-      <ColorRing
-        colors={['#344966', '#344966', '#344966', '#344966', '#344966']}
-        height="150"
-        width="150"
+      <Oval
+        height={100}
+        width={100}
+        color="#344966"
         wrapperStyle={{
-          display: 'block',
-          margin: '150px auto',
+          position: 'fixed',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
         }}
+        wrapperClass=""
+        visible={true}
+        ariaLabel="oval-loading"
+        secondaryColor="#344966"
+        strokeWidth={4}
+        strokeWidthSecondary={4}
       />
     </Container>
   );

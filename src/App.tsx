@@ -7,15 +7,14 @@ import { getCurrentUserThunk } from './redux/users/usersThunks';
 import { storage } from './utils/storage';
 
 import ProtectedRoute from './components/hoc/ProtectedRoute';
-import Header from './components/Containers/Header';
-import Footer from './components/Containers/Footer';
 import Home from './components/Pages/Home';
 import { Favorites } from './components/Pages/Favorites/Favorites';
 import { SignUp, SignIn } from './components/Pages/Auth';
 import Profile from './components/Pages/Profile';
 import Catalog from './components/Pages/Catalog';
 import Cart from './components/Pages/Cart';
-import { Loading } from './components/Loading/Loading';
+import { Loading } from './components/Loading';
+import { Layout } from './components/Layout';
 
 const App: React.FC = (): JSX.Element => {
   const [hasInit, setInit] = useState(false);
@@ -48,45 +47,42 @@ const App: React.FC = (): JSX.Element => {
 
   return (
     <>
-      <Header />
-
       {!hasInit ? (
         <Loading />
       ) : (
         <Routes>
-          <Route index element={<Home />} />
-          <Route path="/" element={<Home />} />
-          <Route path="signup" element={<SignUp />} />
-          <Route path="signin" element={<SignIn />} />
-          <Route path="catalog" element={<Catalog />} />
-          <Route
-            path="cart"
-            element={
-              <ProtectedRoute>
-                <Cart />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="favorites"
-            element={
-              <ProtectedRoute>
-                <Favorites />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="profile"
-            element={
-              <ProtectedRoute>
-                <Profile />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="signup" element={<SignUp />} />
+            <Route path="signin" element={<SignIn />} />
+            <Route path="catalog" element={<Catalog />} />
+            <Route
+              path="cart"
+              element={
+                <ProtectedRoute>
+                  <Cart />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="favorites"
+              element={
+                <ProtectedRoute>
+                  <Favorites />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="profile"
+              element={
+                <ProtectedRoute>
+                  <Profile />
+                </ProtectedRoute>
+              }
+            />
+          </Route>
         </Routes>
       )}
-
-      <Footer />
     </>
   );
 };
