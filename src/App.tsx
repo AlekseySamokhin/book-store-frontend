@@ -1,8 +1,9 @@
 /* eslint-disable no-console */
 import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { unwrapResult } from '@reduxjs/toolkit';
 
-import axios from 'axios';
+// import axios from 'axios';
 
 // import { toast, ToastContainer } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
@@ -27,6 +28,11 @@ import { Layout } from './components/Layout';
 //   });
 // };
 
+interface ICustomErrorType {
+  code: number;
+  message: string;
+}
+
 const App: React.FC = (): JSX.Element => {
   const [hasInit, setInit] = useState(false);
   const dispatch = useAppDispatch();
@@ -44,15 +50,15 @@ const App: React.FC = (): JSX.Element => {
 
     const getInitUserInfo = async () => {
       try {
-        setTimeout(() => {
-          dispatch(getCurrentUserThunk());
+        setInit(true);
 
-          setInit(true);
-        }, 350);
-      } catch (err) {
-        if (axios.isAxiosError(err) && err.response) {
-          console.log(err.response.data);
-        }
+        const result = unwrapResult(await dispatch(getCurrentUserThunk()));
+
+        console.log(result);
+      } catch (error) {
+        const err = error as ICustomErrorType;
+        console.log(err.code);
+        console.log(err.message);
       }
     };
 
