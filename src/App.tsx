@@ -2,6 +2,11 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
+import axios from 'axios';
+
+// import { toast, ToastContainer } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
+
 import { useAppDispatch } from './redux/store';
 import { getCurrentUserThunk } from './redux/users/usersThunks';
 import { storage } from './utils/storage';
@@ -15,6 +20,12 @@ import Catalog from './components/Pages/Catalog';
 import Cart from './components/Pages/Cart';
 import { Loading } from './components/Loading';
 import { Layout } from './components/Layout';
+
+// const notify = (message: string): void => {
+//   toast.success(message, {
+//     position: toast.POSITION.TOP_CENTER,
+//   });
+// };
 
 const App: React.FC = (): JSX.Element => {
   const [hasInit, setInit] = useState(false);
@@ -35,10 +46,13 @@ const App: React.FC = (): JSX.Element => {
       try {
         setTimeout(() => {
           dispatch(getCurrentUserThunk());
+
           setInit(true);
         }, 350);
-      } catch (error) {
-        console.error(error);
+      } catch (err) {
+        if (axios.isAxiosError(err) && err.response) {
+          console.log(err.response.data);
+        }
       }
     };
 
@@ -47,6 +61,7 @@ const App: React.FC = (): JSX.Element => {
 
   return (
     <>
+      {/* <ToastContainer /> */}
       {!hasInit ? (
         <Loading />
       ) : (

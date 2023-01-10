@@ -19,7 +19,7 @@ import { logout } from '../../../redux/users/usersSlice';
 const Footer: React.FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
 
-  const logoutFunc = () => {
+  const handleLogout = () => {
     dispatch(logout());
   };
 
@@ -50,7 +50,7 @@ const Footer: React.FC = (): JSX.Element => {
             <li>
               <Link to="cart">Cart</Link>
             </li>
-            <li onClick={logoutFunc}>Logout</li>
+            <li onClick={handleLogout}>Logout</li>
           </ul>
           <div className="footer__location">
             <span>6391 Elgin St. Celina, Delaware 10299</span>

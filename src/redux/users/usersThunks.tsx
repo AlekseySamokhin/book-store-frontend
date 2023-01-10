@@ -1,5 +1,7 @@
 /* eslint-disable no-console */
 import { createAsyncThunk } from '@reduxjs/toolkit';
+
+import type { AxiosError } from 'axios';
 import { authService } from '../../api/services/auth.service';
 
 import { storage } from '../../utils/storage';
@@ -35,7 +37,9 @@ const signInUserThunk = createAsyncThunk(
 
       return user;
     } catch (error) {
-      console.log(error);
+      const err = error as AxiosError;
+
+      throw err;
     }
   },
 );
@@ -50,8 +54,4 @@ const getCurrentUserThunk = createAsyncThunk('user/token', async () => {
   }
 });
 
-export {
-  getCurrentUserThunk,
-  signUpUserThunk,
-  signInUserThunk,
-};
+export { getCurrentUserThunk, signUpUserThunk, signInUserThunk };
