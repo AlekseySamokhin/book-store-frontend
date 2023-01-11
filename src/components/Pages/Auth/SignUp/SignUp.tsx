@@ -6,7 +6,7 @@ import type { FormikHelpers } from 'formik';
 import { useNavigate } from 'react-router-dom';
 
 import { useAppDispatch } from '../../../../redux/store';
-import { userThunks } from '../../../../redux/users/usersThunks';
+import { userThunks } from '../../../../redux/users/userThunks';
 import { signUpSchema } from '../../../../schemas/auth';
 
 import Container from '../../../../styles/Container';

@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import { authService } from '../../api/services/auth.service';
 import { useLocalStorage } from '../../utils/storage';
-import type { IAuthRequestType } from '../../types/user';
+import type { IAuthRequestType } from '../../interfaces/user';
 
 const signUp = createAsyncThunk(
   'user/register',

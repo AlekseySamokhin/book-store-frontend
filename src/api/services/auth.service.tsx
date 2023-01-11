@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { instance } from '../instance';
 
-import type { IAuthRequestType, IAuthResponseType, IUserType } from '../../types/user';
+import type { IAuthRequestType, IAuthResponseType, IUserType } from '../../interfaces/user';
 
 const API_AUTH_URL = '/auth';
 

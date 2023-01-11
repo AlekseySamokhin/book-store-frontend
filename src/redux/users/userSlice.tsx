@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { userThunks } from './usersThunks';
-import type { IUserType, IUserStateType } from '../../types/user';
+import { userThunks } from './userThunks';
+import type { IUserType, IUserStateType } from '../../interfaces/user';
+import { useLocalStorage } from '../../utils/storage';
 
 const initialUser: IUserType = {
   id: 0,
@@ -19,6 +20,8 @@ const usersSlice = createSlice({
   initialState: getInitialState(),
   reducers: {
     signOut: () => {
+      useLocalStorage.remove('token');
+
       return getInitialState();
     },
   },
@@ -50,8 +53,4 @@ const usersSlice = createSlice({
   },
 });
 
-const userActions = usersSlice.actions;
-
-export { userActions };
-
-export const usersReducer = usersSlice.reducer;
+export const { reducer: userReducer, actions: userActions } = usersSlice;

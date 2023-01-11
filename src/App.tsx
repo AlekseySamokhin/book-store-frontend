@@ -5,7 +5,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { useAppDispatch, useAppSelector } from './redux/store';
-import { userThunks } from './redux/users/usersThunks';
+import { userThunks } from './redux/users/userThunks';
 import { useLocalStorage } from './utils/storage';
 
 import ProtectedRoute from './components/hoc/ProtectedRoute';

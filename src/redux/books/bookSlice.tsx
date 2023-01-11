@@ -19,4 +19,4 @@ const booksSlice = createSlice({
   reducers: {},
 });
 
-export const booksReducer = booksSlice.reducer;
+export const { reducer: bookReducer } = booksSlice;

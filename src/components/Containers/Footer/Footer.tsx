@@ -12,7 +12,7 @@ import { useAppDispatch } from '../../../redux/store';
 
 import { Flex } from '../../../styles/Flex';
 
-import { userActions } from '../../../redux/users/usersSlice';
+import { userActions } from '../../../redux/users/userSlice';
 
 const Footer: React.FC = (): JSX.Element => {
   const dispatch = useAppDispatch();

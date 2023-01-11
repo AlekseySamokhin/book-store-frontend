@@ -17,7 +17,7 @@ import { icons, images } from '../../../../assets';
 import { useAppDispatch } from '../../../../redux/store';
 
 import { signInSchema } from '../../../../schemas/auth';
-import { userThunks } from '../../../../redux/users/usersThunks';
+import { userThunks } from '../../../../redux/users/userThunks';
 
 interface IFormValues {
   email: string;
