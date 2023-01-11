@@ -1,4 +1,4 @@
-const storage = {
+const useLocalStorage = {
   get: (key: string): string | null => {
     const result = localStorage.getItem(key);
 
@@ -10,6 +10,10 @@ const storage = {
   set: (key: string, value: string): void => {
     localStorage.setItem(key, value);
   },
+
+  remove: (key: string): void => {
+    localStorage.removeItem(key);
+  },
 };
 
-export { storage };
+export { useLocalStorage };

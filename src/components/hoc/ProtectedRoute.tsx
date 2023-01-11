@@ -1,17 +1,12 @@
-/* eslint-disable no-console */
 import { useLocation, Navigate } from 'react-router-dom';
 
 import { useAppSelector } from '../../redux/store';
 
-interface IPropsType {
-  children: JSX.Element;
-}
-
-const ProtectedRoute: React.FC<IPropsType> = (props) => {
+const ProtectedRoute: React.FC<{ children: React.ReactElement }> = (props) => {
   const location = useLocation();
-  const user = useAppSelector((state) => state.users.user);
+  const authUser = useAppSelector((state) => state.users.user.email);
 
-  if (!user.email) {
+  if (!authUser) {
     return <Navigate to="/signin" state={{ from: location }} />;
   }
 

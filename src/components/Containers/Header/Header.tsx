@@ -1,21 +1,16 @@
 import { Link } from 'react-router-dom';
 
-import { AuthMenu } from '../../AuthMenu';
-
-import HeaderStyled from './Header.styled';
-
 import { useAppSelector } from '../../../redux/store';
 
-import { Button } from '../../Button';
 import CustomInput from '../../CustomInput';
-
-import Container from '../../../styles/Container';
-
+import { MenuBeforeAuth, MenuAfterAuth } from './Menu';
 import { Logo } from '../../Logo';
-import imageLogo from '../../../assets/logo-header.svg';
-import searchIcon from '../../../assets/search.svg';
+import Container from '../../../styles/Container';
+import { icons, logos } from '../../../assets';
 
-const Header: React.FC = () => {
+import { HeaderStyled } from './Header.styles';
+
+const Header: React.FC = (): JSX.Element => {
   const authUser = useAppSelector((state) => state.users.user.email);
 
   return (
@@ -23,26 +18,18 @@ const Header: React.FC = () => {
       <HeaderStyled>
         <div className="header__link">
           <Link to="/">
-            <Logo src={imageLogo} />
+            <Logo src={logos.logoHeader} />
           </Link>
           <span>Catalog</span>
         </div>
         <CustomInput
           type="search"
           error={''}
-          icon={searchIcon}
+          icon={icons.search}
           placeholder={'Search'}
         />
 
-        {authUser ? (
-          <div className="header__button">
-            <AuthMenu />
-          </div>
-        ) : (
-          <Button className="header__button">
-            <Link to="signin">Log In</Link> /<Link to="signup">Sign Up</Link>
-          </Button>
-        )}
+        {authUser ? <MenuAfterAuth /> : <MenuBeforeAuth className='header__menu' />}
       </HeaderStyled>
     </Container>
   );

@@ -4,7 +4,7 @@ import type { FieldInputProps } from 'formik';
 
 import CustomInputStyled from './CustomInput.styled';
 
-import view from '../../assets/view.svg';
+import { icons } from '../../assets';
 
 interface IInputPropsType {
   type: string;
@@ -24,7 +24,7 @@ const CustomInput: React.FC<IInputPropsType> = (props): JSX.Element => {
     if (props.type !== 'password') return;
     if (type === 'password') {
       setType('text');
-      setIcon(view);
+      setIcon(icons.view);
     }
 
     if (type === 'text') {

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Header = styled.header`
+const HeaderStyled = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -17,10 +17,6 @@ const Header = styled.header`
 
     span {
       padding-left: 128px;
-    }
-
-    a {
-      display: inherit;
     }
   }
 
@@ -46,6 +42,10 @@ const Header = styled.header`
   @media (max-width: 700px) {
     flex-wrap: wrap;
 
+    .header__menu {
+      order: -1;
+    }
+
     .header__link {
       order: -2;
     }
@@ -68,4 +68,4 @@ const Header = styled.header`
   }
 `;
 
-export default Header;
+export { HeaderStyled };

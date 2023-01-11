@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Link } from 'react-router-dom';
 
 import FooterStyled from './Footer.styled';
@@ -8,19 +6,19 @@ import Container from '../../../styles/Container';
 
 import { Logo } from '../../Logo';
 
-import imageLogo from '../../../assets/logo-footer.svg';
-import imageMaps from '../../../assets/map.png';
+import { logos, images } from '../../../assets';
+
 import { useAppDispatch } from '../../../redux/store';
 
 import { Flex } from '../../../styles/Flex';
 
-import { logout } from '../../../redux/users/usersSlice';
+import { userActions } from '../../../redux/users/usersSlice';
 
 const Footer: React.FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
 
   const handleLogout = () => {
-    dispatch(logout());
+    dispatch(userActions.signOut());
   };
 
   return (
@@ -28,7 +26,7 @@ const Footer: React.FC = (): JSX.Element => {
       <Container>
         <footer className="footer">
           <Flex direction="column">
-            <Logo src={imageLogo} />
+            <Logo src={logos.logoFooter} />
 
             <div className="footer__contacts">
               <a href="mailto:tranthuy.nute@gmail.com">
@@ -54,7 +52,7 @@ const Footer: React.FC = (): JSX.Element => {
           </ul>
           <div className="footer__location">
             <span>6391 Elgin St. Celina, Delaware 10299</span>
-            <img src={imageMaps} alt="Google maps location" />
+            <img src={images.map} alt="Google maps location" />
           </div>
         </footer>
       </Container>

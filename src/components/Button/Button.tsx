@@ -1,4 +1,3 @@
-import type { ReactNode } from 'react';
 import StyledButton from './Button.styled';
 
 type IButtonPropsType = {
@@ -8,7 +7,7 @@ type IButtonPropsType = {
   primary?: string;
   secondary?: boolean;
   className?: string;
-  children?: ReactNode;
+  children?: React.ReactNode;
 };
 
 const Button: React.FC<IButtonPropsType> = (props) => {

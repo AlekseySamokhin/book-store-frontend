@@ -1,11 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import {
-  getCurrentUserThunk,
-  signUpUserThunk,
-  signInUserThunk,
-} from './usersThunks';
-
+import { userThunks } from './usersThunks';
 import type { IUserType, IUserStateType } from '../../types/user';
 
 const initialUser: IUserType = {
@@ -23,12 +18,13 @@ const usersSlice = createSlice({
   name: 'userSlice',
   initialState: getInitialState(),
   reducers: {
-    logout: () => {
+    signOut: () => {
       return getInitialState();
     },
   },
+
   extraReducers: (builder) => {
-    builder.addCase(getCurrentUserThunk.fulfilled, (state, action) => {
+    builder.addCase(userThunks.getCurrentUser.fulfilled, (state, action) => {
       if (!action.payload) {
         return;
       }
@@ -36,7 +32,7 @@ const usersSlice = createSlice({
       state.user = action.payload;
     });
 
-    builder.addCase(signUpUserThunk.fulfilled, (state, action) => {
+    builder.addCase(userThunks.signUp.fulfilled, (state, action) => {
       if (!action.payload) {
         return;
       }
@@ -44,7 +40,7 @@ const usersSlice = createSlice({
       state.user = action.payload;
     });
 
-    builder.addCase(signInUserThunk.fulfilled, (state, action) => {
+    builder.addCase(userThunks.signIn.fulfilled, (state, action) => {
       if (!action.payload) {
         return;
       }
@@ -54,6 +50,8 @@ const usersSlice = createSlice({
   },
 });
 
-export const { logout } = usersSlice.actions;
+const userActions = usersSlice.actions;
+
+export { userActions };
 
 export const usersReducer = usersSlice.reducer;

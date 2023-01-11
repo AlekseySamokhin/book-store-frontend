@@ -1,18 +1,12 @@
 /* eslint-disable no-console */
 import { createAsyncThunk } from '@reduxjs/toolkit';
-
-// import request from 'axios';
 import axios from 'axios';
 
 import { authService } from '../../api/services/auth.service';
-
-import { storage } from '../../utils/storage';
-
+import { useLocalStorage } from '../../utils/storage';
 import type { IAuthRequestType } from '../../types/user';
 
-// interface ICustomErrorType {}
-
-const signUpUserThunk = createAsyncThunk(
+const signUp = createAsyncThunk(
   'user/register',
   async (values: IAuthRequestType) => {
     try {
@@ -20,7 +14,7 @@ const signUpUserThunk = createAsyncThunk(
 
       const { user, accessToken } = data;
 
-      storage.set('token', accessToken);
+      useLocalStorage.set('token', accessToken);
 
       return user;
     } catch (error) {
@@ -29,7 +23,7 @@ const signUpUserThunk = createAsyncThunk(
   },
 );
 
-const signInUserThunk = createAsyncThunk(
+const signIn = createAsyncThunk(
   'user/login',
   async (values: IAuthRequestType) => {
     try {
@@ -37,7 +31,7 @@ const signInUserThunk = createAsyncThunk(
       console.log(data);
       const { user, accessToken } = data;
 
-      storage.set('token', accessToken);
+      useLocalStorage.set('token', accessToken);
 
       return user;
     } catch (error) {
@@ -48,13 +42,14 @@ const signInUserThunk = createAsyncThunk(
   },
 );
 
-const getCurrentUserThunk = createAsyncThunk('user/token', async () => {
+const getCurrentUser = createAsyncThunk('user/token', async () => {
   try {
     const data = await authService.getCurrentUser();
 
     return data;
   } catch (error) {
     if (axios.isAxiosError(error) && error.response) {
+      console.log(error.response);
       const { code, message } = error.response.data;
 
       console.log(code, message);
@@ -64,4 +59,10 @@ const getCurrentUserThunk = createAsyncThunk('user/token', async () => {
   }
 });
 
-export { getCurrentUserThunk, signUpUserThunk, signInUserThunk };
+const userThunks = {
+  signUp,
+  signIn,
+  getCurrentUser,
+};
+
+export { userThunks };

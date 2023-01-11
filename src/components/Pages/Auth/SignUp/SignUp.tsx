@@ -6,7 +6,7 @@ import type { FormikHelpers } from 'formik';
 import { useNavigate } from 'react-router-dom';
 
 import { useAppDispatch } from '../../../../redux/store';
-import { signUpUserThunk } from '../../../../redux/users/usersThunks';
+import { userThunks } from '../../../../redux/users/usersThunks';
 import { signUpSchema } from '../../../../schemas/auth';
 
 import Container from '../../../../styles/Container';
@@ -14,9 +14,7 @@ import CustomInput from '../../../CustomInput';
 import { Button } from '../../../Button';
 import { SignUpWrapper } from './SignUp.styled';
 
-import manImage from '../../../../assets/one-man.png';
-import emailIcon from '../../../../assets/mail.svg';
-import hideIcon from '../../../../assets/hide.svg';
+import { icons, images } from '../../../../assets';
 
 interface IFormValues {
   email: string;
@@ -38,7 +36,7 @@ const SignUp: React.FC = () => {
 
       setTimeout(() => {
         dispatch(
-          signUpUserThunk({
+          userThunks.signUp({
             email: values.email,
             password: values.password,
           }),
@@ -76,7 +74,7 @@ const SignUp: React.FC = () => {
             <label>
               <CustomInput
                 type="email"
-                icon={emailIcon}
+                icon={icons.mail}
                 error={errors.email || ''}
                 touched={touched.email}
                 placeholder={'Email'}
@@ -91,7 +89,7 @@ const SignUp: React.FC = () => {
             <label>
               <CustomInput
                 type="password"
-                icon={hideIcon}
+                icon={icons.hide}
                 placeholder={'Password'}
                 error={errors.password || ''}
                 touched={touched.password}
@@ -106,7 +104,7 @@ const SignUp: React.FC = () => {
             <label>
               <CustomInput
                 type="password"
-                icon={hideIcon}
+                icon={icons.hide}
                 placeholder={'Password'}
                 error={errors.confirmPassword || ''}
                 touched={touched.confirmPassword}
@@ -127,7 +125,7 @@ const SignUp: React.FC = () => {
             </Button>
           </form>
         </div>
-        <img className="main-image" src={manImage} alt="Image one man" />
+        <img className="main-image" src={images.oneMan} alt="Image one man" />
       </SignUpWrapper>
     </Container>
   );

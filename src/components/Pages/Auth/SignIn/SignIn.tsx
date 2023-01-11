@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-import React from 'react';
 import { useFormik } from 'formik';
 import type { FormikHelpers } from 'formik';
 
@@ -13,14 +12,12 @@ import CustomInput from '../../../CustomInput';
 
 import { Button } from '../../../Button';
 
-import manImage from '../../../../assets/one-man.png';
-import emailIcon from '../../../../assets/mail.svg';
-import hideIcon from '../../../../assets/hide.svg';
+import { icons, images } from '../../../../assets';
 
 import { useAppDispatch } from '../../../../redux/store';
 
 import { signInSchema } from '../../../../schemas/auth';
-import { signInUserThunk } from '../../../../redux/users/usersThunks';
+import { userThunks } from '../../../../redux/users/usersThunks';
 
 interface IFormValues {
   email: string;
@@ -38,7 +35,7 @@ const SignIn: React.FC = () => {
   ) => {
     try {
       dispatch(
-        signInUserThunk({
+        userThunks.signIn({
           email: values.email,
           password: values.password,
         }),
@@ -58,11 +55,12 @@ const SignIn: React.FC = () => {
     confirmPassword: '',
   };
 
-  const { errors, touched, getFieldProps, handleSubmit, isSubmitting } = useFormik({
-    initialValues,
-    validationSchema: signInSchema,
-    onSubmit,
-  });
+  const { errors, touched, getFieldProps, handleSubmit, isSubmitting } =
+    useFormik({
+      initialValues,
+      validationSchema: signInSchema,
+      onSubmit,
+    });
 
   return (
     <Container>
@@ -74,7 +72,7 @@ const SignIn: React.FC = () => {
             <label>
               <CustomInput
                 type="email"
-                icon={emailIcon}
+                icon={icons.mail}
                 placeholder={'Email'}
                 error={errors.email || ''}
                 touched={touched.email}
@@ -89,7 +87,7 @@ const SignIn: React.FC = () => {
             <label>
               <CustomInput
                 type="password"
-                icon={hideIcon}
+                icon={icons.hide}
                 placeholder={'Password'}
                 error={errors.password || ''}
                 touched={touched.password}
@@ -101,12 +99,16 @@ const SignIn: React.FC = () => {
                 <p>Enter your password</p>
               )}
             </label>
-            <Button disabled={isSubmitting} type="submit" className="form__button">
+            <Button
+              disabled={isSubmitting}
+              type="submit"
+              className="form__button"
+            >
               Sign Up
             </Button>
           </form>
         </div>
-        <img src={manImage} alt="Image one man" />
+        <img src={images.oneMan} alt="Image one man" />
       </SignInWrapper>
     </Container>
   );

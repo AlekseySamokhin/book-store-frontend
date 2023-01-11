@@ -5,7 +5,7 @@ interface IPropsType {
   icon?: boolean;
 }
 
-const AuthStyled = styled.div<IPropsType>`
+const MenuAfterAuthStyled = styled.div<IPropsType>`
   display: flex;
   justify-content: space-between;
 
@@ -25,4 +25,4 @@ const AuthStyled = styled.div<IPropsType>`
   }
 `;
 
-export { AuthStyled };
+export { MenuAfterAuthStyled };
