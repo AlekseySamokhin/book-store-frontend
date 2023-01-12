@@ -54,37 +54,17 @@ const App: React.FC = (): JSX.Element => {
           <Routes>
             <Route path="/" element={<Layout />}>
               <Route index element={<Home />} />
+              <Route path="catalog" element={<Catalog />} />
+              <Route path="*" element={<Navigate to="/" />} />
 
               {!email && <Route path="signup" element={<SignUp />} />}
               {!email && <Route path="signin" element={<SignIn />} />}
 
-              <Route path="catalog" element={<Catalog />} />
-              <Route
-                path="cart"
-                element={
-                  <ProtectedRoute>
-                    <Cart />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="favorites"
-                element={
-                  <ProtectedRoute>
-                    <Favorites />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="profile"
-                element={
-                  <ProtectedRoute>
-                    <Profile />
-                  </ProtectedRoute>
-                }
-              />
-
-              <Route path="*" element={<Navigate to="/" />} />
+              <Route element={<ProtectedRoute />}>
+                <Route path="favorites" element={<Favorites />} />
+                <Route path="cart" element={<Cart />} />
+                <Route path="profile" element={<Profile />} />
+              </Route>
             </Route>
           </Routes>
         </>
