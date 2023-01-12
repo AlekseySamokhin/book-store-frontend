@@ -5,14 +5,14 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { useAppDispatch, useAppSelector } from './redux/store';
-import { userThunks } from './redux/users/userThunks';
+import { authThunks } from './redux/users/thunks/auth';
 import { useLocalStorage } from './utils/storage';
 
 import ProtectedRoute from './components/hoc/ProtectedRoute';
 import Home from './components/Pages/Home';
 import { Favorites } from './components/Pages/Favorites/Favorites';
 import { SignUp, SignIn } from './components/Pages/Auth';
-import Profile from './components/Pages/Profile';
+import { Profile } from './components/Pages/Profile';
 import Catalog from './components/Pages/Catalog';
 import Cart from './components/Pages/Cart';
 import { Loading } from './components/Loading';
@@ -21,7 +21,8 @@ import { Layout } from './components/Layout';
 const App: React.FC = (): JSX.Element => {
   const [hasInit, setInit] = useState(false);
   const dispatch = useAppDispatch();
-  const authUser = useAppSelector((state) => state.users.user.email);
+
+  const email = useAppSelector((state) => state.users.user.email);
 
   useEffect(() => {
     const token = useLocalStorage.get('token');
@@ -34,7 +35,7 @@ const App: React.FC = (): JSX.Element => {
 
     (async () => {
       try {
-        await dispatch(userThunks.getCurrentUser()).unwrap();
+        await dispatch(authThunks.getCurrentUser()).unwrap();
 
         setInit(true);
       } catch {
@@ -54,8 +55,8 @@ const App: React.FC = (): JSX.Element => {
             <Route path="/" element={<Layout />}>
               <Route index element={<Home />} />
 
-              {!authUser && <Route path="signup" element={<SignUp />} />}
-              {!authUser && <Route path="signin" element={<SignIn />} />}
+              {!email && <Route path="signup" element={<SignUp />} />}
+              {!email && <Route path="signin" element={<SignIn />} />}
 
               <Route path="catalog" element={<Catalog />} />
               <Route

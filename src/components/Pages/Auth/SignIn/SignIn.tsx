@@ -17,7 +17,7 @@ import { icons, images } from '../../../../assets';
 import { useAppDispatch } from '../../../../redux/store';
 
 import { signInSchema } from '../../../../schemas/auth';
-import { userThunks } from '../../../../redux/users/userThunks';
+import { authThunks } from '../../../../redux/users/thunks/auth';
 
 interface IFormValues {
   email: string;
@@ -35,7 +35,7 @@ const SignIn: React.FC = () => {
   ) => {
     try {
       dispatch(
-        userThunks.signIn({
+        authThunks.signIn({
           email: values.email,
           password: values.password,
         }),

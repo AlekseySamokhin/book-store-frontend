@@ -1,14 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { userThunks } from './userThunks';
-import type { IUserType, IUserStateType } from '../../interfaces/user';
+import { authThunks } from './thunks/auth';
+import type { ITypesDataUser, IUserStateType } from '../../interfaces/user';
 import { useLocalStorage } from '../../utils/storage';
 
-const initialUser: IUserType = {
+const initialUser: ITypesDataUser = {
   id: 0,
   fullName: '',
   email: '',
   password: '',
+  avatar: '',
 };
 
 const getInitialState = (): IUserStateType => ({
@@ -27,7 +28,7 @@ const usersSlice = createSlice({
   },
 
   extraReducers: (builder) => {
-    builder.addCase(userThunks.getCurrentUser.fulfilled, (state, action) => {
+    builder.addCase(authThunks.getCurrentUser.fulfilled, (state, action) => {
       if (!action.payload) {
         return;
       }
@@ -35,7 +36,7 @@ const usersSlice = createSlice({
       state.user = action.payload;
     });
 
-    builder.addCase(userThunks.signUp.fulfilled, (state, action) => {
+    builder.addCase(authThunks.signUp.fulfilled, (state, action) => {
       if (!action.payload) {
         return;
       }
@@ -43,7 +44,7 @@ const usersSlice = createSlice({
       state.user = action.payload;
     });
 
-    builder.addCase(userThunks.signIn.fulfilled, (state, action) => {
+    builder.addCase(authThunks.signIn.fulfilled, (state, action) => {
       if (!action.payload) {
         return;
       }

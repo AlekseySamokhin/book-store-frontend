@@ -2,9 +2,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-import { authService } from '../../api/services/auth.service';
-import { useLocalStorage } from '../../utils/storage';
-import type { IAuthRequestType } from '../../interfaces/user';
+import { authService } from '../../../api/services';
+import { useLocalStorage } from '../../../utils/storage';
+import type { IAuthRequestType } from '../../../interfaces/user';
 
 const signUp = createAsyncThunk(
   'user/register',
@@ -59,10 +59,10 @@ const getCurrentUser = createAsyncThunk('user/token', async () => {
   }
 });
 
-const userThunks = {
+const authThunks = {
   signUp,
   signIn,
   getCurrentUser,
 };
 
-export { userThunks };
+export { authThunks };

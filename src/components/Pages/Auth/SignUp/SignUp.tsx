@@ -6,7 +6,7 @@ import type { FormikHelpers } from 'formik';
 import { useNavigate } from 'react-router-dom';
 
 import { useAppDispatch } from '../../../../redux/store';
-import { userThunks } from '../../../../redux/users/userThunks';
+import { authThunks } from '../../../../redux/users/thunks/auth';
 import { signUpSchema } from '../../../../schemas/auth';
 
 import Container from '../../../../styles/Container';
@@ -36,7 +36,7 @@ const SignUp: React.FC = () => {
 
       setTimeout(() => {
         dispatch(
-          userThunks.signUp({
+          authThunks.signUp({
             email: values.email,
             password: values.password,
           }),

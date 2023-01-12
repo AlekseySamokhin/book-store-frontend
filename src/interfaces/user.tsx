@@ -1,12 +1,13 @@
 interface IUserStateType {
-  user: IUserType;
+  user: ITypesDataUser;
 }
 
-interface IUserType {
+interface ITypesDataUser {
   id: number;
   fullName: string;
   email: string;
   password: string;
+  avatar: string;
 }
 
 interface IAuthRequestType {
@@ -15,8 +16,40 @@ interface IAuthRequestType {
 }
 
 interface IAuthResponseType {
-  user: IUserType;
+  user: ITypesDataUser;
   accessToken: string;
 }
 
-export type { IUserStateType, IUserType, IAuthRequestType, IAuthResponseType };
+interface IUpdatedDataUserType {
+  fullName: string;
+  email: string;
+  oldPassword: string;
+  newPassword: string;
+  confirmPassword: string;
+}
+
+interface ITypesUpdatedInfoUser {
+  fullName: string;
+  email: string;
+}
+
+interface ITypesUpdatedPasswordsUser {
+  oldPassword: string;
+  password: string;
+  confirmPassword: string;
+}
+
+interface ITypeUpdatedAvatarUser {
+  avatar: string;
+}
+
+export type {
+  IUserStateType,
+  ITypesDataUser,
+  IAuthRequestType,
+  IAuthResponseType,
+  IUpdatedDataUserType,
+  ITypesUpdatedInfoUser,
+  ITypesUpdatedPasswordsUser,
+  ITypeUpdatedAvatarUser,
+};

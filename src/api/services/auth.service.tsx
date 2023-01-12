@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { instance } from '../instance';
 
-import type { IAuthRequestType, IAuthResponseType, IUserType } from '../../interfaces/user';
+import type { IAuthRequestType, IAuthResponseType, ITypesDataUser } from '../../interfaces/user';
 
 const API_AUTH_URL = '/auth';
 
@@ -24,7 +24,7 @@ const signIn = async (params: IAuthRequestType) => {
 };
 
 const getCurrentUser = async () => {
-  const response = await instance.get<IUserType>(`${API_AUTH_URL}/me`);
+  const response = await instance.get<ITypesDataUser>(`${API_AUTH_URL}/me`);
 
   return response.data;
 };

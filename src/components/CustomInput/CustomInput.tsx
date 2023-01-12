@@ -2,26 +2,28 @@
 import { useState } from 'react';
 import type { FieldInputProps } from 'formik';
 
-import CustomInputStyled from './CustomInput.styled';
+import { CustomInputStyled } from './CustomInput.styles';
 
 import { icons } from '../../assets';
 
-interface IInputPropsType {
+interface ICustomInputPropsType {
   type: string;
   placeholder?: string;
   icon: string;
   alt?: string;
-  error: string;
+  error?: string;
   touched?: boolean;
+  className?: string;
   fieldInputProps?: FieldInputProps<string>;
 }
 
-const CustomInput: React.FC<IInputPropsType> = (props): JSX.Element => {
+const CustomInput: React.FC<ICustomInputPropsType> = (props): JSX.Element => {
   const [type, setType] = useState<string>(props.type);
   const [icon, setIcon] = useState<string>(props.icon);
 
   const handleTogglePassword = () => {
     if (props.type !== 'password') return;
+
     if (type === 'password') {
       setType('text');
       setIcon(icons.view);
@@ -34,7 +36,7 @@ const CustomInput: React.FC<IInputPropsType> = (props): JSX.Element => {
   };
 
   return (
-    <CustomInputStyled touched={props.touched} error={props.error}>
+    <CustomInputStyled className={props.className} touched={props.touched} error={props.error}>
       <img onClick={handleTogglePassword} src={icon} alt={props.alt} />
       <input
         type={type}

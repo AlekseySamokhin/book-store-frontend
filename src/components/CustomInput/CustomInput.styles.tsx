@@ -5,7 +5,7 @@ interface IInputStyledProps {
   touched?: boolean;
 }
 
-const Input = styled.div<IInputStyledProps>`
+const CustomInputStyled = styled.div<IInputStyledProps>`
   display: flex;
   align-items: center;
   width: 100%;
@@ -15,7 +15,7 @@ const Input = styled.div<IInputStyledProps>`
   border-radius: 16px;
 
   border: ${(props) => (props.error && props.touched ? '2px solid #ED2E7E' : '')};
-  background-color: ${(props) => (props.error && props.touched ? '#FFF2F7' : '#f0f4ef')};
+  background-color: ${(props) => (props.error && props.touched ? props.theme.colors.error : props.theme.colors.light)};
 
   input {
     width: 100%;
@@ -61,4 +61,4 @@ const Input = styled.div<IInputStyledProps>`
   }
 `;
 
-export default Input;
+export { CustomInputStyled };
