@@ -34,9 +34,9 @@ interface ITypesUpdatedInfoUser {
 }
 
 interface ITypesUpdatedPasswordsUser {
-  oldPassword: string;
-  password: string;
-  confirmPassword: string;
+  password?: string;
+  oldPassword?: string;
+  confirmPassword?: string;
 }
 
 interface ITypeUpdatedAvatarUser {

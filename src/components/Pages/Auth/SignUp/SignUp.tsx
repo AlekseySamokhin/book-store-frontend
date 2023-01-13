@@ -58,7 +58,7 @@ const SignUp: React.FC = () => {
     confirmPassword: '',
   };
 
-  const { errors, touched, getFieldProps, handleSubmit } = useFormik({
+  const { errors, touched, getFieldProps, handleSubmit, values } = useFormik({
     initialValues,
     validationSchema: signUpSchema,
     onSubmit,
@@ -74,6 +74,7 @@ const SignUp: React.FC = () => {
             <label>
               <CustomInput
                 type="email"
+                value={values.email}
                 icon={icons.mail}
                 error={errors.email || ''}
                 touched={touched.email}
@@ -93,6 +94,7 @@ const SignUp: React.FC = () => {
                 placeholder={'Password'}
                 error={errors.password || ''}
                 touched={touched.password}
+                value={values.password || ''}
                 fieldInputProps={getFieldProps('password')}
               />
               {touched.password && errors.password ? (
@@ -105,6 +107,7 @@ const SignUp: React.FC = () => {
               <CustomInput
                 type="password"
                 icon={icons.hide}
+                value={values.confirmPassword || ''}
                 placeholder={'Password'}
                 error={errors.confirmPassword || ''}
                 touched={touched.confirmPassword}

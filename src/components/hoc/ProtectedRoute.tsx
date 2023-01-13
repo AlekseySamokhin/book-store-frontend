@@ -7,8 +7,6 @@ const ProtectedRoute: React.FC = (): JSX.Element => {
   const location = useLocation();
   const auth = useAppSelector((state) => state.users.user.email);
 
-  console.log(location);
-
   return auth ? (
     <Outlet />
   ) : (

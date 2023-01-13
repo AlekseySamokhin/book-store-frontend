@@ -10,6 +10,7 @@ const CustomInputStyled = styled.div<IInputStyledProps>`
   align-items: center;
   width: 100%;
   max-width: 630px;
+  cursor: pointer;
 
   font-weight: 400;
   border-radius: 16px;
@@ -25,6 +26,7 @@ const CustomInputStyled = styled.div<IInputStyledProps>`
     letter-spacing: 1.5px;
     line-height: 24px;
     border-radius: 16px;
+    cursor: pointer;
   }
 
   img {

@@ -14,7 +14,7 @@ const updateInfo = createAsyncThunk(
   async (values: ITypesUpdatedInfoUser) => {
     try {
       const data = await userService.updateInfo(values);
-
+      console.log(data);
       return data;
     } catch (error) {
       console.log(error);

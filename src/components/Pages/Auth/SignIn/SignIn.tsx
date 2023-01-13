@@ -25,11 +25,11 @@ interface IFormValues {
   confirmPassword?: string;
 }
 
-const SignIn: React.FC = () => {
+const SignIn: React.FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const onSubmit = async (
+  const onSubmitHandler = async (
     values: IFormValues,
     actions: FormikHelpers<IFormValues>,
   ) => {
@@ -55,11 +55,11 @@ const SignIn: React.FC = () => {
     confirmPassword: '',
   };
 
-  const { errors, touched, getFieldProps, handleSubmit, isSubmitting } =
+  const { errors, touched, getFieldProps, handleSubmit, isSubmitting, values } =
     useFormik({
       initialValues,
       validationSchema: signInSchema,
-      onSubmit,
+      onSubmit: onSubmitHandler,
     });
 
   return (
@@ -73,6 +73,7 @@ const SignIn: React.FC = () => {
               <CustomInput
                 type="email"
                 icon={icons.mail}
+                value={values.email}
                 placeholder={'Email'}
                 error={errors.email || ''}
                 touched={touched.email}
@@ -88,6 +89,7 @@ const SignIn: React.FC = () => {
               <CustomInput
                 type="password"
                 icon={icons.hide}
+                value={values.password}
                 placeholder={'Password'}
                 error={errors.password || ''}
                 touched={touched.password}

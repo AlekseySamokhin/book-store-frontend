@@ -39,6 +39,13 @@ const ProfileStyled = styled.div`
     }
   }
 
+  .profile__info {
+    max-width: 522px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
   .profile__form {
     max-width: 522px;
     width: 100%;
@@ -67,6 +74,10 @@ const ProfileStyled = styled.div`
     .profile__input:not(:last-child) {
       margin-bottom: 20px;
     }
+  }
+
+  .profile__form:not(:last-child) {
+    margin-bottom: 40px;
   }
 `;
 

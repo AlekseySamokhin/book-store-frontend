@@ -23,13 +23,18 @@ const Header: React.FC = (): JSX.Element => {
           <span>Catalog</span>
         </div>
         <CustomInput
+          value={''}
           type="search"
           error={''}
           icon={icons.search}
           placeholder={'Search'}
         />
 
-        {authUser ? <MenuAfterAuth /> : <MenuBeforeAuth className='header__menu' />}
+        {authUser ? (
+          <MenuAfterAuth />
+        ) : (
+          <MenuBeforeAuth className="header__menu" />
+        )}
       </HeaderStyled>
     </Container>
   );

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { instance } from '../instance';
 
 import type {
@@ -10,6 +11,7 @@ import type {
 const API_USER_URL = '/user';
 
 const updateInfo = async (params: ITypesUpdatedInfoUser) => {
+  console.log('params', params);
   const response = await instance.patch<ITypesDataUser>(
     `${API_USER_URL}/info`,
     params,
