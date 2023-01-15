@@ -11,7 +11,6 @@ import type {
 const API_USER_URL = '/user';
 
 const updateInfo = async (params: ITypesUpdatedInfoUser) => {
-  console.log('params', params);
   const response = await instance.patch<ITypesDataUser>(
     `${API_USER_URL}/info`,
     params,
@@ -30,7 +29,8 @@ const updatePassword = async (params: ITypesUpdatedPasswordsUser) => {
 };
 
 const updateAvatar = async (params: ITypeUpdatedAvatarUser) => {
-  const response = await instance.patch<ITypesDataUser>(
+  console.log('API', params);
+  const response = await instance.post<ITypesDataUser>(
     `${API_USER_URL}/avatar`,
     params,
   );

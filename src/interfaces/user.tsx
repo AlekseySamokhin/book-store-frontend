@@ -34,13 +34,11 @@ interface ITypesUpdatedInfoUser {
 }
 
 interface ITypesUpdatedPasswordsUser {
-  password?: string;
-  oldPassword?: string;
-  confirmPassword?: string;
+  password: string;
 }
 
 interface ITypeUpdatedAvatarUser {
-  avatar: string;
+  imageURL: string;
 }
 
 export type {

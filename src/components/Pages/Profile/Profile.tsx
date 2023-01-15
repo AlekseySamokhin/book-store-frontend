@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/await-thenable */
 /* eslint-disable no-console */
 import { useState } from 'react';
-
 import { useFormik } from 'formik';
 
 import Container from '../../../styles/Container';
@@ -16,6 +15,8 @@ import { useAppSelector, useAppDispatch } from '../../../redux/store';
 import CustomInput from '../../CustomInput';
 import { Button } from '../../Button';
 
+import { UploadAvatar } from './UploadAvatar';
+
 import {
   updateInfoUserSchema,
   updatePasswordUserSchema,
@@ -27,8 +28,8 @@ interface IFormValues {
 }
 
 interface IFormValuesPass {
-  password: string;
   oldPassword: string;
+  newPassword: string;
   confirmPassword: string;
 }
 
@@ -39,10 +40,6 @@ const Profile: React.FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const infoUser = useAppSelector((state) => state.users.user);
 
-  const handleUploadAvatar = (event: React.ChangeEvent<HTMLInputElement>) => {
-    event.preventDefault();
-  };
-
   const handleChangePass = () => {
     setHidePass(!hidePass);
   };
@@ -51,7 +48,7 @@ const Profile: React.FC = (): JSX.Element => {
     setHideInfo(!hideInfo);
   };
 
-  const handleSumbitInfo = async (values: IFormValues) => {
+  const handleSubmitInfo = async (values: IFormValues) => {
     try {
       dispatch(
         userThunks.updateInfo({
@@ -66,16 +63,14 @@ const Profile: React.FC = (): JSX.Element => {
     }
   };
 
-  const handleSumbitPass = async (values: IFormValuesPass) => {
+  const handleSubmitPass = async (values: IFormValuesPass) => {
     try {
       console.log(values);
-      // dispatch(
-      //   userThunks.updatePassword({
-      //     password: values.password,
-      //     oldPassword: values.oldPassword,
-      //     confirmPassword: values.confirmPassword,
-      //   }),
-      // );
+      dispatch(
+        userThunks.updatePassword({
+          password: values.newPassword,
+        }),
+      );
     } catch (err) {
       console.log(err);
     }
@@ -87,46 +82,23 @@ const Profile: React.FC = (): JSX.Element => {
       email: infoUser.email,
     },
     validationSchema: updateInfoUserSchema,
-    onSubmit: handleSumbitInfo,
+    onSubmit: handleSubmitInfo,
   });
 
   const formikPass = useFormik({
     initialValues: {
-      password: '',
       oldPassword: '',
+      newPassword: '',
       confirmPassword: '',
     },
     validationSchema: updatePasswordUserSchema,
-    onSubmit: handleSumbitPass,
+    onSubmit: handleSubmitPass,
   });
 
   return (
     <Container>
       <ProfileStyled>
-        <div className="profile__avatar">
-          {!infoUser.avatar ? (
-            <img
-              className="default__avatar_icon"
-              src={icons.userProfile}
-              alt="User profile icon"
-            />
-          ) : null}
-
-          <label htmlFor="file">
-            <div className="default__avatar__upload">
-              <img src={icons.camera} alt="Upload avatar icon" />
-
-              <input
-                className="styled-user-page__input-file"
-                type="file"
-                id="file"
-                name="file"
-                onChange={(e) => handleUploadAvatar(e)}
-                hidden
-              />
-            </div>
-          </label>
-        </div>
+        <UploadAvatar className="profile__avatar" />
 
         <div className="profile__info">
           <form
@@ -197,19 +169,19 @@ const Profile: React.FC = (): JSX.Element => {
             <CustomInput
               className="profile__input"
               type="password"
-              value={formikPass.values.password}
+              value={formikPass.values.oldPassword}
               disabled={!hidePass}
               icon={icons.hide}
               placeholder={'Your password'}
-              error={formikPass.errors.password || ''}
-              touched={formikPass.touched.password}
-              fieldInputProps={formikPass.getFieldProps('password')}
+              error={formikPass.errors.oldPassword || ''}
+              touched={formikPass.touched.oldPassword}
+              fieldInputProps={formikPass.getFieldProps('oldPassword')}
             />
 
-            {formikPass.touched.password &&
-            formikPass.errors.password &&
+            {formikPass.touched.oldPassword &&
+            formikPass.errors.oldPassword &&
             !hidePass ? (
-                <p className="error">{formikPass.errors.password}</p>
+                <p className="error">{formikPass.errors.oldPassword}</p>
               ) : (
                 <p>Change password</p>
               )}
@@ -219,19 +191,19 @@ const Profile: React.FC = (): JSX.Element => {
                 <CustomInput
                   className="profile__input"
                   type="password"
-                  value={formikPass.values.oldPassword}
+                  value={formikPass.values.newPassword}
                   disabled={!hidePass}
                   icon={icons.hide}
                   placeholder={'Your password'}
-                  error={formikPass.errors.oldPassword || ''}
-                  touched={formikPass.touched.oldPassword}
-                  fieldInputProps={formikPass.getFieldProps('oldPassword')}
+                  error={formikPass.errors.newPassword || ''}
+                  touched={formikPass.touched.newPassword}
+                  fieldInputProps={formikPass.getFieldProps('newPassword')}
                 />
 
-                {formikPass.touched.oldPassword &&
-                formikPass.errors.oldPassword &&
+                {formikPass.touched.newPassword &&
+                formikPass.errors.newPassword &&
                 !hidePass ? (
-                    <p className="error">{formikPass.errors.oldPassword}</p>
+                    <p className="error">{formikPass.errors.newPassword}</p>
                   ) : (
                     <p>Change password</p>
                   )}
@@ -239,7 +211,7 @@ const Profile: React.FC = (): JSX.Element => {
                 <CustomInput
                   className="profile__input"
                   type="password"
-                  value={formikPass.values.password}
+                  value={formikPass.values.confirmPassword}
                   disabled={!hidePass}
                   icon={icons.hide}
                   placeholder={'Your password'}

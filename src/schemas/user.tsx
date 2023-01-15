@@ -9,17 +9,17 @@ const updateInfoUserSchema = yup.object().shape({
 });
 
 const updatePasswordUserSchema = yup.object().shape({
-  password: yup
-    .string()
-    .min(3, 'Password should be of minimum 5 characters length')
-    .required('Password is required'),
   oldPassword: yup
     .string()
-    .min(3, 'Password should be of minimum 5 characters length')
+    .min(5, 'Password should be of minimum 5 characters length')
+    .required('Password is required'),
+  newPassword: yup
+    .string()
+    .min(5, 'Password should be of minimum 5 characters length')
     .required('Password is required'),
   confirmPassword: yup
     .string()
-    .min(3, 'Password should be of minimum 5 characters length')
+    .oneOf([yup.ref('newPassword'), null], 'Passwords must match')
     .required('Password is required'),
 });
 
