@@ -30,7 +30,7 @@ const updatePassword = async (params: ITypesUpdatedPasswordsUser) => {
 
 const updateAvatar = async (params: ITypeUpdatedAvatarUser) => {
   console.log('API', params);
-  const response = await instance.post<ITypesDataUser>(
+  const response = await instance.patch<ITypesDataUser>(
     `${API_USER_URL}/avatar`,
     params,
   );

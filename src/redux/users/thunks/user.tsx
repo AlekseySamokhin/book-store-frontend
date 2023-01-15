@@ -25,7 +25,6 @@ const updateInfo = createAsyncThunk(
 const updateAvatar = createAsyncThunk(
   'user/re',
   async (values: ITypeUpdatedAvatarUser) => {
-    console.log(values);
     try {
       const avatar = await userService.updateAvatar(values);
 

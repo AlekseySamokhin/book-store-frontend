@@ -27,7 +27,7 @@ const UploadAvatar: React.FC<ITypesProps> = (props): JSX.Element => {
         if (!reader.result) return;
 
         const imageURL = reader.result as string;
-        console.log(imageURL);
+
         await dispatch(userThunks.updateAvatar({ imageURL }));
       } catch (error) {
         console.log(error);
@@ -53,7 +53,7 @@ const UploadAvatar: React.FC<ITypesProps> = (props): JSX.Element => {
             type="file"
             id="uploadAvatar"
             onChange={(e) => handleUploadAvatar(e)}
-            accept="image/*,.png,.jpg,.gif,.web"
+            accept="image/*"
             hidden
           />
         </div>
