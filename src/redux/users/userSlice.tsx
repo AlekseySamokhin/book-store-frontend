@@ -62,7 +62,6 @@ const usersSlice = createSlice({
     });
 
     builder.addCase(userThunks.updateAvatar.fulfilled, (state, action) => {
-      console.log(action.payload?.avatar);
       if (!action.payload) {
         return;
       }

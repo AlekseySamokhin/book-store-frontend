@@ -18,6 +18,7 @@ const UploadAvatarStyled = styled.div`
   }
 
   .user__avatar_image {
+    border-radius: 16px;
     position: absolute;
     left: 0;
     right: 0;

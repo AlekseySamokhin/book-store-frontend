@@ -11,21 +11,16 @@ import { ProfileStyled } from './Profile.styles';
 
 import { userThunks } from '../../../redux/users/thunks/user';
 
-import { useAppSelector, useAppDispatch } from '../../../redux/store';
+import { useAppDispatch } from '../../../redux/store';
 import CustomInput from '../../CustomInput';
 import { Button } from '../../Button';
 
 import { UploadAvatar } from './UploadAvatar';
+import { UpdateInfo } from './UpdateInfo';
 
 import {
-  updateInfoUserSchema,
   updatePasswordUserSchema,
 } from '../../../schemas/user';
-
-interface IFormValues {
-  fullName: string;
-  email: string;
-}
 
 interface IFormValuesPass {
   oldPassword: string;
@@ -35,32 +30,11 @@ interface IFormValuesPass {
 
 const Profile: React.FC = (): JSX.Element => {
   const [hidePass, setHidePass] = useState<boolean>(false);
-  const [hideInfo, setHideInfo] = useState<boolean>(false);
 
   const dispatch = useAppDispatch();
-  const infoUser = useAppSelector((state) => state.users.user);
 
   const handleChangePass = () => {
     setHidePass(!hidePass);
-  };
-
-  const handleChangeInfo = () => {
-    setHideInfo(!hideInfo);
-  };
-
-  const handleSubmitInfo = async (values: IFormValues) => {
-    try {
-      dispatch(
-        userThunks.updateInfo({
-          fullName: values.fullName,
-          email: values.email,
-        }),
-      );
-
-      setHideInfo(false);
-    } catch (err) {
-      console.log(err);
-    }
   };
 
   const handleSubmitPass = async (values: IFormValuesPass) => {
@@ -75,15 +49,6 @@ const Profile: React.FC = (): JSX.Element => {
       console.log(err);
     }
   };
-
-  const formikInfo = useFormik({
-    initialValues: {
-      fullName: infoUser.fullName,
-      email: infoUser.email,
-    },
-    validationSchema: updateInfoUserSchema,
-    onSubmit: handleSubmitInfo,
-  });
 
   const formikPass = useFormik({
     initialValues: {
@@ -101,59 +66,7 @@ const Profile: React.FC = (): JSX.Element => {
         <UploadAvatar className="profile__avatar" />
 
         <div className="profile__info">
-          <form
-            noValidate
-            autoComplete="off"
-            onSubmit={formikInfo.handleSubmit}
-            className="profile__form"
-          >
-            <div className="profile__text">
-              <h3>Personal information</h3>
-              <p onClick={handleChangeInfo}>Change information</p>
-            </div>
-
-            <CustomInput
-              className="profile__input"
-              type="text"
-              value={infoUser.fullName}
-              disabled={!hideInfo}
-              icon={icons.userInput}
-              placeholder={'Your full name'}
-              error={formikInfo.errors.fullName}
-              touched={formikInfo.touched.fullName}
-              fieldInputProps={formikInfo.getFieldProps('fullName')}
-            />
-
-            {formikInfo.touched.fullName &&
-            formikInfo.errors.fullName &&
-            !hideInfo ? (
-                <p className="error">{formikInfo.errors.fullName}</p>
-              ) : (
-                <p>Change full name</p>
-              )}
-
-            <CustomInput
-              className="profile__input"
-              type="email"
-              value={infoUser.email}
-              disabled={!hideInfo}
-              icon={icons.mail}
-              placeholder={'Your email'}
-              error={formikInfo.errors.email || ''}
-              touched={formikInfo.touched.email}
-              fieldInputProps={formikInfo.getFieldProps('email')}
-            />
-
-            {formikInfo.touched.email &&
-            formikInfo.errors.email &&
-            !hideInfo ? (
-                <p className="error">{formikInfo.errors.email}</p>
-              ) : (
-                <p>Change email</p>
-              )}
-
-            {hideInfo && <Button>Confirm</Button>}
-          </form>
+          <UpdateInfo className="profile__form" />
 
           <form
             noValidate
