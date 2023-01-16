@@ -49,10 +49,7 @@ const getCurrentUser = createAsyncThunk('user/token', async () => {
     return data;
   } catch (error) {
     if (axios.isAxiosError(error) && error.response) {
-      console.log(error.response);
       const { code, message } = error.response.data;
-
-      console.log(code, message);
 
       throw Object.assign(new Error(), { message, code });
     }

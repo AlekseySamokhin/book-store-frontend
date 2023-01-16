@@ -17,12 +17,27 @@ const UploadAvatarStyled = styled.div`
     margin: auto;
   }
 
-  .avatar-image {
-   position: absolute;
-   top: 0;
-   left: 0;
-   right: 0;
-   bottom: 0;
+  .user__avatar_image {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 305px;
+    height: 305px;
+  }
+
+  .default__avatar__upload {
+    width: 48px;
+    height: 48px;
+    background-color: #344966;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+    cursor: pointer;
   }
 
   .default__avatar__upload {

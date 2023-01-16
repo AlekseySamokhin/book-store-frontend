@@ -37,13 +37,19 @@ const UploadAvatar: React.FC<ITypesProps> = (props): JSX.Element => {
 
   return (
     <UploadAvatarStyled className={props.className}>
-      {!infoUser.avatar ? (
+      {infoUser.avatar ? (
+        <img
+          className="user__avatar_image"
+          src={infoUser.avatar}
+          alt="Default icon user"
+        />
+      ) : (
         <img
           className="default__avatar_icon"
           src={icons.userProfile}
-          alt="User profile icon"
+          alt="Avatar current user"
         />
-      ) : null}
+      )}
 
       <label htmlFor="uploadAvatar">
         <div className="default__avatar__upload">

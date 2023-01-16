@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { createSlice } from '@reduxjs/toolkit';
 
 import { authThunks, userThunks } from './thunks';
@@ -53,6 +54,15 @@ const usersSlice = createSlice({
     });
 
     builder.addCase(userThunks.updateInfo.fulfilled, (state, action) => {
+      if (!action.payload) {
+        return;
+      }
+
+      state.user = action.payload;
+    });
+
+    builder.addCase(userThunks.updateAvatar.fulfilled, (state, action) => {
+      console.log(action.payload?.avatar);
       if (!action.payload) {
         return;
       }
