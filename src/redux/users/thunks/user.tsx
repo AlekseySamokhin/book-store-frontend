@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+import type { AxiosError } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { userService } from '../../../api/services';
@@ -14,10 +15,11 @@ const updateInfo = createAsyncThunk(
   async (values: ITypesUpdatedInfoUser) => {
     try {
       const data = await userService.updateInfo(values);
-      console.log(data);
+
       return data;
-    } catch (error) {
-      console.log(error);
+    } catch (_err) {
+      const err = (_err as AxiosError);
+      throw err.response?.data;
     }
   },
 );
@@ -39,8 +41,8 @@ const updatePassword = createAsyncThunk(
   'user/update-password',
   async (values: ITypesUpdatedPasswordsUser) => {
     try {
-      console.log('values', values);
       const data = await userService.updatePassword(values);
+      console.log('DATA', data);
 
       return data;
     } catch (error) {

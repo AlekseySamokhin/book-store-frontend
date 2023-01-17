@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { instance } from '../instance';
 
 import type {

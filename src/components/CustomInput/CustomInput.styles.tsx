@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-interface IInputStyledProps {
+interface ITypesProps {
   error?: string;
   touched?: boolean;
 }
 
-const CustomInputStyled = styled.div<IInputStyledProps>`
+const CustomInputStyled = styled.div<ITypesProps>`
   display: flex;
   align-items: center;
   width: 100%;

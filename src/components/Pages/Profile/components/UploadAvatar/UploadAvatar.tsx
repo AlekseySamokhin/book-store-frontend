@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
-import { icons } from '../../../../assets';
-import { useAppDispatch, useAppSelector } from '../../../../redux/store';
-import { userThunks } from '../../../../redux/users/thunks';
+import { icons } from '../../../../../assets';
+import { useAppDispatch, useAppSelector } from '../../../../../redux/store';
+import { userThunks } from '../../../../../redux/users/thunks';
 import { UploadAvatarStyled } from './UploadAvatar.styles';
 
 interface ITypesProps {
@@ -59,7 +59,7 @@ const UploadAvatar: React.FC<ITypesProps> = (props): JSX.Element => {
             type="file"
             id="uploadAvatar"
             onChange={(e) => handleUploadAvatar(e)}
-            accept="image/*"
+            accept="image/*,.jpg,.jpeg,.png"
             hidden
           />
         </div>

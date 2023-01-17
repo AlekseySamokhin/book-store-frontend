@@ -72,7 +72,7 @@ const ProfileStyled = styled.div`
     }
 
     .profile__input:not(:last-child) {
-      margin-bottom: 20px;
+      // margin-bottom: 20px;
     }
   }
 

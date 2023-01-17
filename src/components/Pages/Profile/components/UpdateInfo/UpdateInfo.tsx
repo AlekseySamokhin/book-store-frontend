@@ -1,15 +1,17 @@
-/* eslint-disable no-console */
 import { useState } from 'react';
 import { useFormik } from 'formik';
-import { icons } from '../../../../assets';
-import { useAppDispatch, useAppSelector } from '../../../../redux/store';
-import { userThunks } from '../../../../redux/users/thunks';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import { icons } from '../../../../../assets';
+import { useAppDispatch, useAppSelector } from '../../../../../redux/store';
+import { userThunks } from '../../../../../redux/users/thunks';
+import { updateInfoUserSchema } from '../../../../../schemas/user';
+
+import Input from '../../../../Input/Input';
+import { Button } from '../../../../Button/Button';
+
 import { UpdateInfoStyled } from './UpdateInfo.styles';
-
-import CustomInput from '../../../CustomInput/CustomInput';
-import { Button } from '../../../Button/Button';
-
-import { updateInfoUserSchema } from '../../../../schemas/user';
 
 interface ITypesProps {
   className?: string;
@@ -32,16 +34,18 @@ const UpdateInfo: React.FC<ITypesProps> = (props): JSX.Element => {
 
   const handleSubmitInfo = async (values: ITypesValuesForm) => {
     try {
-      dispatch(
+      await dispatch(
         userThunks.updateInfo({
           fullName: values.fullName,
           email: values.email,
         }),
-      );
+      ).unwrap();
 
       setHideInfo(false);
     } catch (err) {
-      console.log(err);
+      toast.error((err as {message: string}).message, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
     }
   };
 
@@ -66,41 +70,35 @@ const UpdateInfo: React.FC<ITypesProps> = (props): JSX.Element => {
         <p onClick={handleChangeInfo}>Change information</p>
       </div>
 
-      <CustomInput
+      <Input
         className="profile__input"
         type="text"
-        value={infoUser.fullName}
-        disabled={!hideInfo}
+        placeholder="Enter you name"
+        text={infoUser.fullName || 'Enter you name'}
         icon={icons.userInput}
-        placeholder={'Your full name'}
-        error={formik.errors.fullName}
+        hide={!hideInfo}
+        title="Your name"
+        value={infoUser.fullName}
+        disabled={hideInfo}
+        error={formik.errors.fullName || ''}
         touched={formik.touched.fullName}
         fieldInputProps={formik.getFieldProps('fullName')}
       />
 
-      {formik.touched.fullName && formik.errors.fullName && !hideInfo ? (
-        <p className="error">{formik.errors.fullName}</p>
-      ) : (
-        <p>Change full name</p>
-      )}
-
-      <CustomInput
+      <Input
         className="profile__input"
-        type="email"
-        value={infoUser.email}
-        disabled={!hideInfo}
+        type="text"
+        placeholder="Enter you mail"
+        text={infoUser.email}
         icon={icons.mail}
-        placeholder={'Your email'}
+        hide={!hideInfo}
+        title="Your email"
+        value={infoUser.email}
+        disabled={hideInfo}
         error={formik.errors.email || ''}
         touched={formik.touched.email}
         fieldInputProps={formik.getFieldProps('email')}
       />
-
-      {formik.touched.email && formik.errors.email && !hideInfo ? (
-        <p className="error">{formik.errors.email}</p>
-      ) : (
-        <p>Change email</p>
-      )}
 
       {hideInfo && <Button type="submit">Confirm</Button>}
     </UpdateInfoStyled>

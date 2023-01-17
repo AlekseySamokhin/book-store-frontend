@@ -66,7 +66,7 @@ const SignIn: React.FC = (): JSX.Element => {
     <Container>
       <SignInWrapper>
         <div className="form">
-          <h2>Sing Up</h2>
+          <h2>Sing In</h2>
 
           <form noValidate autoComplete="off" onSubmit={handleSubmit}>
             <label>
@@ -106,7 +106,7 @@ const SignIn: React.FC = (): JSX.Element => {
               type="submit"
               className="form__button"
             >
-              Sign Up
+              Sign In
             </Button>
           </form>
         </div>
