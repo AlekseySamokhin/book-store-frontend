@@ -14,7 +14,6 @@ import Home from './components/Pages/Home';
 import { Favorites } from './components/Pages/Favorites/Favorites';
 import { SignUp, SignIn } from './components/Pages/Auth';
 import { Profile } from './components/Pages/Profile';
-import Catalog from './components/Pages/Catalog';
 import Cart from './components/Pages/Cart';
 import { Loading } from './components/Loading';
 import { Layout } from './components/Layout';
@@ -55,7 +54,6 @@ const App: React.FC = (): JSX.Element => {
           <Routes>
             <Route path="/" element={<Layout />}>
               <Route index element={<Home />} />
-              <Route path="catalog" element={<Catalog />} />
               <Route path="*" element={<Navigate to="/" />} />
 
               {!email && <Route path="signup" element={<SignUp />} />}

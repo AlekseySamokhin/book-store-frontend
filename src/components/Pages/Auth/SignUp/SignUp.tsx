@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { useFormik } from 'formik';
 import type { FormikHelpers } from 'formik';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { useAppDispatch } from '../../../../redux/store';
 import { authThunks } from '../../../../redux/users/thunks/auth';
@@ -32,23 +34,23 @@ const SignUp: React.FC = () => {
     actions: FormikHelpers<IFormValues>,
   ) => {
     try {
+      actions.resetForm();
+
+      await dispatch(
+        authThunks.signUp({
+          email: values.email,
+          password: values.password,
+        }),
+      ).unwrap();
       setSubmiting(true);
 
-      setTimeout(() => {
-        dispatch(
-          authThunks.signUp({
-            email: values.email,
-            password: values.password,
-          }),
-        );
+      setSubmiting(false);
 
-        actions.resetForm();
-
-        setSubmiting(false);
-        navigate('/');
-      }, 800);
+      navigate('/');
     } catch (err) {
-      console.log(err);
+      toast.error((err as {message: string}).message, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
     }
   };
 
@@ -128,7 +130,7 @@ const SignUp: React.FC = () => {
             </Button>
           </form>
         </div>
-        <img className="main-image" src={images.oneMan} alt="Image one man" />
+        <img className="main-image" src={images.authPageManWithBook} alt="Image one man" />
       </SignUpWrapper>
     </Container>
   );

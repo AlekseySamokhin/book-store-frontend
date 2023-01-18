@@ -25,7 +25,7 @@ const updateInfo = createAsyncThunk(
 );
 
 const updateAvatar = createAsyncThunk(
-  'user/re',
+  'user/upload-avatar',
   async (values: ITypeUpdatedAvatarUser) => {
     try {
       const avatar = await userService.updateAvatar(values);
@@ -45,8 +45,9 @@ const updatePassword = createAsyncThunk(
       console.log('DATA', data);
 
       return data;
-    } catch (error) {
-      console.log(error);
+    } catch (_err) {
+      const err = (_err as AxiosError);
+      throw err.response?.data;
     }
   },
 );

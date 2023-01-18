@@ -7,6 +7,7 @@ interface IFlexStyledProps {
   margin?: string;
   children?: JSX.Element | JSX.Element[];
   className?: string;
+  zIndex?: string;
 }
 
 const StyledFlex = styled.div<IFlexStyledProps>`
@@ -15,6 +16,7 @@ const StyledFlex = styled.div<IFlexStyledProps>`
   align-items: ${(props) => props.align || 'stretch'};
   justify-content: ${(props) => props.justify || 'stretch'};
   margin: ${(props) => props.margin || '0'};
+  z-index: ${(props) => props.zIndex || ''};
 `;
 
 const Flex: React.FC<IFlexStyledProps> = (props: IFlexStyledProps) => {

@@ -1,6 +1,8 @@
 /* eslint-disable no-console */
 import { useFormik } from 'formik';
 import type { FormikHelpers } from 'formik';
+import { toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -34,18 +36,20 @@ const SignIn: React.FC = (): JSX.Element => {
     actions: FormikHelpers<IFormValues>,
   ) => {
     try {
-      dispatch(
+      await dispatch(
         authThunks.signIn({
           email: values.email,
           password: values.password,
         }),
-      );
+      ).unwrap();
 
       actions.resetForm();
 
       navigate('/');
     } catch (err) {
-      console.log(err);
+      toast.error((err as {message: string}).message, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
     }
   };
 
@@ -110,7 +114,7 @@ const SignIn: React.FC = (): JSX.Element => {
             </Button>
           </form>
         </div>
-        <img src={images.oneMan} alt="Image one man" />
+        <img src={images.authPageManWithBook} alt="Image one man" />
       </SignInWrapper>
     </Container>
   );

@@ -8,6 +8,7 @@ import view from './view.svg';
 import like from './like.svg';
 import mail from './mail.svg';
 import camera from './camera.svg';
+import forward from './forward.svg';
 import userProfile from './user-profile.svg';
 
 const icons = {
@@ -20,6 +21,7 @@ const icons = {
   like,
   mail,
   camera,
+  forward,
   userInput,
   userProfile,
 };

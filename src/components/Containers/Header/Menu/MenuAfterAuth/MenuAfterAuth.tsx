@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import { icons } from '../../../../../assets';
 
-import { MenuAfterAuthStyled } from './MenuAfterAuth.styled';
+import { MenuAfterAuthStyled } from './MenuAfterAuth.styles';
 
 const authItems = [
   { path: 'cart', icon: icons.cart, alt: 'Cart icon' },

@@ -8,7 +8,7 @@ interface IButtonProps {
 
 const StyledButton = styled.button<IButtonProps>`
   border: none;
-  padding: 10px 50px;
+  padding: 14px 50px;
   cursor: pointer;
   border-radius: 16px;
   font-size: 16px;

@@ -12,11 +12,11 @@ interface IStyledPropsType {
 const MenuBeforeAuth: React.FC<IStyledPropsType> = (props) => {
   return (
     <MenuBeforeAuthStyled className={props.className}>
-      <Link to="signup">
-        <Button>Sing Up</Button>
-      </Link>
       <Link to="signin">
-        <Button>Sing In</Button>
+        <Button>Sign In</Button>
+      </Link>
+      <Link to="signup">
+        <Button>Sign Up</Button>
       </Link>
     </MenuBeforeAuthStyled>
   );

@@ -1,20 +1,17 @@
 import { Link } from 'react-router-dom';
 
-import FooterStyled from './Footer.styled';
+import { userActions } from '../../../redux/users/userSlice';
+import { useAppDispatch, useAppSelector } from '../../../redux/store';
 
 import Container from '../../../styles/Container';
-
+import { Flex } from '../../../styles/Flex';
 import { Logo } from '../../Logo';
-
 import { logos, images } from '../../../assets';
 
-import { useAppDispatch } from '../../../redux/store';
-
-import { Flex } from '../../../styles/Flex';
-
-import { userActions } from '../../../redux/users/userSlice';
+import FooterStyled from './Footer.styles';
 
 const Footer: React.FC = (): JSX.Element => {
+  const auth = useAppSelector((state) => state.users.user.email);
   const dispatch = useAppDispatch();
 
   const handleLogout = () => {
@@ -48,11 +45,11 @@ const Footer: React.FC = (): JSX.Element => {
             <li>
               <Link to="cart">Cart</Link>
             </li>
-            <li onClick={handleLogout}>Logout</li>
+            {auth ? <li onClick={handleLogout}>Logout</li> : null}
           </ul>
           <div className="footer__location">
             <span>6391 Elgin St. Celina, Delaware 10299</span>
-            <img src={images.map} alt="Google maps location" />
+            <img src={images.footerMap} alt="Google maps location" />
           </div>
         </footer>
       </Container>

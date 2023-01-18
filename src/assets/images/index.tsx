@@ -1,13 +1,21 @@
-import backgroundBanner from './banner-background.png';
-import imageBanner from './banner-image.png';
-import map from './map.png';
-import oneMan from './one-man.png';
+// import backgroundBanner from './book-banner-books.png';
+import footerMap from './footer-fragment-map.png';
+
+import authBannerCastle from './auth-banner-castle.png';
+import authBannerFairy from './auth-banner-fairy.png';
+
+import bookBannerBooks from './book-banner-books.png';
+import bookBannerGirlWithBook from './book-banner-girl-with-book.png';
+
+import authPageManWithBook from './auth-page-man-with-book.png';
 
 const images = {
-  backgroundBanner,
-  imageBanner,
-  map,
-  oneMan,
+  bookBannerBooks,
+  bookBannerGirlWithBook,
+  authBannerCastle,
+  authBannerFairy,
+  authPageManWithBook,
+  footerMap,
 };
 
 export { images };

@@ -1,10 +1,16 @@
-import Container from '../../../styles/Container';
-import { Banner } from '../../Banner/Banner';
+import { useAppSelector } from '../../../redux/store';
 
-const Home = () => {
+import { BookBanner, AuthBanner } from '../../Banner';
+import Container from '../../../styles/Container';
+import { Catalog } from './components/Catalog';
+
+const Home: React.FC = (): JSX.Element => {
+  const auth = useAppSelector((state) => state.users.user.email);
   return (
     <Container>
-      <Banner />
+      <BookBanner />
+      <Catalog />
+      {!auth && <AuthBanner />}
     </Container>
   );
 };
