@@ -20,6 +20,7 @@ import { useAppDispatch } from '../../../../redux/store';
 
 import { signInSchema } from '../../../../schemas/auth';
 import { authThunks } from '../../../../redux/users/thunks/auth';
+import Input from '../../../Input';
 
 interface IFormValues {
   email: string;
@@ -47,7 +48,7 @@ const SignIn: React.FC = (): JSX.Element => {
 
       navigate('/');
     } catch (err) {
-      toast.error((err as {message: string}).message, {
+      toast.error((err as { message: string }).message, {
         position: toast.POSITION.TOP_RIGHT,
       });
     }
@@ -89,6 +90,19 @@ const SignIn: React.FC = (): JSX.Element => {
                 <p>Enter you email</p>
               )}
             </label>
+            <Input
+              type="email"
+              placeholder="Email"
+              text={'Enter you name'}
+              icon={icons.mail}
+              title={'Your name'}
+              disabled={true}
+              value={values.email}
+              error={errors.email || ''}
+              touched={touched.email}
+              fieldInputProps={getFieldProps('email')}
+            />
+
             <label>
               <CustomInput
                 type="password"
@@ -105,6 +119,20 @@ const SignIn: React.FC = (): JSX.Element => {
                 <p>Enter your password</p>
               )}
             </label>
+
+            <Input
+              type="password"
+              placeholder="Email"
+              text={'Enter you password'}
+              icon={icons.hide}
+              title={'Your password'}
+              disabled={true}
+              value={values.password}
+              error={errors.password}
+              touched={touched.password}
+              fieldInputProps={getFieldProps('password')}
+            />
+
             <Button
               disabled={isSubmitting}
               type="submit"

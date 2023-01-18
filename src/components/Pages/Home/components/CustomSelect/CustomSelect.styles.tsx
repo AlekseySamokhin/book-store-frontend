@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 
-const CustomSelectStyled = styled.div`
+interface ITypesProps {
+  isOpen: boolean;
+  onClick: () => void;
+}
+
+const CustomSelectStyled = styled.div<ITypesProps>`
   background: #f0f4ef;
   border-radius: 16px;
   font-size: 18px;
@@ -15,7 +20,7 @@ const CustomSelectStyled = styled.div`
   }
 
   .custom-select__icons {
-    
+    transform: ${(props) => (props.isOpen ? 'rotate(90deg)' : '')};
   }
 `;
 
