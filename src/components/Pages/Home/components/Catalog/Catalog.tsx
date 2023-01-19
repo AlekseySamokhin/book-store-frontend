@@ -14,8 +14,15 @@ const Catalog: React.FC = (): JSX.Element => {
           <Select title="Sort by price" />
         </div>
       </div>
-      <div className="catalog__list">
-        <BookItem />
+      <div className="catalog__booklist">
+        <BookItem className="catalog__booklist_item" />
+        <BookItem className="catalog__booklist_item" />
+        <BookItem className="catalog__booklist_item" />
+        <BookItem className="catalog__booklist_item" />
+        <BookItem className="catalog__booklist_item" />
+        <BookItem className="catalog__booklist_item" />
+        <BookItem className="catalog__booklist_item" />
+        <BookItem className="catalog__booklist_item" />
       </div>
     </CatalogStyled>
   );

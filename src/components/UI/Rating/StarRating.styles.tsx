@@ -17,6 +17,7 @@ const StarRatingStyled = styled.div`
     font-weight: 500;
     font-size: 16px;
     color: #b9bac4;
+    padding-right: 5px;
   }
 `;
 

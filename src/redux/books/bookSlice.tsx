@@ -1,21 +1,35 @@
 import { createSlice } from '@reduxjs/toolkit';
 // import type { PayloadAction } from '@reduxjs/toolkit';
 
-interface IBookState {
+interface ITypesBookState {
   id: number;
   name: string;
+  author: string;
+  price: string;
+  rating: string;
   photo: string;
 }
 
-const initialState: IBookState = {
+interface ITypeBookState {
+  book: ITypesBookState;
+}
+
+const initialStateBook: ITypesBookState = {
   id: 0,
   name: '',
+  author: '',
+  price: '',
+  rating: '',
   photo: '',
 };
 
+const getInitialState = (): ITypeBookState => ({
+  book: initialStateBook,
+});
+
 const booksSlice = createSlice({
-  name: 'users',
-  initialState,
+  name: 'bookSlice',
+  initialState: getInitialState(),
   reducers: {},
 });
 

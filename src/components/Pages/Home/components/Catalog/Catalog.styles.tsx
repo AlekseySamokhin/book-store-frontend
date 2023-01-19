@@ -7,7 +7,6 @@ const CatalogStyled = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 50px;
   }
 
   .catalog__header_title {
@@ -23,6 +22,16 @@ const CatalogStyled = styled.div`
     & div:not(:last-child) {
       margin-right: 20px;
     }
+  }
+
+  .catalog__booklist {
+   display: flex;
+   justify-content: space-between;
+   flex-wrap: wrap;
+  }
+
+  .catalog__booklist_item {
+   margin: 50px 0 30px 0;
   }
 `;
 
