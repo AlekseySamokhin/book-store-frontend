@@ -11,7 +11,7 @@ import { logos, images } from '../../../assets';
 import FooterStyled from './Footer.styles';
 
 const Footer: React.FC = (): JSX.Element => {
-  const auth = useAppSelector((state) => state.users.user.email);
+  const email = useAppSelector((state) => state.users.user.email);
   const dispatch = useAppDispatch();
 
   const handleLogout = () => {
@@ -45,7 +45,7 @@ const Footer: React.FC = (): JSX.Element => {
             <li>
               <Link to="cart">Cart</Link>
             </li>
-            {auth ? <li onClick={handleLogout}>Logout</li> : null}
+            {email ? <li onClick={handleLogout}>Logout</li> : null}
           </ul>
           <div className="footer__location">
             <span>6391 Elgin St. Celina, Delaware 10299</span>
@@ -57,4 +57,4 @@ const Footer: React.FC = (): JSX.Element => {
   );
 };
 
-export default Footer;
+export { Footer };

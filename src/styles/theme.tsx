@@ -1,4 +1,6 @@
 const theme = {
+  border_radius: '16px',
+
   colors: {
     dark_blue: '#344966',
     dark: '#0D1821',

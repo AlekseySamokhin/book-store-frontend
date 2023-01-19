@@ -2,36 +2,34 @@
 /* eslint-disable no-console */
 import { useState } from 'react';
 import { useFormik } from 'formik';
-import type { FormikHelpers } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import type { FormikHelpers } from 'formik';
 
 import { useAppDispatch } from '../../../../redux/store';
 import { authThunks } from '../../../../redux/users/thunks/auth';
 import { signUpSchema } from '../../../../schemas/auth';
 
+import { Button, Input } from '../../../UI';
 import Container from '../../../../styles/Container';
-import CustomInput from '../../../CustomInput';
-import { Button } from '../../../Button';
-import { SignUpWrapper } from './SignUp.styled';
-
 import { icons, images } from '../../../../assets';
 
-interface IFormValues {
+import { SignUpStyled } from './SignUp.styles';
+
+interface ITypesValuesForm {
   email: string;
   password: string;
   confirmPassword?: string;
 }
 
-const SignUp: React.FC = () => {
+const SignUp: React.FC = (): JSX.Element => {
   const [isSubmiting, setSubmiting] = useState(false);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const onSubmit = async (
-    values: IFormValues,
-    actions: FormikHelpers<IFormValues>,
+  const handleOnSubmit = async (
+    values: ITypesValuesForm,
+    actions: FormikHelpers<ITypesValuesForm>,
   ) => {
     try {
       actions.resetForm();
@@ -48,79 +46,74 @@ const SignUp: React.FC = () => {
 
       navigate('/');
     } catch (err) {
-      toast.error((err as {message: string}).message, {
+      toast.error((err as { message: string }).message, {
         position: toast.POSITION.TOP_RIGHT,
       });
     }
   };
 
-  const initialValues: IFormValues = {
-    email: '',
-    password: '',
-    confirmPassword: '',
-  };
-
-  const { errors, touched, getFieldProps, handleSubmit, values } = useFormik({
-    initialValues,
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+      confirmPassword: '',
+    } as ITypesValuesForm,
     validationSchema: signUpSchema,
-    onSubmit,
+    onSubmit: handleOnSubmit,
   });
 
   return (
     <Container>
-      <SignUpWrapper>
+      <SignUpStyled>
         <div className="form">
           <h2>Sing Up</h2>
 
-          <form noValidate autoComplete="off" onSubmit={handleSubmit}>
-            <label>
-              <CustomInput
-                type="email"
-                value={values.email}
-                icon={icons.mail}
-                error={errors.email || ''}
-                touched={touched.email}
-                placeholder={'Email'}
-                fieldInputProps={getFieldProps('email')}
-              />
-              {touched.email && errors.email ? (
-                <p className="red">{errors.email}</p>
-              ) : (
-                <p>Enter you email</p>
-              )}
-            </label>
-            <label>
-              <CustomInput
-                type="password"
-                icon={icons.hide}
-                placeholder={'Password'}
-                error={errors.password || ''}
-                touched={touched.password}
-                value={values.password || ''}
-                fieldInputProps={getFieldProps('password')}
-              />
-              {touched.password && errors.password ? (
-                <p className="red">{errors.password}</p>
-              ) : (
-                <p>Enter your password</p>
-              )}
-            </label>
-            <label>
-              <CustomInput
-                type="password"
-                icon={icons.hide}
-                value={values.confirmPassword || ''}
-                placeholder={'Password'}
-                error={errors.confirmPassword || ''}
-                touched={touched.confirmPassword}
-                fieldInputProps={getFieldProps('confirmPassword')}
-              />
-              {touched.confirmPassword && errors.confirmPassword ? (
-                <p className="red">{errors.confirmPassword}</p>
-              ) : (
-                <p>Repeat your password without errors</p>
-              )}
-            </label>
+          <form noValidate autoComplete="off" onSubmit={formik.handleSubmit}>
+            <Input
+              className="sign-up__input"
+              type="email"
+              placeholder="Email"
+              text={'Enter you email'}
+              description={'Enter you email'}
+              icon={icons.mail}
+              title={'Enter you email'}
+              disabled={true}
+              value={formik.values.email}
+              error={formik.errors.email}
+              touched={formik.touched.email}
+              fieldInputProps={formik.getFieldProps('email')}
+            />
+
+            <Input
+              className="sign-up__input"
+              type="password"
+              placeholder="Password"
+              text={'Enter you password'}
+              description={'Enter you password'}
+              icon={icons.hide}
+              title={'Enter you password'}
+              disabled={true}
+              value={formik.values.password}
+              error={formik.errors.password}
+              touched={formik.touched.password}
+              fieldInputProps={formik.getFieldProps('password')}
+            />
+
+            <Input
+              className="sign-up__input"
+              type="password"
+              placeholder="Password replay"
+              text="Enter you password"
+              description="Repeat your password without errors'"
+              icon={icons.hide}
+              title="Enter you password"
+              disabled={true}
+              value={formik.values.confirmPassword}
+              error={formik.errors.confirmPassword}
+              touched={formik.touched.confirmPassword}
+              fieldInputProps={formik.getFieldProps('confirmPassword')}
+            />
+
             <Button
               disabled={isSubmiting}
               type="submit"
@@ -130,8 +123,12 @@ const SignUp: React.FC = () => {
             </Button>
           </form>
         </div>
-        <img className="main-image" src={images.authPageManWithBook} alt="Image one man" />
-      </SignUpWrapper>
+        <img
+          className="main-image"
+          src={images.authPageManWithBook}
+          alt="Image one man"
+        />
+      </SignUpStyled>
     </Container>
   );
 };

@@ -40,21 +40,6 @@ const UploadAvatarStyled = styled.div`
     bottom: 15px;
     cursor: pointer;
   }
-
-  .default__avatar__upload {
-    width: 48px;
-    height: 48px;
-    background-color: #344966;
-    border-radius: 50px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    right: 15px;
-    bottom: 15px;
-    cursor: pointer;
-  }
 `;
 
 export { UploadAvatarStyled };

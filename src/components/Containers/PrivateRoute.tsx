@@ -1,17 +1,16 @@
-/* eslint-disable no-console */
 import { useLocation, Navigate, Outlet } from 'react-router-dom';
 
 import { useAppSelector } from '../../redux/store';
 
-const ProtectedRoute: React.FC = (): JSX.Element => {
+const PrivateRoute: React.FC = (): JSX.Element => {
   const location = useLocation();
-  const auth = useAppSelector((state) => state.users.user.email);
+  const email = useAppSelector((state) => state.users.user.email);
 
-  return auth ? (
+  return email ? (
     <Outlet />
   ) : (
     <Navigate to="/signin" state={{ from: location }} replace />
   );
 };
 
-export default ProtectedRoute;
+export { PrivateRoute };

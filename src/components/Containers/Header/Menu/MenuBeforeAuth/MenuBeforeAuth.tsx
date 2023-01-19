@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import { Button } from '../../../../Button';
+import { Button } from '../../../../UI';
 
 import { MenuBeforeAuthStyled } from './MenuBeforeAuth.styled';
 

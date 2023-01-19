@@ -1,8 +1,9 @@
 import { useAppSelector } from '../../../redux/store';
 
 import { BookBanner, AuthBanner } from '../../Banner';
-import Container from '../../../styles/Container';
 import { Catalog } from './components/Catalog';
+
+import Container from '../../../styles/Container';
 
 const Home: React.FC = (): JSX.Element => {
   const auth = useAppSelector((state) => state.users.user.email);
@@ -15,4 +16,4 @@ const Home: React.FC = (): JSX.Element => {
   );
 };
 
-export default Home;
+export { Home };

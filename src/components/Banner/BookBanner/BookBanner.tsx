@@ -4,7 +4,7 @@ import { Flex } from '../../../styles/Flex';
 
 import { images } from '../../../assets';
 
-import { Button } from '../../Button/Button';
+import { Button } from '../../UI';
 
 const BookBanner: React.FC = (): JSX.Element => {
   return (

@@ -1,28 +1,23 @@
 /* eslint-disable no-console */
 import { useFormik } from 'formik';
 import type { FormikHelpers } from 'formik';
-import { toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
-
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
+import { useAppDispatch } from '../../../../redux/store';
+import { authThunks } from '../../../../redux/users/thunks/auth';
 
 import Container from '../../../../styles/Container';
 
-import { SignInWrapper } from './SignIn.styled';
-
-import CustomInput from '../../../CustomInput';
-
-import { Button } from '../../../Button';
+import { SignInStyled } from './SignIn.styles';
 
 import { icons, images } from '../../../../assets';
 
-import { useAppDispatch } from '../../../../redux/store';
-
 import { signInSchema } from '../../../../schemas/auth';
-import { authThunks } from '../../../../redux/users/thunks/auth';
-import Input from '../../../Input';
 
-interface IFormValues {
+import { Input, Button } from '../../../UI';
+
+interface ITypesValuesForm {
   email: string;
   password: string;
   confirmPassword?: string;
@@ -33,8 +28,8 @@ const SignIn: React.FC = (): JSX.Element => {
   const navigate = useNavigate();
 
   const onSubmitHandler = async (
-    values: IFormValues,
-    actions: FormikHelpers<IFormValues>,
+    values: ITypesValuesForm,
+    actions: FormikHelpers<ITypesValuesForm>,
   ) => {
     try {
       await dispatch(
@@ -54,87 +49,55 @@ const SignIn: React.FC = (): JSX.Element => {
     }
   };
 
-  const initialValues: IFormValues = {
-    email: '',
-    password: '',
-    confirmPassword: '',
-  };
-
-  const { errors, touched, getFieldProps, handleSubmit, isSubmitting, values } =
-    useFormik({
-      initialValues,
-      validationSchema: signInSchema,
-      onSubmit: onSubmitHandler,
-    });
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+      confirmPassword: '',
+    } as ITypesValuesForm,
+    validationSchema: signInSchema,
+    onSubmit: onSubmitHandler,
+  });
 
   return (
     <Container>
-      <SignInWrapper>
+      <SignInStyled>
         <div className="form">
           <h2>Sing In</h2>
 
-          <form noValidate autoComplete="off" onSubmit={handleSubmit}>
-            <label>
-              <CustomInput
-                type="email"
-                icon={icons.mail}
-                value={values.email}
-                placeholder={'Email'}
-                error={errors.email || ''}
-                touched={touched.email}
-                fieldInputProps={getFieldProps('email')}
-              />
-              {touched.email && errors.email ? (
-                <p className="red">{errors.email}</p>
-              ) : (
-                <p>Enter you email</p>
-              )}
-            </label>
+          <form noValidate autoComplete="off" onSubmit={formik.handleSubmit}>
             <Input
+              className="sign-in__input"
               type="email"
               placeholder="Email"
               text={'Enter you name'}
+              description={'Enter you name'}
               icon={icons.mail}
               title={'Your name'}
               disabled={true}
-              value={values.email}
-              error={errors.email || ''}
-              touched={touched.email}
-              fieldInputProps={getFieldProps('email')}
+              value={formik.values.email}
+              error={formik.errors.email}
+              touched={formik.touched.email}
+              fieldInputProps={formik.getFieldProps('email')}
             />
 
-            <label>
-              <CustomInput
-                type="password"
-                icon={icons.hide}
-                value={values.password}
-                placeholder={'Password'}
-                error={errors.password || ''}
-                touched={touched.password}
-                fieldInputProps={getFieldProps('password')}
-              />
-              {touched.password && errors.password ? (
-                <p className="red">{errors.password}</p>
-              ) : (
-                <p>Enter your password</p>
-              )}
-            </label>
-
             <Input
+              className="sign-in__input"
               type="password"
-              placeholder="Email"
+              placeholder="Password"
               text={'Enter you password'}
+              description={'Enter you password'}
               icon={icons.hide}
               title={'Your password'}
               disabled={true}
-              value={values.password}
-              error={errors.password}
-              touched={touched.password}
-              fieldInputProps={getFieldProps('password')}
+              value={formik.values.password}
+              error={formik.errors.password}
+              touched={formik.touched.password}
+              fieldInputProps={formik.getFieldProps('password')}
             />
 
             <Button
-              disabled={isSubmitting}
+              disabled={formik.isSubmitting}
               type="submit"
               className="form__button"
             >
@@ -143,7 +106,7 @@ const SignIn: React.FC = (): JSX.Element => {
           </form>
         </div>
         <img src={images.authPageManWithBook} alt="Image one man" />
-      </SignInWrapper>
+      </SignInStyled>
     </Container>
   );
 };

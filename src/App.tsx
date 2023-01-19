@@ -1,25 +1,20 @@
-/* eslint-disable no-console */
 import { useState, useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-
 import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 import { useAppDispatch, useAppSelector } from './redux/store';
-import { authThunks } from './redux/users/thunks/auth';
-import { useLocalStorage } from './utils/storage';
+import { authThunks } from './redux/users/thunks';
+import { useLocalStorage } from './utils';
 
-import ProtectedRoute from './components/hoc/ProtectedRoute';
-import Home from './components/Pages/Home';
-import { Favorites } from './components/Pages/Favorites/Favorites';
-import { SignUp, SignIn } from './components/Pages/Auth';
-import { Profile } from './components/Pages/Profile';
-import Cart from './components/Pages/Cart';
-import { Loading } from './components/Loading';
-import { Layout } from './components/Layout';
+import { Layout, PrivateRoute } from './components/Containers';
+import { Cart, SignIn, SignUp, Profile, Favorites, Home } from './components/Pages';
+import { Loader } from './components/UI';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 const App: React.FC = (): JSX.Element => {
-  const [hasInit, setInit] = useState(false);
+  const [IsInit, setIsInit] = useState(false);
+
   const dispatch = useAppDispatch();
 
   const email = useAppSelector((state) => state.users.user.email);
@@ -28,7 +23,9 @@ const App: React.FC = (): JSX.Element => {
     const token = useLocalStorage.get('token');
 
     if (!token) {
-      setInit(true);
+      setTimeout(() => {
+        setIsInit(true);
+      }, 350);
 
       return;
     }
@@ -37,17 +34,21 @@ const App: React.FC = (): JSX.Element => {
       try {
         await dispatch(authThunks.getCurrentUser()).unwrap();
 
-        setInit(true);
-      } catch {
-        setInit(true);
+        setTimeout(() => {
+          setIsInit(true);
+        }, 350);
+      } finally {
+        setTimeout(() => {
+          setIsInit(true);
+        }, 350);
       }
     })();
   }, [dispatch]);
 
   return (
     <>
-      {!hasInit ? (
-        <Loading />
+      {!IsInit ? (
+        <Loader />
       ) : (
         <>
           <ToastContainer />
@@ -59,7 +60,7 @@ const App: React.FC = (): JSX.Element => {
               {!email && <Route path="signup" element={<SignUp />} />}
               {!email && <Route path="signin" element={<SignIn />} />}
 
-              <Route element={<ProtectedRoute />}>
+              <Route element={<PrivateRoute />}>
                 <Route path="favorites" element={<Favorites />} />
                 <Route path="cart" element={<Cart />} />
                 <Route path="profile" element={<Profile />} />

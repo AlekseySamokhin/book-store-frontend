@@ -4,9 +4,10 @@ const CatalogStyled = styled.div`
   margin-bottom: 32px;
 
   .catalog__header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
   }
 
   .catalog__header_title {

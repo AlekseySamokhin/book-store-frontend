@@ -1,5 +1,4 @@
-import { Link } from 'react-router-dom';
-
+import { MenuItem } from '../../../../UI';
 import { icons } from '../../../../../assets';
 
 import { MenuAfterAuthStyled } from './MenuAfterAuth.styles';
@@ -14,11 +13,7 @@ const MenuAfterAuth = () => {
   return (
     <MenuAfterAuthStyled>
       {authItems.map((item) => (
-        <Link key={item.path} to={item.path}>
-          <div>
-            <img src={item.icon} alt={item.alt} />
-          </div>
-        </Link>
+        <MenuItem path={item.path} icon={item.icon} alt={item.icon} />
       ))}
     </MenuAfterAuthStyled>
   );

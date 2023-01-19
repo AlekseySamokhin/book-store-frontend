@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 import axios from 'axios';
 
 import { useLocalStorage } from '../utils/storage';

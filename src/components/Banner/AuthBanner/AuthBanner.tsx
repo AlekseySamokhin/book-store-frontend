@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import { Button } from '../../Button/Button';
+import { Button } from '../../UI';
 import { AuthBannerStyled } from './AuthBanner.styles';
 import { images } from '../../../assets';
 import { Flex } from '../../../styles/Flex';

@@ -5,7 +5,7 @@ interface ITypesProps {
   onClick: () => void;
 }
 
-const CustomSelectStyled = styled.div<ITypesProps>`
+const SelectStyled = styled.div<ITypesProps>`
   background: #f0f4ef;
   border-radius: 16px;
   font-size: 18px;
@@ -24,4 +24,4 @@ const CustomSelectStyled = styled.div<ITypesProps>`
   }
 `;
 
-export { CustomSelectStyled };
+export { SelectStyled };

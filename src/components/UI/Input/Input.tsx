@@ -4,7 +4,7 @@ import type { FieldInputProps } from 'formik';
 
 import { InputStyled } from './Input.styles';
 
-import { icons } from '../../assets';
+import { icons } from '../../../assets';
 
 interface ICustomInputPropsType {
   autocomplete?: string;
@@ -19,8 +19,8 @@ interface ICustomInputPropsType {
   title?: string;
   text?: string;
   touched?: boolean;
-  className?: string;
   description?: string;
+  className?: string;
   fieldInputProps?: FieldInputProps<string>;
 }
 
@@ -93,4 +93,4 @@ const Input: React.FC<ICustomInputPropsType> = (props): JSX.Element => {
   );
 };
 
-export default Input;
+export { Input };

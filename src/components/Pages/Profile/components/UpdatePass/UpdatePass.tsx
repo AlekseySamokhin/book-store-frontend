@@ -7,12 +7,11 @@ import { useAppDispatch } from '../../../../../redux/store';
 import { userThunks } from '../../../../../redux/users/thunks';
 import { updatePasswordUserSchema } from '../../../../../schemas/user';
 
-// import CustomInput from '../../../../CustomInput';
-import { Button } from '../../../../Button';
 import { icons } from '../../../../../assets';
 
+import { Button, Input } from '../../../../UI';
+
 import { UpdatePassStyled } from './UpdatePass.styles';
-import Input from '../../../../Input/Input';
 
 interface IFormValuesPass {
   newPassword: string;
@@ -32,7 +31,7 @@ const UpdatePass: React.FC<ITypesProps> = (props): JSX.Element => {
     setHidePass(!hidePass);
   };
 
-  const handleSubmitPass = async (
+  const handleOnSubmit = async (
     values: IFormValuesPass,
     actions: FormikHelpers<IFormValuesPass>,
   ) => {
@@ -57,7 +56,7 @@ const UpdatePass: React.FC<ITypesProps> = (props): JSX.Element => {
       confirmPassword: '',
     },
     validationSchema: updatePasswordUserSchema,
-    onSubmit: handleSubmitPass,
+    onSubmit: handleOnSubmit,
   });
 
   return (

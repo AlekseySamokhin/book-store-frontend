@@ -10,7 +10,7 @@ interface ITypesProps {
 
 const UploadAvatar: React.FC<ITypesProps> = (props): JSX.Element => {
   const dispatch = useAppDispatch();
-  const infoUser = useAppSelector((state) => state.users.user);
+  const avatar = useAppSelector((state) => state.users.user.avatar);
 
   const handleUploadAvatar = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
@@ -37,10 +37,10 @@ const UploadAvatar: React.FC<ITypesProps> = (props): JSX.Element => {
 
   return (
     <UploadAvatarStyled className={props.className}>
-      {infoUser.avatar ? (
+      {avatar ? (
         <img
           className="user__avatar_image"
-          src={infoUser.avatar}
+          src={avatar}
           alt="Default icon user"
         />
       ) : (

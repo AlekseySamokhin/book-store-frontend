@@ -1,11 +1,15 @@
 import styled from 'styled-components';
 
-const SignInWrapper = styled.div`
+const SignInStyled = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 50px 0;
   margin-bottom: 30px;
+
+  .sign-in__input {
+    margin-bottom: 30px;
+  }
 
   .form {
     width: 100%;
@@ -47,4 +51,4 @@ const SignInWrapper = styled.div`
   }
 `;
 
-export { SignInWrapper };
+export { SignInStyled };

@@ -10,6 +10,8 @@ import mail from './mail.svg';
 import camera from './camera.svg';
 import forward from './forward.svg';
 import userProfile from './user-profile.svg';
+import starShared from './star-shared.svg';
+import starTransparent from './star-transparent.svg';
 
 const icons = {
   cart,
@@ -24,6 +26,8 @@ const icons = {
   forward,
   userInput,
   userProfile,
+  starShared,
+  starTransparent,
 };
 
 export { icons };

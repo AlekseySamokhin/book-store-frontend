@@ -1,8 +1,8 @@
 import { Oval } from 'react-loader-spinner';
 
-import Container from '../../styles/Container';
+import Container from '../../../styles/Container';
 
-const Loading = () => {
+const Loader: React.FC = (): JSX.Element => {
   return (
     <Container>
       <Oval
@@ -26,4 +26,4 @@ const Loading = () => {
   );
 };
 
-export { Loading };
+export { Loader };

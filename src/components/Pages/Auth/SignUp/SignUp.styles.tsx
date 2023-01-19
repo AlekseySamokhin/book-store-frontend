@@ -1,11 +1,15 @@
 import styled from 'styled-components';
 
-const SignUpWrapper = styled.div`
+const SignUpStyled = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 50px 0;
   margin-bottom: 30px;
+
+  .sign-up__input {
+    margin-bottom: 30px;
+  }
 
   .form {
     width: 100%;
@@ -56,4 +60,4 @@ const SignUpWrapper = styled.div`
   }
 `;
 
-export { SignUpWrapper };
+export { SignUpStyled };
