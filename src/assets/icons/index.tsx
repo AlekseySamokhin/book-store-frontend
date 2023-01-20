@@ -12,6 +12,7 @@ import forward from './forward.svg';
 import userProfile from './user-profile.svg';
 import starShared from './star-shared.svg';
 import starTransparent from './star-transparent.svg';
+import iconDelete from './delete-icon.svg';
 
 const icons = {
   cart,
@@ -28,6 +29,7 @@ const icons = {
   userProfile,
   starShared,
   starTransparent,
+  iconDelete,
 };
 
 export { icons };

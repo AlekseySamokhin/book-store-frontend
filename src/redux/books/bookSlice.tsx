@@ -1,36 +1,34 @@
+/* eslint-disable no-console */
 import { createSlice } from '@reduxjs/toolkit';
-// import type { PayloadAction } from '@reduxjs/toolkit';
+import { bookThunks } from './bookThunks/bookThunks';
 
-interface ITypesBookState {
-  id: number;
-  name: string;
+interface ITypesDataBook {
+  id: string;
+  title: string;
   author: string;
-  price: string;
-  rating: string;
-  photo: string;
+  price: number;
+  description: number;
+  rate: number;
+  poster: string;
 }
 
-interface ITypeBookState {
-  book: ITypesBookState;
-}
-
-const initialStateBook: ITypesBookState = {
-  id: 0,
-  name: '',
-  author: '',
-  price: '',
-  rating: '',
-  photo: '',
-};
-
-const getInitialState = (): ITypeBookState => ({
-  book: initialStateBook,
+const getInitialState = () => ({
+  books: [] as ITypesDataBook[],
 });
 
 const booksSlice = createSlice({
   name: 'bookSlice',
   initialState: getInitialState(),
   reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(bookThunks.getAllBooks.fulfilled, (state, action) => {
+      if (!action.payload) {
+        return;
+      }
+
+      state.books = action.payload;
+    });
+  },
 });
 
 export const { reducer: bookReducer } = booksSlice;

@@ -1,9 +1,30 @@
+/* eslint-disable no-console */
+import { useEffect } from 'react';
+
+import { useAppDispatch, useAppSelector } from '../../../../../redux/store';
+
+import { bookThunks } from '../../../../../redux/books/bookThunks/bookThunks';
+
 import { Select } from '../../../../UI';
 import { BookItem } from '../BookItem';
 
 import { CatalogStyled } from './Catalog.styles';
 
 const Catalog: React.FC = (): JSX.Element => {
+  const dispatch = useAppDispatch();
+  const books = useAppSelector((state) => state.books.books);
+
+  useEffect(() => {
+    dispatch(bookThunks.getAllBooks());
+    // (async () => {
+    //   try {
+    //     dispatch(bookThunks.getAllBooks);
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
+    // })();
+  }, [dispatch]);
+
   return (
     <CatalogStyled>
       <div className="catalog__header">
@@ -15,14 +36,9 @@ const Catalog: React.FC = (): JSX.Element => {
         </div>
       </div>
       <div className="catalog__booklist">
-        <BookItem className="catalog__booklist_item" />
-        <BookItem className="catalog__booklist_item" />
-        <BookItem className="catalog__booklist_item" />
-        <BookItem className="catalog__booklist_item" />
-        <BookItem className="catalog__booklist_item" />
-        <BookItem className="catalog__booklist_item" />
-        <BookItem className="catalog__booklist_item" />
-        <BookItem className="catalog__booklist_item" />
+        {books.map((item) => (
+          <BookItem key={item.id} className="catalog__booklist_item" {...item} />
+        ))}
       </div>
     </CatalogStyled>
   );

@@ -12,8 +12,8 @@ const authItems = [
 const MenuAfterAuth = () => {
   return (
     <MenuAfterAuthStyled>
-      {authItems.map((item) => (
-        <MenuItem path={item.path} icon={item.icon} alt={item.icon} />
+      {authItems.map((item, index) => (
+        <MenuItem key={index} path={item.path} icon={item.icon} alt={item.icon} />
       ))}
     </MenuAfterAuthStyled>
   );

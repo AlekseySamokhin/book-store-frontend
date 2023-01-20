@@ -9,6 +9,7 @@ import bookBannerGirlWithBook from './book-banner-girl-with-book.png';
 import bookItemExample from './book-example-1.png';
 
 import authPageManWithBook from './auth-page-man-with-book.png';
+import cartPageEmptyList from './cart-page-empty-books.png';
 
 const images = {
   bookBannerBooks,
@@ -16,6 +17,7 @@ const images = {
   authBannerCastle,
   authBannerFairy,
   authPageManWithBook,
+  cartPageEmptyList,
   bookItemExample,
   footerMap,
 };

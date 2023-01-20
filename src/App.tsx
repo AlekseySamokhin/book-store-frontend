@@ -7,7 +7,7 @@ import { authThunks } from './redux/users/thunks';
 import { useLocalStorage } from './utils';
 
 import { Layout, PrivateRoute } from './components/Containers';
-import { Cart, SignIn, SignUp, Profile, Favorites, Home } from './components/Pages';
+import { Cart, SignIn, SignUp, Profile, Favorites, Home, Product } from './components/Pages';
 import { Loader } from './components/UI';
 
 import 'react-toastify/dist/ReactToastify.css';
@@ -52,9 +52,11 @@ const App: React.FC = (): JSX.Element => {
       ) : (
         <>
           <ToastContainer />
+
           <Routes>
             <Route path="/" element={<Layout />}>
               <Route index element={<Home />} />
+              <Route path="product/:id" element={<Product />} />
               <Route path="*" element={<Navigate to="/" />} />
 
               {!email && <Route path="signup" element={<SignUp />} />}
