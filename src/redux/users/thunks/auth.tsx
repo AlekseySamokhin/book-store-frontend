@@ -4,11 +4,11 @@ import type { AxiosError } from 'axios';
 
 import { authService } from '../../../api/services';
 import { useLocalStorage } from '../../../utils/storage';
-import type { IAuthRequestType } from '../../../interfaces/user';
+import type { ITypesAuthRequest } from '../../../interfaces/user';
 
 const signUp = createAsyncThunk(
   'user/register',
-  async (values: IAuthRequestType) => {
+  async (values: ITypesAuthRequest) => {
     try {
       const data = await authService.signUp(values);
 
@@ -26,7 +26,7 @@ const signUp = createAsyncThunk(
 
 const signIn = createAsyncThunk(
   'user/login',
-  async (values: IAuthRequestType) => {
+  async (values: ITypesAuthRequest) => {
     try {
       const data = await authService.signIn(values);
 

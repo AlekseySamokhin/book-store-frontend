@@ -2,11 +2,13 @@ import axios from 'axios';
 
 import { useLocalStorage } from '../utils/storage';
 
-const instance = axios.create({
-  baseURL: 'http://localhost:4000/api',
+const BASE_URL = 'http://localhost:4000/api';
+
+const api = axios.create({
+  baseURL: BASE_URL,
 });
 
-instance.interceptors.request.use((config) => {
+api.interceptors.request.use((config) => {
   const token = useLocalStorage.get('token');
 
   if (token) {
@@ -19,4 +21,4 @@ instance.interceptors.request.use((config) => {
   return config;
 });
 
-export { instance };
+export { api };

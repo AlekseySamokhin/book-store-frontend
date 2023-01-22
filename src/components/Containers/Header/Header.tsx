@@ -2,15 +2,20 @@ import { Link } from 'react-router-dom';
 
 import { useAppSelector } from '../../../redux/store';
 
-import CustomInput from '../../CustomInput';
 import { MenuBeforeAuth, MenuAfterAuth } from './Menu';
 import { Logo } from '../../Logo';
 import Container from '../../../styles/Container';
-import { icons, logos } from '../../../assets';
+import { logos } from '../../../assets';
 
 import { HeaderStyled } from './Header.styles';
+import { Search } from '../../Search/Search';
 
-const Header: React.FC = (): JSX.Element => {
+interface ITypesProps {
+  searchValue: string;
+  setSearchValue: (value: string) => void;
+}
+
+const Header: React.FC<ITypesProps> = (props): JSX.Element => {
   const authUser = useAppSelector((state) => state.users.user.email);
 
   return (
@@ -18,17 +23,11 @@ const Header: React.FC = (): JSX.Element => {
       <HeaderStyled>
         <div className="header__link">
           <Link to="/">
-            <Logo src={logos.logoHeader} />
+            <Logo src={logos.logoHeader} alt="Book logo" />
           </Link>
           <span>Catalog</span>
         </div>
-        <CustomInput
-          value={''}
-          type="search"
-          error={''}
-          icon={icons.search}
-          placeholder={'Search'}
-        />
+        <Search searchValue={props.searchValue} setSearchValue={props.setSearchValue} />
 
         {authUser ? (
           <MenuAfterAuth />

@@ -19,6 +19,17 @@ const getAllBooks = createAsyncThunk('book/all', async () => {
   }
 });
 
+const getOneBook = createAsyncThunk('book/one', async (id: number) => {
+  try {
+    const data = await bookService.getOneBook({ id });
+
+    return data;
+  } catch (_err) {
+    const err = _err as AxiosError;
+    throw err.response?.data;
+  }
+});
+
 const changeBookRating = createAsyncThunk(
   'book/change-rating',
   async (values: ITypesChangeBookRating) => {
@@ -35,6 +46,7 @@ const changeBookRating = createAsyncThunk(
 
 const bookThunks = {
   getAllBooks,
+  getOneBook,
   changeBookRating,
 };
 

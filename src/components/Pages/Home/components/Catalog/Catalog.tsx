@@ -10,7 +10,11 @@ import { BookItem } from '../BookItem';
 
 import { CatalogStyled } from './Catalog.styles';
 
-const Catalog: React.FC = (): JSX.Element => {
+interface ITypeProps {
+  searchValue: string;
+}
+
+const Catalog: React.FC<ITypeProps> = (props): JSX.Element => {
   const dispatch = useAppDispatch();
   const books = useAppSelector((state) => state.books.books);
 
@@ -36,9 +40,21 @@ const Catalog: React.FC = (): JSX.Element => {
         </div>
       </div>
       <div className="catalog__booklist">
-        {books.map((item) => (
-          <BookItem key={item.id} className="catalog__booklist_item" {...item} />
-        ))}
+        {books
+          .filter((item) => {
+            if (item.title.toLowerCase().includes(props.searchValue.toLowerCase())) {
+              return true;
+            }
+
+            return false;
+          })
+          .map((item) => (
+            <BookItem
+              key={item.id}
+              className="catalog__booklist_item"
+              {...item}
+            />
+          ))}
       </div>
     </CatalogStyled>
   );

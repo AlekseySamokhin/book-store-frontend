@@ -1,38 +1,37 @@
-/* eslint-disable no-console */
-import { instance } from '../instance';
+import { api } from '../axios-instance';
 
-import type { IAuthRequestType, IAuthResponseType, ITypesDataUser } from '../../interfaces/user';
+import type { ITypesAuthRequest, IAuthResponseType, ITypesDataUser } from '../../interfaces/user';
 
-const API_AUTH_URL = '/auth';
-
-const signUp = async (params: IAuthRequestType) => {
-  const response = await instance.post<IAuthResponseType>(
-    `${API_AUTH_URL}/signup`,
-    params,
-  );
-
-  return response.data;
-};
-
-const signIn = async (params: IAuthRequestType) => {
-  const response = await instance.post<IAuthResponseType>(
-    `${API_AUTH_URL}/signin`,
-    params,
-  );
-
-  return response.data;
-};
+const AUTH_URL = '/auth';
 
 const getCurrentUser = async () => {
-  const response = await instance.get<ITypesDataUser>(`${API_AUTH_URL}/me`);
+  const response = await api.get<ITypesDataUser>(`${AUTH_URL}/me`);
+
+  return response.data;
+};
+
+const signUp = async (params: ITypesAuthRequest) => {
+  const response = await api.post<IAuthResponseType>(
+    `${AUTH_URL}/signup`,
+    params,
+  );
+
+  return response.data;
+};
+
+const signIn = async (params: ITypesAuthRequest) => {
+  const response = await api.post<IAuthResponseType>(
+    `${AUTH_URL}/signin`,
+    params,
+  );
 
   return response.data;
 };
 
 const authService = {
+  getCurrentUser,
   signUp,
   signIn,
-  getCurrentUser,
 };
 
 export { authService };

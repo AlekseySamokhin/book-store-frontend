@@ -5,12 +5,16 @@ import { Catalog } from './components/Catalog';
 
 import Container from '../../../styles/Container';
 
-const Home: React.FC = (): JSX.Element => {
+interface ITypeProps {
+  searchValue: string;
+}
+
+const Home: React.FC<ITypeProps> = (props): JSX.Element => {
   const auth = useAppSelector((state) => state.users.user.email);
   return (
     <Container>
       <BookBanner />
-      <Catalog />
+      <Catalog searchValue={props.searchValue} />
       {!auth && <AuthBanner />}
     </Container>
   );

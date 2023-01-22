@@ -13,6 +13,7 @@ import { Loader } from './components/UI';
 import 'react-toastify/dist/ReactToastify.css';
 
 const App: React.FC = (): JSX.Element => {
+  const [searchValue, setSearchValue] = useState<string>('');
   const [IsInit, setIsInit] = useState(false);
 
   const dispatch = useAppDispatch();
@@ -52,10 +53,17 @@ const App: React.FC = (): JSX.Element => {
       ) : (
         <>
           <ToastContainer />
-
           <Routes>
-            <Route path="/" element={<Layout />}>
-              <Route index element={<Home />} />
+            <Route
+              path="/"
+              element={
+                <Layout
+                  searchValue={searchValue}
+                  setSearchValue={setSearchValue}
+                />
+              }
+            >
+              <Route index element={<Home searchValue={searchValue} />} />
               <Route path="product/:id" element={<Product />} />
               <Route path="*" element={<Navigate to="/" />} />
 

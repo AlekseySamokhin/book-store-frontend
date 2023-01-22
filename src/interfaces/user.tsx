@@ -11,7 +11,7 @@ interface ITypesDataUser {
   dob?: string | null;
 }
 
-interface IAuthRequestType {
+interface ITypesAuthRequest {
   email: string;
   password: string;
 }
@@ -45,7 +45,7 @@ interface ITypeUpdatedAvatarUser {
 export type {
   IUserStateType,
   ITypesDataUser,
-  IAuthRequestType,
+  ITypesAuthRequest,
   IAuthResponseType,
   IUpdatedDataUserType,
   ITypesUpdatedInfoUser,
