@@ -14,7 +14,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const App: React.FC = (): JSX.Element => {
   const [searchValue, setSearchValue] = useState<string>('');
-  const [IsInit, setIsInit] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const dispatch = useAppDispatch();
 
@@ -24,7 +24,7 @@ const App: React.FC = (): JSX.Element => {
     const token = useLocalStorage.get('token');
 
     if (!token) {
-      setIsInit(true);
+      setIsLoading(true);
       return;
     }
 
@@ -32,14 +32,14 @@ const App: React.FC = (): JSX.Element => {
       try {
         await dispatch(authThunks.getCurrentUser()).unwrap();
       } finally {
-        setIsInit(true);
+        setIsLoading(true);
       }
     })();
   }, [dispatch]);
 
   return (
     <>
-      {!IsInit ? (
+      {!isLoading ? (
         <Loader />
       ) : (
         <>
