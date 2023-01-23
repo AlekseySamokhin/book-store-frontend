@@ -3,10 +3,10 @@ import type { AxiosError } from 'axios';
 
 import { bookService } from '../../../api/services';
 
-interface ITypesChangeBookRating {
-  id: number;
-  rate: number;
-}
+// interface ITypesChangeBookRating {
+//   id: number;
+//   rate: number;
+// }
 
 const getAllBooks = createAsyncThunk('book/all', async () => {
   try {
@@ -30,24 +30,24 @@ const getOneBook = createAsyncThunk('book/one', async (id: number) => {
   }
 });
 
-const changeBookRating = createAsyncThunk(
-  'book/change-rating',
-  async (values: ITypesChangeBookRating) => {
-    try {
-      const data = await bookService.changeBookRating(values);
+// const changeBookRating = createAsyncThunk(
+//   'book/change-rating',
+//   async (values: ITypesChangeBookRating) => {
+//     try {
+//       const data = await bookService.changeBookRating(values);
 
-      return data;
-    } catch (_err) {
-      const err = _err as AxiosError;
-      throw err.response?.data;
-    }
-  },
-);
+//       return data;
+//     } catch (_err) {
+//       const err = _err as AxiosError;
+//       throw err.response?.data;
+//     }
+//   },
+// );
 
 const bookThunks = {
   getAllBooks,
   getOneBook,
-  changeBookRating,
+  // changeBookRating,
 };
 
 export { bookThunks };

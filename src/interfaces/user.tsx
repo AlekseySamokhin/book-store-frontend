@@ -8,7 +8,6 @@ interface ITypesDataUser {
   email: string;
   password: string;
   avatar: string;
-  dob?: string | null;
 }
 
 interface ITypesAuthRequest {

@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import type { AxiosError } from 'axios';
 
@@ -31,8 +30,9 @@ const updateAvatar = createAsyncThunk(
       const avatar = await userService.updateAvatar(values);
 
       return avatar;
-    } catch (error) {
-      console.log(error);
+    } catch (_err) {
+      const err = (_err as AxiosError);
+      throw err.response?.data;
     }
   },
 );

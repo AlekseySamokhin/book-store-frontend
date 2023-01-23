@@ -5,7 +5,7 @@ import { Star } from './Star';
 import { StarRatingStyled } from './StarRating.styles';
 
 interface ITypesProps {
-  id: string;
+  // id: string;
   rate: number;
   className?: string;
 }

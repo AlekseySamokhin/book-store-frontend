@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from '../../../../../redux/store';
 import { userThunks } from '../../../../../redux/users/thunks';
 import { updateInfoUserSchema } from '../../../../../schemas/user';
 
-import { Input, Button } from '../../../../UI';
+import { Input, Button } from '../../../../ui';
 
 import { UpdateInfoStyled } from './UpdateInfo.styles';
 

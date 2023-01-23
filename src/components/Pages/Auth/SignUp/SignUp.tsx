@@ -10,7 +10,7 @@ import { useAppDispatch } from '../../../../redux/store';
 import { authThunks } from '../../../../redux/users/thunks/auth';
 import { signUpSchema } from '../../../../schemas/auth';
 
-import { Button, Input } from '../../../UI';
+import { Button, Input } from '../../../ui';
 import Container from '../../../../styles/Container';
 import { icons, images } from '../../../../assets';
 

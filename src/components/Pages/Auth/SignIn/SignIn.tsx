@@ -15,7 +15,7 @@ import { icons, images } from '../../../../assets';
 
 import { signInSchema } from '../../../../schemas/auth';
 
-import { Input, Button } from '../../../UI';
+import { Input, Button } from '../../../ui';
 
 interface ITypesValuesForm {
   email: string;

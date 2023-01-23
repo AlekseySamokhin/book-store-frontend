@@ -1,4 +1,4 @@
-import { Button } from '../../../UI';
+import { Button } from '../../../ui';
 import { CartIsEmptyStyled } from './CartIsEmpty.styles';
 
 import { images } from '../../../../assets';

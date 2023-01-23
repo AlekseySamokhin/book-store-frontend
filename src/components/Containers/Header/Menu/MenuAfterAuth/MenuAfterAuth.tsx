@@ -1,4 +1,4 @@
-import { MenuItem } from '../../../../UI';
+import { MenuItem } from '../../../../ui';
 import { icons } from '../../../../../assets';
 
 import { MenuAfterAuthStyled } from './MenuAfterAuth.styles';

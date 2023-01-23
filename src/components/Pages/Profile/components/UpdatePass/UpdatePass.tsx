@@ -9,7 +9,7 @@ import { updatePasswordUserSchema } from '../../../../../schemas/user';
 
 import { icons } from '../../../../../assets';
 
-import { Button, Input } from '../../../../UI';
+import { Button, Input } from '../../../../ui';
 
 import { UpdatePassStyled } from './UpdatePass.styles';
 

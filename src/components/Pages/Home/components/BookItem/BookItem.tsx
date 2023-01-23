@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Button, StarRating } from '../../../../UI';
+import { Button, StarRating } from '../../../../ui';
 import { BookItemStyled } from './BookItem.styles';
 
 interface ITypesProps {
@@ -18,12 +18,13 @@ const BookItem: React.FC<ITypesProps> = (props: ITypesProps): JSX.Element => {
     <Link to={{ pathname: `product/${props.id}` }}>
       <BookItemStyled className={props.className}>
         <img className="book-item__poster" src={props.poster} />
+
         <h4 className="book-item__title">{props.title}</h4>
         <p className="book-item__author">{props.author}</p>
 
         <StarRating
           className="book-item__rating"
-          id={props.id}
+          // id={props.id}
           rate={props.rate}
         />
 

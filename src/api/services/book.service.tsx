@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { api } from '../axios-instance';
 
 const BOOK_URL = '/book';
@@ -13,10 +12,10 @@ export interface ITypesDataBook {
   poster: string;
 }
 
-interface ITypeRequestChangeRating {
-  id: number;
-  rate: number;
-}
+// interface ITypeRequestChangeRating {
+//   id: number;
+//   rate: number;
+// }
 
 interface ITypeRequestGetOneBook {
   id: number;
@@ -36,19 +35,19 @@ const getOneBook = async (params: ITypeRequestGetOneBook) => {
   return response.data;
 };
 
-const changeBookRating = async (params: ITypeRequestChangeRating) => {
-  const response = await api.patch<ITypesDataBook>(
-    `${BOOK_URL}/change-rating}`,
-    params,
-  );
+// const changeBookRating = async (params: ITypeRequestChangeRating) => {
+//   const response = await api.patch<ITypesDataBook>(
+//     `${BOOK_URL}/change-rating}`,
+//     params,
+//   );
 
-  return response.data;
-};
+//   return response.data;
+// };
 
 const bookService = {
   getAllBooks,
   getOneBook,
-  changeBookRating,
+  // changeBookRating,
 };
 
 export { bookService };

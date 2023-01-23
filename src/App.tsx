@@ -8,7 +8,7 @@ import { useLocalStorage } from './utils';
 
 import { Layout, PrivateRoute } from './components/Containers';
 import { Cart, SignIn, SignUp, Profile, Favorites, Home, Product } from './components/Pages';
-import { Loader } from './components/UI';
+import { Loader } from './components/ui';
 
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -24,24 +24,15 @@ const App: React.FC = (): JSX.Element => {
     const token = useLocalStorage.get('token');
 
     if (!token) {
-      setTimeout(() => {
-        setIsInit(true);
-      }, 350);
-
+      setIsInit(true);
       return;
     }
 
     (async () => {
       try {
         await dispatch(authThunks.getCurrentUser()).unwrap();
-
-        setTimeout(() => {
-          setIsInit(true);
-        }, 350);
       } finally {
-        setTimeout(() => {
-          setIsInit(true);
-        }, 350);
+        setIsInit(true);
       }
     })();
   }, [dispatch]);
@@ -53,6 +44,7 @@ const App: React.FC = (): JSX.Element => {
       ) : (
         <>
           <ToastContainer />
+
           <Routes>
             <Route
               path="/"

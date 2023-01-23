@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../../../../redux/store';
 
 import { bookThunks } from '../../../../../redux/books/bookThunks/bookThunks';
 
-import { Select } from '../../../../UI';
+import { Select } from '../../../../ui';
 import { BookItem } from '../BookItem';
 
 import { CatalogStyled } from './Catalog.styles';
@@ -20,13 +20,6 @@ const Catalog: React.FC<ITypeProps> = (props): JSX.Element => {
 
   useEffect(() => {
     dispatch(bookThunks.getAllBooks());
-    // (async () => {
-    //   try {
-    //     dispatch(bookThunks.getAllBooks);
-    //   } catch (err) {
-    //     console.log(err);
-    //   }
-    // })();
   }, [dispatch]);
 
   return (

@@ -1,5 +1,5 @@
 import Container from '../../../styles/Container';
-import { Button } from '../../UI';
+import { Button } from '../../ui';
 
 import { CartIsEmpty } from './CarIsEmpty';
 
