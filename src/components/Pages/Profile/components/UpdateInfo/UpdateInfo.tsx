@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { icons } from '../../../../../assets';
 import { useAppDispatch, useAppSelector } from '../../../../../redux/store';
 import { userThunks } from '../../../../../redux/users/thunks';
-import { updateInfoUserSchema } from '../../../../../schemas/user';
+import { updateInfoUserSchema } from '../../../../../schemas/userSchema';
 
 import { Input, Button } from '../../../../ui';
 
@@ -25,7 +25,7 @@ const UpdateInfo: React.FC<ITypesProps> = (props): JSX.Element => {
   const [hideInfo, setHideInfo] = useState<boolean>(false);
 
   const dispatch = useAppDispatch();
-  const infoUser = useAppSelector((state) => state.users.user);
+  const infoUser = useAppSelector((state) => state.auth.user);
 
   const handleChangeInfo = () => {
     setHideInfo(!hideInfo);

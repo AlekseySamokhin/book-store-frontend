@@ -3,8 +3,8 @@ import { useLocation, Navigate, Outlet } from 'react-router-dom';
 import { useAppSelector } from '../../redux/store';
 
 const PrivateRoute: React.FC = (): JSX.Element => {
+  const email = useAppSelector((state) => state.auth.user.email);
   const location = useLocation();
-  const email = useAppSelector((state) => state.users.user.email);
 
   return email ? (
     <Outlet />

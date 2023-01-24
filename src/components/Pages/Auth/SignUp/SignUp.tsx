@@ -7,11 +7,11 @@ import { toast } from 'react-toastify';
 import type { FormikHelpers } from 'formik';
 
 import { useAppDispatch } from '../../../../redux/store';
-import { authThunks } from '../../../../redux/users/thunks/auth';
-import { signUpSchema } from '../../../../schemas/auth';
+import { authThunks } from '../../../../redux/users/thunks/authThunks';
+import { signUpSchema } from '../../../../schemas/authSchema';
 
 import { Button, Input } from '../../../ui';
-import Container from '../../../../styles/Container';
+import { Container } from '../../../../styles/Container';
 import { icons, images } from '../../../../assets';
 
 import { SignUpStyled } from './SignUp.styles';

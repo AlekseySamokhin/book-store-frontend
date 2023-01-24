@@ -5,6 +5,7 @@ const CommentsStyled = styled.div`
   flex-direction: column;
   max-width: 667px;
   width: 100%;
+  margin-bottom: 108px;
 
   .comments__title {
     font-weight: 700;
@@ -14,8 +15,12 @@ const CommentsStyled = styled.div`
     margin-bottom: 50px;
   }
 
-  .comment__item {
+  .comments__item {
     margin-bottom: 10px;
+  }
+
+  .comments__form {
+    margin-top: 50px;
   }
 `;
 

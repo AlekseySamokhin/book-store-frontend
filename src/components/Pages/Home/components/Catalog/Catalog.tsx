@@ -1,12 +1,11 @@
-/* eslint-disable no-console */
 import { useEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../../../../redux/store';
 
-import { bookThunks } from '../../../../../redux/books/bookThunks/bookThunks';
+import { bookThunks } from '../../../../../redux/books/bookThunks';
 
 import { Select } from '../../../../ui';
-import { BookItem } from '../BookItem';
+import { BookItem } from './components/BookItem';
 
 import { CatalogStyled } from './Catalog.styles';
 
@@ -32,6 +31,7 @@ const Catalog: React.FC<ITypeProps> = (props): JSX.Element => {
           <Select title="Sort by price" />
         </div>
       </div>
+
       <div className="catalog__booklist">
         {books
           .filter((item) => {

@@ -1,6 +1,6 @@
 import { Oval } from 'react-loader-spinner';
 
-import Container from '../../../styles/Container';
+import { Container } from '../../../styles/Container';
 
 const Loader: React.FC = (): JSX.Element => {
   return (

@@ -5,15 +5,15 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import { useAppDispatch } from '../../../../redux/store';
-import { authThunks } from '../../../../redux/users/thunks/auth';
+import { authThunks } from '../../../../redux/users/thunks/authThunks';
 
-import Container from '../../../../styles/Container';
+import { Container } from '../../../../styles/Container';
 
 import { SignInStyled } from './SignIn.styles';
 
 import { icons, images } from '../../../../assets';
 
-import { signInSchema } from '../../../../schemas/auth';
+import { signInSchema } from '../../../../schemas/authSchema';
 
 import { Input, Button } from '../../../ui';
 

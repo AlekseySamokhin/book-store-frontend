@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { createSlice } from '@reduxjs/toolkit';
-import { bookThunks } from './bookThunks/bookThunks';
+import { bookThunks } from './bookThunks';
 
 interface ITypesDataBook {
   id: string;
@@ -31,4 +31,4 @@ const booksSlice = createSlice({
   },
 });
 
-export const { reducer: bookReducer } = booksSlice;
+export const { reducer: booksReducer } = booksSlice;

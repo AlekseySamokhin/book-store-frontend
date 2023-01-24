@@ -1,4 +1,4 @@
-import { userThunks } from './user';
-import { authThunks } from './auth';
+import { userThunks } from './userThunks';
+import { authThunks } from './authThunks';
 
 export { userThunks, authThunks };

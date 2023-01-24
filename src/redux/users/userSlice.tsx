@@ -1,9 +1,9 @@
-/* eslint-disable no-console */
 import { createSlice } from '@reduxjs/toolkit';
 
 import { authThunks, userThunks } from './thunks';
-import type { ITypesDataUser, IUserStateType } from '../../interfaces/user';
 import { useLocalStorage } from '../../utils/storage';
+
+import type { ITypesDataUser, IUserStateType } from '../../interfaces/userInterfaces';
 
 const initialUser: ITypesDataUser = {
   id: 0,
@@ -17,8 +17,8 @@ const getInitialState = (): IUserStateType => ({
   user: initialUser,
 });
 
-const usersSlice = createSlice({
-  name: 'userSlice',
+const userSlice = createSlice({
+  name: 'authSlice',
   initialState: getInitialState(),
   reducers: {
     signOut: () => {
@@ -71,4 +71,4 @@ const usersSlice = createSlice({
   },
 });
 
-export const { reducer: userReducer, actions: userActions } = usersSlice;
+export const { reducer: userReducer, actions: userActions } = userSlice;

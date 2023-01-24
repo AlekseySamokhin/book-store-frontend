@@ -1,14 +1,9 @@
-import { Link } from 'react-router-dom';
-
-import { useAppSelector } from '../../../redux/store';
-
 import { MenuBeforeAuth, MenuAfterAuth } from './Menu';
-import { Logo } from '../../Logo';
-import Container from '../../../styles/Container';
-import { logos } from '../../../assets';
-
+import { Logo } from '../../ui/Logo';
+import { Container } from '../../../styles/Container';
 import { HeaderStyled } from './Header.styles';
-import { Search } from '../../Search/Search';
+import { Search } from '../../ui/Search/Search';
+import { CheckAuth } from '../CheckAuth';
 
 interface ITypesProps {
   searchValue: string;
@@ -16,24 +11,26 @@ interface ITypesProps {
 }
 
 const Header: React.FC<ITypesProps> = (props): JSX.Element => {
-  const authUser = useAppSelector((state) => state.users.user.email);
-
   return (
     <Container>
       <HeaderStyled>
         <div className="header__link">
-          <Link to="/">
-            <Logo src={logos.logoHeader} alt="Book logo" />
-          </Link>
+          <Logo position="header" />
           <span>Catalog</span>
         </div>
-        <Search searchValue={props.searchValue} setSearchValue={props.setSearchValue} />
 
-        {authUser ? (
+        <Search
+          searchValue={props.searchValue}
+          setSearchValue={props.setSearchValue}
+        />
+
+        <CheckAuth needAuth={true}>
           <MenuAfterAuth />
-        ) : (
+        </CheckAuth>
+
+        <CheckAuth needAuth={false}>
           <MenuBeforeAuth className="header__menu" />
-        )}
+        </CheckAuth>
       </HeaderStyled>
     </Container>
   );

@@ -1,21 +1,24 @@
-import { useAppSelector } from '../../../redux/store';
-
-import { BookBanner, AuthBanner } from '../../Banner';
+import { BookBanner, AuthBanner } from '../../ui/Banner';
 import { Catalog } from './components/Catalog';
 
-import Container from '../../../styles/Container';
+import { Container } from '../../../styles/Container';
+
+import { CheckAuth } from '../../Containers/CheckAuth';
 
 interface ITypeProps {
   searchValue: string;
 }
 
 const Home: React.FC<ITypeProps> = (props): JSX.Element => {
-  const auth = useAppSelector((state) => state.users.user.email);
   return (
     <Container>
       <BookBanner />
+
       <Catalog searchValue={props.searchValue} />
-      {!auth && <AuthBanner />}
+
+      <CheckAuth needAuth={false}>
+        <AuthBanner />
+      </CheckAuth>
     </Container>
   );
 };

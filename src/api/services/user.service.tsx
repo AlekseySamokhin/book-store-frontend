@@ -5,7 +5,7 @@ import type {
   ITypesUpdatedInfoUser,
   ITypesUpdatedPasswordsUser,
   ITypeUpdatedAvatarUser,
-} from '../../interfaces/user';
+} from '../../interfaces/userInterfaces';
 
 const API_USER_URL = '/user';
 

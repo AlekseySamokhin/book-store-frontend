@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Footer = styled.footer`
+const FooterStyled = styled.footer`
   background-color: ${(props) => props.theme.colors.dark};
   color: ${(props) => props.theme.colors.light};
   font-size: 20px;
@@ -102,4 +102,4 @@ const Footer = styled.footer`
   }
 `;
 
-export default Footer;
+export { FooterStyled };

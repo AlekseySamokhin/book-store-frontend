@@ -10,7 +10,7 @@ interface ITypesProps {
 
 const UploadAvatar: React.FC<ITypesProps> = (props): JSX.Element => {
   const dispatch = useAppDispatch();
-  const avatar = useAppSelector((state) => state.users.user.avatar);
+  const avatar = useAppSelector((state) => state.auth.user.avatar);
 
   const handleUploadAvatar = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();

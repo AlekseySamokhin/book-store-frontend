@@ -18,7 +18,7 @@ const App: React.FC = (): JSX.Element => {
 
   const dispatch = useAppDispatch();
 
-  const email = useAppSelector((state) => state.users.user.email);
+  const email = useAppSelector((state) => state.auth.user.email);
 
   useEffect(() => {
     const token = useLocalStorage.get('token');

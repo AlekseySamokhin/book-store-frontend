@@ -1,4 +1,4 @@
-import Container from '../../../styles/Container';
+import { Container } from '../../../styles/Container';
 import { Button } from '../../ui';
 
 import { CartIsEmpty } from './CarIsEmpty';
