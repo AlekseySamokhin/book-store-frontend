@@ -8,6 +8,7 @@ const GenreCheckboxesStyled = styled.div`
   border-radius: 16px;
   width: 305px;
   padding: 15px 0 15px 15px;
+  z-index: 1000;
 `;
 
 export { GenreCheckboxesStyled };

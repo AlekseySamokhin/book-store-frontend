@@ -20,10 +20,20 @@ const GenreCheckboxes: React.FC = (): JSX.Element => {
     })();
   }, []);
 
+  const handleChecked = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.preventDefault());
+  };
+
   return (
     <GenreCheckboxesStyled>
-      {genres.map((item) => (
-        <h1 key={item.genreId}>{item.name}</h1>
+      {genres.map((genre) => (
+        <div key={genre.genreId}>
+          <input
+            type="checkbox"
+            name={genre.name}
+            onChange={handleChecked} />
+          {genre.name}
+        </div>
       ))}
     </GenreCheckboxesStyled>
   );

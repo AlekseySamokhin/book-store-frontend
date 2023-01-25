@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 interface ITypesProps {
   isOpen: boolean;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const SelectStyled = styled.div<ITypesProps>`
