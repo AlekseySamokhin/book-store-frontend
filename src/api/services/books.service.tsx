@@ -2,6 +2,11 @@ import { api } from '../axios-instance';
 
 import type { ITypesDataBook, ITypeRequestGetOneBook } from '../../interfaces/bookInterfaces';
 
+interface ITypesProps {
+  genreId: number;
+  name: string;
+}
+
 const BOOK_URL = '/book';
 
 const getAllBooks = async () => {
@@ -18,9 +23,16 @@ const getOneBook = async (params: ITypeRequestGetOneBook) => {
   return response.data;
 };
 
-const bookService = {
+const getAllGenres = async () => {
+  const response = await api.get<ITypesProps[]>(`${BOOK_URL}/genres`);
+
+  return response.data;
+};
+
+const booksService = {
   getAllBooks,
+  getAllGenres,
   getOneBook,
 };
 
-export { bookService };
+export { booksService };

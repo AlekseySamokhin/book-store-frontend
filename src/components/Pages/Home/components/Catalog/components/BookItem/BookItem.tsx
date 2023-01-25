@@ -3,19 +3,18 @@ import { Button, StarRating } from '../../../../../../ui';
 import { BookItemStyled } from './BookItem.styles';
 
 interface ITypesProps {
-  id: string;
+  bookId: string;
   title: string;
   author: string;
   price: number;
   description: number;
-  rate: number;
   poster: string;
   className: string;
 }
 
 const BookItem: React.FC<ITypesProps> = (props: ITypesProps): JSX.Element => {
   return (
-    <Link to={{ pathname: `product/${props.id}` }}>
+    <Link to={{ pathname: `product/${props.bookId}` }}>
       <BookItemStyled className={props.className}>
         <img className="book-item__poster" src={props.poster} />
 
@@ -25,7 +24,7 @@ const BookItem: React.FC<ITypesProps> = (props: ITypesProps): JSX.Element => {
         <StarRating
           className="book-item__rating"
           // id={props.id}
-          rate={props.rate}
+          // rate={props.rate}
         />
 
         <Button>${`${props.price}`} USD</Button>

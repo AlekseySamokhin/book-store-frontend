@@ -5,12 +5,12 @@ import { icons } from '../../../../../../../assets';
 import { StarRating, Button } from '../../../../../../ui';
 
 interface ITypesDataBook {
-  id: string;
+  bookId: string;
   title: string;
   author: string;
   price: number;
   description: number;
-  rate: number;
+  rate?: number;
 }
 
 interface ITypesProps {

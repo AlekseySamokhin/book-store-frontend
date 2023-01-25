@@ -4,8 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../../../../redux/store';
 
 import { bookThunks } from '../../../../../redux/books/bookThunks';
 
-import { Select } from '../../../../ui';
-import { BookItem } from './components/BookItem';
+import { BookItem, FilterPanel } from './components';
 
 import { CatalogStyled } from './Catalog.styles';
 
@@ -25,17 +24,16 @@ const Catalog: React.FC<ITypeProps> = (props): JSX.Element => {
     <CatalogStyled>
       <div className="catalog__header">
         <h2 className="catalog__header_title">Catalog</h2>
-        <div className="catalog__header_select">
-          <Select title="Genre" />
-          <Select title="Price" />
-          <Select title="Sort by price" />
-        </div>
+
+        <FilterPanel />
       </div>
 
       <div className="catalog__booklist">
         {books
           .filter((item) => {
-            if (item.title.toLowerCase().includes(props.searchValue.toLowerCase())) {
+            if (
+              item.title.toLowerCase().includes(props.searchValue.toLowerCase())
+            ) {
               return true;
             }
 
@@ -43,7 +41,7 @@ const Catalog: React.FC<ITypeProps> = (props): JSX.Element => {
           })
           .map((item) => (
             <BookItem
-              key={item.id}
+              key={item.bookId}
               className="catalog__booklist_item"
               {...item}
             />

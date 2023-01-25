@@ -1,5 +1,5 @@
 import { authService } from './auth.service';
 import { userService } from './user.service';
-import { bookService } from './book.service';
+import { booksService } from './books.service';
 
-export { authService, userService, bookService };
+export { authService, userService, booksService };

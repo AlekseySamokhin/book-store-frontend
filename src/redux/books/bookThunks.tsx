@@ -1,37 +1,17 @@
+/* eslint-disable no-console */
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import type { AxiosError } from 'axios';
 
-import { bookService } from '../../api/services';
-
-// interface ITypesChangeBookRating {
-//   id: number;
-//   rate: number;
-// }
+import { booksService } from '../../api/services';
 
 const getAllBooks = createAsyncThunk('book/all', async () => {
   try {
-    const data = await bookService.getAllBooks();
-
-    return data;
+    return await booksService.getAllBooks();
   } catch (_err) {
     const err = _err as AxiosError;
     throw err.response?.data;
   }
 });
-
-// const changeBookRating = createAsyncThunk(
-//   'book/change-rating',
-//   async (values: ITypesChangeBookRating) => {
-//     try {
-//       const data = await bookService.changeBookRating(values);
-
-//       return data;
-//     } catch (_err) {
-//       const err = _err as AxiosError;
-//       throw err.response?.data;
-//     }
-//   },
-// );
 
 const bookThunks = {
   getAllBooks,

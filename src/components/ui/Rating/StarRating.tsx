@@ -6,12 +6,12 @@ import { StarRatingStyled } from './StarRating.styles';
 
 interface ITypesProps {
   // id: string;
-  rate: number;
+  rate?: number;
   className?: string;
 }
 
 const StarRating: React.FC<ITypesProps> = (props): JSX.Element => {
-  const [selectedStars, setSelectedStars] = useState<number>(props.rate);
+  const [selectedStars, setSelectedStars] = useState<number>(2);
 
   return (
     <StarRatingStyled className={props.className}>

@@ -6,9 +6,10 @@ import { icons } from '../../../assets';
 
 interface ITypeProps {
   title: string;
+  children?: React.ReactNode;
 }
 
-const Select: React.FC<ITypeProps> = (props: ITypeProps): JSX.Element => {
+const Select: React.FC<ITypeProps> = (props): JSX.Element => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const handleToggle = (): void => {
@@ -17,12 +18,15 @@ const Select: React.FC<ITypeProps> = (props: ITypeProps): JSX.Element => {
 
   return (
     <SelectStyled isOpen={isOpen} onClick={handleToggle}>
-      <p className="custom-select__title">{props.title}</p>
+      <p className="select__title">{props.title}</p>
+
       <img
-        className="custom-select__icons"
+        className="select__icon"
         src={icons.forward}
-        alt="Icons arrow"
+        alt="Icons arrow back"
       />
+
+      {isOpen && props.children}
     </SelectStyled>
   );
 };

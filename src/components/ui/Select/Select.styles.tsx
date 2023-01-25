@@ -14,12 +14,13 @@ const SelectStyled = styled.div<ITypesProps>`
   display: flex;
   justify-content: space-between;
   cursor: pointer;
+  position: relative;
 
-  .custom-select__title {
-    margin-right: 100px;
+  .select__title {
+    padding-right: 100px;
   }
 
-  .custom-select__icons {
+  .select__icon {
     transform: ${(props) => (props.isOpen ? 'rotate(90deg)' : '')};
   }
 `;

@@ -1,23 +1,15 @@
-/* eslint-disable no-console */
 import { createSlice } from '@reduxjs/toolkit';
+
 import { bookThunks } from './bookThunks';
 
-interface ITypesDataBook {
-  id: string;
-  title: string;
-  author: string;
-  price: number;
-  description: number;
-  rate: number;
-  poster: string;
-}
+import type { ITypesDataBook } from '../../interfaces/bookInterfaces';
 
 const getInitialState = () => ({
   books: [] as ITypesDataBook[],
 });
 
 const booksSlice = createSlice({
-  name: 'bookSlice',
+  name: 'booksSlice',
   initialState: getInitialState(),
   reducers: {},
   extraReducers: (builder) => {

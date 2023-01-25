@@ -1,10 +1,9 @@
 interface ITypesDataBook {
-  id: string;
+  bookId: string;
   title: string;
   author: string;
   price: number;
   description: number;
-  rate: number;
   poster: string;
 }
 

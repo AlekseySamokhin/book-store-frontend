@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { bookService } from '../../../../../api/services';
+import { booksService } from '../../../../../api/services';
 import { Poster, Content } from './components';
 
 import type { ITypesDataBook } from '../../../../../interfaces/bookInterfaces';
@@ -18,7 +18,7 @@ const ProductItem: React.FC<ITypesProps> = (props): JSX.Element => {
 
   useEffect(() => {
     (async () => {
-      const dataBook = await bookService.getOneBook({ id: Number(id) });
+      const dataBook = await booksService.getOneBook({ id: Number(id) });
 
       setBook(dataBook);
     })();
