@@ -9,12 +9,16 @@ const SelectStyled = styled.div<ITypesProps>`
   background: #f0f4ef;
   border-radius: 16px;
   font-size: 18px;
-  padding: 13px 15px;
   color: #344966;
-  display: flex;
-  justify-content: space-between;
   cursor: pointer;
   position: relative;
+  margin-right: 20px;
+
+  .select__block {
+    display: flex;
+    justify-content: space-between;
+    padding: 13px 15px 13px 15px;
+  }
 
   .select__title {
     padding-right: 100px;

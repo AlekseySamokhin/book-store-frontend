@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@craco/craco": "^7.0.0",
     "@reduxjs/toolkit": "^1.9.1",
     "axios": "^1.2.1",
     "formik": "^2.2.9",
@@ -18,13 +19,14 @@
     "yup": "^0.32.11"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "craco eject",
     "lint": "eslint . -c .eslintrc.js --quiet --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "eslint . -c .eslintrc.js --quiet --fix --ext .js,.jsx,.ts,.tsx"
   },
+
   "eslintConfig": {
     "extends": [
       "react-app",

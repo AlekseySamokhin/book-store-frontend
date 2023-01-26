@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const FilterPanelStyled = styled.div`
   display: flex;
 
-  & div:not(:last-child) {
+  .filter-panel__item {
     margin-right: 20px;
   }
 `;

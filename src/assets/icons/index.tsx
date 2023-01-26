@@ -14,6 +14,7 @@ import starShared from './star-shared.svg';
 import starTransparent from './star-transparent.svg';
 import iconDelete from './delete-icon.svg';
 import arrowBack from './arrow-back.svg';
+import checkMark from './check-mark.svg';
 
 const icons = {
   cart,
@@ -32,6 +33,7 @@ const icons = {
   starTransparent,
   iconDelete,
   arrowBack,
+  checkMark,
 };
 
 export { icons };
