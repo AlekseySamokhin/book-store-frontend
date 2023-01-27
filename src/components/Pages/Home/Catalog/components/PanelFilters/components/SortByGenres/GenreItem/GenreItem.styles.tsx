@@ -2,30 +2,7 @@ import styled from 'styled-components';
 
 import { icons } from '@/assets';
 
-const GenreCheckboxesStyled = styled.div`
-  position: absolute;
-  top: 74px;
-  left: 0;
-  background-color: #f0f4ef;
-  border-radius: 16px;
-  width: 305px;
-  padding: 15px 0 15px 15px;
-  z-index: 1000;
-  cursor: pointer;
-
-  & ::after {
-    content: '';
-    position: absolute;
-    left: 15px;
-    top: -10px;
-    width: 0;
-    height: 0;
-    border-left: 17px solid transparent;
-    border-right: 17px solid transparent;
-    border-bottom: 17px solid #f0f4ef;
-    clear: both;
-  }
-
+const GenreItemStyled = styled.label`
   .genre-checkbox__block {
     display: flex;
     align-items: center;
@@ -33,7 +10,6 @@ const GenreCheckboxesStyled = styled.div`
   }
 
   .genre-checkbox__name {
-    // font-weight: 500;
     font-size: 16px;
     line-height: 28px;
     display: flex;
@@ -69,4 +45,4 @@ const GenreCheckboxesStyled = styled.div`
   }
 `;
 
-export { GenreCheckboxesStyled };
+export { GenreItemStyled };

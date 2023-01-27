@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Button, StarRating } from '../../../../../../ui';
+import { Button, StarRating } from '../../../../../ui';
 import { BookItemStyled } from './BookItem.styles';
 
 interface ITypesProps {

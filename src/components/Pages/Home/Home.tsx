@@ -1,5 +1,5 @@
 import { BookBanner, AuthBanner } from '../../ui/Banner';
-import { Catalog } from './components/Catalog';
+import { Catalog } from './Catalog';
 
 import { Container } from '../../../styles/Container';
 
