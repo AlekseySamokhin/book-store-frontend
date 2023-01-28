@@ -1,16 +1,15 @@
+import { useState } from 'react';
+
 import { icons } from '../../../assets';
 import { SearchStyled } from './Search.styled';
 
-interface ITypesProps {
-  searchValue: string;
-  setSearchValue: (value: string) => void;
-}
+const Search: React.FC = (): JSX.Element => {
+  const [text, setText] = useState<string>('');
 
-const Search: React.FC<ITypesProps> = (props): JSX.Element => {
   const handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
 
-    props.setSearchValue(event.target.value);
+    setText(event.target.value);
   };
 
   return (
@@ -22,15 +21,15 @@ const Search: React.FC<ITypesProps> = (props): JSX.Element => {
       />
       <input
         className="search__input"
-        value={props.searchValue}
+        value={text}
         onChange={(e) => handleChangeInput(e)}
         type="search"
         placeholder="Search"
       />
 
-      {props.searchValue && (
+      {text && (
         <img
-          onClick={() => props.setSearchValue('')}
+          onClick={() => setText('')}
           className="search__icon_clear"
           src={icons.close}
           alt="Icon clear input"

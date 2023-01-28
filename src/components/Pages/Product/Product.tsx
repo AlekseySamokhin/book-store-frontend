@@ -1,14 +1,14 @@
-import { CheckAuth } from '../../Containers';
+import { CheckAuth } from '@/components/hoc';
 
 import { Comments, Recommendation, ProductItem } from './components';
 import { AuthBanner } from '../../ui';
 
-import { Container } from '../../../styles/Container';
+import { ContainerStyled } from '@/components/styles';
 import { ProductStyled } from './Product.styles';
 
 const Product: React.FC = (): JSX.Element => {
   return (
-    <Container>
+    <ContainerStyled>
       <ProductStyled>
         <ProductItem className="product__item" />
 
@@ -20,7 +20,7 @@ const Product: React.FC = (): JSX.Element => {
 
         <Recommendation className="product__recommendation" />
       </ProductStyled>
-    </Container>
+    </ContainerStyled>
   );
 };
 

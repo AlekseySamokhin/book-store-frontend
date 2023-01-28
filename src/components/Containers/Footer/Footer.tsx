@@ -1,12 +1,14 @@
 import { Link } from 'react-router-dom';
 
-import { userActions } from '../../../redux/users/userSlice';
-import { useAppDispatch } from '../../../redux/store';
-import { CheckAuth } from '../../Containers';
-import { Logo } from '../../ui/Logo';
-import { images } from '../../../assets';
-import { Container } from '../../../styles/Container';
-import { Flex } from '../../../styles/Flex';
+import { userActions } from '@/redux/users/userSlice';
+import { useAppDispatch } from '@/redux/store';
+
+import { CheckAuth } from '@/components/hoc';
+import { Logo } from '@/components/ui';
+import { ContainerStyled, FlexStyled } from '@/components/styles';
+
+import { images } from '@/assets';
+
 import { FooterStyled } from './Footer.styles';
 
 const Footer: React.FC = (): JSX.Element => {
@@ -18,9 +20,9 @@ const Footer: React.FC = (): JSX.Element => {
 
   return (
     <FooterStyled>
-      <Container>
+      <ContainerStyled>
         <footer className="footer">
-          <Flex direction="column">
+          <FlexStyled direction="column">
             <Logo position="footer" />
 
             <div className="footer__contacts">
@@ -30,7 +32,7 @@ const Footer: React.FC = (): JSX.Element => {
 
               <a href="tel:+74805550103">+7 (480) 555-0103</a>
             </div>
-          </Flex>
+          </FlexStyled>
           <ul className="footer__nav">
             <li>
               <Link to="/">Home Page</Link>
@@ -55,7 +57,7 @@ const Footer: React.FC = (): JSX.Element => {
             <img src={images.footerMap} alt="Google maps location" />
           </div>
         </footer>
-      </Container>
+      </ContainerStyled>
     </FooterStyled>
   );
 };

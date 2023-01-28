@@ -5,7 +5,7 @@ import type { FormikHelpers } from 'formik';
 
 import { useAppDispatch } from '../../../../../redux/store';
 import { userThunks } from '../../../../../redux/users/thunks';
-import { updatePasswordUserSchema } from '../../../../../schemas/userSchema';
+import { updatePasswordUserSchema } from '../../../../../schemas/schemaUser';
 
 import { icons } from '../../../../../assets';
 

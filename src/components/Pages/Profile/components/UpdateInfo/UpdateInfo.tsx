@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { icons } from '../../../../../assets';
 import { useAppDispatch, useAppSelector } from '../../../../../redux/store';
 import { userThunks } from '../../../../../redux/users/thunks';
-import { updateInfoUserSchema } from '../../../../../schemas/userSchema';
+import { updateInfoUserSchema } from '../../../../../schemas/schemaUser';
 
 import { Input, Button } from '../../../../ui';
 

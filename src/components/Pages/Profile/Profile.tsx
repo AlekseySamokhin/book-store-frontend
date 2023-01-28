@@ -1,4 +1,4 @@
-import { Container } from '../../../styles/Container';
+import { ContainerStyled } from '@/components/styles';
 
 import { UploadAvatar, UpdateInfo, UpdatePass } from './components';
 
@@ -6,7 +6,7 @@ import { ProfileStyled } from './Profile.styles';
 
 const Profile: React.FC = (): JSX.Element => {
   return (
-    <Container>
+    <ContainerStyled>
       <ProfileStyled>
         <UploadAvatar className="profile__avatar" />
 
@@ -15,7 +15,7 @@ const Profile: React.FC = (): JSX.Element => {
           <UpdatePass className="profile__form" />
         </div>
       </ProfileStyled>
-    </Container>
+    </ContainerStyled>
   );
 };
 

@@ -26,7 +26,7 @@ const CatalogStyled = styled.div`
 
   .catalog__booklist {
    display: flex;
-   justify-content: space-between;
+   gap: 20px;
    flex-wrap: wrap;
   }
 

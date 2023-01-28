@@ -1,4 +1,4 @@
-import { Container } from '../../../styles/Container';
+import { ContainerStyled } from '@/components/styles';
 import { Button } from '../../ui';
 
 import { CartIsEmpty } from './CarIsEmpty';
@@ -10,7 +10,7 @@ const boolean = true;
 
 const Cart: React.FC = (): JSX.Element => {
   return (
-    <Container>
+    <ContainerStyled>
       {boolean ? (
         <CartStyled>
           <div className="cart__list">
@@ -30,7 +30,7 @@ const Cart: React.FC = (): JSX.Element => {
       ) : (
         <CartIsEmpty />
       )}
-    </Container>
+    </ContainerStyled>
   );
 };
 

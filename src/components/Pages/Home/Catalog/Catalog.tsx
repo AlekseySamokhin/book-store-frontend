@@ -2,23 +2,20 @@
 import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import { useAppDispatch, useAppSelector } from '../../../../redux/store';
-import { bookThunks } from '../../../../redux/books/bookThunks';
+import { useAppDispatch, useAppSelector } from '@/redux/store';
+import { bookThunks } from '@/redux/books/bookThunks';
 
 import { BookItem, PanelFilters } from './components';
 
 import { CatalogStyled } from './Catalog.styles';
 
 import type { ITypesRequestFilters } from '@/interfaces/filtersInterfaces';
+import { BooksNotFound } from './components/BooksNotFound/BooksNotFound';
 
-interface ITypeProps {
-  searchValue: string;
-}
-
-const Catalog: React.FC<ITypeProps> = (props): JSX.Element => {
+const Catalog: React.FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const [searchParams] = useSearchParams();
-  const books = useAppSelector((state) => state.books.books);
+  const books = useAppSelector((state) => state.store.books);
 
   const filters: ITypesRequestFilters = {
     genres: searchParams.get('genres'),
@@ -42,23 +39,17 @@ const Catalog: React.FC<ITypeProps> = (props): JSX.Element => {
       </div>
 
       <div className="catalog__booklist">
-        {books
-          .filter((item) => {
-            if (
-              item.title.toLowerCase().includes(props.searchValue.toLowerCase())
-            ) {
-              return true;
-            }
-
-            return false;
-          })
-          .map((book) => (
+        {!books.length ? (
+          <BooksNotFound />
+        ) : (
+          books.map((book) => (
             <BookItem
               key={book.bookId}
               className="catalog__booklist_item"
-              {...book} // TODO
+              book={book} // TODO
             />
-          ))}
+          ))
+        )}
       </div>
     </CatalogStyled>
   );

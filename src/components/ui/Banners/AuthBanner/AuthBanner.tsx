@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 
-import { Button } from '../../../ui';
+import { Button } from '../..';
 import { AuthBannerStyled } from './AuthBanner.styles';
-import { images } from '../../../../assets';
-import { Flex } from '../../../../styles/Flex';
+import { images } from '@/assets';
+import { FlexStyled } from '@/components/styles';
 
 const AuthBanner: React.FC = (): JSX.Element => {
   return (
@@ -23,14 +23,14 @@ const AuthBanner: React.FC = (): JSX.Element => {
           src={images.authBannerFairy}
           alt="Image authorization image"
         />
-        <Flex>
+        <FlexStyled>
           <Link to="signin">
             <Button>Sign In</Button>
           </Link>
           <Link to="signup">
             <Button>Sign Up</Button>
           </Link>
-        </Flex>
+        </FlexStyled>
       </div>
     </AuthBannerStyled>
   );

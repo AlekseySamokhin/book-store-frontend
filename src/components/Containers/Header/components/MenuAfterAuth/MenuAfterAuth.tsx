@@ -1,5 +1,5 @@
-import { MenuItem } from '../../../../ui';
-import { icons } from '../../../../../assets';
+import { MenuItem } from '@/components/ui';
+import { icons } from '@/assets';
 
 import { MenuAfterAuthStyled } from './MenuAfterAuth.styles';
 

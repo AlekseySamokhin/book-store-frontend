@@ -4,20 +4,19 @@ import { ToastContainer } from 'react-toastify';
 
 import { useAppDispatch, useAppSelector } from './redux/store';
 import { authThunks } from './redux/users/thunks';
+
 import { useLocalStorage } from './utils';
 
-import { Layout, PrivateRoute } from './components/Containers';
+import { Layout, PrivateRoute } from './components/hoc';
 import { Cart, SignIn, SignUp, Profile, Favorites, Home, Product } from './components/Pages';
 import { Loader } from './components/ui';
 
 import 'react-toastify/dist/ReactToastify.css';
 
 const App: React.FC = (): JSX.Element => {
-  const [searchValue, setSearchValue] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
 
   const dispatch = useAppDispatch();
-
   const email = useAppSelector((state) => state.auth.user.email);
 
   useEffect(() => {
@@ -46,16 +45,8 @@ const App: React.FC = (): JSX.Element => {
           <ToastContainer />
 
           <Routes>
-            <Route
-              path="/"
-              element={
-                <Layout
-                  searchValue={searchValue}
-                  setSearchValue={setSearchValue}
-                />
-              }
-            >
-              <Route index element={<Home searchValue={searchValue} />} />
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Home />} />
               <Route path="product/:id" element={<Product />} />
               <Route path="*" element={<Navigate to="/" />} />
 

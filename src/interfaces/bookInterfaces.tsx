@@ -5,6 +5,8 @@ interface ITypesDataBook {
   price: number;
   description: number;
   poster: string;
+  isNew: boolean;
+  isBestseller: boolean;
 }
 
 interface ITypeRequestGetOneBook {

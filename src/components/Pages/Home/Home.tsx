@@ -1,25 +1,22 @@
-import { BookBanner, AuthBanner } from '../../ui/Banner';
+import { BookBanner, AuthBanner } from '@/components/ui/Banners';
+
 import { Catalog } from './Catalog';
 
-import { Container } from '../../../styles/Container';
+import { ContainerStyled } from '@/components/styles';
 
-import { CheckAuth } from '../../Containers/CheckAuth';
+import { CheckAuth } from '@/components/hoc/CheckAuth';
 
-interface ITypeProps {
-  searchValue: string;
-}
-
-const Home: React.FC<ITypeProps> = (props): JSX.Element => {
+const Home: React.FC = (): JSX.Element => {
   return (
-    <Container>
+    <ContainerStyled>
       <BookBanner />
 
-      <Catalog searchValue={props.searchValue} />
+      <Catalog />
 
       <CheckAuth needAuth={false}>
         <AuthBanner />
       </CheckAuth>
-    </Container>
+    </ContainerStyled>
   );
 };
 

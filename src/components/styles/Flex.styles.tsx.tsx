@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-interface IFlexStyledProps {
+interface ITypesProps {
   direction?: string;
   align?: string;
   justify?: string;
@@ -10,7 +10,7 @@ interface IFlexStyledProps {
   zIndex?: string;
 }
 
-const StyledFlex = styled.div<IFlexStyledProps>`
+const StyledFlex = styled.div<ITypesProps>`
   display: flex;
   flex-direction: ${(props) => props.direction || 'row'};
   align-items: ${(props) => props.align || 'stretch'};
@@ -19,8 +19,8 @@ const StyledFlex = styled.div<IFlexStyledProps>`
   z-index: ${(props) => props.zIndex || ''};
 `;
 
-const Flex: React.FC<IFlexStyledProps> = (props: IFlexStyledProps) => {
+const FlexStyled: React.FC<ITypesProps> = (props) => {
   return <StyledFlex {...props} />;
 };
 
-export { Flex };
+export { FlexStyled };

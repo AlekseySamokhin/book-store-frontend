@@ -4,18 +4,18 @@ import type { FormikHelpers } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-import { useAppDispatch } from '../../../../redux/store';
-import { authThunks } from '../../../../redux/users/thunks/authThunks';
+import { useAppDispatch } from '@/redux/store';
+import { authThunks } from '@/redux/users/thunks/authThunks';
 
-import { Container } from '../../../../styles/Container';
+import { ContainerStyled } from '@/components/styles';
 
 import { SignInStyled } from './SignIn.styles';
 
-import { icons, images } from '../../../../assets';
+import { icons, images } from '@/assets';
 
-import { signInSchema } from '../../../../schemas/authSchema';
+import { signInSchema } from '@/schemas/schemaAuth';
 
-import { Input, Button } from '../../../ui';
+import { Input, Button } from '@/components/ui';
 
 interface ITypesValuesForm {
   email: string;
@@ -60,7 +60,7 @@ const SignIn: React.FC = (): JSX.Element => {
   });
 
   return (
-    <Container>
+    <ContainerStyled>
       <SignInStyled>
         <div className="form">
           <h2>Sing In</h2>
@@ -107,7 +107,7 @@ const SignIn: React.FC = (): JSX.Element => {
         </div>
         <img src={images.authPageManWithBook} alt="Image one man" />
       </SignInStyled>
-    </Container>
+    </ContainerStyled>
   );
 };
 

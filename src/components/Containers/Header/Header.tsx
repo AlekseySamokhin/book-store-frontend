@@ -1,28 +1,21 @@
-import { MenuBeforeAuth, MenuAfterAuth } from './Menu';
-import { Logo } from '../../ui/Logo';
-import { Container } from '../../../styles/Container';
+import { CheckAuth } from '@/components/hoc';
+import { Logo, Search } from '@/components/ui';
+import { ContainerStyled } from '@/components/styles';
+
+import { MenuBeforeAuth, MenuAfterAuth } from './components';
+
 import { HeaderStyled } from './Header.styles';
-import { Search } from '../../ui/Search/Search';
-import { CheckAuth } from '../CheckAuth';
 
-interface ITypesProps {
-  searchValue: string;
-  setSearchValue: (value: string) => void;
-}
-
-const Header: React.FC<ITypesProps> = (props): JSX.Element => {
+const Header: React.FC = (): JSX.Element => {
   return (
-    <Container>
+    <ContainerStyled>
       <HeaderStyled>
         <div className="header__link">
           <Logo position="header" />
           <span>Catalog</span>
         </div>
 
-        <Search
-          searchValue={props.searchValue}
-          setSearchValue={props.setSearchValue}
-        />
+        <Search />
 
         <CheckAuth needAuth={true}>
           <MenuAfterAuth />
@@ -32,7 +25,7 @@ const Header: React.FC<ITypesProps> = (props): JSX.Element => {
           <MenuBeforeAuth className="header__menu" />
         </CheckAuth>
       </HeaderStyled>
-    </Container>
+    </ContainerStyled>
   );
 };
 

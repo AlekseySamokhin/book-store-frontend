@@ -6,8 +6,8 @@ import ReactDOM from 'react-dom/client';
 import { App } from './App';
 import { store } from './redux/store';
 
-import { GlobalStyle } from './styles/globalStyle';
-import { theme } from './styles/theme';
+import { GlobalStyles } from './components/styles';
+import { theme } from './components/styles/theme';
 
 const container = document.getElementById('root') as HTMLElement;
 const root = ReactDOM.createRoot(container);
@@ -16,7 +16,7 @@ root.render(
   <ThemeProvider theme={theme}>
     <Router>
       <Provider store={store}>
-        <GlobalStyle />
+        <GlobalStyles />
         <App />
       </Provider>
     </Router>

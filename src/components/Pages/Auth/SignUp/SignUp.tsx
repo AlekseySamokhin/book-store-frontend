@@ -8,10 +8,10 @@ import type { FormikHelpers } from 'formik';
 
 import { useAppDispatch } from '../../../../redux/store';
 import { authThunks } from '../../../../redux/users/thunks/authThunks';
-import { signUpSchema } from '../../../../schemas/authSchema';
+import { signUpSchema } from '../../../../schemas/schemaAuth';
 
 import { Button, Input } from '../../../ui';
-import { Container } from '../../../../styles/Container';
+import { ContainerStyled } from '@/components/styles';
 import { icons, images } from '../../../../assets';
 
 import { SignUpStyled } from './SignUp.styles';
@@ -63,7 +63,7 @@ const SignUp: React.FC = (): JSX.Element => {
   });
 
   return (
-    <Container>
+    <ContainerStyled>
       <SignUpStyled>
         <div className="form">
           <h2>Sing Up</h2>
@@ -129,7 +129,7 @@ const SignUp: React.FC = (): JSX.Element => {
           alt="Image one man"
         />
       </SignUpStyled>
-    </Container>
+    </ContainerStyled>
   );
 };
 

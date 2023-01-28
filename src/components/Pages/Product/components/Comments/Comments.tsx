@@ -3,7 +3,7 @@ import { commentsData } from '../../../../../api/fakeApi/comments';
 import { AddComment, CommentItem } from './components';
 
 import { CommentsStyled } from './Comments.styled';
-import { CheckAuth } from '../../../../Containers/CheckAuth';
+import { CheckAuth } from '@/components/hoc/CheckAuth';
 
 interface ITypesProps {
   className?: string;

@@ -1,33 +1,43 @@
 import { Link } from 'react-router-dom';
-import { Button, StarRating } from '../../../../../ui';
+
+import { Button, MenuItem, StarRating } from '@/components/ui';
+
+import { icons } from '@/assets';
+
 import { BookItemStyled } from './BookItem.styles';
+import type { ITypesDataBook } from '@/interfaces/bookInterfaces';
+
+import { BookStatus } from './BookStatus';
 
 interface ITypesProps {
-  bookId: string;
-  title: string;
-  author: string;
-  price: number;
-  description: number;
-  poster: string;
-  className: string;
+  book: ITypesDataBook;
+  className?: string;
 }
 
-const BookItem: React.FC<ITypesProps> = (props: ITypesProps): JSX.Element => {
+const BookItem: React.FC<ITypesProps> = (props): JSX.Element => {
   return (
-    <Link to={{ pathname: `product/${props.bookId}` }}>
+    <Link to={{ pathname: `product/${props.book.bookId}` }}>
       <BookItemStyled className={props.className}>
-        <img className="book-item__poster" src={props.poster} />
+        <div className="book-item__poster">
+          <img className="book-item__image" src={props.book.poster} />
 
-        <h4 className="book-item__title">{props.title}</h4>
-        <p className="book-item__author">{props.author}</p>
+          {(props.book.isNew || props.book.isBestseller) && (
+            <BookStatus
+              className="book-item__status"
+              isBestseller={props.book.isBestseller}
+              isNew={props.book.isNew}
+            />
+          )}
 
-        <StarRating
-          className="book-item__rating"
-          // id={props.id}
-          // rate={props.rate}
-        />
+          <MenuItem path="cart" className="book-item__like" icon={icons.like} />
+        </div>
 
-        <Button>${`${props.price}`} USD</Button>
+        <h4 className="book-item__title">{props.book.title}</h4>
+        <p className="book-item__author">{props.book.author}</p>
+
+        <StarRating className="book-item__rating" />
+
+        <Button>$ {`${props.book.price}`} USD</Button>
       </BookItemStyled>
     </Link>
   );
