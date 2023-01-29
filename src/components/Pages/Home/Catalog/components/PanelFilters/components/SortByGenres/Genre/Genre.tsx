@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { GenreItemStyled } from './GenreItem.styles';
+import { GenreStyled } from './Genre.styles';
 
 interface ITypesProps {
   genre: {
@@ -12,7 +12,7 @@ interface ITypesProps {
   changeGenre: (name: string) => void;
 }
 
-const GenreItem: React.FC<ITypesProps> = (props): JSX.Element => {
+const Genre: React.FC<ITypesProps> = (props): JSX.Element => {
   const [checked, setChecked] = useState<boolean>(props.value);
 
   const handleChange = () => {
@@ -20,7 +20,7 @@ const GenreItem: React.FC<ITypesProps> = (props): JSX.Element => {
   };
 
   return (
-    <GenreItemStyled
+    <GenreStyled
       key={props.genre.genreId}
       htmlFor={props.genre.name}
     >
@@ -42,8 +42,8 @@ const GenreItem: React.FC<ITypesProps> = (props): JSX.Element => {
 
         <p className="genre-checkbox__name">{props.genre.name}</p>
       </div>
-    </GenreItemStyled>
+    </GenreStyled>
   );
 };
 
-export { GenreItem };
+export { Genre };

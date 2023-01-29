@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 
 import { SelectStyled } from './Select.styles';
-import { icons } from '../../../assets';
+import { icons } from '@/assets';
 
 interface ITypeProps {
   title: string;
@@ -13,23 +13,17 @@ interface ITypeProps {
 
 const Select: React.FC<ITypeProps> = (props): JSX.Element => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  const handleToggle = (): void => {
-    setIsOpen(!isOpen);
-  };
+  const refChildren = useRef<HTMLDivElement>(null);
+  const refSelect = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (isOpen) {
-      return;
-    }
-
     const handleClickOut = (event: MouseEvent) => {
-      if (
-        ref.current &&
-        ref.current.contains(event.target as Node)
-      ) {
-        handleToggle();
+      if (refChildren.current && !refChildren.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+
+      if (refSelect.current && refSelect.current?.contains(event.target as Node)) {
+        setIsOpen(!isOpen);
       }
     };
 
@@ -37,11 +31,11 @@ const Select: React.FC<ITypeProps> = (props): JSX.Element => {
     return () => {
       document.removeEventListener('mousedown', handleClickOut);
     };
-  }, [ref, isOpen]);
+  }, [refChildren, refSelect, isOpen]);
 
   return (
     <SelectStyled isOpen={isOpen}>
-      <div className="select__block" onClick={handleToggle}>
+      <div ref={refSelect} className="select__block">
         <p className="select__title">{props.title}</p>
 
         <img
@@ -51,9 +45,7 @@ const Select: React.FC<ITypeProps> = (props): JSX.Element => {
         />
       </div>
 
-      <div ref={ref}>
-        {isOpen && props.children}
-      </div>
+      <div ref={refChildren}>{isOpen && props.children}</div>
     </SelectStyled>
   );
 };

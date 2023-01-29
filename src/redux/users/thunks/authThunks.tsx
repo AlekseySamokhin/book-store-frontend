@@ -18,7 +18,7 @@ const signUp = createAsyncThunk(
 
       return user;
     } catch (_err) {
-      const err = (_err as AxiosError);
+      const err = _err as AxiosError;
       throw err.response?.data;
     }
   },
@@ -36,25 +36,16 @@ const signIn = createAsyncThunk(
 
       return user;
     } catch (_err) {
-      const err = (_err as AxiosError);
+      const err = _err as AxiosError;
       throw err.response?.data;
     }
   },
 );
 
 const getCurrentUser = createAsyncThunk('user/token', async () => {
-  try {
-    const data = await authService.getCurrentUser();
+  const data = await authService.getCurrentUser();
 
-    return data;
-  } catch (error) {
-    // if (axios.isAxiosError(error) && error.response) {
-    //   const { code, message } = error.response.data;
-
-    //   throw Object.assign(new Error(), { message, code });
-    // }
-    console.error(error);
-  }
+  return data;
 });
 
 const authThunks = {

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { icons } from '@/assets';
 
-const GenreItemStyled = styled.label`
+const GenreStyled = styled.label`
   .genre-checkbox__block {
     display: flex;
     align-items: center;
@@ -45,4 +45,4 @@ const GenreItemStyled = styled.label`
   }
 `;
 
-export { GenreItemStyled };
+export { GenreStyled };

@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { bookThunks } from './bookThunks';
 
-import type { ITypesDataBook } from '../../interfaces/bookInterfaces';
+import type { ITypesDataBook } from '@/interfaces/bookInterfaces';
 
 const getInitialState = () => ({
   books: [] as ITypesDataBook[],

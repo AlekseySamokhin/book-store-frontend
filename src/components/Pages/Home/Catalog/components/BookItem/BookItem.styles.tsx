@@ -48,6 +48,14 @@ const BookItemStyled = styled.div`
     left: 20px;
   }
 
+  .book-item__button {
+    width: 100%;
+  }
+
+  .book-item__link {
+    display: block;
+  }
+
   .book-item__rating {
     margin-bottom: 32px;
   }

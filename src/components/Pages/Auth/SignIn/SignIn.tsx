@@ -1,21 +1,18 @@
-/* eslint-disable no-console */
+import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import type { FormikHelpers } from 'formik';
-import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import { useAppDispatch } from '@/redux/store';
 import { authThunks } from '@/redux/users/thunks/authThunks';
-
-import { ContainerStyled } from '@/components/styles';
-
-import { SignInStyled } from './SignIn.styles';
-
-import { icons, images } from '@/assets';
-
 import { signInSchema } from '@/schemas/schemaAuth';
 
 import { Input, Button } from '@/components/ui';
+import { ContainerStyled } from '@/components/styles';
+
+import { icons, images } from '@/assets';
+
+import { SignInStyled } from './SignIn.styles';
 
 interface ITypesValuesForm {
   email: string;
@@ -105,10 +102,11 @@ const SignIn: React.FC = (): JSX.Element => {
             </Button>
           </form>
         </div>
+
         <img src={images.authPageManWithBook} alt="Image one man" />
       </SignInStyled>
     </ContainerStyled>
   );
 };
 
-export default SignIn;
+export { SignIn };

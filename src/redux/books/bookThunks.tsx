@@ -1,8 +1,7 @@
-/* eslint-disable no-console */
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import type { AxiosError } from 'axios';
 
-import { booksService } from '../../api/services';
+import { booksService } from '@/api/services';
 
 import type { ITypesRequestFilters } from '@/interfaces/filtersInterfaces';
 

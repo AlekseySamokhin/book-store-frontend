@@ -23,7 +23,7 @@ const Catalog: React.FC = (): JSX.Element => {
 
   useEffect(() => {
     try {
-      dispatch(bookThunks.getAllBooks(filters));
+      dispatch(bookThunks.getAllBooks(filters)).unwrap();
     } catch (err) {
       // eslint-disable-next-line no-console
       console.log(err); // TODO
@@ -34,7 +34,6 @@ const Catalog: React.FC = (): JSX.Element => {
     <CatalogStyled>
       <div className="catalog__header">
         <h2 className="catalog__header_title">Catalog</h2>
-
         <PanelFilters />
       </div>
 
@@ -46,7 +45,7 @@ const Catalog: React.FC = (): JSX.Element => {
             <BookItem
               key={book.bookId}
               className="catalog__booklist_item"
-              book={book} // TODO
+              book={book}
             />
           ))
         )}

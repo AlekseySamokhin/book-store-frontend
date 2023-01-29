@@ -6,13 +6,13 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import type { FormikHelpers } from 'formik';
 
-import { useAppDispatch } from '../../../../redux/store';
-import { authThunks } from '../../../../redux/users/thunks/authThunks';
-import { signUpSchema } from '../../../../schemas/schemaAuth';
+import { useAppDispatch } from '@/redux/store';
+import { authThunks } from '@/redux/users/thunks/authThunks';
+import { signUpSchema } from '@/schemas/schemaAuth';
 
-import { Button, Input } from '../../../ui';
+import { Button, Input } from '@/components/ui';
 import { ContainerStyled } from '@/components/styles';
-import { icons, images } from '../../../../assets';
+import { icons, images } from '@/assets';
 
 import { SignUpStyled } from './SignUp.styles';
 
@@ -133,4 +133,4 @@ const SignUp: React.FC = (): JSX.Element => {
   );
 };
 
-export default SignUp;
+export { SignUp };

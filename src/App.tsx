@@ -29,7 +29,7 @@ const App: React.FC = (): JSX.Element => {
 
     (async () => {
       try {
-        await dispatch(authThunks.getCurrentUser()).unwrap();
+        await dispatch(authThunks.getCurrentUser());
       } finally {
         setIsLoading(true);
       }
