@@ -19,6 +19,8 @@ const Catalog: React.FC = (): JSX.Element => {
 
   const filters: ITypesRequestFilters = {
     genres: searchParams.get('genres'),
+    minPrice: searchParams.get('minPrice'),
+    maxPrice: searchParams.get('maxPrice'),
   };
 
   useEffect(() => {

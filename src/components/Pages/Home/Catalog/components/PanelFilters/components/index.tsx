@@ -1,3 +1,4 @@
-import { SortByGenres } from './SortByGenres/SortByGenres';
+import { SortByGenres } from './SortByGenres';
+import { SortByPrice } from './SortByPrice';
 
-export { SortByGenres };
+export { SortByGenres, SortByPrice };

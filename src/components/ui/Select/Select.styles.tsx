@@ -13,15 +13,12 @@ const SelectStyled = styled.div<ITypesProps>`
   cursor: pointer;
   position: relative;
   margin-right: 20px;
+  width: 196px;
 
   .select__block {
     display: flex;
     justify-content: space-between;
     padding: 13px 15px 13px 15px;
-  }
-
-  .select__title {
-    padding-right: 100px;
   }
 
   .select__icon {
