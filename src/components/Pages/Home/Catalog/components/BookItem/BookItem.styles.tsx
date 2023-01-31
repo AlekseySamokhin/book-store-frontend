@@ -33,7 +33,7 @@ const BookItemStyled = styled.div`
 
   .book-item__author {
     color: ${(props) => props.theme.colors.dark_grey};
-    margin-bottom: 21px;
+    margin-bottom: 10px;
   }
 
   .book-item__status {
@@ -57,7 +57,18 @@ const BookItemStyled = styled.div`
   }
 
   .book-item__rating {
-    margin-bottom: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .book-item__rating_number {
+    display: block;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #b9bac4;
   }
 `;
 

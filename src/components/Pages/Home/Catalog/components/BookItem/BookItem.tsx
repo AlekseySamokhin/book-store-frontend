@@ -1,13 +1,12 @@
 import { Link } from 'react-router-dom';
 
-import { Button, MenuItem, StarRating } from '@/components/ui';
-
+import { Button, MenuItem, FiveStarsRating } from '@/components/ui';
+import { BookStatus } from './BookStatus';
 import { icons } from '@/assets';
 
-import { BookItemStyled } from './BookItem.styles';
 import type { ITypesDataBook } from '@/interfaces/bookInterfaces';
 
-import { BookStatus } from './BookStatus';
+import { BookItemStyled } from './BookItem.styles';
 
 interface ITypesProps {
   book: ITypesDataBook;
@@ -34,9 +33,19 @@ const BookItem: React.FC<ITypesProps> = (props): JSX.Element => {
       <h4 className="book-item__title">{props.book.title}</h4>
       <p className="book-item__author">{props.book.author}</p>
 
-      <StarRating className="book-item__rating" />
-      <Link className='book-item__link' to={{ pathname: `product/${props.book.bookId}` }}>
-        <Button className='book-item__button'>$ {`${props.book.price}`} USD</Button>
+      <div className="book-item__rating">
+        <FiveStarsRating readOnly={true} value={props.book.rating} />
+
+        <span className="book-item__rating_number">{props.book.rating}</span>
+      </div>
+
+      <Link
+        className="book-item__link"
+        to={{ pathname: `product/${props.book.bookId}` }}
+      >
+        <Button className="book-item__button">
+          $ {`${props.book.price}`} USD
+        </Button>
       </Link>
     </BookItemStyled>
   );

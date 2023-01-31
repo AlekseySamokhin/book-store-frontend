@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const SortByGenresStyled = styled.div`
+const FilterByGenresStyled = styled.div`
   position: absolute;
   top: 74px;
   left: 0;
@@ -25,4 +25,4 @@ const SortByGenresStyled = styled.div`
   }
 `;
 
-export { SortByGenresStyled };
+export { FilterByGenresStyled };

@@ -5,22 +5,25 @@ import { useSearchParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '@/redux/store';
 import { bookThunks } from '@/redux/books/bookThunks';
 
-import { BookItem, PanelFilters } from './components';
+import { BookItem, PanelFilters, Pagination } from './components';
 
 import { CatalogStyled } from './Catalog.styles';
 
 import type { ITypesRequestFilters } from '@/interfaces/filtersInterfaces';
-import { BooksNotFound } from './components/BooksNotFound/BooksNotFound';
+import { BooksNotFound } from './components/BooksNotFound';
 
 const Catalog: React.FC = (): JSX.Element => {
-  const dispatch = useAppDispatch();
   const [searchParams] = useSearchParams();
+
+  const dispatch = useAppDispatch();
   const books = useAppSelector((state) => state.store.books);
 
   const filters: ITypesRequestFilters = {
     genres: searchParams.get('genres'),
     minPrice: searchParams.get('minPrice'),
     maxPrice: searchParams.get('maxPrice'),
+    sort: searchParams.get('sort'),
+    page: searchParams.get('page'),
   };
 
   useEffect(() => {
@@ -51,6 +54,10 @@ const Catalog: React.FC = (): JSX.Element => {
             />
           ))
         )}
+      </div>
+
+      <div className="catalog__pagination">
+        <Pagination />
       </div>
     </CatalogStyled>
   );

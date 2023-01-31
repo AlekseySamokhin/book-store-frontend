@@ -1,18 +1,27 @@
+/* eslint-disable no-console */
+import { useSearchParams } from 'react-router-dom';
+
 import { PanelFiltersStyled } from './PanelFilters.styles';
 
-import { Select } from '@/components/ui';
-import { SortByGenres, SortByPrice } from './components';
+import { DropDown } from '@/components/ui';
+
+import { FilterByGenres, SortByOther, FilterByPrice } from './components';
 
 const PanelFilters: React.FC = (): JSX.Element => {
+  const [searchParams] = useSearchParams();
+  const currentSortName = searchParams.get('sort') || 'price';
+
   return (
     <PanelFiltersStyled>
-      <Select title="Genre">
-        <SortByGenres />
-      </Select>
-      <Select title="Price">
-        <SortByPrice />
-      </Select>
-      <Select title="Sort by price"></Select>
+      <DropDown title="Genre">
+        <FilterByGenres />
+      </DropDown>
+      <DropDown title="Price">
+        <FilterByPrice />
+      </DropDown>
+      <DropDown title={`Sort by ${currentSortName.toLowerCase()}`}>
+        <SortByOther />
+      </DropDown>
     </PanelFiltersStyled>
   );
 };

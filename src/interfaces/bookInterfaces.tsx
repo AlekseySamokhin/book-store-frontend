@@ -7,6 +7,7 @@ interface ITypesDataBook {
   poster: string;
   isNew: boolean;
   isBestseller: boolean;
+  rating: number;
 }
 
 interface ITypeRequestGetOneBook {

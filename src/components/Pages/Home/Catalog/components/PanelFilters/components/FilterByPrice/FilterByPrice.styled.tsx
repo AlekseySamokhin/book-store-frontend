@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const SortByPriceStyled = styled.div`
+const FilterByPriceStyled = styled.div`
   position: absolute;
   top: 74px;
   left: 0;
@@ -10,6 +10,19 @@ const SortByPriceStyled = styled.div`
   padding: 50px 16px 69px 18px;
   z-index: 1000;
   cursor: pointer;
+
+  /* & ::after {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: -10px;
+    width: 0;
+    height: 0;
+    border-left: 17px solid transparent;
+    border-right: 17px solid transparent;
+    border-bottom: 17px solid #f0f4ef;
+    clear: both;
+  } */
 
   .sort-by-price__values {
     position: relative;
@@ -28,19 +41,6 @@ const SortByPriceStyled = styled.div`
       letter-spacing: 0.75px;
     }
   }
-
-  /* & ::after {
-    content: '';
-    position: absolute;
-    left: 15px;
-    top: -10px;
-    width: 0;
-    height: 0;
-    border-left: 17px solid transparent;
-    border-right: 17px solid transparent;
-    border-bottom: 17px solid #f0f4ef;
-    clear: both;
-  } */
 
   .horizontal-slider {
     /* width: 100%;
@@ -90,4 +90,4 @@ const SortByPriceStyled = styled.div`
   }
 `;
 
-export { SortByPriceStyled };
+export { FilterByPriceStyled };

@@ -3,11 +3,11 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import { booksService } from '@/api/services';
-import { Genre } from './Genre';
+import { Genre } from './Genre/Genre';
 
-import { SortByGenresStyled } from './SortByGenres.styles';
+import { FilterByGenresStyled } from './SortByGenres.styles';
 
-const SortByGenres: React.FC = (): JSX.Element => {
+const FilterByGenres: React.FC = (): JSX.Element => {
   const [genres, setGenres] = useState<{ genreId: number; name: string }[]>([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const [currentGenres, setCurrentGenres] = useState<string>(searchParams.get('genres') || '');
@@ -50,7 +50,7 @@ const SortByGenres: React.FC = (): JSX.Element => {
   };
 
   return (
-    <SortByGenresStyled>
+    <FilterByGenresStyled>
       {genres.map((genre) => (
         <Genre
           key={genre.genreId}
@@ -59,8 +59,8 @@ const SortByGenres: React.FC = (): JSX.Element => {
           genre={genre}
         />
       ))}
-    </SortByGenresStyled>
+    </FilterByGenresStyled>
   );
 };
 
-export { SortByGenres };
+export { FilterByGenres };

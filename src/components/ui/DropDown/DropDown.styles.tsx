@@ -5,7 +5,7 @@ interface ITypesProps {
   onClick?: () => void;
 }
 
-const SelectStyled = styled.div<ITypesProps>`
+const DropDownStyled = styled.div<ITypesProps>`
   background: #f0f4ef;
   border-radius: 16px;
   font-size: 18px;
@@ -21,9 +21,15 @@ const SelectStyled = styled.div<ITypesProps>`
     padding: 13px 15px 13px 15px;
   }
 
+  .select__title {
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
   .select__icon {
+    margin-left: 10px;
     transform: ${(props) => (props.isOpen ? 'rotate(90deg)' : '')};
   }
 `;
 
-export { SelectStyled };
+export { DropDownStyled };

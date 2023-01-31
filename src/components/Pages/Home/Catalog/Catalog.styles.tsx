@@ -25,13 +25,20 @@ const CatalogStyled = styled.div`
   }
 
   .catalog__booklist {
-   display: flex;
-   gap: 20px;
-   flex-wrap: wrap;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 83px;
+  }
+
+  .catalog__pagination {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 155px;
   }
 
   .catalog__booklist_item {
-   margin: 50px 0 30px 0;
+    margin: 50px 0 30px 0;
   }
 `;
 

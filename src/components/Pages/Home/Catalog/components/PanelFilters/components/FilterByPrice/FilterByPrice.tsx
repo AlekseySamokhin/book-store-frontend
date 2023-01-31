@@ -4,11 +4,11 @@ import { useSearchParams } from 'react-router-dom';
 import ReactSlider from 'react-slider';
 
 import { useAppSelector } from '@/redux/store';
-import { SortByPriceStyled } from './SortByPrice.styled';
+import { FilterByPriceStyled } from './FilterByPrice.styled';
 
 import { getMinAndMaxValuePriceBooks } from '@/utils/getMinAndMaxNumber';
 
-const SortByPrice: React.FC = (): JSX.Element => {
+const FilterByPrice: React.FC = (): JSX.Element => {
   const books = useAppSelector((state) => state.store.books);
 
   const valuesPrice = useMemo(() => getMinAndMaxValuePriceBooks(books), []);
@@ -16,18 +16,11 @@ const SortByPrice: React.FC = (): JSX.Element => {
   const { minValue, maxValue } = valuesPrice;
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const [value, setValue] = useState<number[]>([
-    minValue,
-    maxValue,
-  ]);
+  const [value, setValue] = useState<number[]>([minValue, maxValue]);
 
   useEffect(() => {
-    const minValuePrice = Number(
-      searchParams.get('minPrice') || minValue,
-    );
-    const maxValuePrice = Number(
-      searchParams.get('maxPrice') || maxValue,
-    );
+    const minValuePrice = Number(searchParams.get('minPrice') || minValue);
+    const maxValuePrice = Number(searchParams.get('maxPrice') || maxValue);
 
     setValue([minValuePrice, maxValuePrice]);
   }, []);
@@ -49,7 +42,7 @@ const SortByPrice: React.FC = (): JSX.Element => {
   };
 
   return (
-    <SortByPriceStyled>
+    <FilterByPriceStyled>
       <ReactSlider
         value={value}
         min={minValue}
@@ -67,8 +60,8 @@ const SortByPrice: React.FC = (): JSX.Element => {
         <span>$ {value[0]}.00</span>
         <span>$ {value[1]}.00</span>
       </div>
-    </SortByPriceStyled>
+    </FilterByPriceStyled>
   );
 };
 
-export { SortByPrice };
+export { FilterByPrice };
