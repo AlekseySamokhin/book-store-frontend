@@ -12,7 +12,7 @@ const FiveStarsRating: React.FC<ITypesProps> = (props): JSX.Element => {
     <FiveStarsRatingStyled>
       <Rating
         name="half-rating"
-        defaultValue={props.value}
+        defaultValue={Number(props.value)}
         precision={0.1}
         readOnly={props.readOnly}
         size="large"

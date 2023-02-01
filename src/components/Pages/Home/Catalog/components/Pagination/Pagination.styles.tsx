@@ -1,10 +1,16 @@
 import styled from 'styled-components';
 
 const PaginationStyled = styled.div`
-  display: flex;
-  justify-content: space-between;
-  max-width: 237px;
-  width: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+
+  .pagination__block {
+    display: flex;
+    justify-content: space-between;
+    max-width: 237px;
+    width: 100%;
+  }
 
   .pagination__arrow {
     cursor: pointer;
@@ -56,6 +62,10 @@ const PaginationStyled = styled.div`
 
   .pagination__pages_item:not(:last-child) {
     margin-right: 37px;
+  }
+
+  .pagination__number_pages {
+
   }
 `;
 

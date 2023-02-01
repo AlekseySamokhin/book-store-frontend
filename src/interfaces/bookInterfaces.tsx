@@ -10,8 +10,15 @@ interface ITypesDataBook {
   rating: number;
 }
 
+interface ITypesInfoBooks {
+  pagesQty: number;
+  currentPage: number;
+  nextPage: number;
+  prevPage: number;
+}
+
 interface ITypeRequestGetOneBook {
   id: number;
 }
 
-export type { ITypesDataBook, ITypeRequestGetOneBook };
+export type { ITypesDataBook, ITypeRequestGetOneBook, ITypesInfoBooks };

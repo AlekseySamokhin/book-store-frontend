@@ -17,7 +17,7 @@ const SortByOther: React.FC = (): JSX.Element => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const indexCurrentSort = arrNamesSort.indexOf(
-    searchParams.get('sort') || '',
+    searchParams.get('sort') || 'Price',
   );
 
   const handleChangeSort = (nameSort: string) => {

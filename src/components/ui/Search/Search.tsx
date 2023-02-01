@@ -1,16 +1,44 @@
-import { useState } from 'react';
+/* eslint-disable no-console */
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
-import { icons } from '../../../assets';
+import { icons } from '@/assets';
 import { SearchStyled } from './Search.styled';
 
 const Search: React.FC = (): JSX.Element => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [text, setText] = useState<string>('');
 
-  const handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-    event.preventDefault();
+  useEffect(() => {
+    if (text) {
+      searchParams.set('search', text);
+      setSearchParams(searchParams);
+      setText(text);
+    }
+  }, [text]);
 
+  const handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setText(event.target.value);
+
+    searchParams.set('search', text);
+
+    setSearchParams(searchParams);
+
+    if (!event.target.value) {
+      setSearchParams({});
+    }
   };
+
+  const handleReset = () => {
+    setText('');
+    searchParams.delete('search');
+    setSearchParams({});
+  };
+
+  //  const handleResetText = () => {
+  //    setText('');
+  //    setSearchParams({});
+  //  };
 
   return (
     <SearchStyled>
@@ -22,14 +50,14 @@ const Search: React.FC = (): JSX.Element => {
       <input
         className="search__input"
         value={text}
-        onChange={(e) => handleChangeInput(e)}
+        onChange={handleChangeInput}
         type="search"
         placeholder="Search"
       />
 
       {text && (
         <img
-          onClick={() => setText('')}
+          onClick={handleReset}
           className="search__icon_clear"
           src={icons.close}
           alt="Icon clear input"

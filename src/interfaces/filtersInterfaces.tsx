@@ -4,6 +4,7 @@ interface ITypesRequestFilters {
   maxPrice: string | null;
   sort: string | null;
   page: string | null;
+  search: string | null;
 }
 
 export type { ITypesRequestFilters };

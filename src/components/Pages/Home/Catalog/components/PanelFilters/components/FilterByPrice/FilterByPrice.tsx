@@ -47,7 +47,7 @@ const FilterByPrice: React.FC = (): JSX.Element => {
         value={value}
         min={minValue}
         max={maxValue}
-        step={1}
+        step={0.1}
         className="horizontal-slider"
         thumbClassName="example-thumb"
         trackClassName="example-track"
@@ -57,8 +57,8 @@ const FilterByPrice: React.FC = (): JSX.Element => {
       />
 
       <div className="sort-by-price__values">
-        <span>$ {value[0]}.00</span>
-        <span>$ {value[1]}.00</span>
+        <span>$ {value[0].toFixed(2)}</span>
+        <span>$ {value[1].toFixed(2)}</span>
       </div>
     </FilterByPriceStyled>
   );

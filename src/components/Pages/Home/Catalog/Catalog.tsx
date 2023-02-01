@@ -1,3 +1,4 @@
+/* eslint-disable no-extra-boolean-cast */
 /* eslint-disable no-console */
 import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
@@ -10,10 +11,11 @@ import { BookItem, PanelFilters, Pagination } from './components';
 import { CatalogStyled } from './Catalog.styles';
 
 import type { ITypesRequestFilters } from '@/interfaces/filtersInterfaces';
-import { BooksNotFound } from './components/BooksNotFound';
+import { BooksNotFound } from './components/BooksNotFound/BooksNotFound';
+// import { BooksNotFound } from './components/BooksNotFound';
 
 const Catalog: React.FC = (): JSX.Element => {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const dispatch = useAppDispatch();
   const books = useAppSelector((state) => state.store.books);
@@ -24,7 +26,12 @@ const Catalog: React.FC = (): JSX.Element => {
     maxPrice: searchParams.get('maxPrice'),
     sort: searchParams.get('sort'),
     page: searchParams.get('page'),
+    search: searchParams.get('search'),
   };
+
+  useEffect(() => {
+    setSearchParams({});
+  }, []);
 
   useEffect(() => {
     try {
@@ -43,9 +50,7 @@ const Catalog: React.FC = (): JSX.Element => {
       </div>
 
       <div className="catalog__booklist">
-        {!books.length ? (
-          <BooksNotFound />
-        ) : (
+        {!!books.length ? (
           books.map((book) => (
             <BookItem
               key={book.bookId}
@@ -53,6 +58,8 @@ const Catalog: React.FC = (): JSX.Element => {
               book={book}
             />
           ))
+        ) : (
+          <BooksNotFound />
         )}
       </div>
 

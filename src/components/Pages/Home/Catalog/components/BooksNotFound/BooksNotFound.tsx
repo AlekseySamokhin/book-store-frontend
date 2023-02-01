@@ -7,7 +7,7 @@ const BooksNotFound = () => {
     <ContainerStyled>
       <BooksNotFoundStyled>
         <h2 className='books-not-found__title'>OOPS! :'(</h2>
-        <p className='books-not-found__message'>Books with genres are currently out of stock!</p>
+        <p className='books-not-found__message'>Books with this filters are currently out of stock!</p>
       </BooksNotFoundStyled>
     </ContainerStyled>
   );
