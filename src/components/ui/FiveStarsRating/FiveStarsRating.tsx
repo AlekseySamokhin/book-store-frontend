@@ -1,29 +1,34 @@
+import { useState } from 'react';
 import Rating from '@mui/material/Rating';
 
 import { FiveStarsRatingStyled } from './FiveStarsRating.styles';
+import { useAppSelector } from '@/redux/store';
 
 interface ITypesProps {
   value: number;
+  bookId?: string;
   readOnly: boolean;
+  className?: string;
 }
 
 const FiveStarsRating: React.FC<ITypesProps> = (props): JSX.Element => {
+  const email = useAppSelector((state) => state.auth.user.email);
+  const [rate, setRate] = useState<number>(0);
+
+  const handleChangeRate = (newRate: number) => {
+    setRate(newRate);
+  };
+
   return (
-    <FiveStarsRatingStyled>
+    <FiveStarsRatingStyled className={props.className}>
       <Rating
-        name="half-rating"
-        defaultValue={Number(props.value)}
-        precision={0.1}
-        readOnly={props.readOnly}
+        onChange={(_, value) => handleChangeRate(value || 0)}
+        value={rate}
+        precision={0.5}
+        readOnly={!!email ? true : false}
         size="large"
         sx={{
           color: '#BFCC94',
-          '& .MuiRating-decimal': {
-            paddingTop: '5px',
-          },
-          '& .MuiRating-decimal:not(:last-child)': {
-            marginRight: '25px',
-          },
         }}
       />
     </FiveStarsRatingStyled>

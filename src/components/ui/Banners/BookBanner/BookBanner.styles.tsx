@@ -4,7 +4,6 @@ const BookBannerStyled = styled.div`
   position: relative;
   background-color: #f0f4ef;
   border-radius: 16px;
-  margin-bottom: 120px;
   padding: 80px 0 96px 108px;
 
   display: flex;

@@ -1,4 +1,4 @@
 import { Poster } from './Poster';
-import { Content } from './Content';
+import { ProductInfo } from './ProductInfo';
 
-export { Poster, Content };
+export { Poster, ProductInfo };

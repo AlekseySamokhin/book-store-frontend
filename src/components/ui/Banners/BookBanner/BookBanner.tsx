@@ -1,15 +1,21 @@
 import { Link } from 'react-router-dom';
-import { BookBannerStyled } from './BookBanner.styles';
+
 import { FlexStyled } from '@/components/styles/Flex.styles.tsx';
 
-import { images } from '../../../../assets';
+import { images } from '@/assets';
 
-import { Button } from '../..';
+import { BookBannerStyled } from './BookBanner.styles';
 
-const BookBanner: React.FC = (): JSX.Element => {
+import { Button } from '@/components/ui/Button';
+
+interface ITypeProps {
+  className?: string;
+}
+
+const BookBanner: React.FC<ITypeProps> = (props): JSX.Element => {
   return (
-    <BookBannerStyled>
-      <FlexStyled align='start' zIndex="1" direction="column">
+    <BookBannerStyled className={props.className}>
+      <FlexStyled align="start" zIndex="1" direction="column">
         <h2 className="book-banner__title">Build your library with us</h2>
         <p className="book-banner__description">
           Buy two books and <br /> get one for free
@@ -18,8 +24,16 @@ const BookBanner: React.FC = (): JSX.Element => {
           <Button>Choose a book</Button>
         </Link>
       </FlexStyled>
-      <img className='book-banner__image' src={images.bookBannerGirlWithBook} alt="Banner image" />
-      <img className='book-banner__image-background' src={images.bookBannerBooks} alt="Banner image" />
+      <img
+        className="book-banner__image"
+        src={images.bookBannerGirlWithBook}
+        alt="Banner image"
+      />
+      <img
+        className="book-banner__image-background"
+        src={images.bookBannerBooks}
+        alt="Banner image"
+      />
     </BookBannerStyled>
   );
 };

@@ -3,7 +3,7 @@ import type { AxiosError } from 'axios';
 
 import { booksService } from '@/api/services';
 
-import type { ITypesRequestFilters } from '@/interfaces/filtersInterfaces';
+import type { ITypesRequestFilters } from '@/interfaces/bookInterfaces';
 
 const getAllBooks = createAsyncThunk(
   'book/all',

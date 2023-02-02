@@ -52,7 +52,7 @@ const BookItemStyled = styled.div`
     width: 100%;
   }
 
-  .book-item__link {
+  .book__item__link {
     display: block;
   }
 

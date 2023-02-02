@@ -1,9 +1,9 @@
 import { CheckAuth } from '@/components/hoc';
+import { AuthBanner } from '@/components/ui';
+import { ContainerStyled } from '@/components/styles';
 
 import { Comments, Recommendation, ProductItem } from './components';
-import { AuthBanner } from '../../ui';
 
-import { ContainerStyled } from '@/components/styles';
 import { ProductStyled } from './Product.styles';
 
 const Product: React.FC = (): JSX.Element => {
@@ -15,7 +15,7 @@ const Product: React.FC = (): JSX.Element => {
         <Comments className="product__comments" />
 
         <CheckAuth needAuth={false}>
-          <AuthBanner />
+          <AuthBanner className='product__auth_banner' />
         </CheckAuth>
 
         <Recommendation className="product__recommendation" />

@@ -5,11 +5,11 @@ const getMinAndMaxValuePriceBooks = (array: ITypesDataBook[]) => {
     return acc.price > curr.price ? acc : curr;
   });
 
-  const objBookMinMinPrice = array.reduce((acc, curr) => {
+  const objBookMinPrice = array.reduce((acc, curr) => {
     return acc.price < curr.price ? acc : curr;
   });
 
-  return { minValue: objBookMinMinPrice.price, maxValue: objBookMaxPrice.price };
+  return { minValue: objBookMinPrice.price, maxValue: objBookMaxPrice.price };
 };
 
 export { getMinAndMaxValuePriceBooks };

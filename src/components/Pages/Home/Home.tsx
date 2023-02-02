@@ -1,21 +1,24 @@
 import { BookBanner, AuthBanner } from '@/components/ui/Banners';
 
-import { Catalog } from './Catalog';
-
+import { CheckAuth } from '@/components/hoc/';
 import { ContainerStyled } from '@/components/styles';
 
-import { CheckAuth } from '@/components/hoc/CheckAuth';
+import { Catalog } from './Catalog';
+
+import { HomeStyled } from './Home.styles';
 
 const Home: React.FC = (): JSX.Element => {
   return (
     <ContainerStyled>
-      <BookBanner />
+      <HomeStyled>
+        <BookBanner className="home__book_banner" />
 
-      <Catalog />
+        <Catalog className="home__catalog" />
 
-      <CheckAuth needAuth={false}>
-        <AuthBanner />
-      </CheckAuth>
+        <CheckAuth needAuth={false}>
+          <AuthBanner className="home__auth_banner" />
+        </CheckAuth>
+      </HomeStyled>
     </ContainerStyled>
   );
 };

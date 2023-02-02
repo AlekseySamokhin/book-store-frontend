@@ -7,8 +7,6 @@ const AuthBannerStyled = styled.div`
   display: flex;
   justify-content: end;
   position: relative;
-  margin-top: 35px;
-  margin-bottom: 150px;
 
   .auth-banner__image {
     position: absolute;

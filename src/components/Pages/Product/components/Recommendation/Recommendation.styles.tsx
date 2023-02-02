@@ -8,6 +8,13 @@ const ReccommendationStyled = styled.div`
     font-size: 40px;
     line-height: 60px;
     color: #0d1821;
+    margin-bottom: 50px;
+  }
+
+  .reccommendations__books {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 60px;
   }
 `;
 

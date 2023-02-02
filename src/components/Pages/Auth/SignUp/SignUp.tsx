@@ -1,5 +1,3 @@
-/* eslint-disable implicit-arrow-linebreak */
-/* eslint-disable no-console */
 import { useState } from 'react';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
@@ -12,6 +10,7 @@ import { signUpSchema } from '@/schemas/schemaAuth';
 
 import { Button, Input } from '@/components/ui';
 import { ContainerStyled } from '@/components/styles';
+
 import { icons, images } from '@/assets';
 
 import { SignUpStyled } from './SignUp.styles';
@@ -104,7 +103,7 @@ const SignUp: React.FC = (): JSX.Element => {
               type="password"
               placeholder="Password replay"
               text="Enter you password"
-              description="Repeat your password without errors'"
+              description="Repeat your password without errors"
               icon={icons.hide}
               title="Enter you password"
               disabled={true}

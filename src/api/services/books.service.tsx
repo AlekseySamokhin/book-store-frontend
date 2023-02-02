@@ -2,16 +2,15 @@ import { api } from '../axios-instance';
 
 import type {
   ITypesDataBook,
-  ITypeRequestGetOneBook,
-  ITypesInfoBooks,
-} from '../../interfaces/bookInterfaces';
-import type { ITypesRequestFilters } from '@/interfaces/filtersInterfaces';
+  ITypesInfoPages,
+  ITypesRequestFilters,
+} from '@/interfaces/bookInterfaces';
 
 const BOOK_URL = '/book';
 
 interface ITypesResponseFilters {
   books: ITypesDataBook[];
-  info: ITypesInfoBooks;
+  info: ITypesInfoPages;
 }
 
 const getAllBooks = async (params: ITypesRequestFilters) => {
@@ -22,10 +21,18 @@ const getAllBooks = async (params: ITypesRequestFilters) => {
   return response.data;
 };
 
-const getOneBook = async (params: ITypeRequestGetOneBook) => {
+const getOneBook = async (params: { id: number }) => {
   const response = await api.get<ITypesDataBook>(`${BOOK_URL}/one`, {
     params,
   });
+
+  return response.data;
+};
+
+const getRecommendationBooks = async () => {
+  const response = await api.get<ITypesDataBook[]>(
+    `${BOOK_URL}/recommendation`,
+  );
 
   return response.data;
 };
@@ -40,8 +47,9 @@ const getAllGenres = async () => {
 
 const booksService = {
   getAllBooks,
-  getAllGenres,
+  getRecommendationBooks,
   getOneBook,
+  getAllGenres,
 };
 
 export { booksService };

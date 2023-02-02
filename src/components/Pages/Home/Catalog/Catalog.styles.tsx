@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
 const CatalogStyled = styled.div`
-  margin-bottom: 32px;
-
   .catalog__header {
     display: flex;
     justify-content: space-between;
@@ -34,7 +32,7 @@ const CatalogStyled = styled.div`
   .catalog__pagination {
     display: flex;
     justify-content: center;
-    margin-bottom: 155px;
+    margin-bottom: 50px;
   }
 
   .catalog__booklist_item {

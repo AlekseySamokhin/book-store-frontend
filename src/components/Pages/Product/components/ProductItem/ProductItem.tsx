@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { booksService } from '../../../../../api/services';
-import { Poster, Content } from './components';
+import { booksService } from '@/api/services';
+import type { ITypesDataBook } from '@/interfaces/bookInterfaces';
 
-import type { ITypesDataBook } from '../../../../../interfaces/bookInterfaces';
+import { Poster, ProductInfo } from './components';
 
 import { ProductItemStyled } from './Product.styles';
 
@@ -17,18 +17,23 @@ const ProductItem: React.FC<ITypesProps> = (props): JSX.Element => {
   const { id } = useParams<string>();
 
   useEffect(() => {
-    (async () => {
-      const dataBook = await booksService.getOneBook({ id: Number(id) });
+    try {
+      (async () => {
+        const dataBook = await booksService.getOneBook({ id: Number(id) });
 
-      setBook(dataBook);
-    })();
+        setBook(dataBook);
+      })();
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.log(err);
+    }
   }, []);
 
   return (
     <ProductItemStyled className={props.className}>
       <Poster className="product__item_poster" picture={book?.poster} />
 
-      <Content book={book} />
+      <ProductInfo book={book} />
     </ProductItemStyled>
   );
 };

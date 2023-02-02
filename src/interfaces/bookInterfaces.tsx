@@ -3,22 +3,27 @@ interface ITypesDataBook {
   title: string;
   author: string;
   price: number;
-  description: number;
+  description: string;
   poster: string;
   isNew: boolean;
   isBestseller: boolean;
   rating: number;
 }
 
-interface ITypesInfoBooks {
+interface ITypesInfoPages {
   pagesQty: number;
   currentPage: number;
   nextPage: number;
   prevPage: number;
 }
 
-interface ITypeRequestGetOneBook {
-  id: number;
+interface ITypesRequestFilters {
+  genres: string | null;
+  minPrice: string | null;
+  maxPrice: string | null;
+  sort: string | null;
+  page: string | null;
+  search: string | null;
 }
 
-export type { ITypesDataBook, ITypeRequestGetOneBook, ITypesInfoBooks };
+export type { ITypesDataBook, ITypesInfoPages, ITypesRequestFilters };

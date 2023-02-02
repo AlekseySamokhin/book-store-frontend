@@ -5,16 +5,17 @@ import { useSearchParams } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '@/redux/store';
 import { bookThunks } from '@/redux/books/bookThunks';
+import type { ITypesRequestFilters } from '@/interfaces/bookInterfaces';
 
-import { BookItem, PanelFilters, Pagination } from './components';
+import { BookItem, PanelFilters, Pagination, BooksNotFound } from './components';
 
 import { CatalogStyled } from './Catalog.styles';
 
-import type { ITypesRequestFilters } from '@/interfaces/filtersInterfaces';
-import { BooksNotFound } from './components/BooksNotFound/BooksNotFound';
-// import { BooksNotFound } from './components/BooksNotFound';
+interface ITypeProps {
+  className?: string;
+}
 
-const Catalog: React.FC = (): JSX.Element => {
+const Catalog: React.FC<ITypeProps> = (props): JSX.Element => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const dispatch = useAppDispatch();
@@ -43,7 +44,7 @@ const Catalog: React.FC = (): JSX.Element => {
   }, [dispatch, searchParams]);
 
   return (
-    <CatalogStyled>
+    <CatalogStyled className={props.className}>
       <div className="catalog__header">
         <h2 className="catalog__header_title">Catalog</h2>
         <PanelFilters />

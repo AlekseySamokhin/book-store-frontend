@@ -5,9 +5,13 @@ import { AuthBannerStyled } from './AuthBanner.styles';
 import { images } from '@/assets';
 import { FlexStyled } from '@/components/styles';
 
-const AuthBanner: React.FC = (): JSX.Element => {
+interface ITypeProps {
+  className?: string;
+}
+
+const AuthBanner: React.FC<ITypeProps> = (props): JSX.Element => {
   return (
-    <AuthBannerStyled>
+    <AuthBannerStyled className={props.className}>
       <img
         className="auth-banner__image"
         src={images.authBannerCastle}
@@ -24,10 +28,10 @@ const AuthBanner: React.FC = (): JSX.Element => {
           alt="Image authorization image"
         />
         <FlexStyled>
-          <Link to="signin">
+          <Link to="/signin">
             <Button>Sign In</Button>
           </Link>
-          <Link to="signup">
+          <Link to="/signup">
             <Button>Sign Up</Button>
           </Link>
         </FlexStyled>
