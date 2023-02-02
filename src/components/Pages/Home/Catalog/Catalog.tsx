@@ -2,12 +2,18 @@
 /* eslint-disable no-console */
 import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import { useAppDispatch, useAppSelector } from '@/redux/store';
 import { bookThunks } from '@/redux/books/bookThunks';
 import type { ITypesRequestFilters } from '@/interfaces/bookInterfaces';
 
-import { BookItem, PanelFilters, Pagination, BooksNotFound } from './components';
+import {
+  BookItem,
+  PanelFilters,
+  Pagination,
+  BooksNotFound,
+} from './components';
 
 import { CatalogStyled } from './Catalog.styles';
 
@@ -16,10 +22,9 @@ interface ITypeProps {
 }
 
 const Catalog: React.FC<ITypeProps> = (props): JSX.Element => {
-  const [searchParams, setSearchParams] = useSearchParams();
-
   const dispatch = useAppDispatch();
   const books = useAppSelector((state) => state.store.books);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const filters: ITypesRequestFilters = {
     genres: searchParams.get('genres'),
@@ -38,8 +43,9 @@ const Catalog: React.FC<ITypeProps> = (props): JSX.Element => {
     try {
       dispatch(bookThunks.getAllBooks(filters)).unwrap();
     } catch (err) {
-      // eslint-disable-next-line no-console
-      console.log(err); // TODO
+      toast.error((err as { message: string }).message, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
     }
   }, [dispatch, searchParams]);
 

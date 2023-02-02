@@ -7,9 +7,21 @@ import type { ITypesRequestFilters } from '@/interfaces/bookInterfaces';
 
 const getAllBooks = createAsyncThunk(
   'book/all',
-  async (filters: ITypesRequestFilters) => {
+  async (values: ITypesRequestFilters) => {
     try {
-      return await booksService.getAllBooks(filters);
+      return await booksService.getAllBooks(values);
+    } catch (_err) {
+      const err = _err as AxiosError;
+      throw err.response?.data;
+    }
+  },
+);
+
+const getOneBook = createAsyncThunk(
+  '/book/one',
+  async (values: { bookId: number; userId: number }) => {
+    try {
+      return await booksService.getOneBook(values);
     } catch (_err) {
       const err = _err as AxiosError;
       throw err.response?.data;
@@ -19,6 +31,7 @@ const getAllBooks = createAsyncThunk(
 
 const bookThunks = {
   getAllBooks,
+  getOneBook,
 };
 
 export { bookThunks };
