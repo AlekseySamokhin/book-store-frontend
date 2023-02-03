@@ -14,7 +14,7 @@ interface ITypeProps {
 const Genre: React.FC<ITypeProps> = (props): JSX.Element => {
   return (
     <GenreStyled htmlFor={props.genre.name}>
-      <div onClick={() => props.changeGenre(props.genre.genreId)} className="genre-checkbox__block">
+      <div className="genre-checkbox__block">
         <input
           type="checkbox"
           name={props.genre.name}

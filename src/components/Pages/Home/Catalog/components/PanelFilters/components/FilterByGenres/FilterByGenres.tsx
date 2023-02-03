@@ -32,6 +32,8 @@ const FilterByGenres: React.FC = (): JSX.Element => {
       (id) => id === genreId.toString(),
     );
 
+    console.log(indexGenre);
+
     const newGenres = [...currentGenres];
 
     if (indexGenre === -1) {
