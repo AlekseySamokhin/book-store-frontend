@@ -1,50 +1,50 @@
 /* eslint-disable no-console */
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import { booksService } from '@/api/services';
-import { Genre } from './Genre/Genre';
+import { Genre } from './Genre';
 
 import { FilterByGenresStyled } from './SortByGenres.styles';
 
 const FilterByGenres: React.FC = (): JSX.Element => {
-  const [genres, setGenres] = useState<{ genreId: number; name: string }[]>([]);
   const [searchParams, setSearchParams] = useSearchParams();
-  const [currentGenres, setCurrentGenres] = useState<string>(searchParams.get('genres') || '');
-
-  const arrayGenres = currentGenres.split(',');
-
-  useEffect(() => {
-    setCurrentGenres(searchParams.get('genres') || '');
-  }, [searchParams]);
+  const [genres, setGenres] = useState<{ genreId: number; name: string }[]>([]);
 
   useEffect(() => {
     (async () => {
       try {
-        const arrGenres = await booksService.getAllGenres();
+        const genres = await booksService.getAllGenres();
 
-        setGenres(arrGenres);
+        setGenres(genres);
       } catch (err) {
         console.log(err);
       }
     })();
   }, []);
 
-  const handleChangeGenre = (genreName: string) => {
-    let stringGenres = '';
+  const currentGenres = useMemo(() => {
+    return searchParams.get('genres')?.split(',') || [];
+  }, [searchParams]);
 
-    if (currentGenres.includes(genreName)) {
-      const genreIndex = arrayGenres.indexOf(genreName);
-      arrayGenres.splice(genreIndex, 1);
+  const handleChangeGenre = (genreId: number) => {
+    const indexGenre = currentGenres.findIndex(
+      (id) => id === genreId.toString(),
+    );
 
-      stringGenres = arrayGenres.join();
-    } else if (currentGenres.length === 0) {
-      stringGenres = genreName;
+    const newGenres = [...currentGenres];
+
+    if (indexGenre === -1) {
+      newGenres.push(genreId.toString());
     } else {
-      stringGenres = `${currentGenres},${genreName}`;
+      newGenres.splice(indexGenre, 1);
     }
 
-    searchParams.set('genres', stringGenres);
+    if (newGenres.length > 0) {
+      searchParams.set('genres', newGenres.join(','));
+    } else {
+      searchParams.delete('genres');
+    }
 
     setSearchParams(searchParams);
   };
@@ -55,7 +55,7 @@ const FilterByGenres: React.FC = (): JSX.Element => {
         <Genre
           key={genre.genreId}
           changeGenre={handleChangeGenre}
-          value={currentGenres.includes(genre.name)}
+          checked={currentGenres.includes(genre.genreId.toString())}
           genre={genre}
         />
       ))}

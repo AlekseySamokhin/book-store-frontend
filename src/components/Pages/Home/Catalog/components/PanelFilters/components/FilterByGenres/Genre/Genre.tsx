@@ -1,42 +1,32 @@
-import { useState } from 'react';
-
+/* eslint-disable no-console */
 import { GenreStyled } from './Genre.styles';
 
-interface ITypesProps {
+interface ITypeProps {
   genre: {
     genreId: number;
     name: string;
   };
 
-  value: boolean;
-  changeGenre: (name: string) => void;
+  checked: boolean;
+  changeGenre: (id: number) => void;
 }
 
-const Genre: React.FC<ITypesProps> = (props): JSX.Element => {
-  const [checked, setChecked] = useState<boolean>(props.value);
-
-  const handleChange = () => {
-    setChecked(!checked);
-  };
-
+const Genre: React.FC<ITypeProps> = (props): JSX.Element => {
   return (
-    <GenreStyled
-      key={props.genre.genreId}
-      htmlFor={props.genre.name}
-    >
-      <div onClick={() => props.changeGenre(props.genre.name)} className="genre-checkbox__block">
+    <GenreStyled htmlFor={props.genre.name}>
+      <div onClick={() => props.changeGenre(props.genre.genreId)} className="genre-checkbox__block">
         <input
           type="checkbox"
           name={props.genre.name}
-          checked={props.value}
+          checked={props.checked}
           id={props.genre.name}
-          onChange={handleChange}
+          onChange={() => props.changeGenre(props.genre.genreId)}
           hidden
         />
 
         <div
           className={`genre-checkbox__item ${
-            props.value ? 'checked' : 'unchecked'
+            props.checked ? 'checked' : 'unchecked'
           }`}
         ></div>
 

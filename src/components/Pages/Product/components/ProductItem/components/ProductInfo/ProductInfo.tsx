@@ -1,7 +1,6 @@
 import { Button, FiveStarsRating } from '@/components/ui';
 
-import { StarRating, Title, RateThisBook } from './components';
-import { Description } from './components/Description';
+import { StarRating, Title, RateThisBook, Description } from './components';
 
 import { ProductInfoStyled } from './ProductInfo.styles';
 
@@ -12,7 +11,7 @@ interface ITypesDataBook {
     author: string;
     price: number;
     description: string;
-    rating?: number;
+    averageRating: number;
   } | null;
 }
 
@@ -34,12 +33,12 @@ const ProductInfo: React.FC<ITypesDataBook> = (props): JSX.Element => {
       <div className="product__item_rating">
         <StarRating
           className="product__item_rating_star"
-          rating={props.book?.rating || 0}
+          averageRating={props.book?.averageRating || 0}
         />
 
         <FiveStarsRating
           className="product__item_rating_five_star"
-          value={props.book?.rating ?? 0}
+          value={props.book?.averageRating || 0}
           bookId={props.book?.bookId || ''}
           readOnly={false}
         />

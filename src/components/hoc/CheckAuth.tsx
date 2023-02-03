@@ -1,7 +1,7 @@
 import { useAppSelector } from '../../redux/store';
 
 interface ITypesProps {
-  needAuth: boolean;
+  needAuth?: boolean;
   children: React.ReactElement;
 }
 

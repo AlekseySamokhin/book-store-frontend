@@ -23,25 +23,21 @@ interface ITypeProps {
 
 const Catalog: React.FC<ITypeProps> = (props): JSX.Element => {
   const dispatch = useAppDispatch();
-  const books = useAppSelector((state) => state.store.books);
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  const filters: ITypesRequestFilters = {
-    genres: searchParams.get('genres'),
-    minPrice: searchParams.get('minPrice'),
-    maxPrice: searchParams.get('maxPrice'),
-    sort: searchParams.get('sort'),
-    page: searchParams.get('page'),
-    search: searchParams.get('search'),
-  };
-
-  useEffect(() => {
-    setSearchParams({});
-  }, []);
+  const books = useAppSelector((state) => state.shop.books);
+  const [searchParams] = useSearchParams();
 
   useEffect(() => {
     try {
-      dispatch(bookThunks.getAllBooks(filters)).unwrap();
+      const select: ITypesRequestFilters = {
+        genres: searchParams.get('genres'),
+        minPrice: searchParams.get('minPrice'),
+        maxPrice: searchParams.get('maxPrice'),
+        sort: searchParams.get('sort'),
+        page: searchParams.get('page'),
+        search: searchParams.get('search'),
+      };
+
+      dispatch(bookThunks.getAllBooks(select)).unwrap();
     } catch (err) {
       toast.error((err as { message: string }).message, {
         position: toast.POSITION.TOP_RIGHT,
@@ -53,6 +49,7 @@ const Catalog: React.FC<ITypeProps> = (props): JSX.Element => {
     <CatalogStyled className={props.className}>
       <div className="catalog__header">
         <h2 className="catalog__header_title">Catalog</h2>
+
         <PanelFilters />
       </div>
 

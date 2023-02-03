@@ -1,27 +1,26 @@
 /* eslint-disable no-console */
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-// import { booksService } from '@/api/services';
-import type { ITypesDataBook } from '@/interfaces/bookInterfaces';
+
+import { useAppSelector, useAppDispatch } from '@/redux/store';
+import { bookThunks } from '@/redux/books/bookThunks';
 
 import { Poster, ProductInfo } from './components';
 
 import { ProductItemStyled } from './Product.styles';
-import { useAppSelector, useAppDispatch } from '@/redux/store';
-
-import { bookThunks } from '@/redux/books/bookThunks';
 
 interface ITypesProps {
   className?: string;
 }
 
 const ProductItem: React.FC<ITypesProps> = (props): JSX.Element => {
-  const dispatch = useAppDispatch();
-  const [book, setBook] = useState<ITypesDataBook | null>(null);
-  const { bookId } = useParams<string>();
-
+  const book = useAppSelector((state) => state.shop.books[0]);
   const userId = useAppSelector((state) => state.auth.user.id);
+
+  const dispatch = useAppDispatch();
+
+  const { bookId } = useParams<string>();
 
   console.log(bookId);
   console.log(userId);
@@ -29,18 +28,12 @@ const ProductItem: React.FC<ITypesProps> = (props): JSX.Element => {
   useEffect(() => {
     try {
       (async () => {
-        const book = dispatch(
+        dispatch(
           bookThunks.getOneBook({
             bookId: Number(bookId),
             userId: Number(userId),
           }),
         ).unwrap();
-        //  const book = await booksService.getOneBook({
-        //    bookId: Number(bookId),
-        //    userId: Number(userId),
-        //  });
-
-        setBook(await book);
       })();
     } catch (err) {
       toast.error((err as { message: string }).message, {

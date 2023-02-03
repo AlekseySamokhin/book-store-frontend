@@ -9,7 +9,7 @@ import { FilterByPriceStyled } from './FilterByPrice.styled';
 import { getMinAndMaxValuePriceBooks } from '@/utils/getMinAndMaxNumber';
 
 const FilterByPrice: React.FC = (): JSX.Element => {
-  const books = useAppSelector((state) => state.store.books);
+  const books = useAppSelector((state) => state.shop.books);
 
   const valuesPrice = useMemo(() => getMinAndMaxValuePriceBooks(books), []);
 
@@ -51,8 +51,8 @@ const FilterByPrice: React.FC = (): JSX.Element => {
         className="horizontal-slider"
         thumbClassName="example-thumb"
         trackClassName="example-track"
-        onChange={(value) => handleChange(value)}
-        onAfterChange={(value) => handleChangeValuePrice(value)}
+        onChange={handleChange}
+        onAfterChange={handleChangeValuePrice}
         renderThumb={(props) => <div {...props}></div>}
       />
 

@@ -4,7 +4,7 @@ import { StarRatingStyled } from './StarRating.styles';
 
 interface ITypeProps {
   className?: string;
-  rating: number;
+  averageRating: number;
 }
 
 const StarRating: React.FC<ITypeProps> = (props): JSX.Element => {
@@ -12,7 +12,7 @@ const StarRating: React.FC<ITypeProps> = (props): JSX.Element => {
     <StarRatingStyled className={props.className}>
       <Rating
         className="star__rating_icon"
-        value={4 / 5}
+        value={props.averageRating / 5}
         precision={0.1}
         readOnly={true}
         size="large"
@@ -22,7 +22,7 @@ const StarRating: React.FC<ITypeProps> = (props): JSX.Element => {
         }}
       />
 
-      <span className='star__rating_number'>{5}</span>
+      <span className='star__rating_number'>{props.averageRating}</span>
     </StarRatingStyled>
   );
 };

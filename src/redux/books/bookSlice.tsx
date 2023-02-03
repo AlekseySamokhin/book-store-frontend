@@ -2,11 +2,14 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { bookThunks } from './bookThunks';
 
-import type { ITypesDataBook, ITypesInfoPages } from '@/interfaces/bookInterfaces';
+import type {
+  ITypesDataBook,
+  ITypesInfoPages,
+} from '@/interfaces/bookInterfaces';
 
 const getInitialState = () => ({
   books: [] as ITypesDataBook[],
-  pages: {} as ITypesInfoPages,
+  pagination: {} as ITypesInfoPages,
 });
 
 const booksSlice = createSlice({
@@ -20,7 +23,15 @@ const booksSlice = createSlice({
       }
 
       state.books = action.payload.books;
-      state.pages = action.payload.info;
+      state.pagination = action.payload.info;
+    });
+
+    builder.addCase(bookThunks.getOneBook.fulfilled, (state, action) => {
+      if (!action.payload) {
+        return;
+      }
+
+      state.books = [action.payload];
     });
   },
 });

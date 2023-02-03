@@ -8,7 +8,7 @@ import { PaginationStyled } from './Pagination.styles';
 
 const Pagination: React.FC = (): JSX.Element | null => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const infoPages = useAppSelector((state) => state.store.pages);
+  const infoPages = useAppSelector((state) => state.shop.pagination);
 
   const { pagesQty, currentPage, prevPage, nextPage } = infoPages;
 
