@@ -1,36 +1,36 @@
 /* eslint-disable no-console */
 // import { useSearchParams } from 'react-router-dom';
 
+import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import { SortByOtherStyled } from './SortByOther.styles';
 
-const arrNamesSort: string[] = [
-  'Price',
-  'Name',
-  'Author name',
-  'Rating',
-  'Date of issue',
-];
+interface ITypeProps {
+  sorting: { id: number; name: string }[];
+}
 
-const SortByOther: React.FC = (): JSX.Element => {
+const SortByOther: React.FC<ITypeProps> = (props): JSX.Element => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const indexCurrentSort = arrNamesSort.indexOf(
-    searchParams.get('sort') || 'Price',
+  useEffect(() => {
+    searchParams.set('sort', '1');
+    setSearchParams(searchParams);
+  }, []);
+
+  const currentSort = props.sorting.find(
+    (item) => item.id.toString() === (searchParams.get('sort')),
   );
 
-  const handleChangeSort = (nameSort: string) => {
-    const currentSort = searchParams.get('sort');
-
-    if (currentSort === nameSort) {
+  const handleChangeSort = (sortId: number) => {
+    if (currentSort?.id === sortId) {
       searchParams.delete('sort');
       setSearchParams({});
 
       return;
     }
 
-    searchParams.set('sort', nameSort);
+    searchParams.set('sort', sortId.toString());
 
     setSearchParams(searchParams);
   };
@@ -38,15 +38,16 @@ const SortByOther: React.FC = (): JSX.Element => {
   return (
     <SortByOtherStyled>
       <ul className="sort-by-other__list">
-        {arrNamesSort.map((nameSort, index) => (
+        {props.sorting.map((sort, index) => (
           <li
-            onClick={() => handleChangeSort(nameSort)}
-            key={nameSort}
+            onClick={() => handleChangeSort(sort.id)}
+            key={sort.id}
             className={`sort-by-other__list_item ${
-              indexCurrentSort === index && 'sort-by-other__list_item--active'
+              currentSort?.id === index + 1 &&
+              'sort-by-other__list_item--active'
             }`}
           >
-            {nameSort}
+            {sort.name}
           </li>
         ))}
       </ul>

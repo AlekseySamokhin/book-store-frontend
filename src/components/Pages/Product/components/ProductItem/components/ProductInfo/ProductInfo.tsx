@@ -4,18 +4,13 @@ import { StarRating, Title, RateThisBook, Description } from './components';
 
 import { ProductInfoStyled } from './ProductInfo.styles';
 
-interface ITypesDataBook {
-  book: {
-    bookId: string;
-    title: string;
-    author: string;
-    price: number;
-    description: string;
-    averageRating: number;
-  } | null;
+import type { ITypesDataBook } from '@/interfaces/bookInterfaces';
+
+interface ITypeProps {
+  book: ITypesDataBook | null;
 }
 
-const ProductInfo: React.FC<ITypesDataBook> = (props): JSX.Element => {
+const ProductInfo: React.FC<ITypeProps> = (props): JSX.Element => {
   return (
     <ProductInfoStyled>
       <Title
@@ -62,9 +57,7 @@ const ProductInfo: React.FC<ITypesDataBook> = (props): JSX.Element => {
         <div className="product__item_buttons_hardcover">
           <span className="product__item_buttons_title">Hardcover</span>
 
-          <Button className="product__item_button">
-            ${props.book?.price} USD
-          </Button>
+          <Button className="product__item_button">${props.book?.price} USD</Button>
         </div>
       </div>
     </ProductInfoStyled>

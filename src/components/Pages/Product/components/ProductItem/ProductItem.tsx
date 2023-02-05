@@ -1,52 +1,47 @@
-/* eslint-disable no-console */
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { toast } from 'react-toastify';
 
-import { useAppSelector, useAppDispatch } from '@/redux/store';
-import { bookThunks } from '@/redux/books/bookThunks';
+import { booksService } from '@/api/services';
+
+import { useAppSelector } from '@/redux/store';
 
 import { Poster, ProductInfo } from './components';
 
 import { ProductItemStyled } from './Product.styles';
+
+import type { ITypesDataBook } from '@/interfaces/bookInterfaces';
 
 interface ITypesProps {
   className?: string;
 }
 
 const ProductItem: React.FC<ITypesProps> = (props): JSX.Element => {
-  const book = useAppSelector((state) => state.shop.books[0]);
+  const [book, setBook] = useState<ITypesDataBook>();
   const userId = useAppSelector((state) => state.auth.user.id);
-
-  const dispatch = useAppDispatch();
 
   const { bookId } = useParams<string>();
 
-  console.log(bookId);
-  console.log(userId);
-
   useEffect(() => {
-    try {
-      (async () => {
-        dispatch(
-          bookThunks.getOneBook({
-            bookId: Number(bookId),
-            userId: Number(userId),
-          }),
-        ).unwrap();
-      })();
-    } catch (err) {
-      toast.error((err as { message: string }).message, {
-        position: toast.POSITION.TOP_RIGHT,
-      });
-    }
+    (async () => {
+      try {
+        const book = await booksService.getOneBook({
+          bookId: Number(bookId),
+          userId: Number(userId),
+        });
+
+        setBook(book);
+      } catch (err) {
+      /* eslint-disable no-console */
+        console.log(err);
+      }
+    })();
   }, []);
 
   return (
     <ProductItemStyled className={props.className}>
       <Poster className="product__item_poster" picture={book?.poster} />
 
-      <ProductInfo book={book} />
+      <ProductInfo book={book || null} />
     </ProductItemStyled>
   );
 };

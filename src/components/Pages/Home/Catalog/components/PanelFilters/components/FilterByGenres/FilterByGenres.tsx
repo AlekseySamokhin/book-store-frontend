@@ -32,8 +32,6 @@ const FilterByGenres: React.FC = (): JSX.Element => {
       (id) => id === genreId.toString(),
     );
 
-    console.log(indexGenre);
-
     const newGenres = [...currentGenres];
 
     if (indexGenre === -1) {
@@ -42,7 +40,7 @@ const FilterByGenres: React.FC = (): JSX.Element => {
       newGenres.splice(indexGenre, 1);
     }
 
-    if (newGenres.length > 0) {
+    if (newGenres.length) {
       searchParams.set('genres', newGenres.join(','));
     } else {
       searchParams.delete('genres');
