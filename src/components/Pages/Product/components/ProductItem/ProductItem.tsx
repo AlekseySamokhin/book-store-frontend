@@ -1,37 +1,54 @@
-import { useState, useEffect } from 'react';
+/* eslint-disable no-console */
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { booksService } from '@/api/services';
+// import { booksService } from '@/api/services';
 
-import { useAppSelector } from '@/redux/store';
+import { useAppSelector, useAppDispatch } from '@/redux/store';
+
+import { bookThunks } from '@/redux/books/bookThunks';
 
 import { Poster, ProductInfo } from './components';
 
 import { ProductItemStyled } from './Product.styles';
 
-import type { ITypesDataBook } from '@/interfaces/bookInterfaces';
+// import type { ITypeDataBook } from '@/interfaces/bookInterfaces';
 
 interface ITypesProps {
   className?: string;
 }
 
 const ProductItem: React.FC<ITypesProps> = (props): JSX.Element => {
-  const [book, setBook] = useState<ITypesDataBook>();
+  const dispatch = useAppDispatch();
+  // const [book, setBook] = useState<ITypeDataBook>();
+  // const [personalRating, setPersonalRating] = useState<number>();
   const userId = useAppSelector((state) => state.auth.user.id);
+  const book = useAppSelector((state) => state.shop.books[0]);
+  const rating = useAppSelector((state) => state.shop.personalRating);
+
+  console.log(book);
 
   const { bookId } = useParams<string>();
 
   useEffect(() => {
     (async () => {
       try {
-        const book = await booksService.getOneBook({
-          bookId: Number(bookId),
-          userId: Number(userId),
-        });
+        dispatch(
+          bookThunks.getOneBook({
+            bookId: Number(bookId),
+            userId: Number(userId),
+          }),
+        );
 
-        setBook(book);
+        // const { book, personalRating } = await booksService.getOneBook({
+        //   bookId: Number(bookId),
+        //   userId: Number(userId),
+        // });
+
+        // setPersonalRating(personalRating);
+        // setBook(book);
       } catch (err) {
-      /* eslint-disable no-console */
+        /* eslint-disable no-console */
         console.log(err);
       }
     })();
@@ -41,7 +58,7 @@ const ProductItem: React.FC<ITypesProps> = (props): JSX.Element => {
     <ProductItemStyled className={props.className}>
       <Poster className="product__item_poster" picture={book?.poster} />
 
-      <ProductInfo book={book || null} />
+      <ProductInfo personalRating={rating || 0} book={book || null} />
     </ProductItemStyled>
   );
 };

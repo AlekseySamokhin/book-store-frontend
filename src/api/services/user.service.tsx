@@ -1,7 +1,7 @@
 import { api } from '../axios-instance';
 
 import type {
-  ITypesDataUser,
+  ITypeDataUser,
   ITypesUpdatedInfoUser,
   ITypesUpdatedPasswordsUser,
   ITypeUpdatedAvatarUser,
@@ -10,7 +10,7 @@ import type {
 const API_USER_URL = '/user';
 
 const updateInfo = async (params: ITypesUpdatedInfoUser) => {
-  const response = await api.patch<ITypesDataUser>(
+  const response = await api.patch<ITypeDataUser>(
     `${API_USER_URL}/info`,
     params,
   );
@@ -19,7 +19,7 @@ const updateInfo = async (params: ITypesUpdatedInfoUser) => {
 };
 
 const updatePassword = async (params: ITypesUpdatedPasswordsUser) => {
-  const response = await api.patch<ITypesDataUser>(
+  const response = await api.patch<ITypeDataUser>(
     `${API_USER_URL}/password`,
     params,
   );
@@ -28,7 +28,7 @@ const updatePassword = async (params: ITypesUpdatedPasswordsUser) => {
 };
 
 const updateAvatar = async (params: ITypeUpdatedAvatarUser) => {
-  const response = await api.patch<ITypesDataUser>(
+  const response = await api.patch<ITypeDataUser>(
     `${API_USER_URL}/avatar`,
     params,
   );

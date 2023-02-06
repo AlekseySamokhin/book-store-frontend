@@ -1,4 +1,4 @@
-interface ITypesDataBook {
+interface ITypeDataBook {
   bookId: string;
   title: string;
   author: string;
@@ -10,7 +10,7 @@ interface ITypesDataBook {
   averageRating: number;
 }
 
-interface ITypesInfoPages {
+interface ITypePagination {
   pagesQty: number;
   currentPage: number;
   nextPage: number;
@@ -26,4 +26,4 @@ interface ITypesRequestFilters {
   search: string | null;
 }
 
-export type { ITypesDataBook, ITypesInfoPages, ITypesRequestFilters };
+export type { ITypeDataBook, ITypePagination, ITypesRequestFilters };

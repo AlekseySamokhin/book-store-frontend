@@ -1,26 +1,17 @@
-/* eslint-disable no-console */
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import ReactSlider from 'react-slider';
 
-import { useAppSelector } from '@/redux/store';
 import { FilterByPriceStyled } from './FilterByPrice.styled';
 
-import { getMinAndMaxValuePriceBooks } from '@/utils/getMinAndMaxNumber';
-
 const FilterByPrice: React.FC = (): JSX.Element => {
-  const books = useAppSelector((state) => state.shop.books);
-
-  const valuesPrice = useMemo(() => getMinAndMaxValuePriceBooks(books), []);
-
-  const { minValue, maxValue } = valuesPrice;
+  const [value, setValue] = useState<number[]>([0, 100]);
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const [value, setValue] = useState<number[]>([minValue, maxValue]);
 
   useEffect(() => {
-    const minValuePrice = Number(searchParams.get('minPrice') || minValue);
-    const maxValuePrice = Number(searchParams.get('maxPrice') || maxValue);
+    const minValuePrice = Number(searchParams.get('minPrice') || value[0]);
+    const maxValuePrice = Number(searchParams.get('maxPrice') || value[1]);
 
     setValue([minValuePrice, maxValuePrice]);
   }, []);
@@ -29,7 +20,7 @@ const FilterByPrice: React.FC = (): JSX.Element => {
     searchParams.set('minPrice', value[0].toString());
     searchParams.set('maxPrice', value[1].toString());
 
-    if (value[0] === minValue && value[1] === maxValue) {
+    if (value[0] === 0 && value[1] === 100) {
       searchParams.delete('minPrice');
       searchParams.delete('maxPrice');
     }
@@ -45,8 +36,8 @@ const FilterByPrice: React.FC = (): JSX.Element => {
     <FilterByPriceStyled>
       <ReactSlider
         value={value}
-        min={minValue}
-        max={maxValue}
+        min={0}
+        max={100}
         step={0.1}
         className="horizontal-slider"
         thumbClassName="example-thumb"

@@ -5,14 +5,14 @@ import { ReccommendationStyled } from './Recommendation.styles';
 import { booksService } from '@/api/services';
 import { BookItem } from '@/components/Pages/Home/Catalog/components';
 
-import type { ITypesDataBook } from '@/interfaces/bookInterfaces';
+import type { ITypeDataBook } from '@/interfaces/bookInterfaces';
 
 interface ITypeProps {
   className?: string;
 }
 
 const Recommendation: React.FC<ITypeProps> = (props): JSX.Element => {
-  const [recommendationBooks, setRecommendationBooks] = useState<ITypesDataBook[]>([]);
+  const [recommendationBooks, setRecommendationBooks] = useState<ITypeDataBook[]>([]);
 
   useEffect(() => {
     (async () => {

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import type { ITypesDataBook } from '@/interfaces/bookInterfaces';
+import type { ITypeDataBook } from '@/interfaces/bookInterfaces';
 import { Button, MenuItem, FiveStarsRating } from '@/components/ui';
 import { BookStatus } from './BookStatus';
 
@@ -8,7 +8,7 @@ import { icons } from '@/assets';
 import { BookItemStyled } from './BookItem.styles';
 
 interface ITypesProps {
-  book: ITypesDataBook;
+  book: ITypeDataBook;
   className?: string;
 }
 
@@ -38,9 +38,15 @@ const BookItem: React.FC<ITypesProps> = (props): JSX.Element => {
         <p className="book-item__author">{props.book.author}</p>
 
         <div className="book-item__rating">
-          <FiveStarsRating readOnly={true} value={props.book.averageRating} />
+          <FiveStarsRating
+            changeRate={() => null}
+            readOnly={true}
+            personalRating={props.book.averageRating}
+          />
 
-          <span className="book-item__rating_number">{props.book.averageRating}</span>
+          <span className="book-item__rating_number">
+            {props.book.averageRating}
+          </span>
         </div>
       </Link>
 

@@ -1,37 +1,26 @@
 /* eslint-disable no-console */
-import { useState } from 'react';
 import Rating from '@mui/material/Rating';
 
 import { FiveStarsRatingStyled } from './FiveStarsRating.styles';
-import { useAppSelector, useAppDispatch } from '@/redux/store';
-
-import { bookThunks } from '@/redux/books/bookThunks';
+import { useAppSelector } from '@/redux/store';
 
 interface ITypesProps {
-  value: number;
+  personalRating: number;
   bookId?: string;
   readOnly: boolean;
   className?: string;
+  changeRate: (newRate: number) => void;
 }
 
 const FiveStarsRating: React.FC<ITypesProps> = (props): JSX.Element => {
-  const email = useAppSelector((state) => state.auth.user.email);
-  const dispatch = useAppDispatch();
-  const [rate, setRate] = useState<number>(0);
-
-  const handleChangeRate = (newRate: number) => {
-    dispatch(
-      bookThunks.setRatingBook({ bookId: Number(props.bookId), rate: newRate }),
-    );
-    setRate(newRate);
-  };
+  const user = useAppSelector((state) => state.auth.user);
 
   return (
     <FiveStarsRatingStyled className={props.className}>
-      {email ? (
+      {user.email ? (
         <Rating
-          onChange={(_, value) => handleChangeRate(value || 0)}
-          value={rate}
+          onChange={(_, newRate) => props.changeRate(newRate || 0)}
+          value={props.personalRating}
           precision={0.5}
           readOnly={false}
           size="large"
@@ -42,6 +31,7 @@ const FiveStarsRating: React.FC<ITypesProps> = (props): JSX.Element => {
       ) : (
         <Rating
           readOnly={true}
+          value={0}
           size="large"
           sx={{
             color: '#BFCC94',

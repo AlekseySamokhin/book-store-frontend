@@ -1,8 +1,8 @@
-interface IUserStateType {
-  user: ITypesDataUser;
+interface ITypeStateUser {
+  user: ITypeDataUser;
 }
 
-interface ITypesDataUser {
+interface ITypeDataUser {
   id: number;
   fullName: string;
   email: string;
@@ -16,7 +16,7 @@ interface ITypesAuthRequest {
 }
 
 interface IAuthResponseType {
-  user: ITypesDataUser;
+  user: ITypeDataUser;
   accessToken: string;
 }
 
@@ -42,8 +42,8 @@ interface ITypeUpdatedAvatarUser {
 }
 
 export type {
-  IUserStateType,
-  ITypesDataUser,
+  ITypeStateUser,
+  ITypeDataUser,
   ITypesAuthRequest,
   IAuthResponseType,
   IUpdatedDataUserType,

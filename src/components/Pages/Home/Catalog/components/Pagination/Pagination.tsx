@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
@@ -42,12 +41,6 @@ const Pagination: React.FC = (): JSX.Element | null => {
     const activePage = searchParams.get('page') || 1;
 
     setActivePage(Number(activePage));
-
-    if (Number(activePage) === 1) {
-      searchParams.delete('page');
-
-      setSearchParams(searchParams);
-    }
 
     setSearchParams(searchParams);
   };

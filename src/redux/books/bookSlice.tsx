@@ -1,15 +1,44 @@
+/* eslint-disable no-console */
 import { createSlice } from '@reduxjs/toolkit';
 
 import { bookThunks } from './bookThunks';
 
 import type {
-  ITypesDataBook,
-  ITypesInfoPages,
+  ITypeDataBook,
+  ITypePagination,
 } from '@/interfaces/bookInterfaces';
 
-const getInitialState = () => ({
-  books: [] as ITypesDataBook[],
-  pagination: {} as ITypesInfoPages,
+interface ITypeStateBookSlice {
+  books: ITypeDataBook[];
+  pagination: ITypePagination;
+  personalRating: number;
+}
+
+const initialBook: ITypeDataBook = {
+  bookId: '',
+  title: '',
+  author: '',
+  price: 0,
+  description: '',
+  poster: '',
+  isNew: true,
+  isBestseller: true,
+  averageRating: 0,
+};
+
+const initialPagination: ITypePagination = {
+  pagesQty: 0,
+  currentPage: 0,
+  nextPage: 0,
+  prevPage: 0,
+};
+
+const initialRating = 0;
+
+const getInitialState = (): ITypeStateBookSlice => ({
+  books: [initialBook],
+  personalRating: initialRating,
+  pagination: initialPagination,
 });
 
 const booksSlice = createSlice({
@@ -31,7 +60,16 @@ const booksSlice = createSlice({
         return;
       }
 
-      state.books = [action.payload];
+      state.books = [action.payload.book];
+      state.personalRating = action.payload.personalRating;
+    });
+
+    builder.addCase(bookThunks.setRatingBook.fulfilled, (state, action) => {
+      if (!action.payload) {
+        return;
+      }
+
+      state.personalRating = action.payload.personalRating;
     });
   },
 });
