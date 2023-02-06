@@ -24,7 +24,7 @@ const ProductItem: React.FC<ITypesProps> = (props): JSX.Element => {
   // const [personalRating, setPersonalRating] = useState<number>();
   const userId = useAppSelector((state) => state.auth.user.id);
   const book = useAppSelector((state) => state.shop.books[0]);
-  const rating = useAppSelector((state) => state.shop.personalRating);
+  const personalRating = useAppSelector((state) => state.shop.personalRating);
 
   console.log(book);
 
@@ -58,7 +58,10 @@ const ProductItem: React.FC<ITypesProps> = (props): JSX.Element => {
     <ProductItemStyled className={props.className}>
       <Poster className="product__item_poster" picture={book?.poster} />
 
-      <ProductInfo personalRating={rating || 0} book={book || null} />
+      <ProductInfo
+        personalRating={personalRating || 0}
+        book={book || null}
+      />
     </ProductItemStyled>
   );
 };
