@@ -69,6 +69,8 @@ const booksSlice = createSlice({
         return;
       }
 
+      console.log(action.payload);
+
       state.personalRating = action.payload.personalRating;
     });
   },
