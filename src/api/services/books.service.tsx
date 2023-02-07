@@ -48,10 +48,17 @@ const getAllGenres = async () => {
   return response.data;
 };
 
+const addFavorite = async (params: { bookId: number }) => {
+  const response = await api.post(`${BOOK_URL}/add-favorite`, params);
+
+  return response.data;
+};
+
 const booksService = {
   getAllBooks,
   getRecommendationBooks,
   getOneBook,
+  addFavorite,
   getAllGenres,
 };
 

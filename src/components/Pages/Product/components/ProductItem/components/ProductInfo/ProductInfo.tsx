@@ -1,12 +1,11 @@
 /* eslint-disable no-console */
 import { Button } from '@/components/ui';
 
-import { Title, Description } from './components';
-
-import { ProductInfoStyled } from './ProductInfo.styles';
+import { Title, Description, Rating } from './components';
 
 import type { ITypeDataBook } from '@/interfaces/bookInterfaces';
-import { Rating } from './components/Rating';
+
+import { ProductInfoStyled } from './ProductInfo.styles';
 
 interface ITypeProps {
   book: ITypeDataBook | null;

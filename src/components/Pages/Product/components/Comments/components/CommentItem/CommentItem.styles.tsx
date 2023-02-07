@@ -19,7 +19,7 @@ const CommentItemStyled = styled.div`
     border-radius: 50px;
   }
 
-  .commnet__content {
+  .comment__content {
     display: flex;
     flex-direction: column;
     font-weight: 500;
@@ -46,6 +46,8 @@ const CommentItemStyled = styled.div`
     line-height: 24px;
     letter-spacing: 0.75px;
     color: #344966;
+    word-wrap: break-word;
+    overflow-x: hidden;
   }
 `;
 

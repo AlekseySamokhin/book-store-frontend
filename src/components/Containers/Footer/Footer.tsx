@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { userActions } from '@/redux/users/userSlice';
 import { useAppDispatch } from '@/redux/store';
 
-import { CheckAuth } from '@/components/hoc';
+import { CheckAuth } from '@/components/Containers';
 import { Logo } from '@/components/ui';
 import { ContainerStyled, FlexStyled } from '@/components/styles';
 

@@ -22,7 +22,11 @@ const StarRating: React.FC<ITypeProps> = (props): JSX.Element => {
         }}
       />
 
-      <span className='star__rating_number'>{props.averageRating}</span>
+      <span className="star__rating_number">
+        {Number.isInteger(props.averageRating) && props.averageRating !== 0
+          ? `${props.averageRating}.0`
+          : props.averageRating}
+      </span>
     </StarRatingStyled>
   );
 };

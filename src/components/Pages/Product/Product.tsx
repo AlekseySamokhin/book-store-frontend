@@ -1,4 +1,4 @@
-import { CheckAuth } from '@/components/hoc';
+import { CheckAuth } from '@/components/Containers';
 import { AuthBanner } from '@/components/ui';
 import { ContainerStyled } from '@/components/styles';
 

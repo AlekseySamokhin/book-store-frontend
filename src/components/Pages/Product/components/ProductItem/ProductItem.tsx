@@ -26,8 +26,6 @@ const ProductItem: React.FC<ITypesProps> = (props): JSX.Element => {
   const book = useAppSelector((state) => state.shop.books[0]);
   const personalRating = useAppSelector((state) => state.shop.personalRating);
 
-  console.log(book);
-
   const { bookId } = useParams<string>();
 
   useEffect(() => {

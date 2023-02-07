@@ -1,5 +1,5 @@
 import { Title } from './Title';
-import { RateThisBook } from './Rating/components/RateThisBook';
+import { Rating } from './Rating';
 import { Description } from './Description';
 
-export { Title, RateThisBook, Description };
+export { Title, Rating, Description };

@@ -3,6 +3,8 @@ import styled from 'styled-components';
 const StarRatingStyled = styled.div`
   display: flex;
   align-items: center;
+  max-width: 60px;
+  width: 100%;
 
   .star__rating_icon {
     margin-right: 15px;

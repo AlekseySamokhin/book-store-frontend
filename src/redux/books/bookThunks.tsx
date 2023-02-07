@@ -33,7 +33,7 @@ const setRatingBook = createAsyncThunk(
   'book/set-rating',
   async (values: { bookId: number; userId: number; rate: number }) => {
     try {
-      return await ratingService.setRating(values);
+      return await ratingService.addRating(values);
     } catch (_err) {
       const err = _err as AxiosError;
       throw err.response?.data;

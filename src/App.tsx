@@ -7,7 +7,7 @@ import { authThunks } from './redux/users/thunks';
 
 import { useLocalStorage } from './utils';
 
-import { Layout, PrivateRoute } from './components/hoc';
+import { Layout, PrivateRoute } from './components/Containers';
 import { Cart, SignIn, SignUp, Profile, Favorites, Home, Product } from './components/Pages';
 import { Loader } from './components/ui';
 

@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { createSlice } from '@reduxjs/toolkit';
 
 import { bookThunks } from './bookThunks';
@@ -69,6 +68,7 @@ const booksSlice = createSlice({
         return;
       }
 
+      state.books = [action.payload.book];
       state.personalRating = action.payload.personalRating;
     });
   },

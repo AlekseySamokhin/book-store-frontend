@@ -1,4 +1,4 @@
-import { CheckAuth } from '@/components/hoc';
+import { CheckAuth } from '@/components/Containers';
 import { Logo, Search } from '@/components/ui';
 import { ContainerStyled } from '@/components/styles';
 
@@ -6,7 +6,7 @@ import { MenuBeforeAuth, MenuAfterAuth } from './components';
 
 import { HeaderStyled } from './Header.styles';
 
-const Header: React.FC = (): JSX.Element => {
+const Header: React.FC = () => {
   return (
     <ContainerStyled>
       <HeaderStyled>

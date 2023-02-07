@@ -46,6 +46,17 @@ const BookItemStyled = styled.div`
     position: absolute;
     top: 20px;
     left: 20px;
+
+    width: 48px;
+    height: 48px;
+    border-radius: 50px;
+    background: ${(props) => props.theme.colors.dark_blue};
+  }
+
+  .book-item__like_icon {
+    position: relative;
+    top: 14px;
+    left: 11px;
   }
 
   .book-item__button {

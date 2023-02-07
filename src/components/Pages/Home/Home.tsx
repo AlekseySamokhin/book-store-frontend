@@ -1,6 +1,6 @@
 import { BookBanner, AuthBanner } from '@/components/ui/Banners';
 
-import { CheckAuth } from '@/components/hoc/';
+import { CheckAuth } from '@/components/Containers';
 import { ContainerStyled } from '@/components/styles';
 
 import { Catalog } from './Catalog';
