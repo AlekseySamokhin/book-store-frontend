@@ -1,9 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { authThunks, userThunks } from './thunks';
+
 // import { useLocalStorage } from '../../utils/storage';
 
-import type { ITypeDataUser, ITypeStateUser } from '../../interfaces/userInterfaces';
+import type {
+  ITypeDataUser,
+  ITypeStateUser,
+} from '../../interfaces/userInterfaces';
+import type { ITypeDataBook } from '@/interfaces/bookInterfaces';
+import { bookThunks } from '../books/bookThunks';
 
 const initialUser: ITypeDataUser = {
   id: 0,
@@ -15,6 +21,7 @@ const initialUser: ITypeDataUser = {
 
 const getInitialState = (): ITypeStateUser => ({
   user: initialUser,
+  favoritesBooks: [] as ITypeDataBook[],
 });
 
 const userSlice = createSlice({
@@ -22,13 +29,19 @@ const userSlice = createSlice({
   initialState: getInitialState(),
   reducers: {
     signOut: () => {
-      // useLocalStorage.remove('token');
-
       return getInitialState();
     },
   },
 
   extraReducers: (builder) => {
+    builder.addCase(bookThunks.addFavoriteBook.fulfilled, (state, action) => {
+      if (!action.payload) {
+        return;
+      }
+
+      console.log(action.payload);
+    });
+
     builder.addCase(authThunks.getCurrentUser.fulfilled, (state, action) => {
       if (!action.payload) {
         return;

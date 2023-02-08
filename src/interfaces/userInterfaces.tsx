@@ -1,5 +1,8 @@
+import type { ITypeDataBook } from './bookInterfaces';
+
 interface ITypeStateUser {
   user: ITypeDataUser;
+  favoritesBooks: ITypeDataBook[];
 }
 
 interface ITypeDataUser {

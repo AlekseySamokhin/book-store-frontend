@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Rating from '@mui/material/Rating';
 
@@ -15,9 +16,23 @@ interface ITypesProps {
   className?: string;
 }
 
+interface ITypeFavoriteBook {
+  id: number;
+  bookId: number;
+  userId: number;
+}
+
 const BookItem: React.FC<ITypesProps> = (props) => {
+  const [favoritesBooks, setFavoritesBooks] = useState<ITypeFavoriteBook[]>([]);
+
+  console.log(favoritesBooks);
+
   const handleAddFavorite = async () => {
-    await booksService.addFavorite({ bookId: Number(props.book.bookId) });
+    const favoriteBooks = await booksService.addFavorite({
+      bookId: Number(props.book.bookId),
+    });
+
+    setFavoritesBooks(favoriteBooks);
   };
 
   return (
