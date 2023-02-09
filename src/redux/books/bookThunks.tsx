@@ -45,7 +45,19 @@ const addFavoriteBook = createAsyncThunk(
   'book/add-favorite',
   async (values: { bookId: number }) => {
     try {
-      return await booksService.addFavorite(values);
+      return await booksService.addFavoriteBook(values);
+    } catch (_err) {
+      const err = _err as AxiosError;
+      throw err.response?.data;
+    }
+  },
+);
+
+const deleteFavoriteBook = createAsyncThunk(
+  'book/delete-favorite',
+  async (values: { bookId: number }) => {
+    try {
+      return await booksService.deleteFavoriteBook(values);
     } catch (_err) {
       const err = _err as AxiosError;
       throw err.response?.data;
@@ -58,6 +70,7 @@ const bookThunks = {
   getOneBook,
   setRatingBook,
   addFavoriteBook,
+  deleteFavoriteBook,
 };
 
 export { bookThunks };

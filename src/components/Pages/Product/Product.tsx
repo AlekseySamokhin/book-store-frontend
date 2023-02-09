@@ -1,6 +1,6 @@
 import { CheckAuth } from '@/components/Containers';
 import { AuthBanner } from '@/components/ui';
-import { ContainerStyled } from '@/components/styles';
+import { Container } from '@/components/styles';
 
 import { Comments, Recommendation, ProductItem } from './components';
 
@@ -8,7 +8,7 @@ import { ProductStyled } from './Product.styles';
 
 const Product: React.FC = (): JSX.Element => {
   return (
-    <ContainerStyled>
+    <Container>
       <ProductStyled>
         <ProductItem className="product__item" />
 
@@ -20,7 +20,7 @@ const Product: React.FC = (): JSX.Element => {
 
         <Recommendation className="product__recommendation" />
       </ProductStyled>
-    </ContainerStyled>
+    </Container>
   );
 };
 

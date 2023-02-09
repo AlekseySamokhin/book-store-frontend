@@ -8,7 +8,7 @@ import { authThunks } from '@/redux/users/thunks/authThunks';
 import { signInSchema } from '@/schemas/schemaAuth';
 
 import { Input, Button } from '@/components/ui';
-import { ContainerStyled } from '@/components/styles';
+import { Container } from '@/components/styles';
 
 import { icons, images } from '@/assets';
 
@@ -57,7 +57,7 @@ const SignIn: React.FC = (): JSX.Element => {
   });
 
   return (
-    <ContainerStyled>
+    <Container>
       <SignInStyled>
         <div className="form">
           <h2>Sing In</h2>
@@ -105,7 +105,7 @@ const SignIn: React.FC = (): JSX.Element => {
 
         <img src={images.authPageManWithBook} alt="Image one man" />
       </SignInStyled>
-    </ContainerStyled>
+    </Container>
   );
 };
 

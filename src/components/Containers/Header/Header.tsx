@@ -1,6 +1,6 @@
 import { CheckAuth } from '@/components/Containers';
 import { Logo, Search } from '@/components/ui';
-import { ContainerStyled } from '@/components/styles';
+import { Container } from '@/components/styles';
 
 import { MenuBeforeAuth, MenuAfterAuth } from './components';
 
@@ -8,7 +8,7 @@ import { HeaderStyled } from './Header.styles';
 
 const Header: React.FC = () => {
   return (
-    <ContainerStyled>
+    <Container>
       <HeaderStyled>
         <div className="header__link">
           <Logo position="header" />
@@ -25,7 +25,7 @@ const Header: React.FC = () => {
           <MenuBeforeAuth className="header__menu" />
         </CheckAuth>
       </HeaderStyled>
-    </ContainerStyled>
+    </Container>
   );
 };
 

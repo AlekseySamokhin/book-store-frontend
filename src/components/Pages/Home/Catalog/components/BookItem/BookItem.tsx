@@ -1,7 +1,9 @@
 /* eslint-disable no-console */
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+// import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import Rating from '@mui/material/Rating';
+
+import { useAppDispatch, useAppSelector } from '@/redux/store';
 
 import type { ITypeDataBook } from '@/interfaces/bookInterfaces';
 import { Button } from '@/components/ui';
@@ -9,30 +11,45 @@ import { BookStatus } from './BookStatus';
 
 import { icons } from '@/assets';
 import { BookItemStyled } from './BookItem.styles';
-import { booksService } from '@/api/services';
+// import { booksService } from '@/api/services';
+import { bookThunks } from '@/redux/books/bookThunks';
 
 interface ITypesProps {
   book: ITypeDataBook;
   className?: string;
 }
 
-interface ITypeFavoriteBook {
-  id: number;
-  bookId: number;
-  userId: number;
-}
+// interface ITypeFavoriteBook {
+//   id: number;
+//   bookId: number;
+//   userId: number;
+// }
 
 const BookItem: React.FC<ITypesProps> = (props) => {
-  const [favoritesBooks, setFavoritesBooks] = useState<ITypeFavoriteBook[]>([]);
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const email = useAppSelector((store) => store.auth.user.email);
+  const favoritesBooks = useAppSelector((store) => store.auth.favoritesBooks);
 
-  console.log(favoritesBooks);
+  const arrayIdFavoriteBook = favoritesBooks.map((book) => book.bookId);
+  const likedBook = arrayIdFavoriteBook.includes(props.book.bookId);
 
   const handleAddFavorite = async () => {
-    const favoriteBooks = await booksService.addFavorite({
-      bookId: Number(props.book.bookId),
-    });
+    if (!email) {
+      navigate('/signin');
+    }
 
-    setFavoritesBooks(favoriteBooks);
+    if (!likedBook) {
+      dispatch(
+        bookThunks.addFavoriteBook({ bookId: Number(props.book.bookId) }),
+      );
+    }
+
+    if (likedBook && arrayIdFavoriteBook.length !== 0) {
+      dispatch(
+        bookThunks.deleteFavoriteBook({ bookId: Number(props.book.bookId) }),
+      );
+    }
   };
 
   return (

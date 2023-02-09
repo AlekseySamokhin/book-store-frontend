@@ -14,6 +14,7 @@ const Pagination: React.FC = (): JSX.Element | null => {
   const [activePage, setActivePage] = useState<number>(
     Number(searchParams.get('page')) || 1,
   );
+
   const [pages, setPages] = useState<{ page: number; styles: string }[]>([]);
 
   useEffect(() => {

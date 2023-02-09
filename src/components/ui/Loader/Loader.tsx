@@ -1,10 +1,10 @@
 import { Oval } from 'react-loader-spinner';
 
-import { ContainerStyled } from '@/components/styles';
+import { Container } from '@/components/styles';
 
 const Loader: React.FC = (): JSX.Element => {
   return (
-    <ContainerStyled>
+    <Container>
       <Oval
         height={100}
         width={100}
@@ -22,7 +22,7 @@ const Loader: React.FC = (): JSX.Element => {
         strokeWidth={4}
         strokeWidthSecondary={4}
       />
-    </ContainerStyled>
+    </Container>
   );
 };
 

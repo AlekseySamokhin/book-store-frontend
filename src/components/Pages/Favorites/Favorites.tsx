@@ -1,10 +1,10 @@
-import { ContainerStyled } from '@/components/styles';
+import { Container } from '@/components/styles';
 
 const Favorites = () => {
   return (
-    <ContainerStyled>
+    <Container>
       <div>Favorites Page</div>
-    </ContainerStyled>
+    </Container>
   );
 };
 

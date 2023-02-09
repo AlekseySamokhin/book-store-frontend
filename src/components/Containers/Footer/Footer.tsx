@@ -5,7 +5,7 @@ import { useAppDispatch } from '@/redux/store';
 
 import { CheckAuth } from '@/components/Containers';
 import { Logo } from '@/components/ui';
-import { ContainerStyled, FlexStyled } from '@/components/styles';
+import { Container, FlexStyled } from '@/components/styles';
 
 import { images } from '@/assets';
 
@@ -20,7 +20,7 @@ const Footer: React.FC = (): JSX.Element => {
 
   return (
     <FooterStyled>
-      <ContainerStyled>
+      <Container>
         <footer className="footer">
           <FlexStyled direction="column">
             <Logo position="footer" />
@@ -57,7 +57,7 @@ const Footer: React.FC = (): JSX.Element => {
             <img src={images.footerMap} alt="Google maps location" />
           </div>
         </footer>
-      </ContainerStyled>
+      </Container>
     </FooterStyled>
   );
 };

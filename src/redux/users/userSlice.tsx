@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { createSlice } from '@reduxjs/toolkit';
 
 import { authThunks, userThunks } from './thunks';
@@ -39,7 +40,15 @@ const userSlice = createSlice({
         return;
       }
 
-      console.log(action.payload);
+      state.favoritesBooks = action.payload;
+    });
+
+    builder.addCase(bookThunks.deleteFavoriteBook.fulfilled, (state, action) => {
+      if (!action.payload) {
+        return;
+      }
+
+      state.favoritesBooks = action.payload;
     });
 
     builder.addCase(authThunks.getCurrentUser.fulfilled, (state, action) => {
