@@ -1,29 +1,22 @@
-/* eslint-disable no-console */
-// import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Rating from '@mui/material/Rating';
 
 import { useAppDispatch, useAppSelector } from '@/redux/store';
+import { bookThunks } from '@/redux/books/bookThunks';
 
-import type { ITypeDataBook } from '@/interfaces/bookInterfaces';
-import { Button } from '@/components/ui';
 import { BookStatus } from './BookStatus';
 
 import { icons } from '@/assets';
+import { Button } from '@/components/ui';
+
+import type { ITypeDataBook } from '@/interfaces/bookInterfaces';
+
 import { BookItemStyled } from './BookItem.styles';
-// import { booksService } from '@/api/services';
-import { bookThunks } from '@/redux/books/bookThunks';
 
 interface ITypesProps {
   book: ITypeDataBook;
   className?: string;
 }
-
-// interface ITypeFavoriteBook {
-//   id: number;
-//   bookId: number;
-//   userId: number;
-// }
 
 const BookItem: React.FC<ITypesProps> = (props) => {
   const navigate = useNavigate();

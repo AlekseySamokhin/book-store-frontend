@@ -10,6 +10,13 @@ interface ITypeDataBook {
   averageRating: number;
 }
 
+interface ITypeFavoriteBook {
+  bookId: number;
+  id: number;
+  userId: number;
+  book: ITypeDataBook;
+}
+
 interface ITypePagination {
   pagesQty: number;
   currentPage: number;
@@ -26,4 +33,4 @@ interface ITypesRequestFilters {
   search: string | null;
 }
 
-export type { ITypeDataBook, ITypePagination, ITypesRequestFilters };
+export type { ITypeDataBook, ITypePagination, ITypesRequestFilters, ITypeFavoriteBook };

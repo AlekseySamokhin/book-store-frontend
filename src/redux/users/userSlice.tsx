@@ -1,16 +1,10 @@
-/* eslint-disable no-console */
 import { createSlice } from '@reduxjs/toolkit';
 
 import { authThunks, userThunks } from './thunks';
-
-// import { useLocalStorage } from '../../utils/storage';
-
-import type {
-  ITypeDataUser,
-  ITypeStateUser,
-} from '../../interfaces/userInterfaces';
-import type { ITypeDataBook } from '@/interfaces/bookInterfaces';
 import { bookThunks } from '../books/bookThunks';
+
+import type { ITypeDataUser, ITypeStateUser } from '@/interfaces/userInterfaces';
+import type { ITypeDataBook } from '@/interfaces/bookInterfaces';
 
 const initialUser: ITypeDataUser = {
   id: 0,

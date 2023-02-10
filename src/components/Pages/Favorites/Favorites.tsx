@@ -1,9 +1,20 @@
+import { useAppSelector } from '@/redux/store';
+
 import { Container } from '@/components/styles';
 
-const Favorites = () => {
+import { FavoritesStyled } from './Favorites.styles';
+
+const Favorites: React.FC = () => {
+  const favoritesBooks = useAppSelector((state) => state.auth.favoritesBooks);
+
   return (
     <Container>
-      <div>Favorites Page</div>
+      <FavoritesStyled>
+        {favoritesBooks.map((book) => (
+          <h1>{book.author}</h1>
+
+        ))}
+      </FavoritesStyled>
     </Container>
   );
 };

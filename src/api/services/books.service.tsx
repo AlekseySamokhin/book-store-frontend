@@ -60,12 +60,19 @@ const deleteFavoriteBook = async (params: { bookId: number }) => {
   return response.data;
 };
 
+const getFavoritesBooks = async () => {
+  const response = await api.get(`${BOOK_URL}/all-favorites`);
+
+  return response.data;
+};
+
 const booksService = {
   getAllBooks,
   getRecommendationBooks,
   getOneBook,
   addFavoriteBook,
   deleteFavoriteBook,
+  getFavoritesBooks,
   getAllGenres,
 };
 
