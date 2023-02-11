@@ -1,11 +1,11 @@
 import { api } from '../axios-instance';
 
-import type { ITypesAuthRequest, IAuthResponseType, ITypeDataUser } from '../../interfaces/userInterfaces';
+import type { ITypesAuthRequest, IAuthResponseType, ITypeResponseCurUser } from '../../interfaces/userInterfaces';
 
 const AUTH_URL = '/auth';
 
 const getCurrentUser = async () => {
-  const response = await api.get<ITypeDataUser>(`${AUTH_URL}/me`);
+  const response = await api.get<ITypeResponseCurUser>(`${AUTH_URL}/me`);
 
   return response.data;
 };

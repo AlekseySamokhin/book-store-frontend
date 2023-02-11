@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { createSlice } from '@reduxjs/toolkit';
 
 import { authThunks, userThunks } from './thunks';
@@ -50,7 +51,8 @@ const userSlice = createSlice({
         return;
       }
 
-      state.user = action.payload;
+      state.user = action.payload.currentUser;
+      state.favoritesBooks = action.payload.favoritesBooksArray;
     });
 
     builder.addCase(authThunks.signUp.fulfilled, (state, action) => {

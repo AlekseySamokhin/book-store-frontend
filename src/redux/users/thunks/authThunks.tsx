@@ -1,10 +1,9 @@
-/* eslint-disable no-console */
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import type { AxiosError } from 'axios';
 
-import { authService } from '../../../api/services';
-import { useLocalStorage } from '../../../utils/storage';
-import type { ITypesAuthRequest } from '../../../interfaces/userInterfaces';
+import { authService } from '@/api/services';
+import { useLocalStorage } from '@/utils/storage';
+import type { ITypesAuthRequest } from '@/interfaces/userInterfaces';
 
 const signUp = createAsyncThunk(
   'user/register',

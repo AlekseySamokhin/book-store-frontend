@@ -5,6 +5,11 @@ interface ITypeStateUser {
   favoritesBooks: ITypeDataBook[];
 }
 
+interface ITypeResponseCurUser {
+  currentUser: ITypeDataUser;
+  favoritesBooksArray: ITypeDataBook[];
+}
+
 interface ITypeDataUser {
   id: number;
   fullName: string;
@@ -53,4 +58,5 @@ export type {
   ITypesUpdatedInfoUser,
   ITypesUpdatedPasswordsUser,
   ITypeUpdatedAvatarUser,
+  ITypeResponseCurUser,
 };

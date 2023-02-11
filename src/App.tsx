@@ -24,6 +24,7 @@ const App: React.FC = (): JSX.Element => {
 
     if (!token) {
       setIsLoading(true);
+
       return;
     }
 

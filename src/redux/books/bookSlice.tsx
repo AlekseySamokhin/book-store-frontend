@@ -10,7 +10,6 @@ import type {
 interface ITypeStateBookSlice {
   books: ITypeDataBook[];
   pagination: ITypePagination;
-  personalRating: number;
 }
 
 const initialBook: ITypeDataBook = {
@@ -32,11 +31,8 @@ const initialPagination: ITypePagination = {
   prevPage: 0,
 };
 
-const initialRating = 0;
-
 const getInitialState = (): ITypeStateBookSlice => ({
   books: [initialBook],
-  personalRating: initialRating,
   pagination: initialPagination,
 });
 
@@ -52,24 +48,6 @@ const booksSlice = createSlice({
 
       state.books = action.payload.books;
       state.pagination = action.payload.info;
-    });
-
-    builder.addCase(bookThunks.getOneBook.fulfilled, (state, action) => {
-      if (!action.payload) {
-        return;
-      }
-
-      state.books = [action.payload.book];
-      state.personalRating = action.payload.personalRating;
-    });
-
-    builder.addCase(bookThunks.setRatingBook.fulfilled, (state, action) => {
-      if (!action.payload) {
-        return;
-      }
-
-      state.books = [action.payload.book];
-      state.personalRating = action.payload.personalRating;
     });
   },
 });

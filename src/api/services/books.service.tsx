@@ -26,7 +26,7 @@ const getAllBooks = async (params: ITypesRequestFilters) => {
   return response.data;
 };
 
-const getOneBook = async (params: { bookId: number; userId: number }) => {
+const getOneBook = async (params: { bookId: number }) => {
   const response = await api.get<ITypeResponseGetOneBook>(`${BOOK_URL}/one`, {
     params,
   });

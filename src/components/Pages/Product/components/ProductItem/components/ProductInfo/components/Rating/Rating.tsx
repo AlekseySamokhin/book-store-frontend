@@ -1,14 +1,14 @@
 /* eslint-disable no-console */
-// import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
-import { useAppSelector, useAppDispatch } from '@/redux/store';
+import { useAppSelector } from '@/redux/store';
 
 import { StarRating } from './components/StarRating';
 import { FiveStarsRating } from '@/components/ui';
 import { RateThisBook } from './components/RateThisBook';
 
 import { RatingStyled } from './Rating.styles';
-import { bookThunks } from '@/redux/books/bookThunks';
+import { ratingService } from '@/api/services';
 
 interface ITypeProps {
   className?: string;
@@ -18,29 +18,35 @@ interface ITypeProps {
 }
 
 const Rating: React.FC<ITypeProps> = (props): JSX.Element => {
-  const dispatch = useAppDispatch();
   const userId = useAppSelector((state) => state.auth.user.id);
+  const [personalRating, setPersonalRating] = useState<number>(0);
+  const [averageRating, setAverageRating] = useState<number>(0);
 
-  const handleChangeRate = (newRate: number) => {
-    dispatch(
-      bookThunks.setRatingBook({
+  const handleChangeRate = async (newRate: number) => {
+    try {
+      const { personalRating, averageRating } = await ratingService.addRating({
+        rate: newRate,
         bookId: Number(props.bookId),
         userId,
-        rate: newRate,
-      }),
-    );
+      });
+
+      setPersonalRating(personalRating);
+      setAverageRating(averageRating);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
     <RatingStyled className={props.className}>
       <StarRating
         className="product__item_rating_star"
-        averageRating={props.averageRating || 0}
+        averageRating={averageRating || props.averageRating}
       />
 
       <FiveStarsRating
         className="product__item_rating_five_star"
-        personalRating={props.personalRating || 0}
+        personalRating={personalRating || props.personalRating}
         changeRate={handleChangeRate}
         readOnly={false}
       />

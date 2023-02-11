@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-const BookItemStyled = styled.div`
+interface ITypeProps {
+  like: boolean;
+}
+
+const BookItemStyled = styled.div<ITypeProps>`
   max-width: 305px;
   display: flex;
   flex-direction: column;
@@ -50,6 +54,7 @@ const BookItemStyled = styled.div`
     width: 48px;
     height: 48px;
     border-radius: 50px;
+    opacity: ${(props) => (props.like ? '0.5' : '1')};
     background: ${(props) => props.theme.colors.dark_blue};
   }
 

@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+import { useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Rating from '@mui/material/Rating';
 
@@ -24,21 +26,27 @@ const BookItem: React.FC<ITypesProps> = (props) => {
   const email = useAppSelector((store) => store.auth.user.email);
   const favoritesBooks = useAppSelector((store) => store.auth.favoritesBooks);
 
-  const arrayIdFavoriteBook = favoritesBooks.map((book) => book.bookId);
-  const likedBook = arrayIdFavoriteBook.includes(props.book.bookId);
+  const checkForLikes = (array: ITypeDataBook[]) => {
+    const arrayIdBooks = array.map((item) => item.bookId);
+    return arrayIdBooks.includes(props.book.bookId);
+  };
+
+  const hasLike = useMemo(() => checkForLikes(favoritesBooks), [favoritesBooks]);
+
+  console.log(hasLike);
 
   const handleAddFavorite = async () => {
     if (!email) {
       navigate('/signin');
     }
 
-    if (!likedBook) {
+    if (!hasLike) {
       dispatch(
         bookThunks.addFavoriteBook({ bookId: Number(props.book.bookId) }),
       );
     }
 
-    if (likedBook && arrayIdFavoriteBook.length !== 0) {
+    if (hasLike) {
       dispatch(
         bookThunks.deleteFavoriteBook({ bookId: Number(props.book.bookId) }),
       );
@@ -46,7 +54,7 @@ const BookItem: React.FC<ITypesProps> = (props) => {
   };
 
   return (
-    <BookItemStyled className={props.className}>
+    <BookItemStyled like={hasLike} className={props.className}>
       <div className="book-item__poster">
         <Link
           className="book__item__link"
