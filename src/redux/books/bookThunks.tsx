@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import type { AxiosError } from 'axios';
 
-import { booksService } from '@/api/services';
+import { booksService, cartService } from '@/api/services';
 
 import type { ITypesRequestFilters } from '@/interfaces/bookInterfaces';
 
@@ -41,10 +41,23 @@ const deleteFavoriteBook = createAsyncThunk(
   },
 );
 
+const addCartBook = createAsyncThunk(
+  'book/add-cart',
+  async (values: { bookId: number }) => {
+    try {
+      return await cartService.addCartBook(values);
+    } catch (_err) {
+      const err = _err as AxiosError;
+      throw err.response?.data;
+    }
+  },
+);
+
 const bookThunks = {
   getAllBooks,
   addFavoriteBook,
   deleteFavoriteBook,
+  addCartBook,
 };
 
 export { bookThunks };

@@ -3,6 +3,7 @@ import { userService } from './user.service';
 import { booksService } from './books.service';
 import { ratingService } from './rating.service';
 import { commentService } from './comment.service';
+import { cartService } from './cart.service';
 
 export {
   authService,
@@ -10,4 +11,5 @@ export {
   booksService,
   ratingService,
   commentService,
+  cartService,
 };

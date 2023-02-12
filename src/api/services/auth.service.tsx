@@ -1,6 +1,6 @@
 import { api } from '../axios-instance';
 
-import type { ITypesAuthRequest, IAuthResponseType, ITypeResponseCurUser } from '../../interfaces/userInterfaces';
+import type { ITypesAuthRequest, IAuthResponseType, ITypeResponseCurUser } from '@/interfaces/userInterfaces';
 
 const AUTH_URL = '/auth';
 

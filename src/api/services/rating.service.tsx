@@ -5,7 +5,6 @@ const RATING_URL = '/book';
 
 const addRating = async (params: {
   bookId: number;
-  userId: number;
   rate: number;
 }) => {
   const response = await api.post(`${RATING_URL}/add`, params);

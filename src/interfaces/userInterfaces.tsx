@@ -3,11 +3,19 @@ import type { ITypeDataBook } from './bookInterfaces';
 interface ITypeStateUser {
   user: ITypeDataUser;
   favoritesBooks: ITypeDataBook[];
+  cart: ITypeCartUser[];
 }
 
 interface ITypeResponseCurUser {
   currentUser: ITypeDataUser;
   favoritesBooksArray: ITypeDataBook[];
+  cartUser: ITypeCartUser[];
+}
+
+interface ITypeCartUser {
+  id: number;
+  count: string;
+  book: ITypeDataBook;
 }
 
 interface ITypeDataUser {
@@ -59,4 +67,5 @@ export type {
   ITypesUpdatedPasswordsUser,
   ITypeUpdatedAvatarUser,
   ITypeResponseCurUser,
+  ITypeCartUser,
 };

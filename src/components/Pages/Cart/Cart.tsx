@@ -1,26 +1,49 @@
+/* eslint-disable no-console */
+import { useMemo } from 'react';
+
 import { Container } from '@/components/styles';
 import { Button } from '../../ui';
+
+import { useAppSelector } from '@/redux/store';
 
 import { CartIsEmpty } from './CarIsEmpty';
 
 import { CartStyled } from './Cart.styles';
 import { CartItem } from './CartItem';
+import type { ITypeCartUser } from '@/interfaces/userInterfaces';
 
-const boolean = true;
+const Cart: React.FC = () => {
+  const cart = useAppSelector((state) => state.auth.cart);
 
-const Cart: React.FC = (): JSX.Element => {
+  const getTotalAmount = (array: ITypeCartUser[]) => {
+    const arrayPrices = [] as number[];
+
+    array.forEach((item) => {
+      arrayPrices.push(item.book.price);
+    });
+
+    let totalAmount = 0;
+
+    arrayPrices.forEach((item) => {
+      totalAmount += item;
+    });
+
+    return totalAmount;
+  };
+
+  const totalAmount = useMemo(() => getTotalAmount(cart), [cart]);
+
   return (
     <Container>
-      {boolean ? (
+      {cart.length ? (
         <CartStyled>
           <div className="cart__list">
-            <CartItem />
-            <CartItem />
-            <CartItem />
-            <CartItem />
+            {cart.map((cartItem) => (
+              <CartItem key={cartItem.id} book={cartItem} />
+            ))}
           </div>
           <p className="cart__total">
-            Total: <span>34.98</span>
+            Total: <span>{totalAmount} $</span>
           </p>
           <div className="cart__buttons">
             <Button>Continue shopping</Button>

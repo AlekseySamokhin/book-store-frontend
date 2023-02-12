@@ -14,6 +14,7 @@ import { Button } from '@/components/ui';
 import type { ITypeDataBook } from '@/interfaces/bookInterfaces';
 
 import { BookItemStyled } from './BookItem.styles';
+import { cartService } from '@/api/services';
 
 interface ITypesProps {
   book: ITypeDataBook;
@@ -33,9 +34,7 @@ const BookItem: React.FC<ITypesProps> = (props) => {
 
   const hasLike = useMemo(() => checkForLikes(favoritesBooks), [favoritesBooks]);
 
-  console.log(hasLike);
-
-  const handleAddFavorite = async () => {
+  const handleAddFavoriteBook = async () => {
     if (!email) {
       navigate('/signin');
     }
@@ -53,12 +52,20 @@ const BookItem: React.FC<ITypesProps> = (props) => {
     }
   };
 
+  const handleAddCartBook = async () => {
+    if (!email) {
+      navigate('/signin');
+    }
+
+    await cartService.addCartBook({ bookId: Number(props.book.bookId) });
+  };
+
   return (
     <BookItemStyled like={hasLike} className={props.className}>
       <div className="book-item__poster">
         <Link
           className="book__item__link"
-          to={{ pathname: `product/${props.book.bookId}` }}
+          to={{ pathname: `/product/${props.book.bookId}` }}
         >
           <img className="book-item__image" src={props.book.poster} />
         </Link>
@@ -71,7 +78,7 @@ const BookItem: React.FC<ITypesProps> = (props) => {
           />
         )}
 
-        <div onClick={handleAddFavorite} className="book-item__like">
+        <div onClick={handleAddFavoriteBook} className="book-item__like">
           <img
             className="book-item__like_icon"
             src={icons.like}
@@ -102,14 +109,9 @@ const BookItem: React.FC<ITypesProps> = (props) => {
         </span>
       </div>
 
-      {/* <Link
-        className="book-item__link"
-        to={{ pathname: `product/${props.book.bookId}` }}
-      > */}
-      <Button className="book-item__button">
+      <Button onClick={handleAddCartBook} className="book-item__button">
         $ {`${props.book.price}`} USD
       </Button>
-      {/* </Link> */}
     </BookItemStyled>
   );
 };

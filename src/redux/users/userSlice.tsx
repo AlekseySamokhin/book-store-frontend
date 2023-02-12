@@ -4,7 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { authThunks, userThunks } from './thunks';
 import { bookThunks } from '../books/bookThunks';
 
-import type { ITypeDataUser, ITypeStateUser } from '@/interfaces/userInterfaces';
+import type { ITypeCartUser, ITypeDataUser, ITypeStateUser } from '@/interfaces/userInterfaces';
 import type { ITypeDataBook } from '@/interfaces/bookInterfaces';
 
 const initialUser: ITypeDataUser = {
@@ -18,6 +18,7 @@ const initialUser: ITypeDataUser = {
 const getInitialState = (): ITypeStateUser => ({
   user: initialUser,
   favoritesBooks: [] as ITypeDataBook[],
+  cart: [] as ITypeCartUser[],
 });
 
 const userSlice = createSlice({
@@ -51,8 +52,11 @@ const userSlice = createSlice({
         return;
       }
 
+      console.log(action.payload);
+
       state.user = action.payload.currentUser;
       state.favoritesBooks = action.payload.favoritesBooksArray;
+      state.cart = action.payload.cartUser;
     });
 
     builder.addCase(authThunks.signUp.fulfilled, (state, action) => {
