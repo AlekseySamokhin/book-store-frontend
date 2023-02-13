@@ -1,20 +1,20 @@
+import { useAppSelector } from '@/redux/store';
+
 import { MenuItem } from '@/components/ui';
+
 import { icons } from '@/assets';
 
 import { MenuAfterAuthStyled } from './MenuAfterAuth.styles';
 
-const authItems = [
-  { path: 'cart', icon: icons.cart, alt: 'Cart icon' },
-  { path: 'favorites', icon: icons.like, alt: 'Like icon' },
-  { path: 'profile', icon: icons.user, alt: 'User icon' },
-];
-
 const MenuAfterAuth = () => {
+  const cart = useAppSelector((state) => state.auth.cart);
+  const favorites = useAppSelector((state) => state.auth.favorites);
+
   return (
     <MenuAfterAuthStyled>
-      {authItems.map((item, index) => (
-        <MenuItem key={index} path={item.path} icon={item.icon} alt={item.icon} />
-      ))}
+      <MenuItem count={cart.length} path="cart" icon={icons.cart} alt="cart icon" />
+      <MenuItem count={favorites.length} path="favorites" icon={icons.like} alt="like icon" />
+      <MenuItem path="profile" icon={icons.user} alt="user icon" />
     </MenuAfterAuthStyled>
   );
 };

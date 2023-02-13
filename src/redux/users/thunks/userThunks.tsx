@@ -1,13 +1,14 @@
+/* eslint-disable no-console */
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import type { AxiosError } from 'axios';
 
-import { userService } from '../../../api/services';
+import { userService, cartService } from '@/api/services';
 
 import type {
   ITypesUpdatedInfoUser,
   ITypeUpdatedAvatarUser,
   ITypesUpdatedPasswordsUser,
-} from '../../../interfaces/userInterfaces';
+} from '@/interfaces/userInterfaces';
 
 const updateInfo = createAsyncThunk(
   'user/update-info',
@@ -17,7 +18,7 @@ const updateInfo = createAsyncThunk(
 
       return data;
     } catch (_err) {
-      const err = (_err as AxiosError);
+      const err = _err as AxiosError;
       throw err.response?.data;
     }
   },
@@ -31,7 +32,7 @@ const updateAvatar = createAsyncThunk(
 
       return avatar;
     } catch (_err) {
-      const err = (_err as AxiosError);
+      const err = _err as AxiosError;
       throw err.response?.data;
     }
   },
@@ -45,16 +46,28 @@ const updatePassword = createAsyncThunk(
 
       return data;
     } catch (_err) {
-      const err = (_err as AxiosError);
+      const err = _err as AxiosError;
       throw err.response?.data;
     }
   },
 );
 
+const getCart = createAsyncThunk('cart', async () => {
+  try {
+    const data = await cartService.getCart();
+
+    return data;
+  } catch (_err) {
+    const err = _err as AxiosError;
+    throw err.response?.data;
+  }
+});
+
 const userThunks = {
   updateAvatar,
   updatePassword,
   updateInfo,
+  getCart,
 };
 
 export { userThunks };

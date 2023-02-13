@@ -3,6 +3,7 @@ import StyledButton from './Button.styles';
 interface ITypesProps {
   type?: 'button' | 'reset' | 'submit';
   disabled?: boolean;
+  outlined?: boolean;
   primary?: string;
   secondary?: boolean;
   className?: string;
@@ -15,6 +16,7 @@ const Button: React.FC<ITypesProps> = (props) => {
     <StyledButton
       onClick={props.onClick}
       type={props.type}
+      outlined={props.outlined}
       disabled={props.disabled}
       className={props.className}
     >

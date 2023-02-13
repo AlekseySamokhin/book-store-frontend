@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import type { AxiosError } from 'axios';
 
@@ -27,13 +28,17 @@ const signIn = createAsyncThunk(
   'user/login',
   async (values: ITypesAuthRequest) => {
     try {
-      const data = await authService.signIn(values);
+      const response = await authService.signIn(values);
 
-      const { user, accessToken } = data;
+      useLocalStorage.set('token', response.accessToken);
 
-      useLocalStorage.set('token', accessToken);
+      const data = {
+        cart: response.cart,
+        favorites: response.favorites,
+        user: response.user,
+      };
 
-      return user;
+      return data;
     } catch (_err) {
       const err = _err as AxiosError;
       throw err.response?.data;

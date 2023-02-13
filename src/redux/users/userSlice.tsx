@@ -17,7 +17,7 @@ const initialUser: ITypeDataUser = {
 
 const getInitialState = (): ITypeStateUser => ({
   user: initialUser,
-  favoritesBooks: [] as ITypeDataBook[],
+  favorites: [] as ITypeDataBook[],
   cart: [] as ITypeCartUser[],
 });
 
@@ -31,12 +31,20 @@ const userSlice = createSlice({
   },
 
   extraReducers: (builder) => {
+    builder.addCase(userThunks.getCart.fulfilled, (state, action) => {
+      if (!action.payload) {
+        return;
+      }
+
+      state.cart = action.payload;
+    });
+
     builder.addCase(bookThunks.addFavoriteBook.fulfilled, (state, action) => {
       if (!action.payload) {
         return;
       }
 
-      state.favoritesBooks = action.payload;
+      state.favorites = action.payload;
     });
 
     builder.addCase(bookThunks.deleteFavoriteBook.fulfilled, (state, action) => {
@@ -44,7 +52,7 @@ const userSlice = createSlice({
         return;
       }
 
-      state.favoritesBooks = action.payload;
+      state.favorites = action.payload;
     });
 
     builder.addCase(authThunks.getCurrentUser.fulfilled, (state, action) => {
@@ -52,10 +60,8 @@ const userSlice = createSlice({
         return;
       }
 
-      console.log(action.payload);
-
       state.user = action.payload.currentUser;
-      state.favoritesBooks = action.payload.favoritesBooksArray;
+      state.favorites = action.payload.favoritesBooksArray;
       state.cart = action.payload.cartUser;
     });
 
@@ -72,7 +78,11 @@ const userSlice = createSlice({
         return;
       }
 
-      state.user = action.payload;
+      console.log(action.payload);
+
+      state.user = action.payload.user;
+      state.cart = action.payload.cart;
+      state.favorites = action.payload.favorites;
     });
 
     builder.addCase(userThunks.updateInfo.fulfilled, (state, action) => {

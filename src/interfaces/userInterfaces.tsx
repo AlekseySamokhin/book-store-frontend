@@ -2,7 +2,7 @@ import type { ITypeDataBook } from './bookInterfaces';
 
 interface ITypeStateUser {
   user: ITypeDataUser;
-  favoritesBooks: ITypeDataBook[];
+  favorites: ITypeDataBook[];
   cart: ITypeCartUser[];
 }
 
@@ -34,6 +34,8 @@ interface ITypesAuthRequest {
 interface IAuthResponseType {
   user: ITypeDataUser;
   accessToken: string;
+  cart: ITypeCartUser[];
+  favorites: ITypeDataBook[];
 }
 
 interface IUpdatedDataUserType {

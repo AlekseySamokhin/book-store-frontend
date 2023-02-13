@@ -1,7 +1,8 @@
-import { Button } from '../../../ui';
-import { CartIsEmptyStyled } from './CartIsEmpty.styles';
+import { images } from '@/assets';
 
-import { images } from '../../../../assets';
+import { Button } from '@/components/ui';
+
+import { CartIsEmptyStyled } from './CartIsEmpty.styles';
 
 const CartIsEmpty: React.FC = (): JSX.Element => {
   return (
@@ -12,7 +13,7 @@ const CartIsEmpty: React.FC = (): JSX.Element => {
         alt="Image cart is empty"
       />
 
-      <div className='cart-is-empty__text'>
+      <div className="cart-is-empty__text">
         <h2 className="cart-is-empty__title">Your cart is empty</h2>
         <p className="cart-is-empty__description">
           Add items to cart to make a purchase. <br /> Go to the catalogue no.

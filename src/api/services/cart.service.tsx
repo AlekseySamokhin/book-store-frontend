@@ -1,24 +1,40 @@
 import { api } from '../axios-instance';
 
-import type { ITypeDataBook } from '@/interfaces/bookInterfaces';
+import type { ITypeCartUser } from '@/interfaces/userInterfaces';
 
 const CART_URL = '/cart';
 
 const addCartBook = (params: { bookId: number }) => {
-  return api.post<ITypeDataBook[]>(`${CART_URL}/add`, {
+  return api.post(`${CART_URL}/add`, {
     params,
   });
 };
 
-const deleteCartBook = (params: { bookId: number }) => {
-  return api.delete<ITypeDataBook[]>(`${CART_URL}/delete`, {
+const deleteCartBook = (params: { cartId: number }) => {
+  return api.delete(`${CART_URL}/delete`, {
     params,
   });
+};
+
+const getCart = async () => {
+  const response = await api.get<ITypeCartUser[]>(`${CART_URL}/all`);
+
+  return response.data;
+};
+
+const changeQtyBooksCart = async (params: {cartId: number; count: number}) => {
+  const response = await api.patch<ITypeCartUser[]>(`${CART_URL}/change-qty`, {
+    params,
+  });
+
+  return response.data;
 };
 
 const cartService = {
   addCartBook,
   deleteCartBook,
+  getCart,
+  changeQtyBooksCart,
 };
 
 export { cartService };

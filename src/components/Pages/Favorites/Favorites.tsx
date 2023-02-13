@@ -7,7 +7,7 @@ import { Container } from '@/components/styles';
 import { FavoritesStyled } from './Favorites.styles';
 
 const Favorites: React.FC = () => {
-  const favoritesBooks = useAppSelector((state) => state.auth.favoritesBooks);
+  const favoritesBooks = useAppSelector((state) => state.auth.favorites);
 
   return (
     <Container>

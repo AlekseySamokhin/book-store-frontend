@@ -5,6 +5,7 @@ import Rating from '@mui/material/Rating';
 
 import { useAppDispatch, useAppSelector } from '@/redux/store';
 import { bookThunks } from '@/redux/books/bookThunks';
+import { userThunks } from '@/redux/users/thunks';
 
 import { BookStatus } from './BookStatus';
 
@@ -12,27 +13,42 @@ import { icons } from '@/assets';
 import { Button } from '@/components/ui';
 
 import type { ITypeDataBook } from '@/interfaces/bookInterfaces';
+import type { ITypeCartUser } from '@/interfaces/userInterfaces';
 
 import { BookItemStyled } from './BookItem.styles';
 import { cartService } from '@/api/services';
 
-interface ITypesProps {
+interface ITypeProps {
   book: ITypeDataBook;
   className?: string;
 }
 
-const BookItem: React.FC<ITypesProps> = (props) => {
+const BookItem: React.FC<ITypeProps> = (props) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const email = useAppSelector((store) => store.auth.user.email);
-  const favoritesBooks = useAppSelector((store) => store.auth.favoritesBooks);
 
-  const checkForLikes = (array: ITypeDataBook[]) => {
-    const arrayIdBooks = array.map((item) => item.bookId);
+  const email = useAppSelector((store) => store.auth.user.email);
+  const favorites = useAppSelector((store) => store.auth.favorites);
+  const cart = useAppSelector((store) => store.auth.cart);
+
+  const checkForCart = (array: ITypeCartUser[]) => {
+    const arrayIdBooks = array.map((item) => item.book.bookId);
+
     return arrayIdBooks.includes(props.book.bookId);
   };
 
-  const hasLike = useMemo(() => checkForLikes(favoritesBooks), [favoritesBooks]);
+  const hasCart = useMemo(() => checkForCart(cart), [cart]);
+
+  const checkForLikes = (array: ITypeDataBook[]) => {
+    const arrayIdBooks = array.map((item) => item.bookId);
+
+    return arrayIdBooks.includes(props.book.bookId);
+  };
+
+  const hasLike = useMemo(
+    () => checkForLikes(favorites),
+    [favorites],
+  );
 
   const handleAddFavoriteBook = async () => {
     if (!email) {
@@ -58,6 +74,7 @@ const BookItem: React.FC<ITypesProps> = (props) => {
     }
 
     await cartService.addCartBook({ bookId: Number(props.book.bookId) });
+    dispatch(userThunks.getCart());
   };
 
   return (
@@ -108,10 +125,13 @@ const BookItem: React.FC<ITypesProps> = (props) => {
             : props.book.averageRating}
         </span>
       </div>
-
-      <Button onClick={handleAddCartBook} className="book-item__button">
-        $ {`${props.book.price}`} USD
-      </Button>
+      {hasCart ? (
+        <Button outlined>Added to cart</Button>
+      ) : (
+        <Button onClick={handleAddCartBook} className="book-item__button">
+          $ {`${props.book.price}`} USD
+        </Button>
+      )}
     </BookItemStyled>
   );
 };

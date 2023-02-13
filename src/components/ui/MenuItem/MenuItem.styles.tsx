@@ -21,6 +21,21 @@ const MenuItemStyled = styled.div<ITypesProps>`
     right: 0;
     bottom: 0;
   }
+
+  .menu-item__count {
+    position: absolute;
+    width: 23px;
+    height: 23px;
+    top: -6px;
+    left: 33px;
+    border-radius: 50px;
+    background: #bfcc94;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 18px;
+    color: #344966;
+  }
 `;
 
 export { MenuItemStyled };
