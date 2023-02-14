@@ -1,12 +1,11 @@
 import { Link } from 'react-router-dom';
 
-import { FlexStyled } from '@/components/styles/Flex.styles.tsx';
+import { Button } from '@/components/ui';
+import { FlexStyled } from '@/components/styles';
 
 import { images } from '@/assets';
 
 import { BookBannerStyled } from './BookBanner.styles';
-
-import { Button } from '@/components/ui/Button';
 
 interface ITypeProps {
   className?: string;
@@ -24,11 +23,13 @@ const BookBanner: React.FC<ITypeProps> = (props): JSX.Element => {
           <Button>Choose a book</Button>
         </Link>
       </FlexStyled>
+
       <img
         className="book-banner__image"
         src={images.bookBannerGirlWithBook}
         alt="Banner image"
       />
+
       <img
         className="book-banner__image-background"
         src={images.bookBannerBooks}

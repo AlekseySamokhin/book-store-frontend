@@ -1,5 +1,4 @@
-import { BookBanner, AuthBanner } from '@/components/ui/Banners';
-
+import { BookBanner, AuthBanner } from '@/components/ui';
 import { CheckAuth } from '@/components/Containers';
 import { Container } from '@/components/styles';
 

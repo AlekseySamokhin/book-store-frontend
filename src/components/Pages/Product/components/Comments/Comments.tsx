@@ -1,28 +1,22 @@
-/* eslint-disable no-console */
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { commentService } from '@/api/services';
 
-// import { commentsData } from '@/api/fakeApi/comments';
-
 import { AddComment, CommentItem } from './components';
-
 import { CheckAuth } from '@/components/Containers';
 
-import { CommentsStyled } from './Comments.styled';
-
 import type { ITypeComment } from '@/interfaces/commentInterfaces';
+
+import { CommentsStyled } from './Comments.styles';
 
 interface ITypesProps {
   className?: string;
 }
 
 const Comments: React.FC<ITypesProps> = (props): JSX.Element => {
-  const { bookId } = useParams<string>();
   const [comments, setComments] = useState<ITypeComment[]>([]);
-
-  console.log(comments);
+  const { bookId } = useParams<string>();
 
   useEffect(() => {
     (async () => {
@@ -33,6 +27,7 @@ const Comments: React.FC<ITypesProps> = (props): JSX.Element => {
 
         setComments(comments);
       } catch (err) {
+        // eslint-disable-next-line no-console
         console.log(err);
       }
     })();

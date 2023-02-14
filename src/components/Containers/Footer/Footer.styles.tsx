@@ -13,11 +13,6 @@ const FooterStyled = styled.footer`
     align-items: center;
   }
 
-  .footer__block {
-    display: flex;
-    flex-direction: column;
-  }
-
   .footer__contacts {
     display: flex;
     flex-direction: column;
@@ -28,10 +23,9 @@ const FooterStyled = styled.footer`
     }
   }
 
-  .footer__nav {
-    li:not(:last-child) {
-      padding-bottom: 11px;
-    }
+  .footer__nav_item:not(:last-child) {
+    padding-bottom: 11px;
+    cursor: pointer;
   }
 
   .footer__location {
@@ -41,10 +35,6 @@ const FooterStyled = styled.footer`
     span {
       padding-bottom: 5px;
     }
-  }
-
-  li {
-    cursor: pointer;
   }
 
   @media (max-width: 1280px) {

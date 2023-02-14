@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-interface ITypesProps {
+interface ITypeProps {
   disabled?: boolean;
 }
 
-const MenuItemStyled = styled.div<ITypesProps>`
+const MenuItemStyled = styled.div<ITypeProps>`
   width: 48px;
   height: 48px;
   border-radius: 50px;
@@ -28,6 +28,8 @@ const MenuItemStyled = styled.div<ITypesProps>`
     height: 23px;
     top: -6px;
     left: 33px;
+    padding-top: 3px;
+    text-align: center;
     border-radius: 50px;
     background: #bfcc94;
     font-style: normal;
@@ -35,6 +37,24 @@ const MenuItemStyled = styled.div<ITypesProps>`
     font-size: 12px;
     line-height: 18px;
     color: #344966;
+  }
+
+  @media (max-width: 430px) {
+    width: 32px;
+    height: 32px;
+
+    .menu-item__icon {
+      width: 17px;
+      height: 17px;
+    }
+
+    .menu-item__count {
+      width: 17px;
+      height: 17px;
+      top: -5px;
+      left: 22px;
+      padding-top: 1px;
+    }
   }
 `;
 

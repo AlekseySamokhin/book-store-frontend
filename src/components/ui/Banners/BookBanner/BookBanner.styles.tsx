@@ -29,6 +29,7 @@ const BookBannerStyled = styled.div`
   .book-banner__image {
     position: absolute;
     bottom: 0;
+    z-index: 10;
     right: 98px;
   }
 
@@ -40,7 +41,35 @@ const BookBannerStyled = styled.div`
   }
 
   @media (max-width: 1100px) {
-    padding: 0 14px 0 40px;
+    .book-banner__image {
+      right: 3px;
+    }
+  }
+
+  @media (max-width: 1060px) {
+    padding: 60px 0 76px 108px;
+  }
+
+  @media (max-width: 1020px) {
+    padding: 60px 0 76px 40px;
+  }
+
+  .book-banner__title {
+    font-size: 32px;
+  }
+
+  .book-banner__description {
+    font-size: 16px;
+  }
+
+  @media (max-width: 840px) {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 20px 76px 20px;
+
+    .book-banner__image {
+      position: static;
+    }
   }
 `;
 

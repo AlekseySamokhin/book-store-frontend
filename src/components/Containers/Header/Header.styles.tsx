@@ -10,62 +10,96 @@ const HeaderStyled = styled.header`
 
   .header__link {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+  }
 
-    height: 100%;
+  .header__search {
+    max-width: 630px;
+  }
 
-    span {
-      padding-left: 128px;
+  .header__logo {
+    padding-right: 128px;
+  }
+
+  @media (max-width: 1240px) {
+    .header__logo {
+      padding-right: 80px;
     }
   }
 
-  @media (max-width: 1100px) {
-    padding: 20px 0 20px 0;
-    margin-bottom: 5px;
+  @media (max-width: 1150px) {
+    .header__search {
+      max-width: 500px;
+    }
 
-    .header__link {
-      span {
-        padding-left: 100px;
-      }
+    .header__logo {
+      padding-right: 60px;
     }
   }
 
-  @media (max-width: 970px) {
-    .header__link {
-      span {
-        padding-left: 80px;
-      }
+  @media (max-width: 1000px) {
+    .header__search {
+      max-width: 400px;
+    }
+
+    .header__logo {
+      padding-right: 60px;
     }
   }
 
-  @media (max-width: 700px) {
+  @media (max-width: 880px) {
+    .header__search {
+      max-width: 247px;
+    }
+
+    .header__logo {
+      padding-right: 50px;
+    }
+  }
+
+  @media (max-width: 690px) {
+    .header__logo {
+      padding-right: 17px;
+    }
+  }
+
+  @media (max-width: 660px) {
+    padding-top: 37px;
     flex-wrap: wrap;
 
-    .header__menu {
-      order: -1;
+    .header__search {
+      order: 1;
+      margin-top: 17px;
+      max-width: initial;
     }
 
-    .header__link {
-      order: -2;
+    .header__logo {
+      padding-right: 100px;
     }
   }
 
-  @media (max-width: 850px) {
-    .header__link {
-      span {
-        padding-left: 30px;
-      }
+  @media (max-width: 500px) {
+    .header__logo {
+      padding-right: 25px;
     }
   }
 
-  @media (max-width: 833px) {
-    .header__link {
-      span {
-        font-size: 14px;
-      }
+  @media (max-width: 410px) {
+    .header__logo {
+      padding-right: 17px;
     }
   }
+
+
+  /* @media (max-width: 800px) {
+    .header__search {
+      order: 1;
+    }
+
+    .header__logo {
+      padding-right: 30px;
+    }
+  } */
 `;
 
 export { HeaderStyled };

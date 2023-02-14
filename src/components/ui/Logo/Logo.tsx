@@ -1,18 +1,20 @@
 import { Link } from 'react-router-dom';
-import { logos } from '../../../assets';
+
+import { logos } from '@/assets';
 
 import { LogoStyled } from './Logo.styles';
 
-interface ITypesProps {
+interface ITypeProps {
   position: string;
+  className?: string;
 }
 
-const Logo: React.FC<ITypesProps> = (props): JSX.Element => {
+const Logo: React.FC<ITypeProps> = (props) => {
   const isHeaderPosition = props.position === 'header';
 
   return (
-    <LogoStyled>
-      <Link to="/">
+    <LogoStyled className={props.className}>
+      <Link className='logo__link' to="/">
         <img
           className="logo__image"
           src={isHeaderPosition ? logos.logoHeader : logos.logoFooter}

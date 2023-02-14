@@ -1,11 +1,15 @@
-/* eslint-disable no-console */
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import { icons } from '@/assets';
+
 import { SearchStyled } from './Search.styled';
 
-const Search: React.FC = (): JSX.Element => {
+interface ITypeProps {
+  className?: string;
+}
+
+const Search: React.FC<ITypeProps> = (props) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [text, setText] = useState<string>('');
 
@@ -41,7 +45,7 @@ const Search: React.FC = (): JSX.Element => {
   //  };
 
   return (
-    <SearchStyled>
+    <SearchStyled className={props.className}>
       <img
         className="search__icon"
         src={icons.search}
