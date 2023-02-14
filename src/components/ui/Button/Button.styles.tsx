@@ -14,6 +14,7 @@ const StyledButton = styled.button<ITypesProps>`
   border-radius: 16px;
   color: ${(props) => (props.outlined ? props.theme.colors.dark : props.theme.colors.light)};
   font-size: 16px;
+  width: 100%;
   font-weight: 500;
   letter-spacing: 0.75px;
   transition: 0.3s;
@@ -24,20 +25,6 @@ const StyledButton = styled.button<ITypesProps>`
 
   &:hover {
     background-color: ${(props) => (props.outlined ? 'none' : props.theme.colors.dark)};
-  }
-
-  @media (max-width: 778px) {
-    font-size: 14px;
-    padding: 11px 17px;
-  }
-
-  @media (max-width: 680px) {
-    order: -2;
-  }
-
-  @media (max-width: 400px) {
-    font-size: 12px;
-    padding: 11px 17px;
   }
 `;
 

@@ -13,10 +13,10 @@ const MenuBeforeAuth: React.FC<IStyledPropsType> = (props) => {
   return (
     <MenuBeforeAuthStyled className={props.className}>
       <Link to="signin">
-        <Button>Sign In</Button>
+        <Button className="menu-before-auth__button">Sign In</Button>
       </Link>
       <Link to="signup">
-        <Button>Sign Up</Button>
+        <Button className="menu-before-auth__button">Sign Up</Button>
       </Link>
     </MenuBeforeAuthStyled>
   );
