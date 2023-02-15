@@ -21,7 +21,7 @@ const Footer = () => {
   return (
     <FooterStyled>
       <Container>
-        <footer className="footer">
+        <div className="footer">
           <FlexStyled direction="column">
             <Logo className="footer__logo" position="footer" />
 
@@ -64,13 +64,14 @@ const Footer = () => {
             <span className="footer__location_address">
               6391 Elgin St. Celina, Delaware 10299
             </span>
+
             <img
               className="footer__location_map"
               src={images.footerMap}
               alt="Location in Google maps"
             />
           </div>
-        </footer>
+        </div>
       </Container>
     </FooterStyled>
   );

@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 
+const tabletL = '@media (max-width: 850px)';
+const mobileL = '@media (max-width: 425px)';
+
 const BookBannerStyled = styled.div`
   position: relative;
   background-color: #f0f4ef;
@@ -44,7 +47,7 @@ const BookBannerStyled = styled.div`
     z-index: -10;
   }
 
-  @media (max-width: 1100px) {
+  /*@media (max-width: 1100px) {
     .book-banner__image {
       right: 3px;
     }
@@ -115,7 +118,7 @@ const BookBannerStyled = styled.div`
       left: 20px;
       top: 36px;
     }
-  }
+  }*/
 `;
 
 export { BookBannerStyled };
