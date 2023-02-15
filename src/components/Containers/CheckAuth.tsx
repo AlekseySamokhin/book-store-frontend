@@ -1,11 +1,11 @@
-import { useAppSelector } from '../../redux/store';
+import { useAppSelector } from '@/redux/store';
 
-interface ITypesProps {
+interface ITypeProps {
   needAuth?: boolean;
   children: React.ReactElement;
 }
 
-const CheckAuth: React.FC<ITypesProps> = (props): React.ReactElement | null => {
+const CheckAuth: React.FC<ITypeProps> = (props) => {
   const email = useAppSelector((state) => state.auth.user.email);
 
   if (!email && !props.needAuth) {

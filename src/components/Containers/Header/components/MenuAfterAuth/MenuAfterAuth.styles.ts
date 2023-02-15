@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+const mobileM = '@media (max-width: 435px)';
+
 interface ITypeProps {
   children: React.ReactNode;
   icon?: boolean;
@@ -13,10 +15,10 @@ const MenuAfterAuthStyled = styled.div<ITypeProps>`
     margin-right: 27px;
   }
 
-  @media (max-width: 430px) {
+  ${mobileM} {
     a:not(:last-child) {
-    margin-right: 17px;
-  }
+      margin-right: 17px;
+    }
   }
 `;
 

@@ -1,4 +1,4 @@
 import { AuthBanner } from './AuthBanner';
-import { BookBanner } from './BookBanner';
+import { BookBanner } from './BookBanner/BookBanner';
 
 export { AuthBanner, BookBanner };

@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+const mobileL = '@media(max-width: 435px)';
+
 interface ITypeProps {
   disabled?: boolean;
 }
@@ -39,7 +41,7 @@ const MenuItemStyled = styled.div<ITypeProps>`
     color: #344966;
   }
 
-  @media (max-width: 430px) {
+  ${mobileL} {
     width: 32px;
     height: 32px;
 

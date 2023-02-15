@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+const mobileL = '@media(max-width: 435px)';
+
 const LogoStyled = styled.div`
   .logo__image {
     max-width: 100%;
@@ -14,7 +16,7 @@ const LogoStyled = styled.div`
     height: 46px;
   }
 
-  @media (max-width: 430px) {
+  ${mobileL} {
     .logo__link {
       width: 62px;
       height: 31px;

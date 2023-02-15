@@ -61,14 +61,14 @@ const BookBannerStyled = styled.div`
 
   @media (max-width: 1020px) {
     padding: 60px 0 76px 40px;
-  }
 
-  .book-banner__title {
-    font-size: 32px;
-  }
+    .book-banner__title {
+      font-size: 32px;
+    }
 
-  .book-banner__description {
-    font-size: 16px;
+    .book-banner__description {
+      font-size: 16px;
+    }
   }
 
   @media (max-width: 840px) {

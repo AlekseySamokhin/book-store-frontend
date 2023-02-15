@@ -22,7 +22,7 @@ const AuthBanner: React.FC<ITypeProps> = (props) => {
       />
 
       <div className="auth-banner__block">
-        <h2 className="auth-banner__title">Authorize now</h2>
+        <h2 className="auth-banner__title ">Authorize now</h2>
 
         <p className="auth-banner__description">
           Authorize now and discover the fabulous <br /> world of books

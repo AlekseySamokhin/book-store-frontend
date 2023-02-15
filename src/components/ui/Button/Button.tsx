@@ -1,6 +1,6 @@
 import StyledButton from './Button.styles';
 
-interface ITypesProps {
+interface ITypeProps {
   type?: 'button' | 'reset' | 'submit';
   disabled?: boolean;
   outlined?: boolean;
@@ -11,7 +11,7 @@ interface ITypesProps {
   onClick?: () => void;
 }
 
-const Button: React.FC<ITypesProps> = (props) => {
+const Button: React.FC<ITypeProps> = (props) => {
   return (
     <StyledButton
       onClick={props.onClick}

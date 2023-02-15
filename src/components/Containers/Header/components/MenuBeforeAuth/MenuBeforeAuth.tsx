@@ -1,15 +1,15 @@
 import { Link } from 'react-router-dom';
 
-import { Button } from '../../../../ui';
+import { Button } from '@/components/ui';
 
-import { MenuBeforeAuthStyled } from './MenuBeforeAuth.styled';
+import { MenuBeforeAuthStyled } from './MenuBeforeAuth.styles';
 
-interface IStyledPropsType {
-  className: string;
+interface ITypeProps {
+  className?: string;
   children?: React.ReactNode;
 }
 
-const MenuBeforeAuth: React.FC<IStyledPropsType> = (props) => {
+const MenuBeforeAuth: React.FC<ITypeProps> = (props) => {
   return (
     <MenuBeforeAuthStyled className={props.className}>
       <Link to="signin">
