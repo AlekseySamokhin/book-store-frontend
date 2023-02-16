@@ -1,10 +1,15 @@
 import styled from 'styled-components';
 
+const tablet = '@media(max-width: 834px)';
+
 const CatalogStyled = styled.div`
   .catalog__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 50px;
+    gap: 10px;
+    flex-wrap: wrap;
   }
 
   .catalog__header_title {
@@ -12,14 +17,6 @@ const CatalogStyled = styled.div`
     font-size: 40px;
     line-height: 60px;
     color: #0d1821;
-  }
-
-  .catalog__header_select {
-    display: flex;
-
-    & div:not(:last-child) {
-      margin-right: 20px;
-    }
   }
 
   .catalog__booklist {
@@ -35,8 +32,8 @@ const CatalogStyled = styled.div`
     margin-bottom: 50px;
   }
 
-  .catalog__booklist_item {
-    margin: 50px 0 30px 0;
+  ${tablet} {
+
   }
 `;
 

@@ -1,15 +1,18 @@
-import { Container } from '@/components/styles';
+import { images } from '@/assets';
 
 import { BooksNotFoundStyled } from './BooksNotFound.styles';
 
-const BooksNotFound = () => {
+const BooksNotFound: React.FC = () => {
   return (
-    <Container>
-      <BooksNotFoundStyled>
-        <h2 className='books-not-found__title'>OOPS! :'(</h2>
-        <p className='books-not-found__message'>Books with this filters are currently out of stock!</p>
-      </BooksNotFoundStyled>
-    </Container>
+    <BooksNotFoundStyled>
+      <img
+        className="books-not-found__image"
+        src={images.sadSmile}
+        alt="icon sad smile"
+      />
+
+      <p className="books-not-found__text">Books were not found!</p>
+    </BooksNotFoundStyled>
   );
 };
 

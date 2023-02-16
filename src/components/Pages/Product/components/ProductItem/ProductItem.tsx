@@ -1,45 +1,26 @@
-/* eslint-disable no-console */
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { booksService } from '@/api/services';
 
-// import { useAppSelector, useAppDispatch } from '@/redux/store';
-
-// import { bookThunks } from '@/redux/books/bookThunks';
-
 import { Poster, ProductInfo } from './components';
+import type { ITypeDataBook } from '@/interfaces/bookInterfaces';
 
 import { ProductItemStyled } from './Product.styles';
 
-import type { ITypeDataBook } from '@/interfaces/bookInterfaces';
-
-interface ITypesProps {
+interface ITypeProps {
   className?: string;
 }
 
-const ProductItem: React.FC<ITypesProps> = (props): JSX.Element => {
-  // const dispatch = useAppDispatch();
+const ProductItem: React.FC<ITypeProps> = (props) => {
   const [book, setBook] = useState<ITypeDataBook>();
   const [personalRating, setPersonalRating] = useState<number>();
-
-  console.log('1', book);
-  console.log('2', personalRating);
-  // const userId = useAppSelector((state) => state.auth.user.id);
-  // const book = useAppSelector((state) => state.shop.books[0]);
-  // const personalRating = useAppSelector((state) => state.shop.personalRating);
 
   const { bookId } = useParams<string>();
 
   useEffect(() => {
     (async () => {
       try {
-        //  dispatch(
-        //    bookThunks.getOneBook({
-        //      bookId: Number(bookId),
-        //    }),
-        //  );
-
         const { book, personalRating } = await booksService.getOneBook({
           bookId: Number(bookId),
         });

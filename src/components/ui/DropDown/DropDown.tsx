@@ -10,8 +10,8 @@ interface ITypeProps {
   children: React.ReactNode;
 }
 
-const DropDown: React.FC<ITypeProps> = (props): JSX.Element => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+const DropDown: React.FC<ITypeProps> = (props) => {
+  const [isOpen, setIsOpen] = useState(false);
   const refChildren = useRef<HTMLDivElement>(null);
   const refSelect = useRef<HTMLDivElement>(null);
 
@@ -40,14 +40,14 @@ const DropDown: React.FC<ITypeProps> = (props): JSX.Element => {
   }, [refChildren, refSelect, isOpen]);
 
   return (
-    <DropDownStyled isOpen={isOpen}>
+    <DropDownStyled className={props.className} isOpen={isOpen}>
       <div ref={refSelect} className="select__block">
         <p className="select__title">{props.title}</p>
 
         <img
           className="select__icon"
           src={icons.forward}
-          alt="Icons arrow back"
+          alt="icon back"
         />
       </div>
 

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+const laptop = '@media (max-width: 1000px)';
 const tabletM = '@media (max-width: 650px)';
 
 const HeaderStyled = styled.header`
@@ -19,6 +20,10 @@ const HeaderStyled = styled.header`
   .header__title {
     font-size: 16px;
     font-weight: 500;
+  }
+
+  ${laptop} {
+    margin-bottom: 21px;
   }
 
   ${tabletM} {

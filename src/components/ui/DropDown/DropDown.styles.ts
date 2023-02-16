@@ -1,19 +1,22 @@
 import styled from 'styled-components';
 
-interface ITypesProps {
+const tabletL = '@media(max-width: 834px)';
+const tabletS = '@media(max-width: 570px)';
+
+interface ITypeProps {
   isOpen: boolean;
   onClick?: () => void;
 }
 
-const DropDownStyled = styled.div<ITypesProps>`
+const DropDownStyled = styled.div<ITypeProps>`
   background: #f0f4ef;
   border-radius: 16px;
   font-size: 18px;
   color: #344966;
   cursor: pointer;
   position: relative;
-  margin-right: 20px;
-  width: 196px;
+  min-width: 196px;
+  width: 100%;
 
   .select__block {
     display: flex;
@@ -23,12 +26,20 @@ const DropDownStyled = styled.div<ITypesProps>`
 
   .select__title {
     white-space: nowrap;
-    overflow: hidden;
   }
 
   .select__icon {
-    margin-left: 10px;
     transform: ${(props) => (props.isOpen ? 'rotate(90deg)' : '')};
+  }
+
+  ${tabletL} {
+    max-width: 255px;
+    min-width: 165px;
+  }
+
+  ${tabletS} {
+    width: 100%;
+    max-width: none;
   }
 `;
 

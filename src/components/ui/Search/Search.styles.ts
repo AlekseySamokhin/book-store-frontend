@@ -15,7 +15,7 @@ const SearchStyled = styled.div`
     background-color: #f0f4ef;
     line-height: 24px;
     letter-spacing: 0.75px;
-    padding: 20px 20px 20px 64px;
+    padding: 20px 40px 20px 64px;
     font-size: 16px;
     width: 100%;
     border-radius: ${(props) => props.theme.border_radius};

@@ -24,7 +24,7 @@ interface ITypePagination {
   prevPage: number;
 }
 
-interface ITypesRequestFilters {
+interface ITypeRequestFilters {
   genres: string | null;
   minPrice: string | null;
   maxPrice: string | null;
@@ -33,4 +33,4 @@ interface ITypesRequestFilters {
   search: string | null;
 }
 
-export type { ITypeDataBook, ITypePagination, ITypesRequestFilters, ITypeFavoriteBook };
+export type { ITypeDataBook, ITypePagination, ITypeRequestFilters, ITypeFavoriteBook };

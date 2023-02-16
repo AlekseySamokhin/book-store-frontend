@@ -1,6 +1,6 @@
 import { Button } from './Button';
 import { Input } from './Input';
-import { DropDown } from './DropDown';
+import { DropDown } from './DropDown/DropDown';
 import { Loader } from './Loader';
 import { MenuItem } from './MenuItem';
 import { StarRating } from './Rating/StarRating';

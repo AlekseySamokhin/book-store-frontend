@@ -4,7 +4,7 @@ import ReactSlider from 'react-slider';
 
 import { FilterByPriceStyled } from './FilterByPrice.styled';
 
-const FilterByPrice: React.FC = (): JSX.Element => {
+const FilterByPrice: React.FC = () => {
   const [value, setValue] = useState<number[]>([0, 100]);
 
   const [searchParams, setSearchParams] = useSearchParams();

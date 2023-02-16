@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const tabletL = '@media (max-width: 850px)';
-const mobileL = '@media (max-width: 425px)';
+const mobileL = '@media (max-width: 435px)';
 
 const FooterStyled = styled.footer`
   background-color: ${(props) => props.theme.colors.dark};

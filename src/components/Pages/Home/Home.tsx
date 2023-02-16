@@ -5,7 +5,7 @@ import { Catalog } from './Catalog';
 
 import { HomeStyled } from './Home.styles';
 
-const Home: React.FC = (): JSX.Element => {
+const Home = () => {
   return (
     <Container>
       <HomeStyled>

@@ -54,7 +54,7 @@ const BookItemStyled = styled.div<ITypeProps>`
     width: 48px;
     height: 48px;
     border-radius: 50px;
-    opacity: ${(props) => (props.like ? '0.5' : '1')};
+    opacity: ${(props) => (props.like ? '1' : '0.5')};
     background: ${(props) => props.theme.colors.dark_blue};
   }
 

@@ -6,17 +6,16 @@ import Rating from '@mui/material/Rating';
 import { useAppDispatch, useAppSelector } from '@/redux/store';
 import { bookThunks } from '@/redux/books/bookThunks';
 import { userThunks } from '@/redux/users/thunks';
-
-import { BookStatus } from './BookStatus';
+import { cartService } from '@/api/services';
 
 import { icons } from '@/assets';
 import { Button } from '@/components/ui';
+import { BookStatus } from './BookStatus';
 
 import type { ITypeDataBook } from '@/interfaces/bookInterfaces';
 import type { ITypeCartUser } from '@/interfaces/userInterfaces';
 
 import { BookItemStyled } from './BookItem.styles';
-import { cartService } from '@/api/services';
 
 interface ITypeProps {
   book: ITypeDataBook;
@@ -37,34 +36,35 @@ const BookItem: React.FC<ITypeProps> = (props) => {
     return arrayIdBooks.includes(props.book.bookId);
   };
 
-  const hasCart = useMemo(() => checkForCart(cart), [cart]);
-
   const checkForLikes = (array: ITypeDataBook[]) => {
     const arrayIdBooks = array.map((item) => item.bookId);
 
     return arrayIdBooks.includes(props.book.bookId);
   };
 
-  const hasLike = useMemo(
-    () => checkForLikes(favorites),
-    [favorites],
-  );
+  const hasCart = useMemo(() => checkForCart(cart), [cart]);
+
+  const hasLike = useMemo(() => checkForLikes(favorites), [favorites]);
 
   const handleAddFavoriteBook = async () => {
     if (!email) {
       navigate('/signin');
     }
 
-    if (!hasLike) {
-      dispatch(
-        bookThunks.addFavoriteBook({ bookId: Number(props.book.bookId) }),
-      );
-    }
+    try {
+      if (!hasLike) {
+        dispatch(
+          bookThunks.addFavoriteBook({ bookId: Number(props.book.bookId) }),
+        );
+      }
 
-    if (hasLike) {
-      dispatch(
-        bookThunks.deleteFavoriteBook({ bookId: Number(props.book.bookId) }),
-      );
+      if (hasLike) {
+        dispatch(
+          bookThunks.deleteFavoriteBook({ bookId: Number(props.book.bookId) }),
+        );
+      }
+    } catch (err) {
+      console.log(err);
     }
   };
 

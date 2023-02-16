@@ -3,7 +3,7 @@ import { api } from '../axios-instance';
 import type {
   ITypeDataBook,
   ITypePagination,
-  ITypesRequestFilters,
+  ITypeRequestFilters,
 } from '@/interfaces/bookInterfaces';
 
 const BOOK_URL = '/book';
@@ -18,7 +18,7 @@ interface ITypeResponseGetOneBook {
   personalRating: number;
 }
 
-const getAllBooks = async (params: ITypesRequestFilters) => {
+const getAllBooks = async (params: ITypeRequestFilters) => {
   const response = await api.get<ITypesResponseFilters>(`${BOOK_URL}/all`, {
     params,
   });

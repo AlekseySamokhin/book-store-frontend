@@ -1,12 +1,14 @@
-/* eslint-disable no-console */
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
+import { DropDown } from '@/components/ui';
+import { FilterByGenres, SortByOther, FilterByPrice } from './components';
+
 import { PanelFiltersStyled } from './PanelFilters.styles';
 
-import { DropDown } from '@/components/ui';
-
-import { FilterByGenres, SortByOther, FilterByPrice } from './components';
+interface ITypeProps {
+  className?: string;
+}
 
 const sorting: { id: number; name: string }[] = [
   { id: 1, name: 'Price' },
@@ -16,31 +18,29 @@ const sorting: { id: number; name: string }[] = [
   { id: 5, name: 'Date of issue' },
 ];
 
-const PanelFilters: React.FC = (): JSX.Element => {
+const PanelFilters: React.FC<ITypeProps> = (props) => {
   const [searchParams] = useSearchParams();
-  const [activeSort, setActiveSort] = useState<string>('price');
+  const [sort, setSort] = useState('price');
 
   const curSort = searchParams.get('sort') || '1';
 
   useEffect(() => {
-    const currentSort = sorting.find(
-      (sort) => sort.id === Number(curSort),
-    );
+    const currentSort = sorting.find((sort) => sort.id === Number(curSort));
 
     if (currentSort) {
-      setActiveSort(currentSort.name.toLowerCase());
+      setSort(currentSort.name.toLowerCase());
     }
   }, [searchParams]);
 
   return (
-    <PanelFiltersStyled>
-      <DropDown title="Genre">
+    <PanelFiltersStyled className={props.className}>
+      <DropDown className="panel-filters__dropdown" title="Genre">
         <FilterByGenres />
       </DropDown>
-      <DropDown title="Price">
+      <DropDown className="panel-filters__dropdown" title="Price">
         <FilterByPrice />
       </DropDown>
-      <DropDown title={`Sort by ${activeSort}`}>
+      <DropDown className="panel-filters__dropdown" title={`Sort by ${sort}`}>
         <SortByOther sorting={sorting} />
       </DropDown>
     </PanelFiltersStyled>

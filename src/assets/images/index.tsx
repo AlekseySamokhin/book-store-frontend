@@ -7,6 +7,7 @@ import bookItemExample from './book-example-1.png';
 import authPageManWithBook from './auth-page-man-with-book.png';
 import cartPageEmptyList from './cart-page-empty-books.png';
 import heart from './heart.png';
+import sadSmile from './sad-emoticon.png';
 
 const images = {
   heart,
@@ -18,6 +19,7 @@ const images = {
   cartPageEmptyList,
   bookItemExample,
   footerMap,
+  sadSmile,
 };
 
 export { images };

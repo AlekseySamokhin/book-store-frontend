@@ -1,12 +1,10 @@
-/* eslint-disable no-extra-boolean-cast */
-/* eslint-disable no-console */
 import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import { useAppDispatch, useAppSelector } from '@/redux/store';
 import { bookThunks } from '@/redux/books/bookThunks';
-import type { ITypesRequestFilters } from '@/interfaces/bookInterfaces';
+import type { ITypeRequestFilters } from '@/interfaces/bookInterfaces';
 
 import {
   BookItem,
@@ -21,14 +19,16 @@ interface ITypeProps {
   className?: string;
 }
 
-const Catalog: React.FC<ITypeProps> = (props): JSX.Element => {
+const Catalog: React.FC<ITypeProps> = (props) => {
   const dispatch = useAppDispatch();
+
   const books = useAppSelector((state) => state.shop.books);
+
   const [searchParams] = useSearchParams();
 
   useEffect(() => {
     try {
-      const select: ITypesRequestFilters = {
+      const select: ITypeRequestFilters = {
         genres: searchParams.get('genres'),
         minPrice: searchParams.get('minPrice'),
         maxPrice: searchParams.get('maxPrice'),
@@ -50,11 +50,11 @@ const Catalog: React.FC<ITypeProps> = (props): JSX.Element => {
       <div className="catalog__header">
         <h2 className="catalog__header_title">Catalog</h2>
 
-        <PanelFilters />
+        <PanelFilters className="catalog__header_filters" />
       </div>
 
       <div className="catalog__booklist">
-        {!!books.length ? (
+        {books.length ? (
           books.map((book) => (
             <BookItem
               key={book.bookId}

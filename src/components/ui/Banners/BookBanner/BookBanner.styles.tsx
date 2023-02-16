@@ -1,20 +1,38 @@
 import styled from 'styled-components';
 
-// const tabletL = '@media (max-width: 850px)';
-// const mobileL = '@media (max-width: 425px)';
+import { images } from '@/assets';
+
+const laptop = '@media (max-width: 1000px)';
+const tabletL = '@media (max-width: 785px)';
+const mobileL = '@media (max-width: 425px)';
 
 const BookBannerStyled = styled.div`
   position: relative;
   background-color: #f0f4ef;
   border-radius: 16px;
-  padding: 80px 0 96px 108px;
+  padding: 0px 40px 0px 14px;
+  background-image: url(${images.bookBannerBooks});
+  background-repeat: no-repeat;
+  background-position: 0% 100%;
+  background-size: 50%;
 
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 
   .book-banner__button {
     padding: 14px 56px;
+  }
+
+  .book-banner__image {
+    width: 100%;
+    height: auto;
+    max-width: 406px;
+  }
+
+  .book-banner__text {
+    display: flex;
+    flex-direction: column;
   }
 
   .book-banner__title {
@@ -22,7 +40,7 @@ const BookBannerStyled = styled.div`
     font-weight: 700;
     font-size: 40px;
     line-height: 60px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
   }
 
   .book-banner__description {
@@ -30,93 +48,85 @@ const BookBannerStyled = styled.div`
     font-weight: 500;
     font-size: 20px;
     line-height: 30px;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
   }
 
-  .book-banner__image {
-    position: absolute;
-    bottom: 0;
-    z-index: 10;
-    right: 98px;
-  }
+  ${laptop} {
+    background-size: 45%;
+    justify-content: flex-start;
+    padding-top: 45px;
+    padding-bottom: 56px;
+    background-position: 0% 100%;
 
-  .book-banner__image-background {
-    position: absolute;
-    bottom: -96px;
-    left: -107px;
-    z-index: -10;
-  }
-
-  @media (max-width: 1100px) {
     .book-banner__image {
+      position: absolute;
       right: 3px;
+      bottom: 1px;
+      width: 100%;
+      max-width: 368px;
     }
-  }
-
-  @media (max-width: 1060px) {
-    padding: 60px 0 76px 108px;
-
-    .book-banner__image-background {
-      bottom: -76px;
-      left: -37px;
-    }
-  }
-
-  @media (max-width: 1020px) {
-    padding: 60px 0 76px 40px;
 
     .book-banner__title {
+      line-height: 48px;
       font-size: 32px;
     }
 
     .book-banner__description {
+      max-width: 217px;
       font-size: 16px;
     }
   }
 
-  @media (max-width: 840px) {
-    display: flex;
+  ${tabletL} {
     flex-direction: column;
-    padding: 20px 20px 0px 20px;
+    background-size: 40%;
+    background-position: 67% 11%;
+    padding-bottom: 0px;
+    padding: 20px 18px 0px 18px;
+
+    .book-banner__text {
+      align-items: center;
+    }
+
+    .book-banner__description {
+      text-align: center;
+    }
+
+    .book-banner__button {
+      margin-bottom: 56px;
+    }
+
+    .book-banner__title {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .book-banner__description {
+      margin-bottom: 20px;
+    }
 
     .book-banner__image {
       position: static;
     }
-
-    .book-banner__image-background {
-      width: 232px;
-      height: 140px;
-      top: 36px;
-      left: 140px;
-    }
   }
 
-  @media (max-width: 500px) {
+  ${mobileL} {
+    .book-banner__text {
+      align-items: flex-start;
+    }
+
+    .book-banner__button {
+      font-size: 12px; 
+    }
+
     .book-banner__title {
-      font-size: 18px;
       line-height: 27px;
+      font-size: 18px;
     }
 
     .book-banner__description {
-      line-height: 21px;
+      text-align: start;
       font-size: 14px;
-    }
-
-    .book-banner__image {
-      width: 253px;
-      height: 282px;
-    }
-
-    .book-banner__image-background {
-      left: 70px;
-      top: 36px;
-    }
-  }
-
-  @media (max-width: 410px) {
-    .book-banner__image-background {
-      left: 20px;
-      top: 36px;
     }
   }
 `;

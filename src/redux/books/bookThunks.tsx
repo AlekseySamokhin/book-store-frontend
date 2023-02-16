@@ -3,11 +3,11 @@ import type { AxiosError } from 'axios';
 
 import { booksService, cartService } from '@/api/services';
 
-import type { ITypesRequestFilters } from '@/interfaces/bookInterfaces';
+import type { ITypeRequestFilters } from '@/interfaces/bookInterfaces';
 
 const getAllBooks = createAsyncThunk(
   'book/all',
-  async (values: ITypesRequestFilters) => {
+  async (values: ITypeRequestFilters) => {
     try {
       return await booksService.getAllBooks(values);
     } catch (_err) {
