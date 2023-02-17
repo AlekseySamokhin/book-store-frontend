@@ -4,40 +4,48 @@ interface ITypeProps {
   like: boolean;
 }
 
+const tablet = '@media(max-width: 834px)';
+const mobile = '@media(max-width: 470px)';
+
 const BookItemStyled = styled.div<ITypeProps>`
-  max-width: 305px;
   display: flex;
   flex-direction: column;
-  line-height: 30px;
+  width: calc((100% - (20px * 3)) / 4);
+  max-width: 305px;
+  height: 100%;
+  max-height: 663px;
   font-weight: 500;
   font-size: 20px;
-  cursor: pointer;
 
   .book-item__poster {
-    width: 305px;
-    height: 448px;
     position: relative;
+
+    margin-bottom: 30px;
+    width: 100%;
+    height: 100%;
+    max-height: 448px;
   }
 
   .book-item__image {
-    border-radius: 16px;
+    display: block;
+    border-radius: ${(props) => props.theme.border_radius};
     width: 100%;
     height: 100%;
+    max-height: 448px;
   }
 
   .book-item__title {
     color: ${(props) => props.theme.colors.dark_blue};
     font-weight: 500;
-    max-width: 305px;
     font-size: 20px;
     white-space: nowrap;
     overflow: hidden;
-    margin-top: 30px;
   }
 
   .book-item__author {
     color: ${(props) => props.theme.colors.dark_grey};
     margin-bottom: 10px;
+    white-space: nowrap;
   }
 
   .book-item__status {
@@ -47,10 +55,11 @@ const BookItemStyled = styled.div<ITypeProps>`
   }
 
   .book-item__like {
+    cursor: pointer;
+    display: table;
     position: absolute;
     top: 20px;
     left: 20px;
-
     width: 48px;
     height: 48px;
     border-radius: 50px;
@@ -65,11 +74,22 @@ const BookItemStyled = styled.div<ITypeProps>`
   }
 
   .book-item__button {
+    font-size: 20px;
+    padding: 10px 0;
     width: 100%;
   }
 
+  .default {
+    border: 1px solid transparent;
+  }
+
+  .outlined {
+    border: 1px solid black;
+  }
+
   .book__item__link {
-    display: block;
+    height: 100%;
+    width: 100%;
   }
 
   .book-item__rating {
@@ -85,6 +105,52 @@ const BookItemStyled = styled.div<ITypeProps>`
     font-size: 16px;
     line-height: 24px;
     color: #b9bac4;
+  }
+
+  ${tablet} {
+    width: calc((100% - (20px * 2)) / 3);
+    max-width: 254px;
+
+    .book-item__title {
+      font-size: 16px;
+    }
+
+    .book-item__author {
+      font-size: 16px;
+    }
+
+    .book-item__rating_number {
+      font-size: 12px;
+    }
+
+    .book-item__like {
+      width: 38px;
+      height: 38px;
+    }
+
+    .book-item__like_icon {
+      position: relative;
+      top: 8px;
+      left: 10px;
+      height: 18px;
+      width: 18px;
+    }
+
+    .book-item__button {
+      font-size: 16px;
+    }
+
+    .MuiSvgIcon-fontSizeInherit {
+      font-size: 22px;
+    }
+  }
+
+  ${mobile} {
+    width: calc((100% - (20px * 1)) / 2);
+
+    .MuiSvgIcon-fontSizeInherit {
+      font-size: 18px;
+    }
   }
 `;
 

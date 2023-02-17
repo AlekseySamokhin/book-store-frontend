@@ -1,12 +1,12 @@
 import { BookStatusStyled } from './BookStatus.styles';
 
-interface ITypesProps {
+interface ITypeProps {
   className?: string;
   isNew: boolean;
   isBestseller: boolean;
 }
 
-const BookStatus: React.FC<ITypesProps> = (props): JSX.Element => {
+const BookStatus: React.FC<ITypeProps> = (props) => {
   return (
     <BookStatusStyled
       className={props.className}

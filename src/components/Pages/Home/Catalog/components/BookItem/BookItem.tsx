@@ -1,7 +1,8 @@
-/* eslint-disable no-console */
 import { useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+
 import Rating from '@mui/material/Rating';
+import { toast } from 'react-toastify';
 
 import { useAppDispatch, useAppSelector } from '@/redux/store';
 import { bookThunks } from '@/redux/books/bookThunks';
@@ -55,16 +56,18 @@ const BookItem: React.FC<ITypeProps> = (props) => {
       if (!hasLike) {
         dispatch(
           bookThunks.addFavoriteBook({ bookId: Number(props.book.bookId) }),
-        );
+        ).unwrap();
       }
 
       if (hasLike) {
         dispatch(
           bookThunks.deleteFavoriteBook({ bookId: Number(props.book.bookId) }),
-        );
+        ).unwrap();
       }
     } catch (err) {
-      console.log(err);
+      toast.error((err as { message: string }).message, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
     }
   };
 
@@ -73,8 +76,14 @@ const BookItem: React.FC<ITypeProps> = (props) => {
       navigate('/signin');
     }
 
-    await cartService.addCartBook({ bookId: Number(props.book.bookId) });
-    dispatch(userThunks.getCart());
+    try {
+      await cartService.addCartBook({ bookId: Number(props.book.bookId) });
+      dispatch(userThunks.getCart()).unwrap();
+    } catch (err) {
+      toast.error((err as { message: string }).message, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
   };
 
   return (
@@ -126,9 +135,14 @@ const BookItem: React.FC<ITypeProps> = (props) => {
         </span>
       </div>
       {hasCart ? (
-        <Button outlined>Added to cart</Button>
+        <Button className="book-item__button outlined" outlined>
+          Added to cart
+        </Button>
       ) : (
-        <Button onClick={handleAddCartBook} className="book-item__button">
+        <Button
+          onClick={handleAddCartBook}
+          className="book-item__button default"
+        >
           $ {`${props.book.price}`} USD
         </Button>
       )}

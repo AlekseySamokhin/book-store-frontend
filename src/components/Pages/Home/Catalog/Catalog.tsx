@@ -58,7 +58,6 @@ const Catalog: React.FC<ITypeProps> = (props) => {
           books.map((book) => (
             <BookItem
               key={book.bookId}
-              className="catalog__booklist_item"
               book={book}
             />
           ))

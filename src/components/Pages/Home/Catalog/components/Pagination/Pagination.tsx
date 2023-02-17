@@ -48,7 +48,7 @@ const Pagination: React.FC = (): JSX.Element | null => {
 
   if (pages.length > 1) {
     return (
-      <PaginationStyled>
+      <PaginationStyled pages={infoPages}>
         <div className="pagination__block">
           <div
             className="pagination__arrow"
@@ -56,6 +56,7 @@ const Pagination: React.FC = (): JSX.Element | null => {
           >
             <i className="arrow left"></i>
           </div>
+
           <div className="pagination__pages">
             {!!pages.length &&
               pages.map(({ page, styles }) => (
@@ -66,6 +67,7 @@ const Pagination: React.FC = (): JSX.Element | null => {
                 ></div>
               ))}
           </div>
+
           <div
             className="pagination__arrow"
             onClick={() => handleChangePage(nextPage)}
@@ -73,6 +75,7 @@ const Pagination: React.FC = (): JSX.Element | null => {
             <i className="arrow right"></i>
           </div>
         </div>
+
         <p className="pagination__number_pages">
           {activePage} ... {pages.length}
         </p>

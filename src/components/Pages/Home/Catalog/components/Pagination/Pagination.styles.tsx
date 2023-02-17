@@ -1,9 +1,18 @@
 import styled from 'styled-components';
 
-const PaginationStyled = styled.div`
-   display: flex;
-   flex-direction: column;
-   align-items: center;
+interface ITypeProps {
+  pages: {
+    pagesQty: number;
+    currentPage: number;
+    prevPage: number;
+    nextPage: number;
+  };
+}
+
+const PaginationStyled = styled.div<ITypeProps>`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   .pagination__block {
     display: flex;
@@ -27,6 +36,7 @@ const PaginationStyled = styled.div`
   }
 
   .right {
+    display: ${(props) => (props.pages.currentPage === props.pages.pagesQty ? 'none' : 'inline-block')};
     left: 15px;
     bottom: -5px;
     transform: rotate(-45deg);
@@ -34,6 +44,7 @@ const PaginationStyled = styled.div`
   }
 
   .left {
+    display: ${(props) => (props.pages.currentPage === 1 ? 'none' : 'inline-block')};
     top: 5px;
     left: 5px;
     transform: rotate(135deg);
@@ -62,10 +73,6 @@ const PaginationStyled = styled.div`
 
   .pagination__pages_item:not(:last-child) {
     margin-right: 37px;
-  }
-
-  .pagination__number_pages {
-
   }
 `;
 

@@ -7,33 +7,37 @@ const CatalogStyled = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 50px;
-    gap: 10px;
     flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 50px;
   }
 
   .catalog__header_title {
     font-weight: 700;
     font-size: 40px;
     line-height: 60px;
-    color: #0d1821;
+    color: ${(props) => props.theme.colors.dark_blue};
   }
 
   .catalog__booklist {
     display: flex;
-    gap: 20px;
+    justify-content: start;
     flex-wrap: wrap;
+    gap: 60px 20px;
     margin-bottom: 83px;
   }
 
   .catalog__pagination {
     display: flex;
     justify-content: center;
-    margin-bottom: 50px;
+    align-items: center;
+    margin-bottom: 100px;
   }
 
   ${tablet} {
-
+    .catalog__booklist {
+      gap: 30px 20px;
+    }
   }
 `;
 

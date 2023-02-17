@@ -1,10 +1,9 @@
 import { Link } from 'react-router-dom';
 
 import { Button } from '@/components/ui';
+import { FlexStyled } from '@/components/styles';
 
 import { images } from '@/assets';
-
-import { FlexStyled } from '@/components/styles';
 
 import { AuthBannerStyled } from './AuthBanner.styles';
 
@@ -36,10 +35,10 @@ const AuthBanner: React.FC<ITypeProps> = (props) => {
 
         <FlexStyled>
           <Link to="/signin">
-            <Button>Sign In</Button>
+            <Button className='auth-banner__button'>Sign In</Button>
           </Link>
           <Link to="/signup">
-            <Button>Sign Up</Button>
+            <Button className='auth-banner__button'>Sign Up</Button>
           </Link>
         </FlexStyled>
       </div>
