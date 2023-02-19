@@ -1,10 +1,10 @@
-/* eslint-disable no-console */
 import Rating from '@mui/material/Rating';
 
-import { FiveStarsRatingStyled } from './FiveStarsRating.styles';
 import { useAppSelector } from '@/redux/store';
 
-interface ITypesProps {
+import { FiveStarsRatingStyled } from './FiveStarsRating.styles';
+
+interface ITypeProps {
   personalRating: number;
   bookId?: string;
   readOnly: boolean;
@@ -12,7 +12,7 @@ interface ITypesProps {
   changeRate: (newRate: number) => void;
 }
 
-const FiveStarsRating: React.FC<ITypesProps> = (props): JSX.Element => {
+const FiveStarsRating: React.FC<ITypeProps> = (props) => {
   const user = useAppSelector((state) => state.auth.user);
 
   return (

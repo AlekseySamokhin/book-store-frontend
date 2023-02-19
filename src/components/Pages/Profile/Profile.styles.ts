@@ -70,10 +70,6 @@ const ProfileStyled = styled.div`
         cursor: pointer;
       }
     }
-
-    .profile__input:not(:last-child) {
-      // margin-bottom: 20px;
-    }
   }
 
   .profile__form:not(:last-child) {

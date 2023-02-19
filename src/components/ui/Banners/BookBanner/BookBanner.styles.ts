@@ -2,32 +2,32 @@ import styled from 'styled-components';
 
 import { images } from '@/assets';
 
-const laptop = '@media (max-width: 1000px)';
-const tabletL = '@media (max-width: 785px)';
-const mobileL = '@media (max-width: 425px)';
+const tablet = '@media (max-width: 834px)';
+const mobile = '@media (max-width: 320px)';
 
 const BookBannerStyled = styled.div`
-  position: relative;
   background-color: #f0f4ef;
-  border-radius: 16px;
-  padding: 0px 40px 0px 14px;
+  border-radius: ${(props) => props.theme.border_radius};
   background-image: url(${images.bookBannerBooks});
   background-repeat: no-repeat;
+  height: 100%;
   background-position: 0% 100%;
   background-size: 50%;
+  padding: 0 10px;
 
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
   align-items: center;
+  gap: 10px;
 
   .book-banner__button {
     padding: 14px 56px;
   }
 
   .book-banner__image {
-    width: 100%;
+    width: calc(100% / 3);
     height: auto;
-    max-width: 406px;
   }
 
   .book-banner__text {
@@ -47,23 +47,27 @@ const BookBannerStyled = styled.div`
     color: #344966;
     font-weight: 500;
     font-size: 20px;
+    max-width: 217px;
+    width: 100%;
     line-height: 30px;
     margin-bottom: 40px;
   }
 
-  ${laptop} {
+  ${tablet} {
     background-size: 45%;
-    justify-content: flex-start;
-    padding-top: 45px;
-    padding-bottom: 56px;
-    background-position: 0% 100%;
+    justify-content: center;
+    align-items: flex-start;
+    background-position: 75% 10%;
+    padding-top: 15px;
+    gap: 66px;
+
+    .book-banner__text {
+      align-items: center;
+      text-align: center;
+    }
 
     .book-banner__image {
-      position: absolute;
-      right: 3px;
-      bottom: 1px;
-      width: 100%;
-      max-width: 368px;
+      width: calc(90% / 1.5);
     }
 
     .book-banner__title {
@@ -77,56 +81,34 @@ const BookBannerStyled = styled.div`
     }
   }
 
-  ${tabletL} {
-    flex-direction: column;
-    background-size: 40%;
-    background-position: 67% 11%;
-    padding-bottom: 0px;
-    padding: 20px 18px 0px 18px;
+  ${mobile} {
+    justify-content: flex-start;
+    padding-top: 20px;
 
     .book-banner__text {
-      align-items: center;
-    }
-
-    .book-banner__description {
-      text-align: center;
-    }
-
-    .book-banner__button {
-      margin-bottom: 56px;
-    }
-
-    .book-banner__title {
-      font-size: 28px;
-      margin-bottom: 20px;
-    }
-
-    .book-banner__description {
-      margin-bottom: 20px;
+      align-items: flex-start;
+      text-align: start;
+      justify-content: start;
     }
 
     .book-banner__image {
-      position: static;
-    }
-  }
-
-  ${mobileL} {
-    .book-banner__text {
-      align-items: flex-start;
+      width: calc(100% / 1);
     }
 
     .book-banner__button {
-      font-size: 12px; 
+      font-size: 12px;
     }
 
     .book-banner__title {
       line-height: 27px;
       font-size: 18px;
+      margin-bottom: 20px;
     }
 
     .book-banner__description {
-      text-align: start;
       font-size: 14px;
+      line-height: 21px;
+      margin-bottom: 20px;
     }
   }
 `;

@@ -2,9 +2,9 @@
 import { useState } from 'react';
 import type { FieldInputProps } from 'formik';
 
-import { InputStyled } from './Input.styles';
+import { icons } from '@/assets';
 
-import { icons } from '../../../assets';
+import { InputStyled } from './Input.styles';
 
 interface ICustomInputPropsType {
   autocomplete?: string;
@@ -24,7 +24,7 @@ interface ICustomInputPropsType {
   fieldInputProps?: FieldInputProps<string>;
 }
 
-const Input: React.FC<ICustomInputPropsType> = (props): JSX.Element => {
+const Input: React.FC<ICustomInputPropsType> = (props) => {
   const [text, setText] = useState<string>(props.value || '');
   const [type, setType] = useState<string>(props.type || '');
   const [icon, setIcon] = useState<string>(props.icon || '');
@@ -33,6 +33,7 @@ const Input: React.FC<ICustomInputPropsType> = (props): JSX.Element => {
     event: React.ChangeEvent<HTMLInputElement>,
   ): void => {
     event.preventDefault();
+
     setText(event.target.value);
   };
 
@@ -56,7 +57,7 @@ const Input: React.FC<ICustomInputPropsType> = (props): JSX.Element => {
       touched={props.touched}
       error={props.error}
     >
-      <div className='custom__input'>
+      <div className="custom__input">
         <img
           className="input__icons"
           onClick={handleTogglePass}
@@ -85,9 +86,9 @@ const Input: React.FC<ICustomInputPropsType> = (props): JSX.Element => {
       </div>
 
       {props.error && props.touched ? (
-        <p className='error-message'>{props.error}</p>
+        <p className="error-message">{props.error}</p>
       ) : (
-        <p className='primary-message'>{props.description}</p>
+        <p className="primary-message">{props.description}</p>
       )}
     </InputStyled>
   );

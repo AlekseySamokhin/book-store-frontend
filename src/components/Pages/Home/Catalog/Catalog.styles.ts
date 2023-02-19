@@ -7,7 +7,7 @@ const CatalogStyled = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 10px;
     margin-bottom: 50px;
   }
@@ -16,7 +16,7 @@ const CatalogStyled = styled.div`
     font-weight: 700;
     font-size: 40px;
     line-height: 60px;
-    color: ${(props) => props.theme.colors.dark_blue};
+    color: ${(props) => props.theme.colors.dark};
   }
 
   .catalog__booklist {
@@ -35,6 +35,11 @@ const CatalogStyled = styled.div`
   }
 
   ${tablet} {
+    .catalog__header {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
     .catalog__booklist {
       gap: 30px 20px;
     }

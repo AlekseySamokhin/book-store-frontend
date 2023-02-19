@@ -15,30 +15,38 @@ const DropDownStyled = styled.div<ITypeProps>`
   color: #344966;
   cursor: pointer;
   position: relative;
-  min-width: 196px;
+  display: flex;
   width: 100%;
 
   .select__block {
     display: flex;
     justify-content: space-between;
+    max-width: 196px;
+    width: 100%;
     padding: 13px 15px 13px 15px;
   }
 
   .select__title {
+    overflow: hidden;
     white-space: nowrap;
+    display: block;
   }
 
   .select__icon {
+    display: block;
+    margin-left: 7.5px;
     transform: ${(props) => (props.isOpen ? 'rotate(90deg)' : '')};
   }
 
   ${tabletL} {
-    max-width: 255px;
     min-width: 165px;
+
+    .select__block {
+    max-width: none;
+  }
   }
 
   ${tabletS} {
-    width: 100%;
     max-width: none;
   }
 `;

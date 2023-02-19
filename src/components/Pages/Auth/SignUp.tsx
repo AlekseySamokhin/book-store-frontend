@@ -1,18 +1,19 @@
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import { useFormik } from 'formik';
-import type { FormikHelpers } from 'formik';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import type { FormikHelpers } from 'formik';
 
 import { useAppDispatch } from '@/redux/store';
 import { authThunks } from '@/redux/users/thunks/authThunks';
-import { signInSchema } from '@/schemas/schemaAuth';
+import { signUpSchema } from '@/schemas/schemaAuth';
 
-import { Input, Button } from '@/components/ui';
+import { Button, Input } from '@/components/ui';
 import { Container } from '@/components/styles';
 
 import { icons, images } from '@/assets';
 
-import { SignInStyled } from './SignIn.styles';
+import { AuthStyled } from './Auth.styles';
 
 interface ITypesValuesForm {
   email: string;
@@ -20,23 +21,27 @@ interface ITypesValuesForm {
   confirmPassword?: string;
 }
 
-const SignIn: React.FC = (): JSX.Element => {
+const SignUp: React.FC = (): JSX.Element => {
+  const [isSubmiting, setSubmiting] = useState(false);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const onSubmitHandler = async (
+  const handleOnSubmit = async (
     values: ITypesValuesForm,
     actions: FormikHelpers<ITypesValuesForm>,
   ) => {
     try {
+      actions.resetForm();
+
       await dispatch(
-        authThunks.signIn({
+        authThunks.signUp({
           email: values.email,
           password: values.password,
         }),
       ).unwrap();
+      setSubmiting(true);
 
-      actions.resetForm();
+      setSubmiting(false);
 
       navigate('/');
     } catch (err) {
@@ -52,25 +57,25 @@ const SignIn: React.FC = (): JSX.Element => {
       password: '',
       confirmPassword: '',
     } as ITypesValuesForm,
-    validationSchema: signInSchema,
-    onSubmit: onSubmitHandler,
+    validationSchema: signUpSchema,
+    onSubmit: handleOnSubmit,
   });
 
   return (
     <Container>
-      <SignInStyled>
-        <div className="form">
-          <h2>Sing In</h2>
+      <AuthStyled>
+        <div className="auth__content">
+          <h2 className='auth__content_title'>Sing Up</h2>
 
           <form noValidate autoComplete="off" onSubmit={formik.handleSubmit}>
             <Input
-              className="sign-in__input"
+              className="auth__input"
               type="email"
               placeholder="Email"
-              text={'Enter you name'}
-              description={'Enter you name'}
+              text={'Enter you email'}
+              description={'Enter you email'}
               icon={icons.mail}
-              title={'Your name'}
+              title={'Enter you email'}
               disabled={true}
               value={formik.values.email}
               error={formik.errors.email}
@@ -79,13 +84,13 @@ const SignIn: React.FC = (): JSX.Element => {
             />
 
             <Input
-              className="sign-in__input"
+              className="auth__input"
               type="password"
               placeholder="Password"
               text={'Enter you password'}
               description={'Enter you password'}
               icon={icons.hide}
-              title={'Your password'}
+              title={'Enter you password'}
               disabled={true}
               value={formik.values.password}
               error={formik.errors.password}
@@ -93,20 +98,38 @@ const SignIn: React.FC = (): JSX.Element => {
               fieldInputProps={formik.getFieldProps('password')}
             />
 
+            <Input
+              className="auth__input"
+              type="password"
+              placeholder="Password replay"
+              text="Enter you password"
+              description="Repeat your password without errors"
+              icon={icons.hide}
+              title="Enter you password"
+              disabled={true}
+              value={formik.values.confirmPassword}
+              error={formik.errors.confirmPassword}
+              touched={formik.touched.confirmPassword}
+              fieldInputProps={formik.getFieldProps('confirmPassword')}
+            />
+
             <Button
-              disabled={formik.isSubmitting}
+              disabled={isSubmiting}
               type="submit"
-              className="form__button"
+              className="auth__button"
             >
-              Sign In
+              Sign Up
             </Button>
           </form>
         </div>
-
-        <img src={images.authPageManWithBook} alt="Image one man" />
-      </SignInStyled>
+        <img
+          className="auth__image"
+          src={images.authPageManWithBook}
+          alt="Image one man"
+        />
+      </AuthStyled>
     </Container>
   );
 };
 
-export { SignIn };
+export { SignUp };

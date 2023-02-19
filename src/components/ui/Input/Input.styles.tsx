@@ -10,7 +10,7 @@ const InputStyled = styled.div<ITypesProps>`
   display: flex;
   align-items: center;
   width: 100%;
-  max-width: 630px;
+
   cursor: pointer;
   margin-bottom: 10px;
 

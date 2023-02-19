@@ -11,15 +11,15 @@ interface ITypeProps {
   className?: string;
 }
 
-const Recommendation: React.FC<ITypeProps> = (props): JSX.Element => {
-  const [recommendationBooks, setRecommendationBooks] = useState<ITypeDataBook[]>([]);
+const Recommendation: React.FC<ITypeProps> = (props) => {
+  const [books, setBooks] = useState<ITypeDataBook[]>([]);
 
   useEffect(() => {
     (async () => {
       try {
         const books = await booksService.getRecommendationBooks();
 
-        setRecommendationBooks(books);
+        setBooks(books);
       } catch (err) {
         console.log(err);
       }
@@ -30,7 +30,7 @@ const Recommendation: React.FC<ITypeProps> = (props): JSX.Element => {
     <ReccommendationStyled className={props.className}>
       <h3 className="reccommendations__title">Reccomendations</h3>
       <div className="reccommendations__books">
-        {recommendationBooks.map((book) => (
+        {books.map((book) => (
           <BookItem key={book.bookId} book={book} />
         ))}
       </div>

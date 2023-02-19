@@ -6,10 +6,13 @@ const tabletS = '@media(max-width: 570px)';
 const PanelFiltersStyled = styled.div`
   display: flex;
   justify-content: space-between;
+  width: 100%;
+  max-width: 640px;
   gap: 20px;
 
   ${tabletL} {
     width: 100%;
+    max-width: none;
   }
 
   ${tabletS} {
