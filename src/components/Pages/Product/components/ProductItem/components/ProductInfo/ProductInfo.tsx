@@ -72,20 +72,20 @@ const ProductInfo: React.FC<ITypeProps> = (props) => {
       <div className="product__item_buttons">
         <div className="product__item_buttons_paperback">
           <span className="product__item_buttons_title">PaperBack</span>
-          <Button disabled={false} className="product__item_button">
+          <Button disabled={true} className="product__item_button">
             Not available
           </Button>
         </div>
         <div className="product__item_buttons_hardcover">
           <span className="product__item_buttons_title">Hardcover</span>
           {hasCart ? (
-            <Button className="product__item_button outlined" outlined>
-              Added to cart
+            <Button className="product__item_button" outlined={hasCart}>
+              {hasCart ? 'Added to cart' : `${props.book?.price} USD`}
             </Button>
           ) : (
             <Button
               onClick={handleAddCartBook}
-              className="product__item_button default"
+              className="product__item_button"
             >
               $ {props.book?.price} USD
             </Button>
