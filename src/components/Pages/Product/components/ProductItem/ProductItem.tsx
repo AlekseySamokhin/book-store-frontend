@@ -6,7 +6,7 @@ import { booksService } from '@/api/services';
 import { Poster, ProductInfo } from './components';
 import type { ITypeDataBook } from '@/interfaces/bookInterfaces';
 
-import { ProductItemStyled } from './Product.styles';
+import { ProductItemStyled } from './ProductItem.styles';
 
 interface ITypeProps {
   className?: string;

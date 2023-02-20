@@ -57,14 +57,6 @@ img {
 .input__icons {
   margin-right: 20px;
 }
-
-.error-message {
-  color: #a02659;
-}
-
-.primary-mesasge {
-  color: #344966; 
-}
 `;
 
 export { InputStyled };

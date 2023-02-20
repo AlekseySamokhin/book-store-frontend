@@ -1,12 +1,15 @@
 import styled from 'styled-components';
 
+const laptopS = '@media(max-width: 941px)';
+const tabletM = '@media(max-width: 685px)';
+
 const UploadAvatarStyled = styled.div`
   position: relative;
-  width: 305px;
+  max-width: 305px;
   height: 305px;
-  background: #f0f4ef;
-  border-radius: 16px;
-  margin-right: 128px;
+  width: 100%;
+  background: ${(props) => props.theme.colors.light};
+  border-radius: ${(props) => props.theme.border_radius};
 
   .default__avatar_icon {
     position: absolute;
@@ -19,11 +22,10 @@ const UploadAvatarStyled = styled.div`
 
   .user__avatar_image {
     border-radius: 16px;
-    position: absolute;
-    left: 0;
-    right: 0;
-    width: 305px;
-    height: 305px;
+    max-width: 305px;
+    width: 100%;
+    height: 100%;
+    max-height: 305px;
   }
 
   .default__avatar__upload {
@@ -39,6 +41,20 @@ const UploadAvatarStyled = styled.div`
     right: 15px;
     bottom: 15px;
     cursor: pointer;
+  }
+
+  ${laptopS} {
+    max-width: 255px;
+    height: 255px;
+
+    .user__avatar_image {
+      max-width: 255px;
+      height: 255px;
+    }
+  }
+
+  ${tabletM} {
+    
   }
 `;
 

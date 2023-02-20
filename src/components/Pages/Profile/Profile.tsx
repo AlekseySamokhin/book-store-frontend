@@ -4,7 +4,7 @@ import { UploadAvatar, UpdateInfo, UpdatePass } from './components';
 
 import { ProfileStyled } from './Profile.styles';
 
-const Profile: React.FC = (): JSX.Element => {
+const Profile: React.FC = () => {
   return (
     <Container>
       <ProfileStyled>

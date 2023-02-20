@@ -1,16 +1,17 @@
-/* eslint-disable no-console */
-import { icons } from '../../../../../assets';
-import { useAppDispatch, useAppSelector } from '../../../../../redux/store';
-import { userThunks } from '../../../../../redux/users/thunks';
+import { useAppDispatch, useAppSelector } from '@/redux/store';
+import { userThunks } from '@/redux/users/thunks';
+
+import { icons } from '@/assets';
+
 import { UploadAvatarStyled } from './UploadAvatar.styles';
 
-interface ITypesProps {
+interface ITypeProps {
   className?: string;
 }
 
-const UploadAvatar: React.FC<ITypesProps> = (props): JSX.Element => {
-  const dispatch = useAppDispatch();
+const UploadAvatar: React.FC<ITypeProps> = (props) => {
   const avatar = useAppSelector((state) => state.auth.user.avatar);
+  const dispatch = useAppDispatch();
 
   const handleUploadAvatar = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
@@ -30,6 +31,7 @@ const UploadAvatar: React.FC<ITypesProps> = (props): JSX.Element => {
 
         await dispatch(userThunks.updateAvatar({ imageURL }));
       } catch (error) {
+        // eslint-disable-next-line no-console
         console.log(error);
       }
     };

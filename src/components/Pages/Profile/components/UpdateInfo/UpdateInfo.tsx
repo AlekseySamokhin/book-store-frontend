@@ -3,35 +3,35 @@ import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { icons } from '../../../../../assets';
-import { useAppDispatch, useAppSelector } from '../../../../../redux/store';
-import { userThunks } from '../../../../../redux/users/thunks';
-import { updateInfoUserSchema } from '../../../../../schemas/schemaUser';
+import { useAppDispatch, useAppSelector } from '@/redux/store';
+import { userThunks } from '@/redux/users/thunks';
 
-import { Input, Button } from '../../../../ui';
+import { Input, Button } from '@/components/ui';
+import { icons } from '@/assets';
+import { updateInfoUserSchema } from '@/schemas/schemaUser';
 
 import { UpdateInfoStyled } from './UpdateInfo.styles';
 
-interface ITypesProps {
+interface ITypeProps {
   className?: string;
 }
 
-interface ITypesValuesForm {
+interface ITypeValuesForm {
   fullName: string;
   email: string;
 }
 
-const UpdateInfo: React.FC<ITypesProps> = (props): JSX.Element => {
+const UpdateInfo: React.FC<ITypeProps> = (props) => {
   const [hideInfo, setHideInfo] = useState<boolean>(false);
 
   const dispatch = useAppDispatch();
   const infoUser = useAppSelector((state) => state.auth.user);
 
   const handleChangeInfo = () => {
-    setHideInfo(!hideInfo);
+    setHideInfo((prev) => !prev);
   };
 
-  const handleSubmitInfo = async (values: ITypesValuesForm) => {
+  const handleSubmitInfo = async (values: ITypeValuesForm) => {
     try {
       await dispatch(
         userThunks.updateInfo({
@@ -42,7 +42,7 @@ const UpdateInfo: React.FC<ITypesProps> = (props): JSX.Element => {
 
       setHideInfo(false);
     } catch (err) {
-      toast.error((err as {message: string}).message, {
+      toast.error((err as { message: string }).message, {
         position: toast.POSITION.TOP_RIGHT,
       });
     }
@@ -99,7 +99,11 @@ const UpdateInfo: React.FC<ITypesProps> = (props): JSX.Element => {
         fieldInputProps={formik.getFieldProps('email')}
       />
 
-      {hideInfo && <Button type="submit">Confirm</Button>}
+      {hideInfo && (
+        <Button className="profile__button" type="submit">
+          Confirm
+        </Button>
+      )}
     </UpdateInfoStyled>
   );
 };

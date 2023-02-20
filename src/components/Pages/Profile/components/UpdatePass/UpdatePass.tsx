@@ -1,15 +1,13 @@
-/* eslint-disable no-console */
 import { useState } from 'react';
 import { useFormik } from 'formik';
 import type { FormikHelpers } from 'formik';
 
-import { useAppDispatch } from '../../../../../redux/store';
-import { userThunks } from '../../../../../redux/users/thunks';
-import { updatePasswordUserSchema } from '../../../../../schemas/schemaUser';
+import { useAppDispatch } from '@/redux/store';
+import { userThunks } from '@/redux/users/thunks';
+import { updatePasswordUserSchema } from '@/schemas/schemaUser';
 
-import { icons } from '../../../../../assets';
-
-import { Button, Input } from '../../../../ui';
+import { Button, Input } from '@/components/ui';
+import { icons } from '@/assets';
 
 import { UpdatePassStyled } from './UpdatePass.styles';
 
@@ -18,11 +16,11 @@ interface IFormValuesPass {
   confirmPassword: string;
 }
 
-interface ITypesProps {
+interface ITypeProps {
   className?: string;
 }
 
-const UpdatePass: React.FC<ITypesProps> = (props): JSX.Element => {
+const UpdatePass: React.FC<ITypeProps> = (props) => {
   const [hidePass, setHidePass] = useState<boolean>(false);
 
   const dispatch = useAppDispatch();
@@ -36,7 +34,6 @@ const UpdatePass: React.FC<ITypesProps> = (props): JSX.Element => {
     actions: FormikHelpers<IFormValuesPass>,
   ) => {
     try {
-      console.log(values);
       dispatch(
         userThunks.updatePassword({
           password: values.newPassword,
@@ -46,6 +43,7 @@ const UpdatePass: React.FC<ITypesProps> = (props): JSX.Element => {
 
       setHidePass(false);
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.log(err);
     }
   };
@@ -71,71 +69,18 @@ const UpdatePass: React.FC<ITypesProps> = (props): JSX.Element => {
         <p onClick={handleChangePass}>Change password</p>
       </div>
 
-      {/* <CustomInput
-        className="profile__input"
-        type="text"
-        value={formik.values.oldPassword}
-        disabled
-        icon={icons.hide}
-        placeholder={'Your password'}
-        error={formik.errors.oldPassword || ''}
-        touched={formik.touched.oldPassword}
-        fieldInputProps={formik.getFieldProps('oldPassword')}
-      /> */}
-
       <Input
-        className='profile__input-first'
+        className="profile__input-first"
         type="text"
         title={!hidePass ? 'Your password' : 'Old password'}
         text="******************"
         hide={true}
         icon={icons.hide}
-        // value={formik.values.oldPassword}
         disabled={true}
       />
 
       {hidePass && (
         <>
-          {/* <CustomInput
-            className="profile__input"
-            type="password"
-            value={formik.values.newPassword}
-            disabled={!hidePass}
-            icon={icons.hide}
-            placeholder={'Your password'}
-            error={formik.errors.newPassword || ''}
-            touched={formik.touched.newPassword}
-            fieldInputProps={formik.getFieldProps('newPassword')}
-          />
-
-          {formik.touched.newPassword &&
-          formik.errors.newPassword &&
-          !hidePass ? (
-              <p className="error">{formik.errors.newPassword}</p>
-            ) : (
-              <p>Change password</p>
-            )} */}
-
-          {/* <CustomInput
-            className="profile__input"
-            type="password"
-            value={formik.values.confirmPassword}
-            disabled={!hidePass}
-            icon={icons.hide}
-            placeholder={'Your password'}
-            error={formik.errors.confirmPassword || ''}
-            touched={formik.touched.confirmPassword}
-            fieldInputProps={formik.getFieldProps('confirmPassword')}
-          />
-
-          {formik.touched.confirmPassword &&
-          formik.errors.confirmPassword &&
-          !hidePass ? (
-              <p className="error">{formik.errors.confirmPassword}</p>
-            ) : (
-              <p>Change password</p>
-            )} */}
-
           <Input
             className="profile__input"
             type="password"
@@ -151,14 +96,6 @@ const UpdatePass: React.FC<ITypesProps> = (props): JSX.Element => {
             fieldInputProps={formik.getFieldProps('newPassword')}
           />
 
-          {/* {formik.touched.newPassword &&
-            formik.errors.newPassword &&
-            hidePass ? (
-              <p className="error-message">{formik.errors.newPassword}</p>
-            ) : (
-              <p className='primary-message'>Enter your password</p>
-            )} */}
-
           <Input
             className="profile__input"
             type="password"
@@ -173,17 +110,10 @@ const UpdatePass: React.FC<ITypesProps> = (props): JSX.Element => {
             fieldInputProps={formik.getFieldProps('confirmPassword')}
             description="Repeat your password without errors"
           />
-          {/*
-          {formik.touched.confirmPassword &&
-            formik.errors.confirmPassword &&
-            hidePass ? (
-              <p className="error-message">{formik.errors.confirmPassword}</p>
-            ) : (
-              <p className='primary-message'>Repeat your password without errors</p>
-            )} */}
 
-          <Button type="submit">Confirm</Button>
-
+          <Button className="profile__button" type="submit">
+            Confirm
+          </Button>
         </>
       )}
     </UpdatePassStyled>

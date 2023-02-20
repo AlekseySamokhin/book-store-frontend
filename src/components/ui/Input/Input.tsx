@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { useState } from 'react';
 import type { FieldInputProps } from 'formik';
 
@@ -6,7 +5,7 @@ import { icons } from '@/assets';
 
 import { InputStyled } from './Input.styles';
 
-interface ICustomInputPropsType {
+interface ITypeCustomInputProps {
   autocomplete?: string;
   type?: string;
   placeholder?: string;
@@ -24,7 +23,7 @@ interface ICustomInputPropsType {
   fieldInputProps?: FieldInputProps<string>;
 }
 
-const Input: React.FC<ICustomInputPropsType> = (props) => {
+const Input: React.FC<ITypeCustomInputProps> = (props) => {
   const [text, setText] = useState<string>(props.value || '');
   const [type, setType] = useState<string>(props.type || '');
   const [icon, setIcon] = useState<string>(props.icon || '');

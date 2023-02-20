@@ -103,7 +103,7 @@ const SignIn: React.FC = () => {
           </form>
         </div>
 
-        <img src={images.authPageManWithBook} className="sign-in__image" alt="Image one man" />
+        <img src={images.authPageManWithBook} className="auth__image" alt="Image one man" />
       </AuthStyled>
     </Container>
   );

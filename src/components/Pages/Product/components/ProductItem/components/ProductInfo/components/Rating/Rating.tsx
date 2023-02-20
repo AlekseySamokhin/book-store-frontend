@@ -14,9 +14,9 @@ interface ITypeProps {
   personalRating: number;
 }
 
-const Rating: React.FC<ITypeProps> = (props): JSX.Element => {
-  const [personalRating, setPersonalRating] = useState<number>(0);
-  const [averageRating, setAverageRating] = useState<number>(0);
+const Rating: React.FC<ITypeProps> = (props) => {
+  const [personalRating, setPersonalRating] = useState(0);
+  const [averageRating, setAverageRating] = useState(0);
 
   const handleChangeRate = async (newRate: number) => {
     try {
@@ -26,6 +26,7 @@ const Rating: React.FC<ITypeProps> = (props): JSX.Element => {
       });
 
       setPersonalRating(personalRating);
+
       setAverageRating(averageRating);
     } catch (err) {
       // eslint-disable-next-line no-console
@@ -40,14 +41,16 @@ const Rating: React.FC<ITypeProps> = (props): JSX.Element => {
         averageRating={averageRating || props.averageRating}
       />
 
-      <FiveStarsRating
-        className="product__item_rating_five_star"
-        personalRating={personalRating || props.personalRating}
-        changeRate={handleChangeRate}
-        readOnly={false}
-      />
+      <div className='product__item_rating_left_block'>
+        <FiveStarsRating
+          className="product__item_rating_five_star"
+          personalRating={personalRating || props.personalRating}
+          changeRate={handleChangeRate}
+          readOnly={false}
+        />
 
-      <RateThisBook />
+        <RateThisBook />
+      </div>
     </RatingStyled>
   );
 };

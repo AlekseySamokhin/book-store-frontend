@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+const laptopS = '@media(max-width: 941px)';
+
 interface ITypesProps {
   noValidate: boolean;
   autoComplete: 'off' | 'on';
@@ -21,12 +23,29 @@ const UpdatePassStyled = styled.form<ITypesProps>`
   }
 
   .error-message {
-    color: #C30052;
+    color: #c30052;
     margin-bottom: 9px;
   }
 
   .primary-message {
     margin-bottom: 9px;
+    color: #344966;
+  }
+
+  .profile__button {
+    padding: 10px 50px;
+  }
+
+  ${laptopS} {
+    .primary-message {
+      font-size: 14px;
+      line-height: 24px;
+    }
+
+    .error-message {
+      font-size: 14px;
+      line-height: 24px;
+    }
   }
 `;
 

@@ -1,10 +1,11 @@
-import { images } from '@/assets';
+import { Link } from 'react-router-dom';
 
 import { Button } from '@/components/ui';
+import { images } from '@/assets';
 
 import { CartIsEmptyStyled } from './CartIsEmpty.styles';
 
-const CartIsEmpty: React.FC = (): JSX.Element => {
+const CartIsEmpty: React.FC = () => {
   return (
     <CartIsEmptyStyled>
       <img
@@ -15,11 +16,14 @@ const CartIsEmpty: React.FC = (): JSX.Element => {
 
       <div className="cart-is-empty__text">
         <h2 className="cart-is-empty__title">Your cart is empty</h2>
+
         <p className="cart-is-empty__description">
-          Add items to cart to make a purchase. <br /> Go to the catalogue no.
+          Add items to cart to make a purchase. Go to the catalogue no.
         </p>
 
-        <Button className="cart-is-empty__button">Go to catalog</Button>
+        <Link to="/">
+          <Button className="cart-is-empty__button">Go to catalog</Button>
+        </Link>
       </div>
     </CartIsEmptyStyled>
   );
