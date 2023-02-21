@@ -3,10 +3,18 @@ import styled from 'styled-components';
 const tablet = '@media(max-width: 834px)';
 
 const ProductInfoStyled = styled.div`
-  display: flex;
-  flex-direction: column;
   max-width: 630px;
   width: 100%;
+
+  .product__info_block {
+    // grid-area: 1 / 2 / 2 / 3;
+    grid-area: 1 / 1 / 2 / 2;
+  }
+
+  .product__info_text {
+    // grid-area: 2 / 2 / 3 / 3;
+    grid-area: 2 / 1 / 3 / 3;
+  }
 
   .product__item_name {
     font-weight: 700;
