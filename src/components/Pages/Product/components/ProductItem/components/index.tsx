@@ -1,4 +1,5 @@
 import { Poster } from './Poster';
 import { ProductInfo } from './ProductInfo';
+import { ProductHeader } from './ProductHeader';
 
-export { Poster, ProductInfo };
+export { Poster, ProductInfo, ProductHeader };

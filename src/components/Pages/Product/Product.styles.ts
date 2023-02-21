@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+const tablet = '@media(max-width: 834px';
+
 const ProductStyled = styled.div`
   display: flex;
   flex-direction: column;
@@ -13,9 +15,9 @@ const ProductStyled = styled.div`
     margin-bottom: 68px;
   }
 
-  /* .product__recommendation {
-    padding: 97px 0 150px 0;
-  } */
+  ${tablet} {
+   padding-top: 8px;
+  }
 `;
 
 export { ProductStyled };

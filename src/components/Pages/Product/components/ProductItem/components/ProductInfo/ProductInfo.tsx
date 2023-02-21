@@ -6,7 +6,7 @@ import { userThunks } from '@/redux/users/thunks';
 import { cartService } from '@/api/services';
 
 import { Button } from '@/components/ui';
-import { Title, Description, Rating } from './components';
+import { Description } from './components';
 
 import type { ITypeDataBook } from '@/interfaces/bookInterfaces';
 import type { ITypeCartUser } from '@/interfaces/userInterfaces';
@@ -16,6 +16,7 @@ import { ProductInfoStyled } from './ProductInfo.styles';
 interface ITypeProps {
   book: ITypeDataBook | null;
   personalRating: number;
+  className?: string;
 }
 
 const ProductInfo: React.FC<ITypeProps> = (props) => {
@@ -43,56 +44,33 @@ const ProductInfo: React.FC<ITypeProps> = (props) => {
   };
 
   return (
-    <ProductInfoStyled>
-      <div className="product__info_block">
-        <Title
-          className="product__item_name"
-          variant="h2"
-          text={props.book?.title || ''}
-        />
+    <ProductInfoStyled className={props.className}>
+      <Description
+        className="product__item_description"
+        description={props.book?.description || ''}
+      />
 
-        <Title
-          className="product__item_author"
-          variant="h3"
-          text={props.book?.author || ''}
-        />
-
-        <Rating
-          className="product__item_rating"
-          personalRating={props.personalRating}
-          averageRating={props.book?.averageRating || 0}
-          bookId={props.book?.bookId || ''}
-        />
-      </div>
-
-      <div className="product__info_text">
-        <Description
-          className="product__item_description"
-          description={props.book?.description || ''}
-        />
-
-        <div className="product__item_buttons">
-          <div className="product__item_buttons_paperback">
-            <span className="product__item_buttons_title">PaperBack</span>
-            <Button disabled={true} className="product__item_button">
-              Not available
+      <div className="product__item_buttons">
+        <div className="product__item_buttons_paperback">
+          <span className="product__item_buttons_title">PaperBack</span>
+          <Button disabled={true} className="product__item_button">
+            Not available
+          </Button>
+        </div>
+        <div className="product__item_buttons_hardcover">
+          <span className="product__item_buttons_title">Hardcover</span>
+          {hasCart ? (
+            <Button className="product__item_button" outlined={hasCart}>
+              {hasCart ? 'Added to cart' : `${props.book?.price} USD`}
             </Button>
-          </div>
-          <div className="product__item_buttons_hardcover">
-            <span className="product__item_buttons_title">Hardcover</span>
-            {hasCart ? (
-              <Button className="product__item_button" outlined={hasCart}>
-                {hasCart ? 'Added to cart' : `${props.book?.price} USD`}
-              </Button>
-            ) : (
-              <Button
-                onClick={handleAddCartBook}
-                className="product__item_button"
-              >
-                $ {props.book?.price} USD
-              </Button>
-            )}
-          </div>
+          ) : (
+            <Button
+              onClick={handleAddCartBook}
+              className="product__item_button"
+            >
+              $ {props.book?.price} USD
+            </Button>
+          )}
         </div>
       </div>
     </ProductInfoStyled>

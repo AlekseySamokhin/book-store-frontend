@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import { booksService } from '@/api/services';
 
-import { Poster, ProductInfo } from './components';
+import { ProductInfo, ProductHeader } from './components';
 import type { ITypeDataBook } from '@/interfaces/bookInterfaces';
 
 import { ProductItemStyled } from './ProductItem.styles';
@@ -36,9 +36,22 @@ const ProductItem: React.FC<ITypeProps> = (props) => {
 
   return (
     <ProductItemStyled className={props.className}>
-      <Poster className="product__item_poster" picture={book?.poster} />
+      <img className="product__item_poster" src={book?.poster} />
 
-      <ProductInfo personalRating={personalRating || 0} book={book || null} />
+      <ProductHeader
+        className="product__item_header"
+        bookId={book?.bookId}
+        title={book?.title}
+        author={book?.author}
+        personalRating={personalRating}
+        averageRating={book?.averageRating}
+      />
+
+      <ProductInfo
+        className="product__item_info"
+        personalRating={personalRating || 0}
+        book={book || null}
+      />
     </ProductItemStyled>
   );
 };
