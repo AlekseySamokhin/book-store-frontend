@@ -55,12 +55,9 @@ const Catalog: React.FC<ITypeProps> = (props) => {
 
       <div className="catalog__booklist">
         {books.length ? (
-          books.map((book) => (
-            <BookItem
-              key={book.bookId}
-              book={book}
-            />
-          ))
+          books.map((book) => {
+            return <BookItem key={book.bookId} book={book} />;
+          })
         ) : (
           <BooksNotFound />
         )}

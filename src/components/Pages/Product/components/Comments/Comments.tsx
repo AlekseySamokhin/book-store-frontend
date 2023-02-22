@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { io } from 'socket.io-client';
 
 import { commentService } from '@/api/services';
 
@@ -10,13 +11,34 @@ import type { ITypeComment } from '@/interfaces/commentInterfaces';
 
 import { CommentsStyled } from './Comments.styles';
 
-interface ITypesProps {
+interface ITypeProps {
   className?: string;
 }
 
-const Comments: React.FC<ITypesProps> = (props): JSX.Element => {
+const socket = io('http://localhost:4000');
+
+const Comments: React.FC<ITypeProps> = (props) => {
+  const [isConnected, setIsConnected] = useState(socket.connected);
   const [comments, setComments] = useState<ITypeComment[]>([]);
   const { bookId } = useParams<string>();
+
+  useEffect(() => {
+    socket.on('connect', () => {
+      setIsConnected(true);
+    });
+
+    socket.on('disconnect', () => {
+      setIsConnected(false);
+    });
+
+    return () => {
+      socket.off('connect');
+      socket.off('disconnect');
+    };
+  }, []);
+
+  // eslint-disable-next-line no-console
+  console.log(isConnected);
 
   useEffect(() => {
     (async () => {

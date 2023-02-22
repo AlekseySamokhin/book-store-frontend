@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-
 import { bookThunks } from './bookThunks';
 
 import type {
@@ -12,7 +11,7 @@ interface ITypeStateBookSlice {
   pagination: ITypePagination;
 }
 
-const initialBook: ITypeDataBook = {
+export const initialBook: ITypeDataBook = {
   bookId: '',
   title: '',
   author: '',

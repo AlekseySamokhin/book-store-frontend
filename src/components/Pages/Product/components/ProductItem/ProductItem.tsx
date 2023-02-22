@@ -32,7 +32,7 @@ const ProductItem: React.FC<ITypeProps> = (props) => {
         console.log(err);
       }
     })();
-  }, []);
+  }, [bookId]);
 
   return (
     <ProductItemStyled className={props.className}>

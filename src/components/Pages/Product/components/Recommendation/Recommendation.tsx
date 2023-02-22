@@ -1,11 +1,11 @@
-/* eslint-disable no-console */
 import { useState, useEffect } from 'react';
 
-import { ReccommendationStyled } from './Recommendation.styles';
 import { booksService } from '@/api/services';
 import { BookItem } from '@/components/Pages/Home/Catalog/components';
 
 import type { ITypeDataBook } from '@/interfaces/bookInterfaces';
+
+import { ReccommendationStyled } from './Recommendation.styles';
 
 interface ITypeProps {
   className?: string;
@@ -21,6 +21,7 @@ const Recommendation: React.FC<ITypeProps> = (props) => {
 
         setBooks(books);
       } catch (err) {
+        // eslint-disable-next-line no-console
         console.log(err);
       }
     })();
@@ -29,7 +30,7 @@ const Recommendation: React.FC<ITypeProps> = (props) => {
   return (
     <ReccommendationStyled className={props.className}>
       <h3 className="reccommendations__title">Reccomendations</h3>
-      <div className="reccommendations__books">
+      <div className="reccommendations__list">
         {books.map((book) => (
           <BookItem key={book.bookId} book={book} />
         ))}

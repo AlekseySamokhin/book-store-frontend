@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const tablet = '@media(max-width: 834px';
+const tablet = '@media(max-width: 834px)';
 
 const ProductStyled = styled.div`
   display: flex;
@@ -8,7 +8,7 @@ const ProductStyled = styled.div`
   padding: 60px 0 100px 0;
 
   .product__item {
-    margin-bottom: 88px;
+    // margin-bottom: 88px;
   }
 
   .product__comments {

@@ -1,11 +1,15 @@
-/* eslint-disable no-console */
 import { createSlice } from '@reduxjs/toolkit';
 
 import { authThunks, userThunks } from './thunks';
 import { bookThunks } from '../books/bookThunks';
 
-import type { ITypeCartUser, ITypeDataUser, ITypeStateUser } from '@/interfaces/userInterfaces';
+import type {
+  ITypeCartUser,
+  ITypeDataUser,
+  ITypeStateUser,
+} from '@/interfaces/userInterfaces';
 import type { ITypeDataBook } from '@/interfaces/bookInterfaces';
+import { initialBook } from '../books/bookSlice';
 
 const initialUser: ITypeDataUser = {
   id: 0,
@@ -15,10 +19,28 @@ const initialUser: ITypeDataUser = {
   avatar: '',
 };
 
+const initialFavorites: ITypeDataBook = {
+  bookId: '',
+  title: '',
+  author: '',
+  price: 0,
+  description: '',
+  poster: '',
+  isNew: false,
+  isBestseller: false,
+  averageRating: 0,
+};
+
+const initialCart: ITypeCartUser = {
+  id: 0,
+  count: '',
+  book: initialBook,
+};
+
 const getInitialState = (): ITypeStateUser => ({
   user: initialUser,
-  favorites: [] as ITypeDataBook[],
-  cart: [] as ITypeCartUser[],
+  favorites: [initialFavorites],
+  cart: [initialCart],
 });
 
 const userSlice = createSlice({
@@ -47,13 +69,16 @@ const userSlice = createSlice({
       state.favorites = action.payload;
     });
 
-    builder.addCase(bookThunks.deleteFavoriteBook.fulfilled, (state, action) => {
-      if (!action.payload) {
-        return;
-      }
+    builder.addCase(
+      bookThunks.deleteFavoriteBook.fulfilled,
+      (state, action) => {
+        if (!action.payload) {
+          return;
+        }
 
-      state.favorites = action.payload;
-    });
+        state.favorites = action.payload;
+      },
+    );
 
     builder.addCase(authThunks.getCurrentUser.fulfilled, (state, action) => {
       if (!action.payload) {
@@ -77,8 +102,6 @@ const userSlice = createSlice({
       if (!action.payload) {
         return;
       }
-
-      console.log(action.payload);
 
       state.user = action.payload.user;
       state.cart = action.payload.cart;

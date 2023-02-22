@@ -1,6 +1,7 @@
 import { CheckAuth } from '@/components/Containers';
 import { BookBanner, AuthBanner } from '@/components/ui';
 import { Container } from '@/components/styles';
+
 import { Catalog } from './Catalog';
 
 import { HomeStyled } from './Home.styles';

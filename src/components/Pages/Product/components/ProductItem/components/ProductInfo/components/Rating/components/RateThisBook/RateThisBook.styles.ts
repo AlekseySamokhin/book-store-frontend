@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-const tabletM = '@media(max-width: 758px)';
-
 const RateThisBookStyled = styled.div`
   display: flex;
   justify-content: space-between;
@@ -17,11 +15,7 @@ const RateThisBookStyled = styled.div`
     color: #b9bac4;
   }
 
-  ${tabletM} {
-   .rating_this_book_arrow {
-      opacity: 0;
-   }
-  }
+  
 `;
 
 export { RateThisBookStyled };

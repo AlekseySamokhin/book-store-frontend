@@ -7,6 +7,7 @@ const ProductItemStyled = styled.div`
   grid-template-columns: repeat(2, auto);
   grid-template-rows: repeat(2, 30% 70%);
   grid-column-gap: 40px;
+  grid-row-gap: 20px;
 
   .product__item_poster {
     grid-area: 1 / 1 / 3 / 2;
@@ -31,6 +32,7 @@ const ProductItemStyled = styled.div`
     grid-template-rows: repeat(2, auto);
     grid-column-gap: 15px;
     grid-row-gap: 20px;
+    margin-bottom: 20px;
 
     .product__item_poster {
       grid-area: 1 / 1 / 2 / 2;

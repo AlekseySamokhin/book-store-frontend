@@ -27,6 +27,7 @@ const AddCommentStyled = styled.form`
   }
 
   .add-comment__button {
+    padding: 10px 0;
     max-width: 279px;
     width: 100%;
   }

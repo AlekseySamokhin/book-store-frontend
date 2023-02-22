@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import { useAppDispatch, useAppSelector } from '@/redux/store';
@@ -20,8 +21,10 @@ interface ITypeProps {
 }
 
 const ProductInfo: React.FC<ITypeProps> = (props) => {
+  const email = useAppSelector((store) => store.auth.user.email);
   const cart = useAppSelector((store) => store.auth.cart);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const checkForCart = (array: ITypeCartUser[]) => {
     const arrayIdBooks = array.map((item) => item.book.bookId);
@@ -29,9 +32,16 @@ const ProductInfo: React.FC<ITypeProps> = (props) => {
     return arrayIdBooks.includes(props.book?.bookId || '0');
   };
 
+  // eslint-disable-next-line no-console
+  console.log(email);
+
   const hasCart = useMemo(() => checkForCart(cart), [cart, props.book?.bookId]);
 
   const handleAddCartBook = async () => {
+    if (!email) {
+      navigate('/signin');
+    }
+
     try {
       await cartService.addCartBook({ bookId: Number(props.book?.bookId) });
 

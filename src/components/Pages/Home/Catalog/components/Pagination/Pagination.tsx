@@ -59,13 +59,15 @@ const Pagination: React.FC = (): JSX.Element | null => {
 
           <div className="pagination__pages">
             {!!pages.length &&
-              pages.map(({ page, styles }) => (
-                <div
-                  key={page}
-                  onClick={() => handleChangePage(page)}
-                  className={styles}
-                ></div>
-              ))}
+              pages.map(({ page, styles }) => {
+                return (
+                  <div
+                    key={page}
+                    onClick={() => handleChangePage(page)}
+                    className={styles}
+                  ></div>
+                );
+              })}
           </div>
 
           <div

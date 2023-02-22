@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 
+const tablet = '@media(max-width: 834px)';
+const mobileL = '@media(max-width: 425px)';
+
 const CommentsStyled = styled.div`
   display: flex;
   flex-direction: column;
@@ -20,7 +23,25 @@ const CommentsStyled = styled.div`
   }
 
   .comments__form {
-    margin-top: 50px;
+    margin-top: 60x;
+  }
+
+  ${tablet} {
+    .comments__title {
+      font-size: 24px;
+      line-height: 32px;
+      margin-bottom: 20px;
+    }
+
+    .comments__form {
+      margin-top: 40px;
+    }
+  }
+
+  ${mobileL} {
+    .comments__title {
+      display: none;
+    }
   }
 `;
 

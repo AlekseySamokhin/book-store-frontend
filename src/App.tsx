@@ -13,7 +13,7 @@ import { Loader } from './components/ui';
 
 import 'react-toastify/dist/ReactToastify.css';
 
-const App: React.FC = (): JSX.Element => {
+const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const dispatch = useAppDispatch();
