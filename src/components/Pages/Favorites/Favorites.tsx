@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { useAppSelector } from '@/redux/store';
 
 import { images } from '@/assets';

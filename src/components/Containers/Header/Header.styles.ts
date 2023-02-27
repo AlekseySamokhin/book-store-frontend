@@ -17,7 +17,7 @@ const HeaderStyled = styled.header`
     max-width: 630px;
   }
 
-  .header__title {
+  .header__notification {
     font-size: 16px;
     font-weight: 500;
   }

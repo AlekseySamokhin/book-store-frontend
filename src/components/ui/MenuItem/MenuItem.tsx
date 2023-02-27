@@ -7,7 +7,6 @@ interface ITypeProps {
   alt?: string;
   path?: string;
   count?: number;
-  children?: JSX.Element;
   className?: string;
 }
 
@@ -15,10 +14,11 @@ const MenuItem: React.FC<ITypeProps> = (props) => {
   return (
     <Link to={props.path || ''}>
       <MenuItemStyled className={props.className}>
-        {!!Number(props.count) && (<div className="menu-item__count">{props.count}</div>)}
+        {!!Number(props.count) && (
+          <div className="menu-item__count">{props.count}</div>
+        )}
 
         <img className="menu-item__icon" src={props.icon} alt={props.alt} />
-        {props.children}
       </MenuItemStyled>
     </Link>
   );

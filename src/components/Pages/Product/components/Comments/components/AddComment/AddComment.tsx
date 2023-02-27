@@ -1,8 +1,11 @@
 /* eslint-disable no-console */
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { io } from 'socket.io-client';
 
-import { commentService } from '@/api/services';
+// import { commentService } from '@/api/services';
+
+import { useAppSelector } from '@/redux/store';
 
 import { Button } from '@/components/ui';
 
@@ -15,34 +18,38 @@ interface ITypesProps {
   className?: string;
 }
 
+const socket = io('http://localhost:4000');
+
 const AddComment: React.FC<ITypesProps> = (props): JSX.Element => {
-  const [text, setText] = useState<string>('');
+  const user = useAppSelector((store) => store.auth.user);
+  const [comment, setComment] = useState<string>('');
   const { bookId } = useParams();
 
   const handleChangeComment = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setText(e.target.value);
+    setComment(e.target.value);
   };
 
   const handleAddComment = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const options = {
-      text: text.trim(),
+    if (!comment.trim()) return;
+
+    const dataComment = {
+      text: comment,
       bookId: Number(bookId),
+      userId: user.id,
     };
 
-    setText('');
+    socket.emit('send_comments', dataComment);
 
-    const comments = await commentService.addComment(options);
-
-    props.addComment(comments);
+    setComment('');
   };
 
   return (
     <AddCommentStyled onSubmit={handleAddComment} className={props.className}>
       <textarea
         className="add-comment__textarea"
-        value={text}
+        value={comment}
         onChange={handleChangeComment}
         placeholder="Share comment"
       />

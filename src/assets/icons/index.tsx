@@ -15,6 +15,7 @@ import starTransparent from './star-transparent.svg';
 import iconDelete from './delete-icon.svg';
 import arrowBack from './arrow-back.svg';
 import checkMark from './check-mark.svg';
+import notification from './notification.png';
 
 const icons = {
   cart,
@@ -34,6 +35,7 @@ const icons = {
   iconDelete,
   arrowBack,
   checkMark,
+  notification,
 };
 
 export { icons };

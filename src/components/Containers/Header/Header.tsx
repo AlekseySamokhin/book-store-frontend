@@ -12,7 +12,7 @@ const Header: React.FC = () => {
       <HeaderStyled>
         <Logo className="header__logo" position="header" />
 
-        <h4 className="header__title">Catalog</h4>
+        <h4 className="header__notification">Catalog</h4>
 
         <Search className="header__input" />
 

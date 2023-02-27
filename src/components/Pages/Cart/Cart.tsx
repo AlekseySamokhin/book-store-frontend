@@ -24,7 +24,7 @@ const Cart: React.FC = () => {
         console.log(error);
       }
     })();
-  }, [cart]);
+  }, []);
 
   const getTotalAmount = (array: ITypeCartUser[]) => {
     const arrayPrices = [] as number[];

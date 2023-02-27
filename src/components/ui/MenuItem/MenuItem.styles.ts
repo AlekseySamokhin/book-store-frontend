@@ -18,6 +18,8 @@ const MenuItemStyled = styled.div<ITypeProps>`
   .menu-item__icon {
     position: absolute;
     margin: auto;
+    height: 26px;
+    width: 26px;
     top: 0;
     left: 0;
     right: 0;

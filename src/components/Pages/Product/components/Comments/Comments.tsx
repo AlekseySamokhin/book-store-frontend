@@ -22,12 +22,10 @@ const Comments: React.FC<ITypeProps> = (props) => {
   const { bookId } = useParams<string>();
 
   useEffect(() => {
-    socket.on('comments', (comment: ITypeComment) => {
-      setComments((items) => {
-        return [...items, comment];
-      });
+    socket.on('comments', (comments: ITypeComment[]) => {
+      setComments(comments);
     });
-  }, []);
+  }, [socket]);
 
   useEffect(() => {
     (async () => {
