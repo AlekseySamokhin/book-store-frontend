@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { io } from 'socket.io-client';
@@ -13,19 +14,23 @@ import { CommentsStyled } from './Comments.styles';
 
 interface ITypeProps {
   className?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  socket: any;
 }
-
-const socket = io('http://localhost:4000');
 
 const Comments: React.FC<ITypeProps> = (props) => {
   const [comments, setComments] = useState<ITypeComment[]>([]);
   const { bookId } = useParams<string>();
 
+  console.log('comment', props.socket);
+
   useEffect(() => {
+    const socket = io('http://localhost:4000');
+
     socket.on('comments', (comments: ITypeComment[]) => {
       setComments(comments);
     });
-  }, [socket]);
+  }, []);
 
   useEffect(() => {
     (async () => {
@@ -59,7 +64,7 @@ const Comments: React.FC<ITypeProps> = (props) => {
       ))}
 
       <CheckAuth needAuth={true}>
-        <AddComment addComment={addComment} className="comments__form" />
+        <AddComment socket={props.socket} addComment={addComment} className="comments__form" />
       </CheckAuth>
     </CommentsStyled>
   );

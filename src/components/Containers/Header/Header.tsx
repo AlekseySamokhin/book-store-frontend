@@ -6,7 +6,12 @@ import { MenuBeforeAuth, MenuAfterAuth } from './components';
 
 import { HeaderStyled } from './Header.styles';
 
-const Header: React.FC = () => {
+interface ITypeProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  socket: any;
+}
+
+const Header: React.FC<ITypeProps> = (props) => {
   return (
     <Container>
       <HeaderStyled>
@@ -17,7 +22,10 @@ const Header: React.FC = () => {
         <Search className="header__input" />
 
         <CheckAuth needAuth={true}>
-          <MenuAfterAuth className="header__menu" />
+          <MenuAfterAuth
+            socket={props.socket}
+            className="header__menu"
+          />
         </CheckAuth>
 
         <CheckAuth needAuth={false}>

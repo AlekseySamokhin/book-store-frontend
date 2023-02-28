@@ -6,16 +6,21 @@ import { Comments, Recommendation, ProductItem } from './components';
 
 import { ProductStyled } from './Product.styles';
 
-const Product: React.FC = (): JSX.Element => {
+interface ITypeProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  socket: any;
+}
+
+const Product: React.FC<ITypeProps> = (props): JSX.Element => {
   return (
     <Container>
       <ProductStyled>
         <ProductItem className="product__item" />
 
-        <Comments className="product__comments" />
+        <Comments socket={props.socket} className="product__comments" />
 
         <CheckAuth needAuth={false}>
-          <AuthBanner className='product__auth_banner' />
+          <AuthBanner className="product__auth_banner" />
         </CheckAuth>
 
         <Recommendation className="product__recommendation" />

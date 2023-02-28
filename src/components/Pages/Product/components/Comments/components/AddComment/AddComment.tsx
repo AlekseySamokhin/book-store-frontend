@@ -1,9 +1,6 @@
 /* eslint-disable no-console */
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { io } from 'socket.io-client';
-
-// import { commentService } from '@/api/services';
 
 import { useAppSelector } from '@/redux/store';
 
@@ -13,14 +10,14 @@ import { AddCommentStyled } from './AddComment.styles';
 
 import type { ITypeComment } from '@/interfaces/commentInterfaces';
 
-interface ITypesProps {
+interface ITypeProps {
   addComment: (comment: ITypeComment[]) => void;
   className?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  socket: any;
 }
 
-const socket = io('http://localhost:4000');
-
-const AddComment: React.FC<ITypesProps> = (props): JSX.Element => {
+const AddComment: React.FC<ITypeProps> = (props): JSX.Element => {
   const user = useAppSelector((store) => store.auth.user);
   const [comment, setComment] = useState<string>('');
   const { bookId } = useParams();
@@ -40,7 +37,13 @@ const AddComment: React.FC<ITypesProps> = (props): JSX.Element => {
       userId: user.id,
     };
 
-    socket.emit('send_comments', dataComment);
+    props.socket.emit('send_notifications', {
+      userId: user.id,
+      bookId: Number(bookId),
+      type: 'comment',
+    });
+
+    props.socket.emit('send_comments', dataComment);
 
     setComment('');
   };

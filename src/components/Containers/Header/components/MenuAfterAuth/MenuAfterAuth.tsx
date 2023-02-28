@@ -1,7 +1,4 @@
-/* eslint-disable no-console */
-import { useEffect } from 'react';
-import { io } from 'socket.io-client';
-
+import { useState, useEffect } from 'react';
 import { useAppSelector } from '@/redux/store';
 
 import { MenuItem } from '@/components/ui';
@@ -13,24 +10,43 @@ import { MenuAfterAuthStyled } from './MenuAfterAuth.styles';
 
 interface ITypeProps {
   className?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  socket: any;
 }
 
-const socket = io('http://localhost:4000');
+interface ITypeNotification {
+  userId: number;
+  type: string;
+  bookId: number;
+}
 
 const MenuAfterAuth: React.FC<ITypeProps> = (props) => {
-  // const [notification, setNotification] = useState<Array<number>>([]);
   const cart = useAppSelector((state) => state.auth.cart);
   const favorites = useAppSelector((state) => state.auth.favorites);
 
+  const [notifications, setNotifications] = useState<ITypeNotification[]>([]);
+
   useEffect(() => {
-    socket.on('comments', () => {
-      console.log(1);
-    });
-  }, [socket]);
+    props.socket.on(
+      'get_notification',
+      (newNotification: {
+        userId: number;
+        type: string;
+        bookId: number;
+      }) => {
+        setNotifications((prevNotifications) => [
+          ...prevNotifications,
+          newNotification,
+        ]);
+      },
+    );
+  }, [props.socket]);
+
+  // console.log(notifications);
 
   return (
     <MenuAfterAuthStyled className={props.className}>
-      <MenuItem count={10} icon={icons.notification} alt="notification icon" />
+      <MenuItem count={notifications.length} icon={icons.notification} alt="notification icon" />
       <MenuItem
         count={cart.length}
         path="cart"
