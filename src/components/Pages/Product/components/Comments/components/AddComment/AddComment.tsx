@@ -38,9 +38,9 @@ const AddComment: React.FC<ITypeProps> = (props): JSX.Element => {
     };
 
     props.socket.emit('send_notifications', {
-      userId: user.id,
+      user,
       bookId: Number(bookId),
-      type: 'comment',
+      text: comment,
     });
 
     props.socket.emit('send_comments', dataComment);

@@ -43,6 +43,21 @@ const MenuItemStyled = styled.div<ITypeProps>`
     color: #344966;
   }
 
+  .menu-item__toast {
+    background-color: #0d1821;
+    width: 250px;
+    color: white;
+    padding: 25px;
+    border-radius: 16px;
+    position: absolute;
+    top: 70px;
+    right: -65px;
+  }
+
+  .menu-item__toast_list {
+    list-style-type: none;
+  }
+
   ${mobileL} {
     width: 32px;
     height: 32px;
